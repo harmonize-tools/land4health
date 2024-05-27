@@ -1,0 +1,44 @@
+{
+    "links": [
+      {
+        "text": "Harmonize web page",
+        "link": "https://www.harmonize-tools.org/"
+      }
+    ],
+    "licenses": [
+      {
+        "text": "MIT",
+        "link": "https://opensource.org/license/mit/"
+      }
+    ],
+    "citations": [
+      {
+        "text": "Citing of drone use",
+        "link": "https://scholar.google.es/scholar?q=info:8PmRaTkPC2IJ:scholar.google.com/&output=cite&scirp=0&hl=es"
+      }
+    ],
+    "authors": [
+      {
+        "name": "Raphael Saldanha",
+        "position": "Author, maintainer"
+      },
+    ],
+    "badges": [
+      {
+        "classname": "mb-2 w-24",
+        "src": "https://www.r-pkg.org/badges/version/brclimr",
+        "alt": "CRAN status"
+      },
+      {
+        "classname": "mb-2 w-40",
+        "src": "https://cranlogs.r-pkg.org/badges/brclimr",
+        "alt": "CRAN status"
+      },
+      {
+        "classname": "w-36",
+        "src": "https://github.com/rfsaldanha/brclimr/actions/workflows/R-CMD-check.yaml/badge.svg",
+        "alt": "R-CMD-check"
+      }
+    ]
+  }
+  
