@@ -1,0 +1,13 @@
+Package: land4health
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R:c(
+    person("Yomali", "Ferreyra", email = "yomali.ferreyra@upch.pe", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5184-9595")),
+    person("Antony", "Barja", email = "antony.barja@upch.pem", role = c("aut"), comment = c(ORCID = "0000-0001-5921-2858")),
+    person("Diego", "Villa", role = c("aut")))
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
