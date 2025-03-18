@@ -1,0 +1,2 @@
+category,metric,pixel_resolution_meters,dataset,start_year,end_year,layer_can_be_actived,tags,lifecycle,url
+Human intervention,deforestation,30,Hansen Global Forest Change v1.11,2000,2023,TRUE,forest,experimental,https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2023_v1_11
