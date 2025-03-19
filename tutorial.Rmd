@@ -1,0 +1,87 @@
+---
+title: "Tutorial"
+output: html_document
+date: "2025-03-19"
+---
+
+# Requirements
+
+## Loading libraries
+
+```{r message=FALSE, warning=FALSE}
+library(sf)
+library(rgee)
+library(geodata)
+library(tidyverse)
+library(viridis)
+library(cowplot)
+library(mapview)
+library(land4health)
+```
+
+## Google Earth API
+
+```{r}
+#Run only if credentials expired
+#ee_clean_user_credentials()
+#ee_Authenticate()
+ee_Initialize()
+```
+
+# 1. Reading a sf object
+
+```{r}
+#Example
+data("Peru")
+peru.region <- Peru %>%
+  dplyr::group_by(dep) %>%
+  summarise()
+glimpse(peru.region)
+
+mapview(peru.region,legend = NULL)
+
+```
+
+# 2. Transformation of sf object to a feature collection
+
+```{r}
+peru.ee <- peru.region %>%
+  pol_as_ee(
+    id = c("dep"),
+    simplify = 100
+  )
+```
+
+# 3. Testing functions
+
+## Extract vegetation index of MODIS 
+fun = (count, kurtosis, max, mean, median, min, mod, percentile, std, sum, variance, first).
+
+```{r message=FALSE, warning=FALSE}
+data_veg_min <- peru.ee %>% get_vegetation(
+  from = "2001-02-01", to = "2002-12-31", band = "NDVI", fun = "min"
+)
+
+data_veg_max <- peru.ee %>% get_vegetation(
+  from = "2001-02-01", to = "2002-12-31", band = "NDVI", fun = "max"
+)
+
+data_veg_median <- peru.ee %>% get_vegetation(
+  from = "2001-02-01", to = "2002-12-31", band = "NDVI", fun = "median"
+)
+```
+# 4. Processing data for mapping
+```{r}
+peru.def.sf <- merge(peru.region,data_veg_max, by="dep" )
+colnames(peru.def.sf)
+
+```
+
+```{r}
+mapview(
+  peru.def.sf,
+  zcol="NDVI2001-02",
+  layer.name = "NDVI2001-02"
+)
+```
+

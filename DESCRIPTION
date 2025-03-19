@@ -1,13 +1,47 @@
 Package: land4health
-Title: What the Package Does (One Line, Title Case)
+Title: Environmental Indicators Analysis for Health Research
 Version: 0.0.0.9000
-Authors@R:c(
-    person("Yomali", "Ferreyra", email = "yomali.ferreyra@upch.pe", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5184-9595")),
-    person("Antony", "Barja", email = "antony.barja@upch.pem", role = c("aut"), comment = c(ORCID = "0000-0001-5921-2858")),
-    person("Diego", "Villa", role = c("aut")))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Authors@R: c(
+    person(given = "Yomali", family = "Ferreyra", email = "yomali.ferreyra@upch.pe", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5184-9595")),
+    person(given = "Antony", family = "Barja", email = "antony.barja@upch.pe", role = "aut", comment = c(ORCID = "0000-0001-5921-2858")),
+    person(given = "Diego", family = "Villa", role = "aut"))
+Description: Provides tools for analyzing frequency-grouped, weighted, and 
+    multi-source environmental indicators relevant to health research. This 
+    package includes functions for calculating zonal statistics (e.g., mean, 
+    maximum, minimum), integrating multi-source data, and visualizing results 
+    in a format harmonized for epidemiological studies.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+Imports:
+    RCurl,
+    sf,
+    magrittr,
+    dplyr,
+    purrr,
+    stringr,
+    rgee,
+    ggplot2,
+    readr,
+    rlang,
+    tidyr,
+    broom,
+    methods,
+    MASS,
+    reticulate,
+    zoo,
+    stringi,
+    fs,
+    Matrix,
+    psych,
+    gert,
+    renv,
+    rstudioapi
+Suggests:
+    knitr,
+    unikn,
+    mapview,
+    rmarkdown,
+    tidyverse
+

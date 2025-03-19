@@ -65,6 +65,15 @@ cat("── Welcome to land4health ──\n",
     "ℹ For more information, use `?land4health` or `help(package = 'land4health')`.\n")
 ```
 
+## Indicators
+
+`get_indicators()` shows a dataframe with diverse environmental metrics. These indicators cover environmental risk, urban growth, land use change, climate variability, and air quality. Each indicator is categorized by group (e.g., multifactor, frequency, or weighted) and is measured in specific units (e.g., days, degrees Celsius, index values) with different spatial and temporal resolutions. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+get_indicators()
+```
+
+
 ## Organization
 
 <img src="man/figures/logo_InnovaLab.png" alt="Health Innovation Laboratory, Institute of Tropical Medicine &apos;Alexander von Humboldt&apos;" width="200"/>

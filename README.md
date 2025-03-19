@@ -70,6 +70,26 @@ When you load the package, you should see the following welcome message:
     #>  ✔ Export and visualization of results
     #>  ℹ For more information, use `?land4health` or `help(package = 'land4health')`.
 
+## Indicators
+
+`get_indicators()` shows a dataframe with diverse environmental metrics.
+These indicators cover environmental risk, urban growth, land use
+change, climate variability, and air quality. Each indicator is
+categorized by group (e.g., multifactor, frequency, or weighted) and is
+measured in specific units (e.g., days, degrees Celsius, index values)
+with different spatial and temporal resolutions.
+
+    #> # A tibble: 6 × 8
+    #>   Group       Indicador Description Units `Spatial resolution` `Time resolution`
+    #>   <chr>       <chr>     <chr>       <chr> <chr>                <chr>            
+    #> 1 Multifactor Environm… Stimates e… cate… Spatial grid cell s… Depending of sam…
+    #> 2 Multifactor Long-Ter… A total of… cate… Spatial grid cell s… Depending of sam…
+    #> 3 Multifactor NVDI sti… Stimates N… cate… Spatial grid cell s… Depending of sam…
+    #> 4 Frecuency   Rainy Da… Number of … Days  Spatial grid cell s… Monthly          
+    #> 5 Frecuency   Weekly T… Temperatur… Degr… Spatial grid cell s… Weekly           
+    #> 6 Frecuency   Land Use… Rate of ch… Perc… Spatial grid cell s… Annual           
+    #> # ℹ 2 more variables: Source <chr>, Link <chr>
+
 ## Organization
 
 <img src="man/figures/logo_InnovaLab.png" alt="Health Innovation Laboratory, Institute of Tropical Medicine &apos;Alexander von Humboldt&apos;" width="200"/>
