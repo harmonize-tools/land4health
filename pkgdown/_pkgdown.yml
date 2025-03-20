@@ -18,5 +18,5 @@ navbar:
 reference:
  - title: 'Utils'
    contents:
-   - get_providers_metrics
+   - get_metrics_summary
    - get_metrics_metadata

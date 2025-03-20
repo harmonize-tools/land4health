@@ -1,7 +1,7 @@
-#' Summary of Providers and Available Metrics in land4health
+#' Summary of Categories and Available Metrics in land4health
 #'
 #' @description
-#' This function returns a summary of the providers present in the dataset along with the number of available metrics for each provider.
+#' This function returns a summary of the categories present in the dataset along with the number of available metrics for each provider.
 #' It provides a quick overview of the distribution of key indicators and covariates, which is useful for exploratory analysis in spatial epidemiology.
 #'
 #' @param query Character. Default is NULL.
@@ -11,18 +11,18 @@
 #' @examples
 #' \donttest{
 #' library(land4health)
-#' get_providers_metrics()
+#' get_metrics_summary()
 #' }
 #' @export
-get_providers_metrics <- \(query = NULL){
+get_metrics_summary <- \(query = NULL){
 
   if(is.null(query)){
     providers_count <- get_data() |>
-      subset(select = "dataset") |>
+      subset(select = "category") |>
       table() |>
       as.data.frame() |>
       tidyr::as_tibble()
-    names(providers_count) <- c("provider", "metrics_counts")
+    names(providers_count) <- c("category", "metrics_counts")
 
   } else {
     stop("Please, only NULL is valid")
