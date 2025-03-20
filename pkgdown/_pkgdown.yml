@@ -1,0 +1,16 @@
+url: https://github.com/harmonize-tools/land4health
+home:
+  title: land4health
+
+
+template:
+  bootstrap: 5
+  light-switch: true
+
+development:
+  mode: auto
+
+navbar:
+   bg: custom
+   structure:
+    right: [search, github, lightswitch]

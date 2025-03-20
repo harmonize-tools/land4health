@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# Define the GitHub repository URL
-# GITHUB_REPO="git@github.com:harmonize-tools/template_githubpage.git"
-GITHUB_REPO="ADD YOUR OWN REPOSITORY URL"
-
-# Push changes to the GitHub repository
-git push "$GITHUB_REPO" main
