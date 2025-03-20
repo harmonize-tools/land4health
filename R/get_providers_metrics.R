@@ -11,10 +11,10 @@
 #' @examples
 #' \donttest{
 #' library(land4health)
-#' summarize_providers_metrics()
+#' get_providers_metrics()
 #' }
 #' @export
-summarize_providers_metrics <- \(query = NULL){
+get_providers_metrics <- \(query = NULL){
 
   if(is.null(query)){
     providers_count <- get_data() |>

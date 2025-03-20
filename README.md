@@ -1,19 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# land4health: Remote Sensing Metrics for Spatial Health Analysis <img src="">
+# land4health: Remote Sensing Metrics for Spatial Health Analysis <img src="man/figures/logo.png" align="right" hspace="10" vspace="0" width="15%">
 
 <!-- badges: start -->
 
-[![CircleCI build
-status](https://circleci.com/gh/harmonize-tools/land4health.svg?style=svg)](https://circleci.com/gh/harmonize-tools/land4health)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-Calculate and extract remote sensing metrics for spatial health
-analysis. This package provides R users with a quick and straightforward
-way to obtain areal or zonal statistics of key indicators and
-covariates, ideal for modelling infectious diseases within the framework
-of spatial epidemiology.
+Calculate and extract remote sensing metrics for spatial health analysis
+🛰️. This package offers R users a quick and easy way to obtain areal or
+zonal statistics of key indicators and covariates, ideal for modeling
+infectious diseases 🦠 within the framework of spatial epidemiology 🏥.
 
 ## Installation
 
@@ -47,13 +47,3 @@ summary(cars)
 #>  3rd Qu.:19.0   3rd Qu.: 56.00  
 #>  Max.   :25.0   Max.   :120.00
 ```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
