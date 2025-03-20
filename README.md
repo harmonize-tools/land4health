@@ -1,14 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# land4health: Remote Sensing Metrics for Spatial Health Analysis
-
-<img src="man/figures/logo.png" align="right" hspace="10" vspace="0" width="20%">
+# land4health: Remote Sensing Metrics for Spatial Health Analysis <img src="man/figures/logo.png" align="right" hspace="10" vspace="0" width="20%">
 
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Calculate and extract remote sensing metrics for spatial health analysis
