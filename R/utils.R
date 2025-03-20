@@ -2,7 +2,7 @@
 #' @importFrom utils read.csv
 #' @keywords internal
 get_data <- \(){
-  read.csv("inst/exdata/sources.csv") |>
+  read.csv("https://raw.githubusercontent.com/harmonize-tools/land4health/refs/heads/main/inst/exdata/sources.csv") |>
     tidyr::as_tibble()
 }
 

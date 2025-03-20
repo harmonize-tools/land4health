@@ -14,3 +14,9 @@ navbar:
    bg: custom
    structure:
     right: [search, github, lightswitch]
+
+reference:
+ - title: 'Utils'
+   contents:
+   - get_providers_metrics
+   - get_metrics_metadata

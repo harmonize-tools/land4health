@@ -9,11 +9,11 @@
 #' @examples
 #' \donttest{
 #' library(land4health)
-#' get_metrics_metada()
+#' get_metrics_metadata()
 #' }
 #' @export
 
-get_metrics_metada <- \(query = NULL) {
+get_metrics_metadata <- \(query = NULL) {
 
   available_providers <- get_data() |> dplyr::select(category) |> dplyr::pull()
 
