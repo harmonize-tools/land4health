@@ -1,7 +1,7 @@
 .onAttach <- function(libname, pkgname) {
   if (interactive() && !isTRUE(getOption("land4health.shownWelcome"))) {
 
-    name.project <- cli::bg_blue(cli::style_bold(cli::col_white("Harmonize Project")))
+    name.project <- cli::bg_red(cli::style_bold(cli::col_white("Harmonize Project")))
 
     cli::cli_h1("Welcome to land4health")
     cli::cli_alert_info("{.emph A tool of {.href [{name.project}](https://www.harmonize-tools.org/)} for calculate and extract Remote Sensing Metrics for Spatial Health Analysis}")
