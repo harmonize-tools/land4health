@@ -14,7 +14,12 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Imports: 
-      cli,
-      dplyr,
-      tidyr
+    cli,
+    dplyr,
+    lifecycle,
+    tidyr,
+    rgeedim,
+    exactextractr
 URL: https://harmonize-tools.github.io/land4health/
+Depends: 
+    R (>= 4.1.0)

@@ -8,3 +8,4 @@
 ^\.circleci$
 ^\.circleci/config\.yml$
 ^\.github$
+^data-raw$
