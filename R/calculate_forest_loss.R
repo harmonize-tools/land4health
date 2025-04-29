@@ -52,9 +52,11 @@ calculate_forest_loss <- \(from, to, region, fun, progress = FALSE, sf = TRUE) {
     rgeedim::gd_download(
       filename = tempfile(fileext = ".tif"),
       region = sf_box,
+      crs = paste0("EPSG:", sf::st_crs(region)$epsg),
       bands = list("lossyear"),
       scale = scale,
       overwrite = TRUE,
       silent = FALSE)
+
 
 }
