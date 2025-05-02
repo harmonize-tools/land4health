@@ -24,6 +24,29 @@
 #' @section Lifecycle:
 #' `r lifecycle::badge('stable')`
 #'
+#' @examples
+#' \dontrun{
+#' library(rgee)
+#' library(sf)
+#' ee_Initialize()
+#'
+#' # Define region as a bounding box polygon
+#' region <- st_as_sf(st_sfc(
+#'   st_polygon(list(matrix(c(
+#'     -74.1, -4.4,
+#'     -74.1, -3.7,
+#'     -73.2, -3.7,
+#'     -73.2, -4.4,
+#'     -74.1, -4.4
+#'   ), ncol = 2, byrow = TRUE))),
+#'   crs = 4326
+#' ))
+#'
+#' # Run forest loss calculation
+#' result <- calculate_forest_loss(from = 2005, to = 2007, region = region)
+#' print(result)
+#' }
+#'
 #' @references
 #' Hansen, M. C., Potapov, P. V., Moore, R., Hancher, M., Turubanova, S. A., Tyukavina, A., ... & Townshend, J. R. G. (2013).
 #' *High-Resolution Global Maps of 21st-Century Forest Cover Change*. Science, 342(6160), 850–853.
