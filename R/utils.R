@@ -21,4 +21,19 @@ get_data <- \(url = NULL){
 #' This code declares global variables used in the some function to avoid R CMD check warnings.
 #' @name global-variables
 #' @keywords internal
-utils::globalVariables(c("provider","category"))
+utils::globalVariables(c("provider","category","ee"))
+
+
+#' Internal: Get an Earth Engine reducer
+#' Returns a reducer object (e.g., `ee$Reducer$mean()`) based on a string name.
+#' @param name A string: one of `"mean"`, `"sum"`, `"min"`, `"max"`, `"median"`, `"stdDev"`.
+#' @return An Earth Engine reducer object.
+#' @keywords internal
+get_reducer <- function(name) {
+  if (!name %in% c("mean", "sum", "min", "max", "median", "stdDev")) {
+    cli::cli_abort("Reducer '{name}' is not valid.")
+  }
+  do.call(rgee::ee$Reducer[[name]], list())
+}
+
+

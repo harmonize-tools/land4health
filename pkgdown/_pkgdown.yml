@@ -18,5 +18,6 @@ navbar:
 reference:
  - title: 'Utils'
    contents:
+   - calculate_forest_loss
    - get_metrics_summary
    - get_metrics_metadata

@@ -18,8 +18,7 @@ Imports:
     dplyr,
     lifecycle,
     tidyr,
-    rgeedim,
-    exactextractr
+    rgee
 URL: https://harmonize-tools.github.io/land4health/
 Depends: 
     R (>= 4.1.0)
