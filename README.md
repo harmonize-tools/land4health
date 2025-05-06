@@ -27,6 +27,22 @@ pak::pak("harmonize-tools/land4health")
 
 ``` r
 library(land4health)
+ee_Initialize(quiet = TRUE)
+```
+
+``` r
+── Welcome to land4health ──────────────────────────────────────────────────────────────────
+A tool of Harmonize Project to calculate and extract Remote Sensing Metrics for Spatial
+Health Analysis.
+Currently,`land4health` supports metrics related to the following categories:
+• Enviroment
+• Human intervention
+• and more!
+For more information about metrics, please use the `get_metrics_metadata()` function.
+
+── Attaching core land4health packages ─────────────────────────────────────────────────────
+→ rgee v1.1.7
+→ sf v1.0.20
 ```
 
 ## List available metrics and metadata
@@ -63,12 +79,6 @@ get_metrics_summary()
 
 This example demonstrates how to calculate forest loss between 2005 and
 2010 using a custom polygon and Earth Engine.
-
-``` r
-library(rgee)
-library(sf)
-ee_Initialize(quiet = TRUE)
-```
 
 ``` r
 region <- st_as_sf(st_sfc(
