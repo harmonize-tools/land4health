@@ -21,3 +21,4 @@ reference:
    - calculate_forest_loss
    - get_metrics_summary
    - get_metrics_metadata
+   - land4health_packages

@@ -29,7 +29,7 @@ land4health_attach <- function() {
 #' List all land4health packages
 #'
 #' @param include_self default `TRUE`. Includes the "land4health" package name in the
-#'   resultant character vector.
+#' resultant character vector.
 #' @returns A character vector of package names included in the "land4health" meta-package.
 #' @export
 #' @examples
