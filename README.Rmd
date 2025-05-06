@@ -54,6 +54,7 @@ get_metrics_summary()
 This example demonstrates how to calculate forest loss between 2005 and 2010 using a custom polygon and Earth Engine.
 
 ```{r message=FALSE, warning=FALSE}
+library(land4health)
 library(rgee)
 library(sf)
 ee_Initialize(quiet = TRUE)

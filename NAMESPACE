@@ -3,5 +3,6 @@
 export(calculate_forest_loss)
 export(get_metrics_metadata)
 export(get_metrics_summary)
+export(land4health_packages)
 importFrom(lifecycle,deprecated)
 importFrom(utils,read.csv)
