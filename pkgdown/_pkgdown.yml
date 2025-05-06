@@ -16,9 +16,14 @@ navbar:
     right: [search, github, lightswitch]
 
 reference:
- - title: 'Utils'
+
+ - title: 'Human intervention'
    contents:
    - calculate_forest_loss
+
+ - title: 'Utils'
+   contents:
    - get_metrics_summary
    - get_metrics_metadata
    - land4health_packages
+   - gee_check_representativity

@@ -8,6 +8,7 @@
 #' @param fun A string indicating the reducer to apply (e.g., `"mean"`, `"sum"`). Default is `"mean"`.
 #' @param progress Logical. Show progress bar? Default is `FALSE`.
 #' @param sf Logical. Return result as an `sf` object? Default is `TRUE`.
+#' @param force Logical. Force request extract.
 #'
 #' @return A `data.frame` or `sf` object with forest loss per year in square kilometers.
 #'
@@ -53,7 +54,7 @@
 #' DOI: \doi{10.1126/science.1244693}
 #'
 #' @export
-calculate_forest_loss <- function(from, to, region, fun = "mean", progress = FALSE, sf = TRUE) {
+calculate_forest_loss <- function(from, to, region, fun = "mean", progress = FALSE, sf = TRUE, force = FALSE) {
 
   # Validate input years
   if (!is.numeric(from) || nchar(as.character(from)) != 4) {
@@ -75,12 +76,20 @@ calculate_forest_loss <- function(from, to, region, fun = "mean", progress = FAL
   # Create year range (01, 02, ..., 23)
   range_date <- substr(as.character(from:to), start = 3, stop = 4) |> as.integer()
 
+
   # Convert region to Earth Engine object
   sf_box <- rgee::sf_as_ee(region)
 
   # Create binary image with lossyear in range
-  hanse_data <- .internal_data$hansen |>
-    ee$Image$select('lossyear') |>
+  hanse_data_pre <- .internal_data$hansen |>
+    ee$Image$select('lossyear')
+
+  # Check if region is spatially representative
+  if (!force) {
+    gee_check_representativity(region, image = hanse_data_pre, scale = 30, min_pixels = 2,abort = TRUE)
+  }
+
+  hanse_data <-hanse_data_pre |>
     ee$Image$eq(range_date)
 
   # Multiply by pixel area to get area lost in m² → convert to km²

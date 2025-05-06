@@ -10,7 +10,8 @@ calculate_forest_loss(
   region,
   fun = "mean",
   progress = FALSE,
-  sf = TRUE
+  sf = TRUE,
+  force = FALSE
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ calculate_forest_loss(
 \item{progress}{Logical. Show progress bar? Default is \code{FALSE}.}
 
 \item{sf}{Logical. Return result as an \code{sf} object? Default is \code{TRUE}.}
+
+\item{force}{Logical. Force request extract.}
 }
 \value{
 A \code{data.frame} or \code{sf} object with forest loss per year in square kilometers.
