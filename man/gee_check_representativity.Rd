@@ -15,7 +15,7 @@ gee_check_representativity(
 \arguments{
 \item{region}{An \code{sf} polygon object representing the area of interest.}
 
-\item{image}{An Earth Engine image (\code{ee$Image}) to evaluate coverage against.}
+\item{image}{An Earth Engine image to evaluate coverage against.}
 
 \item{scale}{Numeric. Pixel resolution in meters (e.g., 30 for Hansen).}
 

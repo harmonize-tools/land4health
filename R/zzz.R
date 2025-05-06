@@ -21,7 +21,10 @@
   }
 
     # Block 4: Packages backend of land4health ----------------------------------
-    cli::cli_h1(text = "Attaching core land4health packages")
+    cli::cli_inform(
+      "Attaching core {.pkg land4health} packages:",
+      class = "packageStartupMessage"
+    )
     attached <- land4health_attach()
     if (length(attached) > 0) {
       pkg_ul(attached)

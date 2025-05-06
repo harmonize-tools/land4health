@@ -114,7 +114,7 @@ calculate_forest_loss <- function(from, to, region, fun = "mean", progress = FAL
 
   # Return result
   if (sf) {
-    extract_df <- dplyr::bind_cols(region, extract_df)
+    extract_df <- dplyr::bind_cols(region, extract_df) |> sf::st_as_sf()
   }
 
   return(extract_df)

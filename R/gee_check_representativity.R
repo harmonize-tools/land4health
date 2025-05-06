@@ -4,7 +4,7 @@
 #' in a specified Earth Engine image.
 #'
 #' @param region An `sf` polygon object representing the area of interest.
-#' @param image An Earth Engine image (`ee$Image`) to evaluate coverage against.
+#' @param image An Earth Engine image to evaluate coverage against.
 #' @param scale Numeric. Pixel resolution in meters (e.g., 30 for Hansen).
 #' @param min_pixels Numeric. Minimum number of pixels required to be considered representative. Default is 2.
 #' @param abort Logical. If `TRUE`, the function stops on failure. If `FALSE`, returns `FALSE` with a warning.
@@ -44,7 +44,7 @@ gee_check_representativity <- function(region, image, scale = 30, min_pixels = 2
   pixel_counts <- result[["pixel_count"]]
 
   if (any(is.na(pixel_counts))) {
-    cli::cli_warn("Pixel count result contains NA values — possibly outside image extent.")
+    cli::cli_warn("Pixel count result contains NA values - possibly outside image extent.")
     return(invisible(FALSE))
   }
 
@@ -52,15 +52,19 @@ gee_check_representativity <- function(region, image, scale = 30, min_pixels = 2
     msg <- c(
       "!" = "The region does not cover enough pixels to be representative.",
       "i" = "Minimum required: {min_pixels} pixels at {scale}m resolution.",
-      "x" = "Smallest region covers: {round(min(pixel_counts), 2)} pixels."
+      "x" = "Smallest region covers: {round(min(pixel_counts), 2)} pixels.",
+      "v" = "Consider using a larger polygon or buffering the input region."
     )
+
     if (abort) {
       cli::cli_abort(msg)
     } else {
       cli::cli_warn(msg)
     }
+
     return(invisible(FALSE))
   }
+
 
   return(invisible(TRUE))
 }

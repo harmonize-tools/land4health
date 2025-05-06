@@ -97,6 +97,7 @@ result <- calculate_forest_loss(from = 2005, to = 2010, region = region)
 #> Registered S3 method overwritten by 'geojsonsf':
 #>   method        from   
 #>   print.geojson geojson
+#> Number of features: Calculating ...Number of features: 1                     
 #> Number of features: Calculating ...Number of features: 1
 result
 #> Simple feature collection with 6 features and 2 fields
