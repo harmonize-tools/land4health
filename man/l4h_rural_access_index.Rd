@@ -31,8 +31,8 @@ returns an Earth Engine object. Default is \code{FALSE}.}
 \item{force}{Logical. If \code{TRUE}, skips the representativity check and forces the extraction. Default is \code{FALSE}.}
 }
 \value{
-A spatial object containing the computed RAI value for the region, either as an Earth Engine object
-or an \code{sf} object depending on the \code{sf} argument.
+A spatial object containing the computed RAI value for the region in an
+\code{sf} or \code{tibble} object.
 }
 \description{
 Calculates the Rural Access Index (RAI) for a given region using datasets from the GEE Community Catalog.

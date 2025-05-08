@@ -34,8 +34,8 @@
 #'
 #' The \code{fun} parameter only applies when \code{weighted = TRUE}. It will be ignored otherwise.
 #'
-#' @return A spatial object containing the computed RAI value for the region, either as an Earth Engine object
-#' or an \code{sf} object depending on the \code{sf} argument.
+#' @return A spatial object containing the computed RAI value for the region in an
+#' \code{sf} or \code{tibble} object.
 #'
 #' @references
 #' GEE Community Catalog: \url{https://gee-community-catalog.org/projects/rai}
@@ -67,7 +67,6 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
   } else {
     stop("Invalid 'region' input. Expected an 'sf', 'sfc', 'SpatVector', or Earth Engine FeatureCollection object.")
   }
-
 
   # Check if region is spatially representative
   if (isFALSE(force)) {
