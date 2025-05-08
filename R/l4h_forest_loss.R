@@ -2,12 +2,13 @@
 #'
 #' Calculates forest loss within a user-defined region for a specified year range.
 #'
+#' `r lifecycle::badge('experimental')`
+#'
 #' @param from A numeric year between 2001 and 2023. Indicates the start of the analysis period.
 #' @param to A numeric year between 2001 and 2023. Indicates the end of the analysis period.
 #' @param region A `sf` object representing the area of interest.
-#' @param fun A string indicating the reducer to apply (e.g., `"mean"`, `"sum"`). Default is `"mean"`.
-#' @param progress Logical. Show progress bar? Default is `FALSE`.
 #' @param sf Logical. Return result as an `sf` object? Default is `TRUE`.
+#' @param progress Logical. Show progress bar? Default is `FALSE`.
 #' @param force Logical. Force request extract.
 #'
 #' @return A `data.frame` or `sf` object with forest loss per year in square kilometers.
@@ -20,15 +21,9 @@
 #' - A value of **0** indicates **no forest loss** detected.
 #' - Forest loss is defined as a **stand-replacement disturbance**, or a change from forest to non-forest state.
 #'
-#' This function uses those values to calculate annual forest loss within the specified region and year range.
-#'
-#' @section Lifecycle:
-#' `r lifecycle::badge('stable')`
-#'
 #' @examples
 #' \dontrun{
-#' library(rgee)
-#' library(sf)
+#' library(land4health)
 #' ee_Initialize()
 #'
 #' # Define region as a bounding box polygon
@@ -44,7 +39,7 @@
 #' ))
 #'
 #' # Run forest loss calculation
-#' result <- calculate_forest_loss(from = 2005, to = 2007, region = region)
+#' result <- l4h_forest_loss(from = 2005, to = 2007, region = region)
 #' print(result)
 #' }
 #'
@@ -54,8 +49,7 @@
 #' DOI: \doi{10.1126/science.1244693}
 #'
 #' @export
-calculate_forest_loss <- function(from, to, region, fun = "mean", progress = FALSE, sf = TRUE, force = FALSE) {
-
+l4h_forest_loss <- function(from, to, region, sf = TRUE, progress = FALSE, force = FALSE) {
   # Validate input years
   if (!is.numeric(from) || nchar(as.character(from)) != 4) {
     cli::cli_abort("Parameter {.field from} must be a 4-digit numeric year. Got: {.val {from}}")
@@ -74,48 +68,85 @@ calculate_forest_loss <- function(from, to, region, fun = "mean", progress = FAL
   }
 
   # Create year range (01, 02, ..., 23)
-  range_date <- substr(as.character(from:to), start = 3, stop = 4) |> as.integer()
-
+  range_date_original <- from:to
+  range_date_processed <- substr(
+    as.character(range_date_original),
+    start = 3,
+    stop = 4
+  ) |>
+    as.integer()
 
   # Convert region to Earth Engine object
-  sf_box <- rgee::sf_as_ee(region)
+  region_ee <- region |>
+    rgee::sf_as_ee()
 
   # Create binary image with lossyear in range
-  hanse_data_pre <- .internal_data$hansen |>
-    ee$Image$select('lossyear')
+  hanse_data_db <- .internal_data$hansen |>
+    ee$Image$select("lossyear")
+
+  hanse_data_img <- hanse_data_db |>
+    ee$Image$eq(range_date_processed)
 
   # Check if region is spatially representative
-  if (!force) {
-    gee_check_representativity(region, image = hanse_data_pre, scale = 30, min_pixels = 2,abort = TRUE)
+  if (isFALSE(force)) {
+    check_representativity(
+      region = region,
+      scale = 30
+    )
   }
-
-  hanse_data <-hanse_data_pre |>
-    ee$Image$eq(range_date)
-
   # Multiply by pixel area to get area lost in m² → convert to km²
-  area_hansen_data <- hanse_data$
+  hansen_data_area <- hanse_data_img$
     multiply(ee$Image$pixelArea())$
     divide(1e6)
 
   # Extract with reducer
-  extract_df <- rgee::ee_extract(
-    x = area_hansen_data,
-    y = sf_box,
-    fun = get_reducer(fun),
-    scale = 30,
-    sf = FALSE
-  ) |>
-    tidyr::pivot_longer(
-      cols = tidyr::starts_with("constant"),
-      names_to = "year",
-      values_to = "loss_year_km2"
-    ) |>
-    dplyr::mutate(year = from:to)
+  if (isTRUE(sf)) {
+    extract_area <- rgee::ee_extract(
+        x = hansen_data_area,
+        y = region_ee,
+        fun = get_reducer(name = "sum"),
+        scale = 30,
+        sf = FALSE,
+        quiet = FALSE,
+        lazy = FALSE)
 
-  # Return result
-  if (sf) {
-    extract_df <- dplyr::bind_cols(region, extract_df) |> sf::st_as_sf()
+    geom_col <- attr(extract_area, "sf_column")
+    extract_area <- extract_area |>
+      tidyr::pivot_longer(
+        cols = tidyr::starts_with("constant"),
+        names_to = "year",
+        values_to = "loss_year_km2") |>
+      dplyr::mutate(
+        year = as.Date(
+          ISOdate(
+            factor(year, labels = range_date_original),
+            1,
+            1
+          )
+        )
+      )
+
+  } else {
+    extract_area <- rgee::ee_extract(
+      x = hansen_data_area,
+      y = region_ee,
+      fun = get_reducer(name = "sum"),
+      scale = 30,
+      sf = FALSE) |>
+      tidyr::pivot_longer(
+        cols = tidyr::starts_with("constant"),
+        names_to = "year",
+        values_to = "loss_year_km2"
+      ) |>
+      dplyr::mutate(
+        year = as.Date(
+          ISOdate(
+            factor(year, labels = range_date_original),
+            1,
+            1
+          )
+        )
+      )
   }
-
-  return(extract_df)
+  return(extract_area)
 }

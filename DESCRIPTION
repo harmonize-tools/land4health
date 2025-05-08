@@ -3,7 +3,7 @@ Title: Remote Sensing Metrics for Spatial Health Analysis
 Version: 0.0.0.9000
 Authors@R: c(
     person("Yomali", "Ferreyra", email = "yomali.ferreyra@upch.pe", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5184-9595")),
-    person("Antony", "Barja", email = "antony.barja@upch.pem", role = c("aut"), comment = c(ORCID = "0000-0001-5921-2858")),
+    person("Antony", "Barja", email = "antony.barja@upch.pe", role = c("aut"), comment = c(ORCID = "0000-0001-5921-2858")),
     person("Diego", "Villa", role = c("ctb")))
 Description: Calculate and extract remote sensing metrics for spatial analysis in the field of health.
     This package offers R users a quick and straightforward way to obtain areal or zonal statistics of 

@@ -22,7 +22,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Antony Barja \email{antony.barja@upch.pem} (\href{https://orcid.org/0000-0001-5921-2858}{ORCID})
+  \item Antony Barja \email{antony.barja@upch.pe} (\href{https://orcid.org/0000-0001-5921-2858}{ORCID})
 }
 
 Other contributors:

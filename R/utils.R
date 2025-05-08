@@ -21,7 +21,7 @@ get_data <- \(url = NULL){
 #' This code declares global variables used in the some function to avoid R CMD check warnings.
 #' @name global-variables
 #' @keywords internal
-utils::globalVariables(c("provider","category","ee"))
+utils::globalVariables(c("provider","category","ee","year","area_km2"))
 
 
 #' Internal: Get an Earth Engine reducer
@@ -35,5 +35,46 @@ get_reducer <- function(name) {
   }
   do.call(rgee::ee$Reducer[[name]], list())
 }
+
+#' Evaluates whether a given polygon covers a minimum number of valid pixels
+#' in a specified Earth Engine image.
+#' @param region An `sf` polygon object representing the area of interest.
+#' @param scale Numeric. Pixel resolution in meters (e.g., 30 for Hansen).
+#' @return Invisible `TRUE` if representative; otherwise `FALSE`.
+#' @keywords internal
+check_representativity <- function(region, scale = 30) {
+  if (!inherits(region, "sf")) {
+    cli::cli_abort("The {.arg region} must be an {.cls sf} object.")
+  }
+
+  # Selection of polygon of size minimum
+  region_area_km2 <- region |>
+    sf::st_transform(crs = 3857) |>
+    (\(x) dplyr::mutate(x, area_km2 = as.vector(sf::st_area(sf::st_geometry(x)) / 1e6)))() |>
+    dplyr::arrange(area_km2) |>
+    dplyr::slice(1) |>
+    sf::st_drop_geometry() |>
+    dplyr::select(area_km2)
+
+  # Pixel area
+  pixels_area <- (scale^2)/1e6
+  condicion <- region_area_km2 < pixels_area
+
+  # Condition
+  if (isTRUE(condicion)) {
+    msg <- c(
+      "!" = "The region does not cover enough pixels to be representative.",
+      "i" = "Area Minimum required: {round(pixels_area,2)} km2 at {scale}m resolution.",
+      "x" = "Smallest region covers: {round(min(region_area_km2), 2)}km2 area",
+      "v" = "Consider using a larger polygon or buffering the input region."
+    ) |>
+      cli::cli_alert_warning()
+    return(msg)
+  }
+
+}
+
+
+
 
 
