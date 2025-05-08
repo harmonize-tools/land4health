@@ -3,6 +3,7 @@
 export(get_metrics_metadata)
 export(get_metrics_summary)
 export(l4h_forest_loss)
+export(l4h_rural_access_index)
 export(land4health_packages)
 importFrom(lifecycle,deprecated)
 importFrom(utils,read.csv)

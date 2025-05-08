@@ -21,7 +21,7 @@ get_data <- \(url = NULL){
 #' This code declares global variables used in the some function to avoid R CMD check warnings.
 #' @name global-variables
 #' @keywords internal
-utils::globalVariables(c("provider","category","ee","year","area_km2"))
+utils::globalVariables(c("provider","category","ee","year","area_km2", "b1","rai_index"))
 
 
 #' Internal: Get an Earth Engine reducer

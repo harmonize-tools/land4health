@@ -4,7 +4,7 @@
 \alias{l4h_forest_loss}
 \title{Calculate Forest Loss}
 \usage{
-l4h_forest_loss(from, to, region, sf = TRUE, progress = FALSE, force = FALSE)
+l4h_forest_loss(from, to, region, sf = TRUE, force = FALSE, ...)
 }
 \arguments{
 \item{from}{A numeric year between 2001 and 2023. Indicates the start of the analysis period.}
@@ -15,9 +15,9 @@ l4h_forest_loss(from, to, region, sf = TRUE, progress = FALSE, force = FALSE)
 
 \item{sf}{Logical. Return result as an \code{sf} object? Default is \code{TRUE}.}
 
-\item{progress}{Logical. Show progress bar? Default is \code{FALSE}.}
-
 \item{force}{Logical. Force request extract.}
+
+\item{...}{arguments of \code{ee_extract} of \code{rgee} packages.}
 }
 \value{
 A \code{data.frame} or \code{sf} object with forest loss per year in square kilometers.

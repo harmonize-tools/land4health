@@ -8,8 +8,8 @@
 #' @param to A numeric year between 2001 and 2023. Indicates the end of the analysis period.
 #' @param region A `sf` object representing the area of interest.
 #' @param sf Logical. Return result as an `sf` object? Default is `TRUE`.
-#' @param progress Logical. Show progress bar? Default is `FALSE`.
 #' @param force Logical. Force request extract.
+#' @param ... arguments of `ee_extract` of `rgee` packages.
 #'
 #' @return A `data.frame` or `sf` object with forest loss per year in square kilometers.
 #'
@@ -49,7 +49,7 @@
 #' DOI: \doi{10.1126/science.1244693}
 #'
 #' @export
-l4h_forest_loss <- function(from, to, region, sf = TRUE, progress = FALSE, force = FALSE) {
+l4h_forest_loss <- function(from, to, region, sf = TRUE, force = FALSE, ...) {
   # Validate input years
   if (!is.numeric(from) || nchar(as.character(from)) != 4) {
     cli::cli_abort("Parameter {.field from} must be a 4-digit numeric year. Got: {.val {from}}")
@@ -108,7 +108,8 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, progress = FALSE, force
         scale = 30,
         sf = FALSE,
         quiet = FALSE,
-        lazy = FALSE)
+        lazy = FALSE,
+        ...)
 
     geom_col <- attr(extract_area, "sf_column")
     extract_area <- extract_area |>
