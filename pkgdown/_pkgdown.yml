@@ -2,6 +2,15 @@ url: https://github.com/harmonize-tools/land4health
 home:
   title: land4health
 
+repo:
+  url:
+    home: https://github.com/harmonize-tools/land4health
+    source: https://github.com/harmonize-tools/land4health/HEAD
+    issues: https://github.com/harmonize-tools/land4health/issues
+
+donate:
+    url: https://ko-fi.com/dieghernan
+
 
 template:
   bootstrap: 5
@@ -13,7 +22,12 @@ development:
 navbar:
    bg: custom
    structure:
-    right: [search, github, lightswitch]
+    right: [search, github, donate, lightswitch]
+   components:
+    donate:
+      icon: fa-hand-holding-dollar
+      href: https://ko-fi.com/ambarja
+      aria-label: Buy me a coffee
 
 reference:
 
