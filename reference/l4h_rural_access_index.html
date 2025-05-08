@@ -62,8 +62,10 @@ aligning with SDG indicator 9.1.1.</p>
 
 
 <dl><dt id="arg-region">region<a class="anchor" aria-label="anchor" href="#arg-region"></a></dt>
-<dd><p>A spatial object defining the region of interest. Can be an Earth Engine
-geometry (e.g., <code>ee$FeatureCollection</code>) or an <code>sf</code> object.</p></dd>
+<dd><p>A spatial object defining the region of interest.
+Can be an Earth Engine geometry (e.g., <code>ee$FeatureCollection</code>, <code>ee$Feature</code>),
+an <code>sf</code> or <code>sfc</code> object, or a <code>SpatVector</code> (from the <span class="pkg">terra</span> package).
+The object will be converted to an Earth Engine FeatureCollection if needed.</p></dd>
 
 
 <dt id="arg-weighted">weighted<a class="anchor" aria-label="anchor" href="#arg-weighted"></a></dt>
