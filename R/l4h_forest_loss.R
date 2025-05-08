@@ -6,7 +6,10 @@
 #'
 #' @param from A numeric year between 2001 and 2023. Indicates the start of the analysis period.
 #' @param to A numeric year between 2001 and 2023. Indicates the end of the analysis period.
-#' @param region A `sf` object representing the area of interest.
+#' @param region A spatial object defining the region of interest.
+#' Can be an Earth Engine geometry (e.g., \code{ee$FeatureCollection}, \code{ee$Feature}),
+#' an \code{sf} or \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).
+#' The object will be converted to an Earth Engine FeatureCollection if needed.
 #' @param sf Logical. Return result as an `sf` object? Default is `TRUE`.
 #' @param force Logical. Force request extract.
 #' @param ... arguments of `ee_extract` of `rgee` packages.
@@ -77,6 +80,20 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, force = FALSE, ...) {
     as.integer()
 
   # Convert region to Earth Engine object
+
+  # Define supported classes
+  sf_classes <- c("sf", "sfc", "SpatVector")
+  rgee_classes <- c("ee.featurecollection.FeatureCollection", "ee.feature.Feature")
+
+  # Check input object class
+  if (inherits(region, sf_classes)) {
+    region_ee <- rgee::sf_as_ee(region)
+  } else if (inherits(region, rgee_classes)) {
+    region_ee <- region
+  } else {
+    stop("Invalid 'region' input. Expected an 'sf', 'sfc', 'SpatVector', or Earth Engine FeatureCollection object.")
+  }
+
   region_ee <- region |>
     rgee::sf_as_ee()
 
@@ -102,21 +119,23 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, force = FALSE, ...) {
   # Extract with reducer
   if (isTRUE(sf)) {
     extract_area <- rgee::ee_extract(
-        x = hansen_data_area,
-        y = region_ee,
-        fun = get_reducer(name = "sum"),
-        scale = 30,
-        sf = FALSE,
-        quiet = FALSE,
-        lazy = FALSE,
-        ...)
+      x = hansen_data_area,
+      y = region_ee,
+      fun = get_reducer(name = "sum"),
+      scale = 30,
+      sf = TRUE,
+      quiet = FALSE,
+      lazy = FALSE,
+      ...
+    )
 
     geom_col <- attr(extract_area, "sf_column")
     extract_area <- extract_area |>
       tidyr::pivot_longer(
         cols = tidyr::starts_with("constant"),
         names_to = "year",
-        values_to = "loss_year_km2") |>
+        values_to = "loss_year_km2"
+      ) |>
       dplyr::mutate(
         year = as.Date(
           ISOdate(
@@ -126,14 +145,14 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, force = FALSE, ...) {
           )
         )
       )
-
   } else {
     extract_area <- rgee::ee_extract(
       x = hansen_data_area,
       y = region_ee,
       fun = get_reducer(name = "sum"),
       scale = 30,
-      sf = FALSE) |>
+      sf = FALSE
+    ) |>
       tidyr::pivot_longer(
         cols = tidyr::starts_with("constant"),
         names_to = "year",

@@ -11,7 +11,10 @@ l4h_forest_loss(from, to, region, sf = TRUE, force = FALSE, ...)
 
 \item{to}{A numeric year between 2001 and 2023. Indicates the end of the analysis period.}
 
-\item{region}{A \code{sf} object representing the area of interest.}
+\item{region}{A spatial object defining the region of interest.
+Can be an Earth Engine geometry (e.g., \code{ee$FeatureCollection}, \code{ee$Feature}),
+an \code{sf} or \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).
+The object will be converted to an Earth Engine FeatureCollection if needed.}
 
 \item{sf}{Logical. Return result as an \code{sf} object? Default is \code{TRUE}.}
 

@@ -6,8 +6,10 @@
 #'
 #' `r lifecycle::badge('experimental')`
 #'
-#' @param region A spatial object defining the region of interest. Can be an Earth Engine
-#' geometry (e.g., \code{ee$FeatureCollection}) or an \code{sf} object.
+#' @param region A spatial object defining the region of interest.
+#' Can be an Earth Engine geometry (e.g., \code{ee$FeatureCollection}, \code{ee$Feature}),
+#' an \code{sf} or \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).
+#' The object will be converted to an Earth Engine FeatureCollection if needed.
 #' @param weighted Logical. If \code{TRUE}, computes a population-weighted RAI (i.e., rural population with access
 #' divided by total rural population). If \code{FALSE}, computes an area-based RAI (i.e., total pixel area with access
 #' divided by total rural area). Default is \code{FALSE}.
@@ -52,9 +54,20 @@
 #' }
 #'
 #' @export
-l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FALSE, force = FALSE){
-  region_ee <- region |>
-    rgee::sf_as_ee()
+l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FALSE, force = FALSE) {
+  # Define supported classes
+  sf_classes <- c("sf", "sfc", "SpatVector")
+  rgee_classes <- c("ee.featurecollection.FeatureCollection", "ee.feature.Feature")
+
+  # Check input object class
+  if (inherits(region, sf_classes)) {
+    region_ee <- rgee::sf_as_ee(region)
+  } else if (inherits(region, rgee_classes)) {
+    region_ee <- region
+  } else {
+    stop("Invalid 'region' input. Expected an 'sf', 'sfc', 'SpatVector', or Earth Engine FeatureCollection object.")
+  }
+
 
   # Check if region is spatially representative
   if (isFALSE(force)) {
@@ -64,30 +77,38 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
     )
   }
 
-  if(isTRUE(weighted)){
+  if (isTRUE(weighted)) {
+    if (is.null(fun)) {
+      cli::cli_abort(c(
+        "Missing required argument {.arg fun}.",
+        "i" = "This argument must be provided when {.arg weighted = TRUE}."
+      ))
+    }
+
     img_index <- .internal_data$ruralpopulationwithaccess |> rgee::ee$Image()
     # Extract with reducer
     if (isTRUE(sf)) {
       extract_area <- rgee::ee_extract(
         x = img_index,
         y = region_ee,
-        fun = get_reducer(name = "sum"),
+        fun = get_reducer(fun),
         scale = 100,
         sf = TRUE,
         quiet = FALSE,
-        lazy = FALSE)
-
+        lazy = FALSE
+      ) |>
+        dplyr::rename(rai_index_w = population)
     } else {
       extract_area <- rgee::ee_extract(
         x = img_index,
         y = region_ee,
-        fun = get_reducer(name = "sum"),
+        fun = get_reducer(fun),
         scale = 30,
-        sf = FALSE)
+        sf = FALSE
+      ) |>
+        dplyr::rename(rai_index_w = population)
     }
-
-
-  } else{
+  } else {
     img <- .internal_data$inaccessibilityindex |>
       rgee::ee$Image()
 
@@ -102,27 +123,27 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
         scale = 100,
         sf = TRUE,
         quiet = FALSE,
-        lazy = FALSE)
+        lazy = FALSE
+      )
 
       geom_col <- attr(extract_area, "sf_column")
       extract_area <- extract_area |>
         (\(x) dplyr::mutate(x, area_km2 = as.vector(sf::st_area(sf::st_geometry(x)) / 1e6)))() |>
         dplyr::rename(rai_index = b1) |>
-        dplyr::mutate(rai_index = rai_index/area_km2) |>
+        dplyr::mutate(rai_index = rai_index / area_km2) |>
         dplyr::select(-area_km2)
-
     } else {
       extract_area <- rgee::ee_extract(
         x = img_index,
         y = region_ee,
         fun = get_reducer(name = "sum"),
         scale = 30,
-        sf = FALSE) |>
+        sf = TRUE) |>
         (\(x) dplyr::mutate(x, area_km2 = as.vector(sf::st_area(sf::st_geometry(x)) / 1e6)))() |>
         dplyr::rename(rai_index = b1) |>
-        dplyr::mutate(rai_index = rai_index/area_km2) |>
-        dplyr::select(-area_km2)
-
+        dplyr::mutate(rai_index = rai_index / area_km2) |>
+        dplyr::select(-area_km2) |>
+        sf::st_drop_geometry()
     }
   }
 

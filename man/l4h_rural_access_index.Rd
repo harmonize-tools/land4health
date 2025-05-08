@@ -13,8 +13,10 @@ l4h_rural_access_index(
 )
 }
 \arguments{
-\item{region}{A spatial object defining the region of interest. Can be an Earth Engine
-geometry (e.g., \code{ee$FeatureCollection}) or an \code{sf} object.}
+\item{region}{A spatial object defining the region of interest.
+Can be an Earth Engine geometry (e.g., \code{ee$FeatureCollection}, \code{ee$Feature}),
+an \code{sf} or \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).
+The object will be converted to an Earth Engine FeatureCollection if needed.}
 
 \item{weighted}{Logical. If \code{TRUE}, computes a population-weighted RAI (i.e., rural population with access
 divided by total rural population). If \code{FALSE}, computes an area-based RAI (i.e., total pixel area with access
