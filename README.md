@@ -106,10 +106,11 @@ head(result)
 ``` r
 # Visualization with ggplot2
 library(ggplot2)
+#> Warning: package 'ggplot2' was built under R version 4.4.3
 ggplot(data = result,aes(x = year,y = loss_year_km2)) +
   geom_area(fill = '#80b918',alpha = 0.5) + 
   facet_wrap(~nombprov) + 
   theme_minimal()
 ```
 
-<img src="man/figures/README-pt-1.png" width="100%" height='600'/>
+<img src="man/figures/README-pt-1.png" width="100%" />
