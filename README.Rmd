@@ -81,7 +81,7 @@ result <- provinces_loreto |>
 head(result)
 ```
 
-```{r pt,dpi=300}
+```{r pt,fig.dpi=300, fig.height= 5,fig.width= 12}
 # Visualization with ggplot2
 library(ggplot2)
 ggplot(data = result,aes(x = year,y = loss_year_km2)) +
