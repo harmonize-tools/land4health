@@ -4,7 +4,7 @@
 #' The RAI represents the proportion of the rural population living within 2 km of an all-season road,
 #' aligning with SDG indicator 9.1.1.
 #'
-#' `r lifecycle::badge('experimental')`
+#' `r lifecycle::badge('stable')`
 #'
 #' @param region A spatial object defining the region of interest.
 #' Can be an Earth Engine geometry (e.g., \code{ee$FeatureCollection}, \code{ee$Feature}),

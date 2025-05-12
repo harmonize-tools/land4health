@@ -40,7 +40,7 @@ The RAI represents the proportion of the rural population living within 2 km of 
 aligning with SDG indicator 9.1.1.
 }
 \details{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 
 This function uses the following datasets from the GEE Community Catalog:
 \itemize{
