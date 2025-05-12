@@ -41,6 +41,10 @@ reference:
    - l4h_rural_access_index
    - l4h_travel_time
 
+ - title: 'Enviroment'
+   contents:
+   - l4h_water_proportion
+
  - title: 'Utils'
    contents:
    - get_metrics_summary
