@@ -5,7 +5,8 @@
   ruralpopulationwithaccess = 'projects/sat-io/open-datasets/RAI/ruralpopaccess',
   accessibility_healthcare = 'Oxford/MAP/accessibility_to_healthcare_2019',
   accessibility_cities = 'Oxford/MAP/accessibility_to_cities_2015_v1_0',
-  water_coverage = 'projects/mapbiomas-public/assets/peru/collection1/mapbiomas_peru_collection1_water_v1'
+  water_coverage = 'projects/mapbiomas-public/assets/peru/collection1/mapbiomas_peru_collection1_water_v1',
+  geesebal = 'projects/et-brasil/assets/geesebal/myd11a2/sa/v0-02'
 )
 usethis::use_data(
   .internal_data,
