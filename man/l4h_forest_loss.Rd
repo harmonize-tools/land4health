@@ -27,10 +27,10 @@ A \code{data.frame} or \code{sf} object with forest loss per year in square kilo
 }
 \description{
 Calculates forest loss within a user-defined region for a specified year range.
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \details{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
-
 Forest loss is derived from the Hansen Global Forest Change dataset (\code{UMD/hansen/global_forest_change_2023_v1_11}).
 The \code{lossyear} band encodes the year of forest cover loss as follows:
 \itemize{

@@ -1,5 +1,6 @@
 #' Travel Time to Healthcare or Cities (Oxford Dataset)
 #'
+#' @description
 #' Retrieves the travel time raster (in minutes) to the nearest healthcare facility
 #' or populated city, based on the Oxford Global Map of Accessibility datasets.
 #'

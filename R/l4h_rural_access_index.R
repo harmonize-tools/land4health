@@ -1,5 +1,6 @@
 #' Compute Rural Access Index (RAI)
 #'
+#' @description
 #' Calculates the Rural Access Index (RAI) for a given region using datasets from the GEE Community Catalog.
 #' The RAI represents the proportion of the rural population living within 2 km of an all-season road,
 #' aligning with SDG indicator 9.1.1.

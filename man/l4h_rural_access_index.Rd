@@ -38,10 +38,10 @@ A spatial object containing the computed RAI value for the region in an
 Calculates the Rural Access Index (RAI) for a given region using datasets from the GEE Community Catalog.
 The RAI represents the proportion of the rural population living within 2 km of an all-season road,
 aligning with SDG indicator 9.1.1.
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \details{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
-
 This function uses the following datasets from the GEE Community Catalog:
 \itemize{
 \item \code{projects/sat-io/open-datasets/RAI/ruralpopaccess} – raster of rural population with access to all-season roads

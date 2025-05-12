@@ -1,8 +1,9 @@
 #' Calculate Forest Loss
 #'
+#' @description
 #' Calculates forest loss within a user-defined region for a specified year range.
 #'
-#' `r lifecycle::badge('experimental')`
+#' `r lifecycle::badge('stable')`
 #'
 #' @param from A numeric year between 2001 and 2023. Indicates the start of the analysis period.
 #' @param to A numeric year between 2001 and 2023. Indicates the end of the analysis period.
