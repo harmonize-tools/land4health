@@ -31,13 +31,13 @@ utils::globalVariables(c("provider","category","ee","year","area_km2", "b1","rai
 #' @keywords internal
 get_reducer <- function(name) {
   reducers <- c(
-    mean = "mean",
-    sum = "sum",
-    min = "min",
-    max = "max",
-    median = "median",
-    sd = "stdDev",
-    first = "first"
+    "mean" = "mean",
+    "sum" = "sum",
+    "min" = "min",
+    "max" = "max",
+    "median" = "median",
+    "sd" = "stdDev",
+    "first" = "first"
   )
 
   if (!name %in% names(reducers)) {
