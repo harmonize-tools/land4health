@@ -30,10 +30,22 @@ utils::globalVariables(c("provider","category","ee","year","area_km2", "b1","rai
 #' @return An Earth Engine reducer object.
 #' @keywords internal
 get_reducer <- function(name) {
-  if (!name %in% c("mean", "sum", "min", "max", "median", "stdDev")) {
-    cli::cli_abort("Reducer '{name}' is not valid.")
+  reducers <- c(
+    mean = "mean",
+    sum = "sum",
+    min = "min",
+    max = "max",
+    median = "median",
+    sd = "stdDev",
+    first = "first"
+  )
+
+  if (!name %in% names(reducers)) {
+    cli::cli_abort("Reducer '{name}' is not valid. Valid options are: {paste(names(reducers), collapse = ', ')}")
   }
-  do.call(rgee::ee$Reducer[[name]], list())
+
+  reducer_name <- reducers[[name]]
+  do.call(rgee::ee$Reducer[[reducer_name]], list())
 }
 
 #' Evaluates whether a given polygon covers a minimum number of valid pixels
