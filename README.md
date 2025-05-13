@@ -10,10 +10,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![R-CMD-check](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-Calculate and extract remote sensing metrics for spatial health analysis
-🛰️. This package offers R users a quick and easy way to obtain areal or
-zonal statistics of key indicators and covariates, ideal for modeling
-infectious diseases 🦠 within the framework of spatial epidemiology 🏥.
+Calculate and extract remote sensing metrics for spatial health analysis 🛰️.
+This package offers R users a quick and easy way to obtain areal and zonal statistics of key environmental indicators, covariates, and vector-borne disease data ideal for modeling infectious and environmentally-linked diseases 🦠 within the framework of spatial epidemiology 🏥
 
 ## Installation
 
