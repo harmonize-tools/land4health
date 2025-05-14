@@ -68,7 +68,7 @@
 </div>
 <!-- badges: start -->
 
-<p>Calculate and extract remote sensing metrics for spatial health analysis 🛰️. This package offers R users a quick and easy way to obtain areal and zonal statistics of key environmental indicators, covariates, and vector-borne disease data ideal for modeling infectious and environmentally-linked diseases 🦠 within the framework of spatial epidemiology 🏥</p>
+<p>Calculate and extract remote sensing metrics for spatial health analysis 🛰️. This package offers R users a quick and easy way to obtain areal or zonal statistics of key indicators and covariates, ideal for modeling infectious diseases 🦠 within the framework of spatial epidemiology 🏥.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -135,17 +135,16 @@
 <span><span class="co"># Run forest loss calculation</span></span>
 <span><span class="va">result</span> <span class="op">&lt;-</span> <span class="va">provinces_loreto</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="reference/l4h_forest_loss.html">l4h_forest_loss</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">2005</span>, to <span class="op">=</span> <span class="fl">2020</span>,sf <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Number of features: Calculating ...Number of features: 8</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 10</span></span>
-<span><span class="co">#&gt;   ccdd  ccpp     id nombdep nombprov objectid shape_area shape_length year      </span></span>
-<span><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;int&gt;      &lt;dbl&gt;        &lt;dbl&gt; &lt;date&gt;    </span></span>
-<span><span class="co">#&gt; 1 16    02      136 LORETO  ALTO AM…      136       1.57         9.96 2005-01-01</span></span>
-<span><span class="co">#&gt; 2 16    02      136 LORETO  ALTO AM…      136       1.57         9.96 2006-01-01</span></span>
-<span><span class="co">#&gt; 3 16    02      136 LORETO  ALTO AM…      136       1.57         9.96 2007-01-01</span></span>
-<span><span class="co">#&gt; 4 16    02      136 LORETO  ALTO AM…      136       1.57         9.96 2008-01-01</span></span>
-<span><span class="co">#&gt; 5 16    02      136 LORETO  ALTO AM…      136       1.57         9.96 2009-01-01</span></span>
-<span><span class="co">#&gt; 6 16    02      136 LORETO  ALTO AM…      136       1.57         9.96 2010-01-01</span></span>
+<span><span class="co">#&gt;      id objectid ccdd  ccpp  nombdep nombprov shape_length shape_area year      </span></span>
+<span><span class="co">#&gt;   &lt;int&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;    </span></span>
+<span><span class="co">#&gt; 1   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2005-01-01</span></span>
+<span><span class="co">#&gt; 2   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2006-01-01</span></span>
+<span><span class="co">#&gt; 3   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2007-01-01</span></span>
+<span><span class="co">#&gt; 4   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2008-01-01</span></span>
+<span><span class="co">#&gt; 5   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2009-01-01</span></span>
+<span><span class="co">#&gt; 6   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2010-01-01</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: loss_year_km2 &lt;dbl&gt;</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Visualization with ggplot2</span></span>

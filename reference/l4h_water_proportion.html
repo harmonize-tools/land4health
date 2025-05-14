@@ -56,6 +56,7 @@ The values are expressed as a decimal ratio between 0 and 1 (e.g., 0.25 means 25
 <span>  <span class="va">region</span>,</span>
 <span>  fun <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>  sf <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  force <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -75,9 +76,7 @@ The values are expressed as a decimal ratio between 0 and 1 (e.g., 0.25 means 25
 
 <dt id="arg-region">region<a class="anchor" aria-label="anchor" href="#arg-region"></a></dt>
 <dd><p>A spatial object defining the region of interest.
-Can be an Earth Engine geometry (e.g., <code>ee$FeatureCollection</code>, <code>ee$Feature</code>),
-an <code>sf</code> or <code>sfc</code> object, or a <code>SpatVector</code> (from the <span class="pkg">terra</span> package).
-The object will be converted to an Earth Engine FeatureCollection if needed.</p></dd>
+Can be an <code>sf</code>, <code>sfc</code> object, or a <code>SpatVector</code> (from the <span class="pkg">terra</span> package).</p></dd>
 
 
 <dt id="arg-fun">fun<a class="anchor" aria-label="anchor" href="#arg-fun"></a></dt>
@@ -85,7 +84,11 @@ The object will be converted to an Earth Engine FeatureCollection if needed.</p>
 
 
 <dt id="arg-sf">sf<a class="anchor" aria-label="anchor" href="#arg-sf"></a></dt>
-<dd><p>Logical. Return result as an <code>sf</code> object? Default is <code>TRUE</code>.
+<dd><p>Logical. Return result as an <code>sf</code> object? Default is <code>TRUE</code>.</p></dd>
+
+
+<dt id="arg-quiet">quiet<a class="anchor" aria-label="anchor" href="#arg-quiet"></a></dt>
+<dd><p>Logical. If TRUE, suppress the progress bar (default FALSE).
 If <code>FALSE</code>, returns the Earth Engine <code>ImageCollection</code>.</p></dd>
 
 
@@ -95,7 +98,7 @@ Defaults to <code>FALSE</code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional arguments passed to internal processing functions (e.g., reducers).</p></dd>
+<dd><p>arguments of <code>ee_extract</code> of <code>rgee</code> packages.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -114,7 +117,7 @@ Mapbiomas project, available on: <a href="https://peru.mapbiomas.org/colecciones
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># Extract water coverage between 2000 and 2020</span></span></span>
-<span class="r-in"><span><span class="fu">l4h_water_coverage</span><span class="op">(</span>from <span class="op">=</span> <span class="fl">2000</span>, to <span class="op">=</span> <span class="fl">2020</span>, region <span class="op">=</span> <span class="va">my_basin</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">l4h_water_proportion</span><span class="op">(</span>from <span class="op">=</span> <span class="fl">2000</span>, to <span class="op">=</span> <span class="fl">2020</span>, region <span class="op">=</span> <span class="va">my_basin</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
