@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2025 land4health authors
+Copyright (c) 2025 Antony Barja,Yomali Ferreyra,Diego Villa
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
