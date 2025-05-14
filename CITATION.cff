@@ -1,0 +1,154 @@
+# --------------------------------------------
+# CITATION file created with {cffr} R package
+# See also: https://docs.ropensci.org/cffr/
+# --------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "land4health" in publications use:'
+type: software
+license: MIT
+title: 'land4health: Remote Sensing Metrics for Spatial Health Analysis'
+version: 0.0.0.9000
+abstract: Calculate and extract remote sensing metrics for spatial analysis in the
+  field of health. This package offers R users a quick and straightforward way to
+  obtain areal or zonal statistics of key environmental indicators, covariates, and
+  vector-borne disease data ideal for modeling infectious diseases within the framework
+  of spatial epidemiology.
+authors:
+- family-names: Barja
+  given-names: Antony
+  email: antony.barja@upch.pe
+  orcid: https://orcid.org/0000-0001-5921-2858
+- family-names: Ferreyra
+  given-names: Yomali
+  email: yomali.ferreyra@upch.pe
+  orcid: https://orcid.org/0000-0002-5184-9595
+url: https://harmonize-tools.github.io/land4health/
+contact:
+- family-names: Ferreyra
+  given-names: Yomali
+  email: yomali.ferreyra@upch.pe
+  orcid: https://orcid.org/0000-0002-5184-9595
+references:
+- type: software
+  title: cli
+  abstract: 'cli: Helpers for Developing Command Line Interfaces'
+  notes: Imports
+  url: https://cli.r-lib.org
+  repository: https://CRAN.R-project.org/package=cli
+  authors:
+  - family-names: Csárdi
+    given-names: Gábor
+    email: gabor@posit.co
+  year: '2025'
+  doi: 10.32614/CRAN.package.cli
+- type: software
+  title: progress
+  abstract: 'progress: Terminal Progress Bars'
+  notes: Imports
+  url: https://github.com/r-lib/progress#readme
+  repository: https://CRAN.R-project.org/package=progress
+  authors:
+  - family-names: Csárdi
+    given-names: Gábor
+    email: csardi.gabor@gmail.com
+  - family-names: FitzJohn
+    given-names: Rich
+  year: '2025'
+  doi: 10.32614/CRAN.package.progress
+- type: software
+  title: lifecycle
+  abstract: 'lifecycle: Manage the Life Cycle of your Package Functions'
+  notes: Imports
+  url: https://lifecycle.r-lib.org/
+  repository: https://CRAN.R-project.org/package=lifecycle
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@posit.co
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  year: '2025'
+  doi: 10.32614/CRAN.package.lifecycle
+- type: software
+  title: tidyr
+  abstract: 'tidyr: Tidy Messy Data'
+  notes: Imports
+  url: https://tidyr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=tidyr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Vaughan
+    given-names: Davis
+    email: davis@posit.co
+  - family-names: Girlich
+    given-names: Maximilian
+  year: '2025'
+  doi: 10.32614/CRAN.package.tidyr
+- type: software
+  title: dplyr
+  abstract: 'dplyr: A Grammar of Data Manipulation'
+  notes: Imports
+  url: https://dplyr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=dplyr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: François
+    given-names: Romain
+    orcid: https://orcid.org/0000-0002-2444-4226
+  - family-names: Henry
+    given-names: Lionel
+  - family-names: Müller
+    given-names: Kirill
+    orcid: https://orcid.org/0000-0002-1416-3412
+  - family-names: Vaughan
+    given-names: Davis
+    email: davis@posit.co
+    orcid: https://orcid.org/0000-0003-4777-038X
+  year: '2025'
+  doi: 10.32614/CRAN.package.dplyr
+- type: software
+  title: rgee
+  abstract: 'rgee: R Bindings for Calling the ''Earth Engine'' API'
+  notes: Imports
+  url: https://github.com/r-spatial/rgee/
+  repository: https://CRAN.R-project.org/package=rgee
+  authors:
+  - family-names: Aybar
+    given-names: Cesar
+    email: csaybar@gmail.com
+    orcid: https://orcid.org/0000-0003-2745-9535
+  year: '2025'
+  doi: 10.32614/CRAN.package.rgee
+- type: software
+  title: sf
+  abstract: 'sf: Simple Features for R'
+  notes: Imports
+  url: https://r-spatial.github.io/sf/
+  repository: https://CRAN.R-project.org/package=sf
+  authors:
+  - family-names: Pebesma
+    given-names: Edzer
+    email: edzer.pebesma@uni-muenster.de
+    orcid: https://orcid.org/0000-0001-8049-7069
+  year: '2025'
+  doi: 10.32614/CRAN.package.sf
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
+  version: '>= 4.1.0'
+
