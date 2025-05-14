@@ -98,8 +98,8 @@ split_sf <- function(sf_region) {
 #' @param scale Numeric. Scale in meters for extraction.
 #' @param fun A reducer function, e.g. `ee$Reducer$mean()`.
 #' @param sf Logical. Should the function return an sf object?
+#' @param quiet Logical. If TRUE, suppress the progress bar (default FALSE).
 #' @param via Character. Either "getInfo" or "drive".
-#' @param bar_format Character. Format string for the progress bar.
 #' @param ... arguments of `ee_extract` of `rgee` packages.
 #' @return An `sf` or  `data.frame` object.
 #' @keywords internal
@@ -109,23 +109,24 @@ extract_ee_with_progress <- function(
     scale,
     fun,
     sf,
+    quiet = FALSE,
     via = "getInfo",
-    bar_format = "\033[32mExtracting data\033[0m \033[34m[:bar]\033[0m :percent | :current/:total | ETA: :eta",
     ...
 ) {
   # Split sf into list of single-row features
   geoms <- split_sf(sf_region)
 
-  # Always show progress bar, even for a single feature
-  pb <- progress::progress_bar$new(
-    format     = bar_format,
-    total      = length(geoms),
-    clear      = FALSE,
-    width      = 50,
-    complete   = "=",
-    incomplete = "-"
-  )
-
+  # Initialize progress bar if not quiet
+  if(!quiet){
+    pb <- progress::progress_bar$new(
+      format     = "\033[32mExtracting data\033[0m \033[34m[:bar]\033[0m :percent | :current/:total | ETA: :eta",
+      total      = length(geoms),
+      clear      = FALSE,
+      width      = 50,
+      complete   = "=",
+      incomplete = "-"
+    )
+  }
   results <- lapply(geoms, function(feat) {
     out <- rgee::ee_extract(
       x     = image,
@@ -134,6 +135,7 @@ extract_ee_with_progress <- function(
       fun   = get_reducer(name = fun),
       sf    = sf,
       via   = via,
+      quiet = TRUE,
       ...
     )
     pb$tick()

@@ -18,7 +18,9 @@
 #' Common values include \code{"mean"}, \code{"sum"}, etc. Ignored when \code{weighted = FALSE}. Default is \code{"mean"}.
 #' @param sf Logical. If \code{TRUE}, returns the result as an \code{sf} object. If \code{FALSE},
 #' returns an Earth Engine object. Default is \code{FALSE}.
+#' @param quiet Logical. If TRUE, suppress the progress bar (default FALSE).
 #' @param force Logical. If \code{TRUE}, skips the representativity check and forces the extraction. Default is \code{FALSE}.
+#' @param ... arguments of `ee_extract` of `rgee` packages.
 #'
 #' @details
 #' This function uses the following datasets from the GEE Community Catalog:
@@ -55,17 +57,11 @@
 #' }
 #'
 #' @export
-l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FALSE, force = FALSE) {
+l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FALSE, quiet = FALSE, force = FALSE, ...) {
   # Define supported classes
   sf_classes <- c("sf", "sfc", "SpatVector")
-  rgee_classes <- c("ee.featurecollection.FeatureCollection", "ee.feature.Feature")
-
   # Check input object class
-  if (inherits(region, sf_classes)) {
-    region_ee <- rgee::sf_as_ee(region)
-  } else if (inherits(region, rgee_classes)) {
-    region_ee <- region
-  } else {
+  if (!inherits(region, sf_classes)) {
     stop("Invalid 'region' input. Expected an 'sf', 'sfc', 'SpatVector', or Earth Engine FeatureCollection object.")
   }
 
@@ -86,26 +82,25 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
     }
 
     img_index <- .internal_data$ruralpopulationwithaccess |> rgee::ee$Image()
+
     # Extract with reducer
     if (isTRUE(sf)) {
-      extract_area <- rgee::ee_extract(
-        x = img_index,
-        y = region_ee,
-        fun = get_reducer(fun),
+      extract_area <- extract_ee_with_progress(
+        image = img_index,
+        sf_region = region,
         scale = 100,
+        fun = fun,
         sf = TRUE,
-        quiet = FALSE,
-        lazy = FALSE
-      ) |>
+        quiet = quiet) |>
         dplyr::rename(rai_index_w = population)
     } else {
-      extract_area <- rgee::ee_extract(
-        x = img_index,
-        y = region_ee,
-        fun = get_reducer(fun),
-        scale = 30,
-        sf = FALSE
-      ) |>
+      extract_area <- extract_ee_with_progress(
+        image = img_index,
+        sf_region = region,
+        scale = 100,
+        fun = fun,
+        sf = FALSE,
+        quiet = quiet) |>
         dplyr::rename(rai_index_w = population)
     }
   } else {
@@ -114,30 +109,33 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
 
     img_index <- img$multiply(ee$Image$pixelArea())$
       divide(1e6)
+
     # Extract with reducer
     if (isTRUE(sf)) {
-      extract_area <- rgee::ee_extract(
-        x = img_index,
-        y = region_ee,
-        fun = get_reducer(name = "sum"),
+      extract_area <- extract_ee_with_progress(
+        image = img_index,
+        sf_region = region,
         scale = 100,
-        sf = TRUE,
-        quiet = FALSE,
-        lazy = FALSE
-      )
+        fun = "sum",
+        sf = TRUE) |>
+        (\(x) dplyr::mutate(x, area_km2 = as.vector(sf::st_area(sf::st_geometry(x)) / 1e6)))() |>
+        dplyr::rename(rai_index = b1) |>
+        dplyr::mutate(rai_index = rai_index / area_km2) |>
+        dplyr::select(-area_km2)
 
       geom_col <- attr(extract_area, "sf_column")
+
       extract_area <- extract_area |>
         (\(x) dplyr::mutate(x, area_km2 = as.vector(sf::st_area(sf::st_geometry(x)) / 1e6)))() |>
         dplyr::rename(rai_index = b1) |>
         dplyr::mutate(rai_index = rai_index / area_km2) |>
         dplyr::select(-area_km2)
     } else {
-      extract_area <- rgee::ee_extract(
-        x = img_index,
-        y = region_ee,
-        fun = get_reducer(name = "sum"),
-        scale = 30,
+      extract_area <- extract_ee_with_progress(
+        image = img_index,
+        sf_region = region,
+        scale = 100,
+        fun = "sum",
         sf = TRUE) |>
         (\(x) dplyr::mutate(x, area_km2 = as.vector(sf::st_area(sf::st_geometry(x)) / 1e6)))() |>
         dplyr::rename(rai_index = b1) |>

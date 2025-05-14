@@ -10,9 +10,8 @@ extract_ee_with_progress(
   scale,
   fun,
   sf,
+  quiet = FALSE,
   via = "getInfo",
-  bar_format =
-    "\\033[32mExtracting data\\033[0m \\033[34m[:bar]\\033[0m :percent | :current/:total | ETA: :eta",
   ...
 )
 }
@@ -27,9 +26,9 @@ extract_ee_with_progress(
 
 \item{sf}{Logical. Should the function return an sf object?}
 
-\item{via}{Character. Either "getInfo" or "drive".}
+\item{quiet}{Logical. If TRUE, suppress the progress bar (default FALSE).}
 
-\item{bar_format}{Character. Format string for the progress bar.}
+\item{via}{Character. Either "getInfo" or "drive".}
 
 \item{...}{arguments of \code{ee_extract} of \code{rgee} packages.}
 }

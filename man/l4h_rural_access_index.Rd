@@ -9,7 +9,9 @@ l4h_rural_access_index(
   weighted = FALSE,
   fun = NULL,
   sf = FALSE,
-  force = FALSE
+  quiet = FALSE,
+  force = FALSE,
+  ...
 )
 }
 \arguments{
@@ -28,7 +30,11 @@ Common values include \code{"mean"}, \code{"sum"}, etc. Ignored when \code{weigh
 \item{sf}{Logical. If \code{TRUE}, returns the result as an \code{sf} object. If \code{FALSE},
 returns an Earth Engine object. Default is \code{FALSE}.}
 
+\item{quiet}{Logical. If TRUE, suppress the progress bar (default FALSE).}
+
 \item{force}{Logical. If \code{TRUE}, skips the representativity check and forces the extraction. Default is \code{FALSE}.}
+
+\item{...}{arguments of \code{ee_extract} of \code{rgee} packages.}
 }
 \value{
 A spatial object containing the computed RAI value for the region in an

@@ -10,10 +10,11 @@
 #' @param region A spatial object defining the region of interest.
 #' Can be an \code{sf}, \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).
 #' @param sf Logical. Return result as an `sf` object? Default is `TRUE`.
+#' @param quiet Logical. If TRUE, suppress the progress bar (default FALSE).
 #' @param force Logical. Force request extract.
 #' @param ... arguments of `ee_extract` of `rgee` packages.
 #'
-#' @return A `data.frame` or `sf` object with forest loss per year in square kilometers.
+#' @return A `sf` or `tibble` object with forest loss per year in square kilometers.
 #'
 #' @details
 #' Forest loss is derived from the Hansen Global Forest Change dataset (`UMD/hansen/global_forest_change_2023_v1_11`).
@@ -51,7 +52,7 @@
 #' DOI: \doi{10.1126/science.1244693}
 #'
 #' @export
-l4h_forest_loss <- function(from, to, region, sf = TRUE, force = FALSE, ...) {
+l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = FALSE, ...) {
   # Validate input years
   if (!is.numeric(from) || nchar(as.character(from)) != 4) {
     cli::cli_abort("Parameter {.field from} must be a 4-digit numeric year. Got: {.val {from}}")
@@ -113,6 +114,7 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, force = FALSE, ...) {
       scale = 30,
       fun = "sum",
       sf = TRUE,
+      quiet = quiet,
       ...
     )
     geom_col <- attr(extract_area, "sf_column")
@@ -138,6 +140,7 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, force = FALSE, ...) {
       scale = 30,
       fun = "sum" ,
       sf = FALSE,
+      quiet = quiet,
       ...
     ) |>
       tidyr::pivot_longer(
