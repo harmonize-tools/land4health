@@ -17,13 +17,6 @@ get_data <- \(url = NULL){
   })
 }
 
-#' Global variables for get_early_warning
-#' This code declares global variables used in the some function to avoid R CMD check warnings.
-#' @name global-variables
-#' @keywords internal
-utils::globalVariables(c("provider","category","ee","year","area_km2", "b1","rai_index","population","accessibility","water_coverage", "geom_col","water_proportion"))
-
-
 #' Internal: Get an Earth Engine reducer
 #' Returns a reducer object (e.g., `ee$Reducer$mean()`) based on a string name.
 #' @param name A string: one of `"mean"`, `"sum"`, `"min"`, `"max"`, `"median"`, `"stdDev"`.
@@ -85,3 +78,76 @@ check_representativity <- function(region, scale = 30) {
   }
 
 }
+
+#' Split an sf object into a list of single-row sf objects
+#'
+#' @param sf_region An object of class `sf` representing multiple geometries.
+#' @return A list of single-row `sf` objects.
+#' @keywords internal
+split_sf <- function(sf_region) {
+  if (!inherits(sf_region, "sf")) {
+    stop("`sf_region` must be an sf object.")
+  }
+  lapply(seq_len(nrow(sf_region)), function(i) sf_region[i, , drop = FALSE])
+}
+
+
+#' Extract Earth Engine data with a progress bar
+#' @param image An Earth Engine Image object (from `rgee`).
+#' @param sf_region An `sf` object containing regions to extract.
+#' @param scale Numeric. Scale in meters for extraction.
+#' @param fun A reducer function, e.g. `ee$Reducer$mean()`.
+#' @param sf Logical. Should the function return an sf object?
+#' @param via Character. Either "getInfo" or "drive".
+#' @param bar_format Character. Format string for the progress bar.
+#' @param ... arguments of `ee_extract` of `rgee` packages.
+#' @return An `sf` or  `data.frame` object.
+#' @keywords internal
+extract_ee_with_progress <- function(
+    image,
+    sf_region,
+    scale,
+    fun,
+    sf,
+    via = "getInfo",
+    bar_format = "\033[32mExtracting data\033[0m \033[34m[:bar]\033[0m :percent | :current/:total | ETA: :eta",
+    ...
+) {
+  # Split sf into list of single-row features
+  geoms <- split_sf(sf_region)
+
+  # Always show progress bar, even for a single feature
+  pb <- progress::progress_bar$new(
+    format     = bar_format,
+    total      = length(geoms),
+    clear      = FALSE,
+    width      = 50,
+    complete   = "=",
+    incomplete = "-"
+  )
+
+  results <- lapply(geoms, function(feat) {
+    out <- rgee::ee_extract(
+      x     = image,
+      y     = feat,
+      scale = scale,
+      fun   = get_reducer(name = fun),
+      sf    = sf,
+      via   = via,
+      ...
+    )
+    pb$tick()
+    out
+  })
+
+  # Combine into one data.frame
+  final_df <- do.call(rbind, results)
+  return(final_df)
+}
+
+
+#' Global variables for get_early_warning
+#' This code declares global variables used in the some function to avoid R CMD check warnings.
+#' @name global-variables
+#' @keywords internal
+utils::globalVariables(c("provider","category","ee","year","area_km2", "b1","rai_index","population","accessibility","water_coverage", "geom_col","water_proportion"))

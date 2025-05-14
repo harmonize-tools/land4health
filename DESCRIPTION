@@ -14,9 +14,10 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Imports: 
     cli,
-    dplyr,
+    progress,
     lifecycle,
     tidyr,
+    dplyr,
     rgee,
     sf
 URL: https://harmonize-tools.github.io/land4health/

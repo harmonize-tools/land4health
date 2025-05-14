@@ -8,9 +8,7 @@
 #' @param from A numeric year between 2001 and 2023. Indicates the start of the analysis period.
 #' @param to A numeric year between 2001 and 2023. Indicates the end of the analysis period.
 #' @param region A spatial object defining the region of interest.
-#' Can be an Earth Engine geometry (e.g., \code{ee$FeatureCollection}, \code{ee$Feature}),
-#' an \code{sf} or \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).
-#' The object will be converted to an Earth Engine FeatureCollection if needed.
+#' Can be an \code{sf}, \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).
 #' @param sf Logical. Return result as an `sf` object? Default is `TRUE`.
 #' @param force Logical. Force request extract.
 #' @param ... arguments of `ee_extract` of `rgee` packages.
@@ -80,23 +78,13 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, force = FALSE, ...) {
   ) |>
     as.integer()
 
-  # Convert region to Earth Engine object
-
   # Define supported classes
   sf_classes <- c("sf", "sfc", "SpatVector")
-  rgee_classes <- c("ee.featurecollection.FeatureCollection", "ee.feature.Feature")
 
   # Check input object class
-  if (inherits(region, sf_classes)) {
-    region_ee <- rgee::sf_as_ee(region)
-  } else if (inherits(region, rgee_classes)) {
-    region_ee <- region
-  } else {
-    stop("Invalid 'region' input. Expected an 'sf', 'sfc', 'SpatVector', or Earth Engine FeatureCollection object.")
+  if (!inherits(region, sf_classes)) {
+    stop("Invalid 'region' input. Expected an 'sf', 'sfc' or 'SpatVector'")
   }
-
-  region_ee <- region |>
-    rgee::sf_as_ee()
 
   # Create binary image with lossyear in range
   hanse_data_db <- .internal_data$hansen |>
@@ -119,17 +107,14 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, force = FALSE, ...) {
 
   # Extract with reducer
   if (isTRUE(sf)) {
-    extract_area <- rgee::ee_extract(
-      x = hansen_data_area,
-      y = region_ee,
-      fun = get_reducer(name = "sum"),
+    extract_area <- extract_ee_with_progress(
+      image = hansen_data_area,
+      sf_region = region,
       scale = 30,
+      fun = "sum",
       sf = TRUE,
-      quiet = FALSE,
-      lazy = FALSE,
       ...
     )
-
     geom_col <- attr(extract_area, "sf_column")
     extract_area <- extract_area |>
       tidyr::pivot_longer(
@@ -147,12 +132,13 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, force = FALSE, ...) {
         )
       )
   } else {
-    extract_area <- rgee::ee_extract(
-      x = hansen_data_area,
-      y = region_ee,
-      fun = get_reducer(name = "sum"),
+    extract_area <- extract_ee_with_progress(
+      image = hansen_data_area,
+      sf_region = region,
       scale = 30,
-      sf = FALSE
+      fun = "sum" ,
+      sf = FALSE,
+      ...
     ) |>
       tidyr::pivot_longer(
         cols = tidyr::starts_with("constant"),
