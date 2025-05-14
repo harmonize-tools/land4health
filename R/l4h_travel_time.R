@@ -6,8 +6,8 @@
 #'
 #' `r lifecycle::badge('experimental')`
 #'
-#' @param region A spatial object defining the region of interest. Can be an `sf`, `sfc`,
-#' `SpatVector`, or Earth Engine `FeatureCollection`.
+#' @param region A spatial object defining the region of interest.
+#' Can be an \code{sf}, \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).
 #' @param destination Character. Target destination for travel time.
 #' Use `"healthcare"` (default) for travel time to the nearest healthcare facility, or
 #' `"cities"` for travel time to the nearest populated urban center.
@@ -17,8 +17,10 @@
 #' @param fun Character. Summary function to apply. Values include \code{"mean"}, \code{"sum"},\code{"median"} , etc. Default is \code{"mean"}.
 #' @param sf Logical. If \code{TRUE}, returns the result as an \code{sf} object. If \code{FALSE},
 #' returns an Earth Engine object. Default is \code{FALSE}.
+#' @param quiet Logical. If TRUE, suppress the progress bar (default FALSE).
 #' @param force Logical. If `TRUE`, skips the internal representativity check of the input region.
 #' Defaults to `FALSE`.
+#' @param ... arguments of `ee_extract` of `rgee` packages.
 #'
 #' @return A spatial object containing the computed RAI value for the region in an
 #' \code{sf} or \code{tibble} object.
@@ -47,17 +49,12 @@
 #'
 #' @export
 
-l4h_travel_time <- function(region, destination = "cities", transport_mode = "all", fun = "mean", sf = FALSE, force = FALSE) {
+l4h_travel_time <- function(region, destination = "cities", transport_mode = "all", fun = "mean", sf = FALSE, quiet = FALSE, force = FALSE, ...) {
   # Define supported classes
   sf_classes <- c("sf", "sfc", "SpatVector")
-  rgee_classes <- c("ee.featurecollection.FeatureCollection", "ee.feature.Feature")
 
   # Check input object class
-  if (inherits(region, sf_classes)) {
-    region_ee <- rgee::sf_as_ee(region)
-  } else if (inherits(region, rgee_classes)) {
-    region_ee <- region
-  } else {
+  if (!inherits(region, sf_classes)) {
     stop("Invalid 'region' input. Expected an 'sf', 'sfc', 'SpatVector', or Earth Engine FeatureCollection object.")
   }
 
@@ -110,19 +107,19 @@ l4h_travel_time <- function(region, destination = "cities", transport_mode = "al
 
     # Extract with reducer
     if (isTRUE(sf)) {
-      extract_area <- rgee::ee_extract(
-        x = img_index,
-        y = region_ee,
-        fun = get_reducer(fun),
+      extract_area <- extract_ee_with_progress(
+        image = img_index,
+        sf_region = region,
+        fun = fun,
         scale = 1000,
         sf = TRUE,
         quiet = FALSE,
         lazy = FALSE)
     } else {
-      extract_area <- rgee::ee_extract(
-        x = img_index,
-        y = region_ee,
-        fun = get_reducer(fun),
+      extract_area <- extract_ee_with_progress(
+        image = img_index,
+        sf_region = region,
+        fun = fun,
         scale = 1000,
         sf = FALSE
         )

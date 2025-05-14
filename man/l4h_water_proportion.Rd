@@ -10,6 +10,7 @@ l4h_water_proportion(
   region,
   fun = "mean",
   sf = TRUE,
+  quiet = FALSE,
   force = FALSE,
   ...
 )
@@ -20,19 +21,19 @@ l4h_water_proportion(
 \item{to}{Integer. End year (e.g., 2022). Must be equal to or greater than \code{from}.}
 
 \item{region}{A spatial object defining the region of interest.
-Can be an Earth Engine geometry (e.g., \code{ee$FeatureCollection}, \code{ee$Feature}),
-an \code{sf} or \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).
-The object will be converted to an Earth Engine FeatureCollection if needed.}
+Can be an \code{sf}, \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).}
 
 \item{fun}{Character. Summary function to apply. Values include \code{"mean"}, \code{"sum"},\code{"median"} , etc. Default is \code{"mean"}.}
 
-\item{sf}{Logical. Return result as an \code{sf} object? Default is \code{TRUE}.
+\item{sf}{Logical. Return result as an \code{sf} object? Default is \code{TRUE}.}
+
+\item{quiet}{Logical. If TRUE, suppress the progress bar (default FALSE).
 If \code{FALSE}, returns the Earth Engine \code{ImageCollection}.}
 
 \item{force}{Logical. If \code{TRUE}, skips internal representativity checks on the input geometry.
 Defaults to \code{FALSE}.}
 
-\item{...}{Additional arguments passed to internal processing functions (e.g., reducers).}
+\item{...}{arguments of \code{ee_extract} of \code{rgee} packages.}
 }
 \value{
 An object containing annual water coverage. Depending on \code{sf}, it may be an \code{sf} object,
@@ -47,7 +48,7 @@ The values are expressed as a decimal ratio between 0 and 1 (e.g., 0.25 means 25
 \examples{
 \dontrun{
 # Extract water coverage between 2000 and 2020
-l4h_water_coverage(from = 2000, to = 2020, region = my_basin)
+l4h_water_proportion(from = 2000, to = 2020, region = my_basin)
 }
 
 }

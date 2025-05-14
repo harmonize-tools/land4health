@@ -8,7 +8,7 @@ Returns a reducer object (e.g., \code{ee$Reducer$mean()}) based on a string name
 get_reducer(name)
 }
 \arguments{
-\item{name}{A string: one of \code{"mean"}, \code{"sum"}, \code{"min"}, \code{"max"}, \code{"median"}, \code{"stdDev"}.}
+\item{name}{A string: one of \code{"mean"}, \code{"sum"}, \code{"min"}, \code{"max"}, \code{"median"}, \code{"stdDev"} and \code{"first"}}
 }
 \value{
 An Earth Engine reducer object.

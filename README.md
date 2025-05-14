@@ -10,8 +10,10 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![R-CMD-check](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-Calculate and extract remote sensing metrics for spatial health analysis 🛰️.
-This package offers R users a quick and easy way to obtain areal and zonal statistics of key environmental indicators, covariates, and vector-borne disease data ideal for modeling infectious and environmentally-linked diseases 🦠 within the framework of spatial epidemiology 🏥
+Calculate and extract remote sensing metrics for spatial health analysis
+🛰️. This package offers R users a quick and easy way to obtain areal or
+zonal statistics of key indicators and covariates, ideal for modeling
+infectious diseases 🦠 within the framework of spatial epidemiology 🏥.
 
 ## Installation
 
@@ -87,17 +89,16 @@ provinces_loreto <- get_provinces(show_progress = FALSE) |>
 # Run forest loss calculation
 result <- provinces_loreto |> 
   l4h_forest_loss(from = 2005, to = 2020,sf = FALSE)
-#> Number of features: Calculating ...Number of features: 8
 head(result)
 #> # A tibble: 6 × 10
-#>   ccdd  ccpp     id nombdep nombprov objectid shape_area shape_length year      
-#>   <chr> <chr> <int> <chr>   <chr>       <int>      <dbl>        <dbl> <date>    
-#> 1 16    02      136 LORETO  ALTO AM…      136       1.57         9.96 2005-01-01
-#> 2 16    02      136 LORETO  ALTO AM…      136       1.57         9.96 2006-01-01
-#> 3 16    02      136 LORETO  ALTO AM…      136       1.57         9.96 2007-01-01
-#> 4 16    02      136 LORETO  ALTO AM…      136       1.57         9.96 2008-01-01
-#> 5 16    02      136 LORETO  ALTO AM…      136       1.57         9.96 2009-01-01
-#> 6 16    02      136 LORETO  ALTO AM…      136       1.57         9.96 2010-01-01
+#>      id objectid ccdd  ccpp  nombdep nombprov shape_length shape_area year      
+#>   <int>    <dbl> <chr> <chr> <chr>   <chr>           <dbl>      <dbl> <date>    
+#> 1   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2005-01-01
+#> 2   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2006-01-01
+#> 3   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2007-01-01
+#> 4   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2008-01-01
+#> 5   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2009-01-01
+#> 6   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2010-01-01
 #> # ℹ 1 more variable: loss_year_km2 <dbl>
 ```
 

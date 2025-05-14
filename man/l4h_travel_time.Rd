@@ -10,12 +10,14 @@ l4h_travel_time(
   transport_mode = "all",
   fun = "mean",
   sf = FALSE,
-  force = FALSE
+  quiet = FALSE,
+  force = FALSE,
+  ...
 )
 }
 \arguments{
-\item{region}{A spatial object defining the region of interest. Can be an \code{sf}, \code{sfc},
-\code{SpatVector}, or Earth Engine \code{FeatureCollection}.}
+\item{region}{A spatial object defining the region of interest.
+Can be an \code{sf}, \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).}
 
 \item{destination}{Character. Target destination for travel time.
 Use \code{"healthcare"} (default) for travel time to the nearest healthcare facility, or
@@ -30,8 +32,12 @@ or \code{"walking_only"} for walking-only accessibility (\strong{only valid when
 \item{sf}{Logical. If \code{TRUE}, returns the result as an \code{sf} object. If \code{FALSE},
 returns an Earth Engine object. Default is \code{FALSE}.}
 
+\item{quiet}{Logical. If TRUE, suppress the progress bar (default FALSE).}
+
 \item{force}{Logical. If \code{TRUE}, skips the internal representativity check of the input region.
 Defaults to \code{FALSE}.}
+
+\item{...}{arguments of \code{ee_extract} of \code{rgee} packages.}
 }
 \value{
 A spatial object containing the computed RAI value for the region in an
