@@ -1,5 +1,5 @@
 /* Own styles */
 .badge.lifecycle.lifecycle-estable {
-  color: white;
-  background-color: blue;
+   color: var(--bs-white);
+   background-color: var(--bs-primary);
 }
