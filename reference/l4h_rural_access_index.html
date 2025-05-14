@@ -58,7 +58,9 @@ aligning with SDG indicator 9.1.1.</p>
 <span>  weighted <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  fun <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sf <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  force <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  force <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -89,8 +91,16 @@ Common values include <code>"mean"</code>, <code>"sum"</code>, etc. Ignored when
 returns an Earth Engine object. Default is <code>FALSE</code>.</p></dd>
 
 
+<dt id="arg-quiet">quiet<a class="anchor" aria-label="anchor" href="#arg-quiet"></a></dt>
+<dd><p>Logical. If TRUE, suppress the progress bar (default FALSE).</p></dd>
+
+
 <dt id="arg-force">force<a class="anchor" aria-label="anchor" href="#arg-force"></a></dt>
 <dd><p>Logical. If <code>TRUE</code>, skips the representativity check and forces the extraction. Default is <code>FALSE</code>.</p></dd>
+
+
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>arguments of <code>ee_extract</code> of <code>rgee</code> packages.</p></dd>
 
 </dl></div>
     <div class="section level2">

@@ -50,9 +50,8 @@
 <span>  <span class="va">scale</span>,</span>
 <span>  <span class="va">fun</span>,</span>
 <span>  <span class="va">sf</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  via <span class="op">=</span> <span class="st">"getInfo"</span>,</span>
-<span>  bar_format <span class="op">=</span></span>
-<span>    <span class="st">"\033[32mExtracting data\033[0m \033[34m[:bar]\033[0m :percent | :current/:total | ETA: :eta"</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -81,12 +80,12 @@
 <dd><p>Logical. Should the function return an sf object?</p></dd>
 
 
+<dt id="arg-quiet">quiet<a class="anchor" aria-label="anchor" href="#arg-quiet"></a></dt>
+<dd><p>Logical. If TRUE, suppress the progress bar (default FALSE).</p></dd>
+
+
 <dt id="arg-via">via<a class="anchor" aria-label="anchor" href="#arg-via"></a></dt>
 <dd><p>Character. Either "getInfo" or "drive".</p></dd>
-
-
-<dt id="arg-bar-format">bar_format<a class="anchor" aria-label="anchor" href="#arg-bar-format"></a></dt>
-<dd><p>Character. Format string for the progress bar.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
