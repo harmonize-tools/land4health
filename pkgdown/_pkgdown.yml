@@ -45,6 +45,10 @@ reference:
    contents:
    - l4h_water_proportion
 
+- title: 'Climate'
+   contents:
+   - l4h_sebal_modis
+
  - title: 'Utils'
    contents:
    - get_metrics_summary

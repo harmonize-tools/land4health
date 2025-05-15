@@ -136,14 +136,14 @@ extract_ee_with_progress <- function(
       sf    = sf,
       via   = via,
       quiet = TRUE,
-      ...
+      # ...
     )
     pb$tick()
     out
   })
 
   # Combine into one data.frame
-  final_df <- do.call(rbind, results)
+  final_df <- dplyr::bind_rows(results)
   return(final_df)
 }
 
@@ -152,4 +152,24 @@ extract_ee_with_progress <- function(
 #' This code declares global variables used in the some function to avoid R CMD check warnings.
 #' @name global-variables
 #' @keywords internal
-utils::globalVariables(c("provider","category","ee","year","area_km2", "b1","rai_index","population","accessibility","water_coverage", "geom_col","water_proportion"))
+utils::globalVariables(
+  c("provider",
+    "category",
+    "ee",
+    "year",
+    "area_km2",
+    "b1",
+    "rai_index",
+    "population",
+    "accessibility",
+    "water_coverage",
+    "geom_col",
+    "water_proportion",
+    "modis_img",
+    "fecha",
+    "month",
+    "months_ee",
+    "quiet",
+    "variable")
+  )
+

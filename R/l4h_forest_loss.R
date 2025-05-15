@@ -121,18 +121,20 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
     extract_area <- extract_area |>
       tidyr::pivot_longer(
         cols = tidyr::starts_with("constant"),
-        names_to = "year",
-        values_to = "loss_year_km2"
+        names_to = "date",
+        values_to = "value"
       ) |>
       dplyr::mutate(
-        year = as.Date(
+        date = as.Date(
           ISOdate(
-            factor(year, labels = range_date_original),
+            factor(date, labels = range_date_original),
             1,
             1
           )
-        )
-      )
+        ),
+        variable = "forest_loss"
+      ) |>
+      dplyr::relocate(c("date","variable","value"),.before = geom_col)
   } else {
     extract_area <- extract_ee_with_progress(
       image = hansen_data_area,
@@ -145,18 +147,21 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
     ) |>
       tidyr::pivot_longer(
         cols = tidyr::starts_with("constant"),
-        names_to = "year",
-        values_to = "loss_year_km2"
+        names_to = "date",
+        values_to = "value"
       ) |>
       dplyr::mutate(
-        year = as.Date(
+        date = as.Date(
           ISOdate(
-            factor(year, labels = range_date_original),
+            factor(date, labels = range_date_original),
             1,
             1
           )
-        )
+        ),
+        variable = "forest_loss"
       )
   }
   return(extract_area)
 }
+
+
