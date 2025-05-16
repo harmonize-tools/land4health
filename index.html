@@ -93,40 +93,10 @@
 <span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>→ sf v1.<span class="fl">0.20</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="list-available-metrics-and-metadata">List available metrics and metadata<a class="anchor" aria-label="anchor" href="#list-available-metrics-and-metadata"></a>
-</h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/get_metrics_metadata.html">get_metrics_metadata</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 7 × 11</span></span>
-<span><span class="co">#&gt;   category           metric   pixel_resolution_met…¹ dataset start_year end_year</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;              &lt;chr&gt;                     &lt;int&gt; &lt;chr&gt;        &lt;int&gt;    &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 Human intervention Defores…                     30 Hansen…       2000     2023</span></span>
-<span><span class="co">#&gt; 2 Human intervention Human M…                    300 Global…       1990     2017</span></span>
-<span><span class="co">#&gt; 3 Human intervention Populat…                    100 WorldP…       2000     2021</span></span>
-<span><span class="co">#&gt; 4 Human intervention Urban a…                    500 MODIS …       2001     2022</span></span>
-<span><span class="co">#&gt; 5 Human intervention Night t…                    500 VIIRS …       1992     2023</span></span>
-<span><span class="co">#&gt; 6 Human intervention Human S…                     30 Global…       1975     2030</span></span>
-<span><span class="co">#&gt; 7 Enviroment         Urban H…                   1000 Urban …       2003     2020</span></span>
-<span><span class="co">#&gt; # ℹ abbreviated name: ¹​pixel_resolution_meters</span></span>
-<span><span class="co">#&gt; # ℹ 5 more variables: resolution_temporal &lt;chr&gt;, layer_can_be_actived &lt;lgl&gt;,</span></span>
-<span><span class="co">#&gt; #   tags &lt;chr&gt;, lifecycle &lt;chr&gt;, url &lt;chr&gt;</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="view-summary-of-available-indicators">View summary of available indicators<a class="anchor" aria-label="anchor" href="#view-summary-of-available-indicators"></a>
-</h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/get_metrics_summary.html">get_metrics_summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
-<span><span class="co">#&gt;   category           metrics_counts</span></span>
-<span><span class="co">#&gt;   &lt;fct&gt;                       &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 Enviroment                      1</span></span>
-<span><span class="co">#&gt; 2 Human intervention              6</span></span></code></pre></div>
-</div>
-<div class="section level2">
 <h2 id="example-calculate-forest-loss-in-a-custom-region">Example: Calculate Forest Loss in a Custom Region<a class="anchor" aria-label="anchor" href="#example-calculate-forest-loss-in-a-custom-region"></a>
 </h2>
 <p>This example demonstrates how to calculate forest loss between 2005 and 2020 using a custom polygon and Earth Engine.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">geoidep</span><span class="op">)</span></span>
 <span><span class="co"># Downloading the adminstration limits of Loreto provinces</span></span>
 <span><span class="va">provinces_loreto</span> <span class="op">&lt;-</span> <span class="fu">get_provinces</span><span class="op">(</span>show_progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -136,8 +106,8 @@
 <span><span class="va">result</span> <span class="op">&lt;-</span> <span class="va">provinces_loreto</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="reference/l4h_forest_loss.html">l4h_forest_loss</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">2005</span>, to <span class="op">=</span> <span class="fl">2020</span>,sf <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 10</span></span>
-<span><span class="co">#&gt;      id objectid ccdd  ccpp  nombdep nombprov shape_length shape_area year      </span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
+<span><span class="co">#&gt;      id objectid ccdd  ccpp  nombdep nombprov shape_length shape_area date      </span></span>
 <span><span class="co">#&gt;   &lt;int&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;    </span></span>
 <span><span class="co">#&gt; 1   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2005-01-01</span></span>
 <span><span class="co">#&gt; 2   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2006-01-01</span></span>
@@ -145,12 +115,11 @@
 <span><span class="co">#&gt; 4   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2008-01-01</span></span>
 <span><span class="co">#&gt; 5   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2009-01-01</span></span>
 <span><span class="co">#&gt; 6   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2010-01-01</span></span>
-<span><span class="co">#&gt; # ℹ 1 more variable: loss_year_km2 &lt;dbl&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<span><span class="co">#&gt; # ℹ 2 more variables: value &lt;dbl&gt;, variable &lt;chr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Visualization with ggplot2</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: package 'ggplot2' was built under R version 4.4.3</span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">result</span>,<span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>,y <span class="op">=</span> <span class="va">loss_year_km2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">result</span>,<span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>,y <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_area</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#80b918'</span>,alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">nombprov</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
