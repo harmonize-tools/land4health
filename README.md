@@ -46,36 +46,6 @@ For more information about metrics, please use the `get_metrics_metadata()` func
 → sf v1.0.20
 ```
 
-## List available metrics and metadata
-
-``` r
-get_metrics_metadata()
-#> # A tibble: 7 × 11
-#>   category           metric   pixel_resolution_met…¹ dataset start_year end_year
-#>   <chr>              <chr>                     <int> <chr>        <int>    <int>
-#> 1 Human intervention Defores…                     30 Hansen…       2000     2023
-#> 2 Human intervention Human M…                    300 Global…       1990     2017
-#> 3 Human intervention Populat…                    100 WorldP…       2000     2021
-#> 4 Human intervention Urban a…                    500 MODIS …       2001     2022
-#> 5 Human intervention Night t…                    500 VIIRS …       1992     2023
-#> 6 Human intervention Human S…                     30 Global…       1975     2030
-#> 7 Enviroment         Urban H…                   1000 Urban …       2003     2020
-#> # ℹ abbreviated name: ¹​pixel_resolution_meters
-#> # ℹ 5 more variables: resolution_temporal <chr>, layer_can_be_actived <lgl>,
-#> #   tags <chr>, lifecycle <chr>, url <chr>
-```
-
-## View summary of available indicators
-
-``` r
-get_metrics_summary()
-#> # A tibble: 2 × 2
-#>   category           metrics_counts
-#>   <fct>                       <int>
-#> 1 Enviroment                      1
-#> 2 Human intervention              6
-```
-
 ## Example: Calculate Forest Loss in a Custom Region
 
 This example demonstrates how to calculate forest loss between 2005 and
@@ -91,8 +61,8 @@ provinces_loreto <- get_provinces(show_progress = FALSE) |>
 result <- provinces_loreto |> 
   l4h_forest_loss(from = 2005, to = 2020,sf = FALSE)
 head(result)
-#> # A tibble: 6 × 10
-#>      id objectid ccdd  ccpp  nombdep nombprov shape_length shape_area year      
+#> # A tibble: 6 × 11
+#>      id objectid ccdd  ccpp  nombdep nombprov shape_length shape_area date      
 #>   <int>    <dbl> <chr> <chr> <chr>   <chr>           <dbl>      <dbl> <date>    
 #> 1   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2005-01-01
 #> 2   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2006-01-01
@@ -100,14 +70,13 @@ head(result)
 #> 4   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2008-01-01
 #> 5   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2009-01-01
 #> 6   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2010-01-01
-#> # ℹ 1 more variable: loss_year_km2 <dbl>
+#> # ℹ 2 more variables: value <dbl>, variable <chr>
 ```
 
 ``` r
 # Visualization with ggplot2
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 4.4.3
-ggplot(data = result,aes(x = year,y = loss_year_km2)) +
+ggplot(data = result,aes(x = date,y = value)) +
   geom_area(fill = '#80b918',alpha = 0.5) + 
   facet_wrap(~nombprov) + 
   theme_minimal()

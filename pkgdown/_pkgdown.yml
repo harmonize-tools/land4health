@@ -51,6 +51,5 @@ reference:
 
  - title: 'Utils'
    contents:
-   - get_metrics_summary
-   - get_metrics_metadata
-   - land4health_packages
+   - l4h_list_metrics
+   - l4h_packages

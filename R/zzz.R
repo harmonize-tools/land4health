@@ -7,7 +7,13 @@
     cli::cli_text("{.emph Currently,`land4health` supports metrics related to the following categories:}")
 
     # Block 2 : Metrics available ----------------------------------------------
-    category_data <- get_metrics_summary()
+    providers_count <- get_data() |>
+      subset(select = "category") |>
+      table() |>
+      as.data.frame() |>
+      tidyr::as_tibble()
+    names(providers_count) <- c("category", "metrics_counts")
+    category_data <- providers_count
     list_categories <- c(if (is.data.frame(category_data) && "category" %in% names(category_data)) {
       category_data$category[1:min(4, nrow(category_data))] |> as.vector()
     } else character(),"and more!")

@@ -52,20 +52,6 @@ For more information about metrics, please use the `get_metrics_metadata()` func
 → rgee v1.1.7
 → sf v1.0.20
 ```
-
-## List available metrics and metadata
-
-```{r}
-get_metrics_metadata()
-```
-
-## View summary of available indicators
-
-```{r}
-get_metrics_summary()
-```
-
-
 ## Example: Calculate Forest Loss in a Custom Region
 
 This example demonstrates how to calculate forest loss between 2005 and 2020 using a custom polygon and Earth Engine.
@@ -85,7 +71,7 @@ head(result)
 ```{r pt,fig.dpi=300, fig.height= 5,fig.width= 12}
 # Visualization with ggplot2
 library(ggplot2)
-ggplot(data = result,aes(x = year,y = loss_year_km2)) +
+ggplot(data = result,aes(x = date,y = value)) +
   geom_area(fill = '#80b918',alpha = 0.5) + 
   facet_wrap(~nombprov) + 
   theme_minimal()

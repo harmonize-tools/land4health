@@ -33,10 +33,10 @@ land4health_attach <- function() {
 #' @returns A character vector of package names included in the "land4health" meta-package.
 #' @export
 #' @examples
-#' land4health_packages()
+#' l4h_packages()
 #'
 # https://github.com/tidyverse/tidyverse/blob/main/R/utils.R
-land4health_packages <- function(include_self = TRUE) {
+l4h_packages <- function(include_self = TRUE) {
   pkgs <- core
   if (include_self) {
     pkgs <- c(pkgs, "land4health")
