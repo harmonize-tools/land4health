@@ -19,7 +19,7 @@ infectious diseases 🦠 within the framework of spatial epidemiology 🏥.
 ## Installation
 
 You can install the development version of land4health from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/harmonize-tools/land4health) with:
 
 ``` r
 # install.packages("pak")
