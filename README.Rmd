@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 Calculate and extract remote sensing metrics for spatial health analysis 🛰️.
 This package offers R users a quick and easy way to obtain areal or zonal statistics of key indicators and covariates, ideal for modeling infectious diseases 🦠 within the framework of spatial epidemiology 🏥.
 
-## Installation
+## 1. Installation
 
 You can install the development version of land4health from [GitHub](https://github.com/) with:
 
@@ -52,7 +52,13 @@ For more information about metrics, please use the `get_metrics_metadata()` func
 → rgee v1.1.7
 → sf v1.0.20
 ```
-## Example: Calculate Forest Loss in a Custom Region
+## 2. List of available metrics
+
+```{r}
+l4h_list_metrics()
+```
+
+## 3. Example: Calculate Forest Loss in a Custom Region
 
 This example demonstrates how to calculate forest loss between 2005 and 2020 using a custom polygon and Earth Engine.
 
@@ -64,15 +70,26 @@ provinces_loreto <- get_provinces(show_progress = FALSE) |>
 
 # Run forest loss calculation
 result <- provinces_loreto |> 
-  l4h_forest_loss(from = 2005, to = 2020,sf = FALSE)
+  l4h_forest_loss(from = 2005, to = 2020,sf = TRUE)
 head(result)
 ```
 
 ```{r pt,fig.dpi=300, fig.height= 5,fig.width= 12}
 # Visualization with ggplot2
 library(ggplot2)
-ggplot(data = result,aes(x = date,y = value)) +
+ggplot(data = st_drop_geometry(result),aes(x = date,y = value)) +
   geom_area(fill = '#80b918',alpha = 0.5) + 
   facet_wrap(~nombprov) + 
   theme_minimal()
 ```
+
+```{r map,fig.dpi=300, fig.height= 15,fig.width= 15}
+# Spatial visualization
+ggplot(data = result) + 
+  geom_sf(aes(fill = value), color = NA) + 
+  scale_fill_viridis_c(name = "Forest loss mean \n(km²)") + 
+  theme_minimal(base_size = 12) + 
+  facet_wrap(date ~.)
+```
+
+
