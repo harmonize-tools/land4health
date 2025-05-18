@@ -75,7 +75,7 @@ head(result)
 ```
 ## 4. Visualization 
 
-```{r pt,fig.dpi=300, fig.height= 5,fig.width= 12}
+```{r plot,fig.dpi=300, fig.height= 5,fig.width= 12}
 # Visualization with ggplot2
 library(ggplot2)
 ggplot(data = st_drop_geometry(result),aes(x = date,y = value)) +
@@ -84,7 +84,7 @@ ggplot(data = st_drop_geometry(result),aes(x = date,y = value)) +
   theme_minimal()
 ```
 
-```{r map,fig.dpi=300, fig.height= 14,fig.width= 15}
+```{r mapa,fig.dpi=300, fig.height= 14,fig.width= 15}
 # Spatial visualization
 ggplot(data = result) + 
   geom_sf(aes(fill = value), color = NA) + 
