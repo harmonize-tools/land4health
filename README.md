@@ -97,6 +97,8 @@ head(result)
 #> # ℹ 3 more variables: variable <chr>, value <dbl>, geometry <MULTIPOLYGON [°]>
 ```
 
+## 4. Visualization
+
 ``` r
 # Visualization with ggplot2
 library(ggplot2)
