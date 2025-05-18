@@ -104,7 +104,7 @@ head(result)
 library(ggplot2)
 #> Warning: package 'ggplot2' was built under R version 4.4.3
 ggplot(data = st_drop_geometry(result),aes(x = date,y = value)) +
-  geom_area(fill = '#80b918',alpha = 0.5) + 
+  geom_area(fill = '#440154FF',alpha = 0.7) + 
   facet_wrap(~nombprov) + 
   theme_minimal()
 ```
@@ -116,7 +116,7 @@ ggplot(data = st_drop_geometry(result),aes(x = date,y = value)) +
 ggplot(data = result) + 
   geom_sf(aes(fill = value), color = NA) + 
   scale_fill_viridis_c(name = "Forest loss mean \n(km²)") + 
-  theme_minimal(base_size = 12) + 
+  theme_minimal(base_size = 15) + 
   facet_wrap(date ~.)
 ```
 
