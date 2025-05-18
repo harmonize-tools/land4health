@@ -2,28 +2,62 @@
 % Please edit documentation in R/l4h_list_metrics.R
 \name{l4h_list_metrics}
 \alias{l4h_list_metrics}
-\title{List available metrics in land4health}
+\title{List available metrics in \emph{land4health}}
 \usage{
 l4h_list_metrics(
   category = NULL,
   metric = NULL,
   provider = NULL,
-  open_in_browser = TRUE
+  open_in_browser = FALSE
 )
 }
 \arguments{
-\item{category}{Optional string. Filter by thematic category.}
+\item{category}{Optional single string. Filter by thematic category.}
 
-\item{metric}{Optional string. Filter by metric short-name.}
+\item{metric}{Optional single string. Filter by metric short name.}
 
-\item{provider}{Optional string. Filter by \code{dataset}.}
+\item{provider}{Optional single string. Filter by the \code{dataset} column.}
 
-\item{open_in_browser}{Logical. Open the URLs in your browser? Default TRUE.}
+\item{open_in_browser}{Logical; open the matching URLs in your browser?
+Defaults to \code{FALSE}.}
 }
 \value{
-A tibble (returned invisibly).  When \code{open_in_browser = FALSE}
-it prints a compact preview before returning.
+A tibble (returned \emph{invisibly}).  When \code{open_in_browser = FALSE}
+a compact preview (max 10 rows) is printed before the tibble is
+returned.
 }
 \description{
-List available metrics in land4health
+Returns a tibble with the metadata of every metric shipped with
+\strong{land4health}.  You can optionally filter by thematic \emph{category}, metric
+short name, or \emph{provider}.
+If \code{open_in_browser = TRUE}, all matching URLs are opened in your default
+browser; for safety you \strong{must} supply at least one filter, and—if more than
+five tabs would open—you are asked to confirm in interactive sessions.
+}
+\examples{
+## All examples keep `open_in_browser = FALSE` to avoid side-effects
+## during automated checks.
+
+## 1  Show the full inventory (truncated to 10 rows).
+l4h_list_metrics()
+
+## 2  Filter by category (“Human intervention”).
+l4h_list_metrics(category = "Human intervention")
+
+## 3  Filter by provider (“WorldPop”) and store the result.
+worldpop_tbl <- l4h_list_metrics(provider = "WorldPop")
+head(worldpop_tbl)
+
+## 4  Pipe into dplyr (executes in < 1 s, loaded only if available).
+if (requireNamespace("dplyr", quietly = TRUE)) {
+  l4h_list_metrics() |>
+    dplyr::filter(pixel_resolution_meters <= 100) |>
+    dplyr::select(metric, start_year, end_year)
+}
+
+## 5  Trying to open links without filters triggers an error;
+##    wrapped in \dontrun{} so R CMD check is not interrupted.
+\dontrun{
+l4h_list_metrics(open_in_browser = TRUE)
+}
 }
