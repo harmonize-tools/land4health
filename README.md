@@ -107,7 +107,7 @@ ggplot(data = st_drop_geometry(result),aes(x = date,y = value)) +
   theme_minimal()
 ```
 
-<img src="man/figures/README-plot-1.png" width="100%" />
+<img src="man/figures/README-area-1.png" width="100%" />
 
 ``` r
 # Spatial visualization

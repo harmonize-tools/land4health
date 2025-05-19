@@ -74,7 +74,7 @@ result <- provinces_loreto |>
 head(result)
 ```
 
-```{r plot,fig.dpi=300, fig.height= 5,fig.width= 12}
+```{r area,fig.dpi=300, fig.height= 5,fig.width= 12}
 # Visualization with ggplot2
 library(ggplot2)
 ggplot(data = st_drop_geometry(result),aes(x = date,y = value)) +
