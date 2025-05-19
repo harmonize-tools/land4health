@@ -97,14 +97,12 @@ head(result)
 #> # ℹ 3 more variables: variable <chr>, value <dbl>, geometry <MULTIPOLYGON [°]>
 ```
 
-## 4. Visualization
-
 ``` r
 # Visualization with ggplot2
 library(ggplot2)
 #> Warning: package 'ggplot2' was built under R version 4.4.3
 ggplot(data = st_drop_geometry(result),aes(x = date,y = value)) +
-  geom_area(fill = '#440154FF',alpha = 0.7) + 
+  geom_area(fill = '#38b000',alpha = 0.7) + 
   facet_wrap(~nombprov) + 
   theme_minimal()
 ```
@@ -121,3 +119,25 @@ ggplot(data = result) +
 ```
 
 <img src="man/figures/README-mapa-1.png" width="100%" />
+
+## 4. Example: Extract time series of climate variables
+
+``` r
+etp_ts <- provinces_loreto |> 
+  l4h_sebal_modis(
+    from = '2005-01-01',
+    to = '2022-12-31',
+    by = 'month')
+```
+
+``` r
+etp_ts |> 
+  st_drop_geometry() |> 
+  ggplot(aes(x = date, y = value, col = value)) +
+  geom_line() + 
+  scale_color_viridis_c("ETP (mm)") +
+  theme_minimal() +
+  facet_wrap(~nombprov,ncol = 4)
+```
+
+<img src="man/figures/README-ts-1.png" width="100%" />

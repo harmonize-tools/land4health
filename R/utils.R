@@ -128,7 +128,7 @@ extract_ee_with_progress <- function(
     )
   }
   results <- lapply(geoms, function(feat) {
-    out <- rgee::ee_extract(
+    out <- suppressPackageStartupMessages(rgee::ee_extract(
       x     = image,
       y     = feat,
       scale = scale,
@@ -137,7 +137,7 @@ extract_ee_with_progress <- function(
       via   = via,
       quiet = TRUE,
       # ...
-    )
+    ))
     pb$tick()
     out
   })
@@ -168,8 +168,9 @@ utils::globalVariables(
     "modis_img",
     "fecha",
     "month",
-    "months_ee",
     "quiet",
-    "variable")
+    "variable",
+    "value",
+    "all_of")
   )
 

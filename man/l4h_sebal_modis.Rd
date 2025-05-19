@@ -2,7 +2,7 @@
 % Please edit documentation in R/l4h_sebal_modis.R
 \name{l4h_sebal_modis}
 \alias{l4h_sebal_modis}
-\title{Download and process evapotranspiration data (SEBAL-MODIS) from Earth Engine}
+\title{Download and process evapotranspiration data}
 \usage{
 l4h_sebal_modis(
   from,
@@ -12,6 +12,7 @@ l4h_sebal_modis(
   fun = "mean",
   sf = TRUE,
   force = FALSE,
+  quiet = FALSE,
   ...
 )
 }
@@ -30,7 +31,9 @@ l4h_sebal_modis(
 
 \item{force}{Logical. If \code{TRUE}, forces download even if a local file already exists.}
 
-\item{...}{Additional arguments passed to \code{ee_as_stars()} or \code{ee_extract()}.}
+\item{quiet}{Logical. If TRUE, suppress the progress bar (default FALSE).}
+
+\item{...}{arguments of \code{ee_extract} of \code{rgee} packages.}
 }
 \value{
 A \code{sf} or \code{tibble} object with etp values.
@@ -38,6 +41,51 @@ A \code{sf} or \code{tibble} object with etp values.
 \description{
 This function accesses the \code{geeSEBAL-MODIS} collection published by the ET-Brasil project,
 extracts the \code{etp} band (daily evapotranspiration in mm/day), and allows temporal aggregation
-by 8-day images, monthly composites, or the entire period. Optionally, results can be returned
-as \code{sf}/\code{stars} objects in R.
+by 8-day images or monthly or yearly composites period. Optionally, results can be returned
+as \code{sf}/\code{tibble} objects in R.
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+}
+\examples{
+\dontrun{
+## Assume `my_roi` is an sf polygon covering your area of interest.
+## 1. Eight-day composites (8 days)
+##    2020-01-01 → 2020-12-31, reducer = "mean"
+sebal_8d <- l4h_sebal_modis(
+  from   = "2020-01-01",
+  to     = "2020-12-31",
+  region = my_roi
+)
+
+## 2. Monthly means
+##    Same period, but aggregated to calendar months
+sebal_month <- l4h_sebal_modis(
+  from   = "2020-01-01",
+  to     = "2020-12-31",
+  by     = "month",
+  region = my_roi
+)
+
+## 3. Annual evapotranspiration
+##    2015 → 2023, one value per year
+sebal_annual <- l4h_sebal_modis(
+  from   = 2015,
+  to     = 2023,
+  by     = "annual",
+  fun    = "sum",
+  region = my_roi,
+  sf     = FALSE
+)
+}
+}
+\references{
+\itemize{
+\item Comini, B., Ruhoff, A., Laipelt, L., Fleischmann, A., Huntington, J.,
+Morton, C., Melton, F., Erickson, T., Roberti, D., Souza, V., Biudes, M.,
+Machado, N., Santos, C. & Cosio, E. (2023). \emph{geeSEBAL‑MODIS:
+Continental‑scale evapotranspiration based on the surface energy
+balance for South America.} Preprint. DOI: 10.13140/RG.2.2.17579.11041
+\item geeSEBAL‑MODIS v0‑02 dataset. Licensed under the
+\emph{Creative Commons Attribution 4.0 International (CC‑BY‑4.0)} license.
+}
 }

@@ -1,9 +1,11 @@
-#' Download and process evapotranspiration data (SEBAL-MODIS) from Earth Engine
+#' Download and process evapotranspiration data
 #'
-#' This function accesses the `geeSEBAL-MODIS` collection published by the ET-Brasil project,
+#' @description This function accesses the `geeSEBAL-MODIS` collection published by the ET-Brasil project,
 #' extracts the `etp` band (daily evapotranspiration in mm/day), and allows temporal aggregation
-#' by 8-day images, monthly composites, or the entire period. Optionally, results can be returned
-#' as `sf`/`stars` objects in R.
+#' by 8-day images or monthly or yearly composites period. Optionally, results can be returned
+#' as `sf`/`tibble` objects in R.
+#'
+#' `r lifecycle::badge('stable')`
 #'
 #' @param from Start date in `"YYYY-MM-DD"` format.
 #' @param to End date in `"YYYY-MM-DD"` format.
@@ -11,12 +13,54 @@
 #' @param region A spatial object defining the region of interest. Accepts `sf`, `SpatVector`, or `ee$FeatureCollection` objects.
 #' @param fun Aggregation function when `by = "month"` or `"total"`. Valid values are `"mean"` or `"sum"`.
 #' @param sf Logical. Return result as an `sf` object? Default is `TRUE`.
+#' @param quiet Logical. If TRUE, suppress the progress bar (default FALSE).
 #' @param force Logical. If `TRUE`, forces download even if a local file already exists.
-#' @param ... Additional arguments passed to `ee_as_stars()` or `ee_extract()`.
-#'
+#' @param ... arguments of `ee_extract` of `rgee` packages.
 #' @return A `sf` or `tibble` object with etp values.
+#' @examples
+#' @examples
+#' \dontrun{
+#' ## Assume `my_roi` is an sf polygon covering your area of interest.
+#' ## 1. Eight-day composites (8 days)
+#' ##    2020-01-01 → 2020-12-31, reducer = "mean"
+#' sebal_8d <- l4h_sebal_modis(
+#'   from   = "2020-01-01",
+#'   to     = "2020-12-31",
+#'   region = my_roi
+#' )
+#'
+#' ## 2. Monthly means
+#' ##    Same period, but aggregated to calendar months
+#' sebal_month <- l4h_sebal_modis(
+#'   from   = "2020-01-01",
+#'   to     = "2020-12-31",
+#'   by     = "month",
+#'   region = my_roi
+#' )
+#'
+#' ## 3. Annual evapotranspiration
+#' ##    2015 → 2023, one value per year
+#' sebal_annual <- l4h_sebal_modis(
+#'   from   = 2015,
+#'   to     = 2023,
+#'   by     = "annual",
+#'   fun    = "sum",
+#'   region = my_roi,
+#'   sf     = FALSE
+#' )
+#' }
+#' @references
+#' - Comini, B., Ruhoff, A., Laipelt, L., Fleischmann, A., Huntington, J.,
+#'   Morton, C., Melton, F., Erickson, T., Roberti, D., Souza, V., Biudes, M.,
+#'   Machado, N., Santos, C. & Cosio, E. (2023). *geeSEBAL‑MODIS:
+#'   Continental‑scale evapotranspiration based on the surface energy
+#'   balance for South America.* Preprint. DOI: 10.13140/RG.2.2.17579.11041
+#'
+#' - geeSEBAL‑MODIS v0‑02 dataset. Licensed under the
+#'   *Creative Commons Attribution 4.0 International (CC‑BY‑4.0)* license.
 
-l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = TRUE, force = FALSE, ...){
+#' @export
+l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = TRUE, force = FALSE, quiet = FALSE,...){
 
   # Validar que la conversion fue exitosa
   if (is.na(from) || is.na(to)) {
@@ -38,6 +82,9 @@ l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = 
   # Convertir a Date usando formato explicito
   from <- tryCatch(as.Date(from, format = "%Y-%m-%d"),error = function(e) NA)
   to <- tryCatch(as.Date(to, format = "%Y-%m-%d"), error = function(e) NA)
+
+  from_ee <- rgee::rdate_to_eedate(from)
+  to_ee <- rgee::rdate_to_eedate(to)
 
   date_seq <- switch(
     by,
@@ -63,30 +110,14 @@ l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = 
     ee$ImageCollection() |>
     ee$ImageCollection$select('ET_24h')
 
-  # Years
-  start_year <- min(date_seq) |> format("%Y") |> as.integer()
-  end_year <- max(date_seq)  |> format("%Y") |> as.integer()
-
-  # Months
-  start_month <- min(date_seq) |> format("%m") |> as.integer()
-  end_month <- max(date_seq)  |> format("%m") |> as.integer()
-
-  # Days
-  start_day<- min(date_seq) |> format("%d") |> as.integer()
-  end_day <- max(date_seq)  |> format("%d") |> as.integer()
-
   if(by == '8 days'){
     modis_ic <- ic |>
-      ee$ImageCollection$filter(ee$Filter$calendarRange(start_year,end_year,'year')) |>
-      ee$ImageCollection$filter(ee$Filter$calendarRange(start_month,end_month,'month')) |>
-      ee$ImageCollection$filter(ee$Filter$calendarRange(start_day,end_day,'day_of_month')) |>
+      ee$ImageCollection$filterDate(from_ee,to_ee) |>
       ee$ImageCollection$toBands()
-
     modis_name <- modis_ic$bandNames()$getInfo()
     modis_date <- as.numeric(gsub("_.*", "", modis_name))
     modis_rename <- paste0('etp_',modis_date)
     modis_pre <- modis_ic$rename(modis_rename)
-    return(modis_pre)
 
   } else if (by == 'month'){
     # new dataframe with years and months
@@ -106,8 +137,7 @@ l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = 
       years_ee <- list_date$year[x]
       # Months
       months <- unlist(list_date$meses[x])
-      month_ee <- months|>
-        ee$List()
+      months_ee <- months|>ee$List()
 
       # Preprocessing modis
       modis_ic <- ee$ImageCollection$
@@ -158,7 +188,7 @@ l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = 
     modis_name <- modis_ic$bandNames()$getInfo()
     modis_year <- years[as.numeric(gsub("_.*", "", modis_name)) + 1]
     modis_rename <- paste0('etp_',modis_year)
-    modis_pre <- modis_img$rename(modis_rename)
+    modis_pre <- modis_ic$rename(modis_rename)
 
   } else {
     stop("Invalid 'by' input. Please only select '8 days', 'month' or 'annual'")
@@ -175,15 +205,24 @@ l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = 
     ...
     )
   geom_col <- attr(modis_extract, "sf_column")
+  idx_etp <-grep("(^|_)etp_", names(modis_extract))
+
+  stopifnot(
+    length(idx_etp) == length(date_seq),
+    inherits(date_seq, "Date") ||
+      all(!is.na(as.Date(date_seq,  "%Y%m")))
+    )
+  new_names <- paste0("etp_", format(as.Date(date_seq, "%Y%m")))
+  names(modis_extract)[idx_etp] <- new_names
   modis_tidy <- modis_extract |>
     tidyr::pivot_longer(
-      cols = dplyr::starts_with('etp_'),
+      cols = dplyr::contains("etp_"),
       names_to = "variable",
       values_to = "value") |>
     dplyr::mutate(
-      date = as.Date(sub("^.+_", "", variable), format = "%Y%m%d"),
+      date = as.Date(sub("^etp_", "", variable)),
       variable = "etp") |>
-    dplyr::relocate(c("date","variable","value"),.before = geom_col)
+    dplyr::relocate(date, variable, value, .before = all_of(geom_col))
+
   return(modis_tidy)
 }
-

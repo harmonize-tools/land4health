@@ -73,13 +73,12 @@ result <- provinces_loreto |>
   l4h_forest_loss(from = 2005, to = 2020,sf = TRUE)
 head(result)
 ```
-## 4. Visualization 
 
 ```{r plot,fig.dpi=300, fig.height= 5,fig.width= 12}
 # Visualization with ggplot2
 library(ggplot2)
 ggplot(data = st_drop_geometry(result),aes(x = date,y = value)) +
-  geom_area(fill = '#440154FF',alpha = 0.7) + 
+  geom_area(fill = '#38b000',alpha = 0.7) + 
   facet_wrap(~nombprov) + 
   theme_minimal()
 ```
@@ -93,4 +92,22 @@ ggplot(data = result) +
   facet_wrap(date ~.)
 ```
 
+## 4. Example: Extract time series of climate variables 
 
+```{r,message=FALSE, warning=FALSE}
+etp_ts <- provinces_loreto |> 
+  l4h_sebal_modis(
+    from = '2005-01-01',
+    to = '2022-12-31',
+    by = 'month')
+```
+
+```{r ts,fig.dpi=300, fig.height= 5,fig.width= 12}
+etp_ts |> 
+  st_drop_geometry() |> 
+  ggplot(aes(x = date, y = value, col = value)) +
+  geom_line() + 
+  scale_color_viridis_c("ETP (mm)") +
+  theme_minimal() +
+  facet_wrap(~nombprov,ncol = 4)
+```
