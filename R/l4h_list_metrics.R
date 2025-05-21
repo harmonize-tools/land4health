@@ -60,15 +60,22 @@ l4h_list_metrics <- function(category = NULL,
 
   df <- get_data()
 
-  if (!is.null(category))
+  if (!is.null(category)) {
     df <- df[df$category == category, , drop = FALSE]
-  if (!is.null(metric))
-    df <- df[df$metric == metric, , drop = FALSE]
-  if (!is.null(provider))
-    df <- df[df$dataset == provider, , drop = FALSE]
+  }
 
-  if (nrow(df) == 0L)
-    stop("No metrics matched your query.", call. = FALSE)
+  if (!is.null(metric)) {
+    df <- df[df$metric == metric, , drop = FALSE]
+  }
+
+  if (!is.null(provider)) {
+    df <- df[df$dataset == provider, , drop = FALSE]
+  }
+
+  if (nrow(df) == 0L) {
+    cli::cli_abort("No metrics matched {.val {metric}}. Please check your query.")
+  }
+
 
   # Browser logic
   if (open_in_browser) {
@@ -86,11 +93,14 @@ l4h_list_metrics <- function(category = NULL,
 
     # Ask for confirmation if > 5 tabs would open
     if (interactive() && n > 5L) {
-      ans <- tolower(trimws(readline(
-        sprintf("%d links will be opened in your default browser. Continue? [y/N]: ", n)
-      )))
-      if (!startsWith(ans, "y"))
+      cli::cli_inform("{.strong {n}} links will be opened in your default browser.")
+      ans <- readline("Continue? [y/N]: ")
+      ans <- tolower(trimws(ans))
+
+      if (!startsWith(ans, "y")) {
+        cli::cli_alert_info("Operation cancelled by user.")
         return(invisible(df))
+      }
     }
 
     invisible(lapply(df$url, utils::browseURL))

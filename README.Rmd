@@ -65,49 +65,50 @@ This example demonstrates how to calculate forest loss between 2005 and 2020 usi
 ```{r example, message=FALSE, warning=FALSE}
 library(geoidep)
 # Downloading the adminstration limits of Loreto provinces
-provinces_loreto <- get_provinces(show_progress = FALSE) |> 
+provinces_loreto <- get_provinces(show_progress = FALSE) |>
   subset(nombdep == "LORETO")
 
 # Run forest loss calculation
-result <- provinces_loreto |> 
-  l4h_forest_loss(from = 2005, to = 2020,sf = TRUE)
+result <- provinces_loreto |>
+  l4h_forest_loss(from = 2005, to = 2020, sf = TRUE)
 head(result)
 ```
 
 ```{r area,fig.dpi=300, fig.height= 5,fig.width= 12}
 # Visualization with ggplot2
 library(ggplot2)
-ggplot(data = st_drop_geometry(result),aes(x = date,y = value)) +
-  geom_area(fill = '#38b000',alpha = 0.7) + 
-  facet_wrap(~nombprov) + 
+ggplot(data = st_drop_geometry(result), aes(x = date, y = value)) +
+  geom_area(fill = "#38b000", alpha = 0.7) +
+  facet_wrap(~nombprov) +
   theme_minimal()
 ```
 
 ```{r mapa,fig.dpi=300, fig.height= 14,fig.width= 15}
 # Spatial visualization
-ggplot(data = result) + 
-  geom_sf(aes(fill = value), color = NA) + 
-  scale_fill_viridis_c(name = "Forest loss mean \n(km²)") + 
-  theme_minimal(base_size = 15) + 
-  facet_wrap(date ~.)
+ggplot(data = result) +
+  geom_sf(aes(fill = value), color = NA) +
+  scale_fill_viridis_c(name = "Forest loss mean \n(km²)") +
+  theme_minimal(base_size = 15) +
+  facet_wrap(date ~ .)
 ```
 
 ## 4. Example: Extract time series of climate variables 
 
 ```{r,message=FALSE, warning=FALSE}
-etp_ts <- provinces_loreto |> 
+etp_ts <- provinces_loreto |>
   l4h_sebal_modis(
-    from = '2005-01-01',
-    to = '2022-12-31',
-    by = 'month')
+    from = "2005-01-01",
+    to = "2022-12-31",
+    by = "month"
+  )
 ```
 
 ```{r ts,fig.dpi=300, fig.height= 5,fig.width= 12}
-etp_ts |> 
-  st_drop_geometry() |> 
+etp_ts |>
+  st_drop_geometry() |>
   ggplot(aes(x = date, y = value, col = value)) +
-  geom_line() + 
+  geom_line() +
   scale_color_viridis_c("ETP (mm)") +
   theme_minimal() +
-  facet_wrap(~nombprov,ncol = 4)
+  facet_wrap(~nombprov, ncol = 4)
 ```

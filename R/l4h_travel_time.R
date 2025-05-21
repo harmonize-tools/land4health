@@ -55,7 +55,7 @@ l4h_travel_time <- function(region, destination = "cities", transport_mode = "al
 
   # Check input object class
   if (!inherits(region, sf_classes)) {
-    stop("Invalid 'region' input. Expected an 'sf', 'sfc', 'SpatVector', or Earth Engine FeatureCollection object.")
+    cli::cli_abort("Invalid {.arg region}: must be an {.cls sf}, {.cls sfc}, or {.cls SpatVector} object.")
   }
 
   # Check if region is spatially representative
@@ -66,64 +66,63 @@ l4h_travel_time <- function(region, destination = "cities", transport_mode = "al
     )
   }
 
-    # Dataset selection based on destination and transport_mode
+  # Dataset selection based on destination and transport_mode
   if (destination == "healthcare") {
-      # Valid modes: "all", "walking_only"
-      band <- switch(transport_mode,
-        "all" = "accessibility",
-        "walking_only" = "accessibility_walking_only",
-        cli::cli_abort(c(
-          "!" = "Invalid {.arg transport_mode} for {.strong destination = \"healthcare\"}.",
-          "x" = "Valid options are {.val \"all\"} and {.val \"walking_only\"}."
-        ))
-      )
-
-      # Load healthcare image
-      img_index <- .internal_data$accessibility_healthcare |>
-        ee$Image() |>
-        ee$Image$select(band) |>
-        ee$Image$rename('healthcare_access')
-
-    } else if (destination == "cities") {
-      if (transport_mode != "all") {
-        cli::cli_abort(c(
-          "!" = "{.arg transport_mode = \"walking_only\"} is not supported for {.strong destination = \"cities\"}.",
-          "x" = "Only {.val \"all\"} is valid for cities."
-        ))
-      }
-
-      # Load cities image
-      img_index <- .internal_data$accessibility_cities |>
-        ee$Image() |>
-        ee$Image$select("accessibility") |>
-        ee$Image$rename("city_access")
-
-    } else {
+    # Valid modes: "all", "walking_only"
+    band <- switch(transport_mode,
+      "all" = "accessibility",
+      "walking_only" = "accessibility_walking_only",
       cli::cli_abort(c(
-        "!" = "{.strong land4health()} only supports {.val \"healthcare\"} and {.val \"cities\"} as valid values for {.arg destination}.",
-        "x" = "Please select one of these two options."
+        "!" = "Invalid {.arg transport_mode} for {.strong destination = \"healthcare\"}.",
+        "x" = "Valid options are {.val \"all\"} and {.val \"walking_only\"}."
+      ))
+    )
+
+    # Load healthcare image
+    img_index <- .internal_data$accessibility_healthcare |>
+      ee$Image() |>
+      ee$Image$select(band) |>
+      ee$Image$rename("healthcare_access")
+  } else if (destination == "cities") {
+    if (transport_mode != "all") {
+      cli::cli_abort(c(
+        "!" = "{.arg transport_mode = \"walking_only\"} is not supported for {.strong destination = \"cities\"}.",
+        "x" = "Only {.val \"all\"} is valid for cities."
       ))
     }
 
-    # Extract with reducer
-    if (isTRUE(sf)) {
-      extract_area <- extract_ee_with_progress(
-        image = img_index,
-        sf_region = region,
-        fun = fun,
-        scale = 1000,
-        sf = TRUE,
-        quiet = FALSE,
-        lazy = FALSE)
-    } else {
-      extract_area <- extract_ee_with_progress(
-        image = img_index,
-        sf_region = region,
-        fun = fun,
-        scale = 1000,
-        sf = FALSE
-        )
-    }
+    # Load cities image
+    img_index <- .internal_data$accessibility_cities |>
+      ee$Image() |>
+      ee$Image$select("accessibility") |>
+      ee$Image$rename("city_access")
+  } else {
+    cli::cli_abort(c(
+      "!" = "{.strong land4health()} only supports {.val \"healthcare\"} and {.val \"cities\"} as valid values for {.arg destination}.",
+      "x" = "Please select one of these two options."
+    ))
+  }
+
+  # Extract with reducer
+  if (isTRUE(sf)) {
+    extract_area <- extract_ee_with_progress(
+      image = img_index,
+      sf_region = region,
+      fun = fun,
+      scale = 1000,
+      sf = TRUE,
+      quiet = FALSE,
+      lazy = FALSE
+    )
+  } else {
+    extract_area <- extract_ee_with_progress(
+      image = img_index,
+      sf_region = region,
+      fun = fun,
+      scale = 1000,
+      sf = FALSE
+    )
+  }
 
   return(extract_area)
 }

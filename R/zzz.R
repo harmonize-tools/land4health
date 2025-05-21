@@ -1,6 +1,5 @@
 .onAttach <- function(libname, pkgname) {
   if (interactive() && !isTRUE(getOption("land4health.shownWelcome"))) {
-
     # Block 1 : Presentation of Harmonize --------------------------------------
     cli::cli_h1("Welcome to land4health")
     cli::cli_text("{.emph A tool of {.href [{.pkg Harmonize Project}](https://www.harmonize-tools.org/)} to calculate and extract Remote Sensing Metrics for Spatial Health Analysis.}")
@@ -16,7 +15,9 @@
     category_data <- providers_count
     list_categories <- c(if (is.data.frame(category_data) && "category" %in% names(category_data)) {
       category_data$category[1:min(4, nrow(category_data))] |> as.vector()
-    } else character(),"and more!")
+    } else {
+      character()
+    }, "and more!")
 
     for (category in list_categories) {
       cli::cli_li(category)
@@ -26,15 +27,15 @@
     options(land4health.shownWelcome = TRUE)
   }
 
-    # Block 4: Packages backend of land4health ----------------------------------
-    cli::cli_inform(
-      "Attaching core {.pkg land4health} packages:",
-      class = "packageStartupMessage"
-    )
-    attached <- land4health_attach()
-    if (length(attached) > 0) {
-      pkg_ul(attached)
-    }
+  # Block 4: Packages backend of land4health ----------------------------------
+  cli::cli_inform(
+    "Attaching core {.pkg land4health} packages:",
+    class = "packageStartupMessage"
+  )
+  attached <- land4health_attach()
+  if (length(attached) > 0) {
+    pkg_ul(attached)
+  }
 }
 
 # cribbed from https://github.com/R-ArcGIS/arcgis/blob/main/R/zzz.R

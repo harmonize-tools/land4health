@@ -84,7 +84,7 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
 
   # Check input object class
   if (!inherits(region, sf_classes)) {
-    stop("Invalid 'region' input. Expected an 'sf', 'sfc' or 'SpatVector'")
+    cli::cli_abort("Invalid {.arg region}: must be an {.cls sf}, {.cls sfc}, or {.cls SpatVector} object.")
   }
 
   # Create binary image with lossyear in range
@@ -134,13 +134,13 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
         ),
         variable = "forest_loss"
       ) |>
-      dplyr::relocate(c("date","variable","value"),.before = geom_col)
+      dplyr::relocate(c("date", "variable", "value"), .before = geom_col)
   } else {
     extract_area <- extract_ee_with_progress(
       image = hansen_data_area,
       sf_region = region,
       scale = 30,
-      fun = "sum" ,
+      fun = "sum",
       sf = FALSE,
       quiet = quiet,
       ...
@@ -163,5 +163,3 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
   }
   return(extract_area)
 }
-
-

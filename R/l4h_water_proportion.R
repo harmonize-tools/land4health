@@ -32,7 +32,7 @@
 #' }
 #'
 #' @export
-l4h_water_proportion <- function(from, to, region, fun = "mean" ,sf = TRUE, quiet = FALSE, force = FALSE, ...) {
+l4h_water_proportion <- function(from, to, region, fun = "mean", sf = TRUE, quiet = FALSE, force = FALSE, ...) {
   # Validate input years
   if (!is.numeric(from) || nchar(as.character(from)) != 4) {
     cli::cli_abort("Parameter {.field from} must be a 4-digit numeric year. Got: {.val {from}}")
@@ -52,14 +52,14 @@ l4h_water_proportion <- function(from, to, region, fun = "mean" ,sf = TRUE, quie
 
   # Create year range (01, 02, ..., 23)
   range_date_original <- from:to
-  band_names <- sprintf(fmt = "annual_water_coverage_%s",range_date_original)
+  band_names <- sprintf(fmt = "annual_water_coverage_%s", range_date_original)
 
   # Define supported classes
   sf_classes <- c("sf", "sfc", "SpatVector")
 
   # Check input object class
   if (!inherits(region, sf_classes)) {
-    stop("Invalid 'region' input. Expected an 'sf', 'sfc', 'SpatVector', or Earth Engine FeatureCollection object.")
+    cli::cli_abort("Invalid {.arg region}: must be an {.cls sf}, {.cls sfc}, or {.cls SpatVector} object.")
   }
 
   # Create binary image with lossyear in range
@@ -79,7 +79,7 @@ l4h_water_proportion <- function(from, to, region, fun = "mean" ,sf = TRUE, quie
     divide(1e6)
 
   # Extract with reducer
-  water_data_index <- function(){
+  water_data_index <- function() {
     extract_area <- extract_ee_with_progress(
       image = water_data_area,
       sf_region = region,
@@ -116,7 +116,7 @@ l4h_water_proportion <- function(from, to, region, fun = "mean" ,sf = TRUE, quie
   # Según argumento `sf`, devuelve con o sin geometría
   if (isFALSE(sf)) {
     extract_area <- sf::st_drop_geometry(extract_area) |>
-      dplyr::relocate(water_proportion,.before = geom_col)
+      dplyr::relocate(water_proportion, .before = geom_col)
   }
 
   return(extract_area)

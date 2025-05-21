@@ -2,19 +2,22 @@
 #' @importFrom utils read.csv
 #' @keywords internal
 get_data <- \(url = NULL){
-  if(is.null(url)){
+  if (is.null(url)) {
     url <- getOption(
       x = "land4health",
       default = .internal_data$land4health
-      )
+    )
   }
-  tryCatch({
-    data <- read.csv(url) |>
-      tidyr::as_tibble()
-    return(data)
-  }, error = function(e) {
-    stop("The file could not be read. Please install the package and its dependencies correctly and consider the latest version.")
-  })
+  tryCatch(
+    {
+      data <- read.csv(url) |>
+        tidyr::as_tibble()
+      return(data)
+    },
+    error = function(e) {
+      cli::cli_abort("Could not read the file. Make sure {.pkg land4health} is installed and all its dependencies are available.")
+    }
+  )
 }
 
 #' Internal: Get an Earth Engine reducer
@@ -62,7 +65,7 @@ check_representativity <- function(region, scale = 30) {
     dplyr::select(area_km2)
 
   # Pixel area
-  pixels_area <- (scale^2)/1e6
+  pixels_area <- (scale^2) / 1e6
   condicion <- region_area_km2 < pixels_area
 
   # Condition
@@ -76,7 +79,6 @@ check_representativity <- function(region, scale = 30) {
       cli::cli_alert_warning()
     return(msg)
   }
-
 }
 
 #' Split an sf object into a list of single-row sf objects
@@ -86,7 +88,7 @@ check_representativity <- function(region, scale = 30) {
 #' @keywords internal
 split_sf <- function(sf_region) {
   if (!inherits(sf_region, "sf")) {
-    stop("`sf_region` must be an sf object.")
+    cli::cli_abort("`sf_region` must be an {.pkg sf} object.")
   }
   lapply(seq_len(nrow(sf_region)), function(i) sf_region[i, , drop = FALSE])
 }
@@ -111,13 +113,12 @@ extract_ee_with_progress <- function(
     sf,
     quiet = FALSE,
     via = "getInfo",
-    ...
-) {
+    ...) {
   # Split sf into list of single-row features
   geoms <- split_sf(sf_region)
 
   # Initialize progress bar if not quiet
-  if(!quiet){
+  if (!quiet) {
     pb <- progress::progress_bar$new(
       format     = "\033[32mExtracting data\033[0m \033[34m[:bar]\033[0m :percent | :current/:total | ETA: :eta",
       total      = length(geoms),
@@ -153,7 +154,8 @@ extract_ee_with_progress <- function(
 #' @name global-variables
 #' @keywords internal
 utils::globalVariables(
-  c("provider",
+  c(
+    "provider",
     "category",
     "ee",
     "year",
@@ -171,6 +173,6 @@ utils::globalVariables(
     "quiet",
     "variable",
     "value",
-    "all_of")
+    "all_of"
   )
-
+)

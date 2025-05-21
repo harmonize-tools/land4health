@@ -60,7 +60,7 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
   sf_classes <- c("sf", "sfc", "SpatVector")
   # Check input object class
   if (!inherits(region, sf_classes)) {
-    stop("Invalid 'region' input. Expected an 'sf', 'sfc', 'SpatVector', or Earth Engine FeatureCollection object.")
+    cli::cli_abort("Invalid {.arg region}: must be an {.cls sf}, {.cls sfc}, or {.cls SpatVector} object.")
   }
 
   # Check if region is spatially representative
@@ -89,7 +89,8 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
         scale = 100,
         fun = fun,
         sf = TRUE,
-        quiet = quiet) |>
+        quiet = quiet
+      ) |>
         dplyr::rename(rai_index_w = population)
     } else {
       extract_area <- extract_ee_with_progress(
@@ -98,7 +99,8 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
         scale = 100,
         fun = fun,
         sf = FALSE,
-        quiet = quiet) |>
+        quiet = quiet
+      ) |>
         dplyr::rename(rai_index_w = population)
     }
   } else {
@@ -115,7 +117,8 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
         sf_region = region,
         scale = 100,
         fun = "sum",
-        sf = TRUE) |>
+        sf = TRUE
+      ) |>
         (\(x) dplyr::mutate(x, area_km2 = as.vector(sf::st_area(sf::st_geometry(x)) / 1e6)))() |>
         dplyr::rename(rai_index = b1) |>
         dplyr::mutate(rai_index = rai_index / area_km2) |>
@@ -134,7 +137,8 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
         sf_region = region,
         scale = 100,
         fun = "sum",
-        sf = TRUE) |>
+        sf = TRUE
+      ) |>
         (\(x) dplyr::mutate(x, area_km2 = as.vector(sf::st_area(sf::st_geometry(x)) / 1e6)))() |>
         dplyr::rename(rai_index = b1) |>
         dplyr::mutate(rai_index = rai_index / area_km2) |>

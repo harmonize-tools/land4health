@@ -60,8 +60,7 @@
 #'   *Creative Commons Attribution 4.0 International (CC‑BY‑4.0)* license.
 
 #' @export
-l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = TRUE, force = FALSE, quiet = FALSE,...){
-
+l4h_sebal_modis <- function(from, to, by = "8 days", region, fun = "mean", sf = TRUE, force = FALSE, quiet = FALSE, ...) {
   # Validar que la conversion fue exitosa
   if (is.na(from) || is.na(to)) {
     cli::cli_abort("Dates must be in the format 'YYYY-MM-DD'. Valid example: '2024-01-01'.")
@@ -80,14 +79,13 @@ l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = 
     cli::cli_abort("The {.field to} parameter must be greater than or equal to {.field from}.")
   }
   # Convertir a Date usando formato explicito
-  from <- tryCatch(as.Date(from, format = "%Y-%m-%d"),error = function(e) NA)
+  from <- tryCatch(as.Date(from, format = "%Y-%m-%d"), error = function(e) NA)
   to <- tryCatch(as.Date(to, format = "%Y-%m-%d"), error = function(e) NA)
 
   from_ee <- rgee::rdate_to_eedate(from)
   to_ee <- rgee::rdate_to_eedate(to)
 
-  date_seq <- switch(
-    by,
+  date_seq <- switch(by,
     "8 days" = seq(from, to, by = "8 days"),
     "month"  = seq(from, to, by = "month"),
     "annual" = seq(from, to, by = "year"),
@@ -99,7 +97,7 @@ l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = 
 
   # Check input object class
   if (!inherits(region, sf_classes)) {
-    stop("Invalid 'region' input. Expected an 'sf', 'sfc' or 'SpatVector' object.")
+    cli::cli_abort("Invalid {.arg region}: must be an {.cls sf}, {.cls sfc}, or {.cls SpatVector} object.")
   }
 
   # Reducer function
@@ -108,18 +106,17 @@ l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = 
   # Create binary image with lossyear in range
   ic <- .internal_data$geesebal |>
     ee$ImageCollection() |>
-    ee$ImageCollection$select('ET_24h')
+    ee$ImageCollection$select("ET_24h")
 
-  if(by == '8 days'){
+  if (by == "8 days") {
     modis_ic <- ic |>
-      ee$ImageCollection$filterDate(from_ee,to_ee) |>
+      ee$ImageCollection$filterDate(from_ee, to_ee) |>
       ee$ImageCollection$toBands()
     modis_name <- modis_ic$bandNames()$getInfo()
     modis_date <- as.numeric(gsub("_.*", "", modis_name))
-    modis_rename <- paste0('etp_',modis_date)
+    modis_rename <- paste0("etp_", modis_date)
     modis_pre <- modis_ic$rename(modis_rename)
-
-  } else if (by == 'month'){
+  } else if (by == "month") {
     # new dataframe with years and months
     date_seq_df <- data.frame(fecha = date_seq) |>
       dplyr::mutate(
@@ -132,41 +129,40 @@ l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = 
       dplyr::group_by(year) |>
       dplyr::summarise(meses = list(sort(unique(month))))
 
-    modis_monthly_ee <- function(x){
+    modis_monthly_ee <- function(x) {
       # Years
       years_ee <- list_date$year[x]
       # Months
       months <- unlist(list_date$meses[x])
-      months_ee <- months|>ee$List()
+      months_ee <- months |> ee$List()
 
       # Preprocessing modis
       modis_ic <- ee$ImageCollection$
         fromImages(
-          months_ee$map(rgee::ee_utils_pyfunc(
-              function(m) {
-                ic$
-                  filter(ee$Filter$calendarRange(years_ee, years_ee, "year"))$
-                  filter(ee$Filter$calendarRange(m, m, "month"))$
-                  mean()$
-                  set("year", years_ee)$
-                  set("month", m)
-              }
-            ))
-          )$toBands()
+        months_ee$map(rgee::ee_utils_pyfunc(
+          function(m) {
+            ic$
+              filter(ee$Filter$calendarRange(years_ee, years_ee, "year"))$
+              filter(ee$Filter$calendarRange(m, m, "month"))$
+              mean()$
+              set("year", years_ee)$
+              set("month", m)
+          }
+        ))
+      )$toBands()
 
       modis_name <- modis_ic$bandNames()$getInfo()
       modis_month <- months[as.numeric(gsub("_.*", "", modis_name)) + 1]
-      modis_rename <- paste0('etp_',modis_month)
+      modis_rename <- paste0("etp_", modis_month)
       modis_pre <- modis_ic$rename(modis_rename)
-      }
+    }
 
-    modis_pre <- lapply(1:nrow(list_date),modis_monthly_ee) |>
+    modis_pre <- lapply(1:nrow(list_date), modis_monthly_ee) |>
       ee$ImageCollection() |>
       ee$ImageCollection$toBands()
-
-  } else if (by == 'annual'){
+  } else if (by == "annual") {
     years <- date_seq |>
-      format('%Y') |>
+      format("%Y") |>
       unique() |>
       as.integer()
 
@@ -175,21 +171,20 @@ l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = 
 
     modis_ic <- ee$ImageCollection$
       fromImages(
-        years_ee$map(rgee::ee_utils_pyfunc(
-          function(y) {
-            ic$
-              filter(ee$Filter$calendarRange(y, y, "year"))$
-              mean()$
-              set("year", y)
-          }
-        ))
-      )$toBands()
+      years_ee$map(rgee::ee_utils_pyfunc(
+        function(y) {
+          ic$
+            filter(ee$Filter$calendarRange(y, y, "year"))$
+            mean()$
+            set("year", y)
+        }
+      ))
+    )$toBands()
 
     modis_name <- modis_ic$bandNames()$getInfo()
     modis_year <- years[as.numeric(gsub("_.*", "", modis_name)) + 1]
-    modis_rename <- paste0('etp_',modis_year)
+    modis_rename <- paste0("etp_", modis_year)
     modis_pre <- modis_ic$rename(modis_rename)
-
   } else {
     stop("Invalid 'by' input. Please only select '8 days', 'month' or 'annual'")
   }
@@ -203,25 +198,27 @@ l4h_sebal_modis <- function(from, to, by = '8 days', region, fun = "mean" ,sf = 
     sf = sf,
     quiet = quiet,
     ...
-    )
+  )
   geom_col <- attr(modis_extract, "sf_column")
-  idx_etp <-grep("(^|_)etp_", names(modis_extract))
+  idx_etp <- grep("(^|_)etp_", names(modis_extract))
 
   stopifnot(
     length(idx_etp) == length(date_seq),
     inherits(date_seq, "Date") ||
-      all(!is.na(as.Date(date_seq,  "%Y%m")))
-    )
+      all(!is.na(as.Date(date_seq, "%Y%m")))
+  )
   new_names <- paste0("etp_", format(as.Date(date_seq, "%Y%m")))
   names(modis_extract)[idx_etp] <- new_names
   modis_tidy <- modis_extract |>
     tidyr::pivot_longer(
       cols = dplyr::contains("etp_"),
       names_to = "variable",
-      values_to = "value") |>
+      values_to = "value"
+    ) |>
     dplyr::mutate(
       date = as.Date(sub("^etp_", "", variable)),
-      variable = "etp") |>
+      variable = "etp"
+    ) |>
     dplyr::relocate(date, variable, value, .before = all_of(geom_col))
 
   return(modis_tidy)
