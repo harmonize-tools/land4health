@@ -17,10 +17,10 @@
 #' @return A `sf` or `tibble` object with forest loss per year in square kilometers.
 #'
 #' @details
-#' Forest loss is derived from the Hansen Global Forest Change dataset (`UMD/hansen/global_forest_change_2023_v1_11`).
+#' Forest loss is derived from the Hansen Global Forest Change dataset.
 #' The `lossyear` band encodes the year of forest cover loss as follows:
 #'
-#' - Values range from **1 to 23**, corresponding to the years **2001 to 2023**.
+#' - Values range from **1 to n**, corresponding to the years **2001 to 2000 + n**.
 #' - A value of **0** indicates **no forest loss** detected.
 #' - Forest loss is defined as a **stand-replacement disturbance**, or a change from forest to non-forest state.
 #'

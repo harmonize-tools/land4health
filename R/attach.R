@@ -26,7 +26,7 @@ land4health_attach <- function() {
   invisible(to_load)
 }
 
-#' List all land4health packages
+#' List all *land4health* packages
 #'
 #' @param include_self default `TRUE`. Includes the "land4health" package name in the
 #' resultant character vector.
