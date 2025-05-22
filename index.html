@@ -118,12 +118,12 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">geoidep</span><span class="op">)</span></span>
 <span><span class="co"># Downloading the adminstration limits of Loreto provinces</span></span>
-<span><span class="va">provinces_loreto</span> <span class="op">&lt;-</span> <span class="fu">get_provinces</span><span class="op">(</span>show_progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span><span class="va">provinces_loreto</span> <span class="op">&lt;-</span> <span class="fu">get_provinces</span><span class="op">(</span>show_progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">nombdep</span> <span class="op">==</span> <span class="st">"LORETO"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Run forest loss calculation</span></span>
-<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="va">provinces_loreto</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="reference/l4h_forest_loss.html">l4h_forest_loss</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">2005</span>, to <span class="op">=</span> <span class="fl">2020</span>,sf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="va">provinces_loreto</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="reference/l4h_forest_loss.html">l4h_forest_loss</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">2005</span>, to <span class="op">=</span> <span class="fl">2020</span>, sf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 6 features and 11 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
@@ -143,38 +143,38 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Visualization with ggplot2</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: package 'ggplot2' was built under R version 4.4.3</span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="fu">st_drop_geometry</span><span class="op">(</span><span class="va">result</span><span class="op">)</span>,<span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>,y <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_area</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#38b000'</span>,alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">nombprov</span><span class="op">)</span> <span class="op">+</span> </span>
+<span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="fu">st_drop_geometry</span><span class="op">(</span><span class="va">result</span><span class="op">)</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_area</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#DC8665"</span>, alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">nombprov</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-area-1.png" width="100%"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Spatial visualization</span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">result</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">geom_sf</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">value</span><span class="op">)</span>, color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">scale_fill_viridis_c</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Forest loss mean \n(km²)"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">theme_minimal</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="va">date</span> <span class="op">~</span><span class="va">.</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">result</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_sf</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">value</span><span class="op">)</span>, color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_fill_gradientn</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Forest loss mean \n(km²)"</span>,colours <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#DC8665"</span>,<span class="st">"#138086"</span>,<span class="st">"#534666"</span>,<span class="st">"#CD7672"</span>,<span class="st">"#eeb462"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_minimal</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="va">date</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-mapa-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="id_4-example-extract-time-series-of-climate-variables">4. Example: Extract time series of climate variables<a class="anchor" aria-label="anchor" href="#id_4-example-extract-time-series-of-climate-variables"></a>
 </h2>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">etp_ts</span> <span class="op">&lt;-</span> <span class="va">provinces_loreto</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="va">etp_ts</span> <span class="op">&lt;-</span> <span class="va">provinces_loreto</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/l4h_sebal_modis.html">l4h_sebal_modis</a></span><span class="op">(</span></span>
-<span>    from <span class="op">=</span> <span class="st">'2005-01-01'</span>,</span>
-<span>    to <span class="op">=</span> <span class="st">'2022-12-31'</span>,</span>
-<span>    by <span class="op">=</span> <span class="st">'month'</span><span class="op">)</span></span></code></pre></div>
+<span>    from <span class="op">=</span> <span class="st">"2005-01-01"</span>,</span>
+<span>    to <span class="op">=</span> <span class="st">"2022-12-31"</span>,</span>
+<span>    by <span class="op">=</span> <span class="st">"month"</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">etp_ts</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">st_drop_geometry</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="va">etp_ts</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">st_drop_geometry</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span>, col <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">scale_color_viridis_c</span><span class="op">(</span><span class="st">"ETP (mm)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_color_viridis_c</span><span class="op">(</span><span class="st">"ETP (mm)"</span>,option <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">nombprov</span>,ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">nombprov</span>, ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ts-1.png" width="100%"></p>
 </div>
 </div>
