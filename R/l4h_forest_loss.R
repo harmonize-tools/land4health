@@ -72,12 +72,7 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
 
   # Create year range (01, 02, ..., 23)
   range_date_original <- from:to
-  range_date_processed <- substr(
-    as.character(range_date_original),
-    start = 3,
-    stop = 4
-  ) |>
-    as.integer()
+  range_date_processed <- as.integer(substr(as.character(range_date_original), start = 3, stop = 4))
 
   # Define supported classes
   sf_classes <- c("sf", "sfc", "SpatVector")
@@ -88,11 +83,8 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
   }
 
   # Create binary image with lossyear in range
-  hanse_data_db <- .internal_data$hansen |>
-    ee$Image$select("lossyear")
-
-  hanse_data_img <- hanse_data_db |>
-    ee$Image$eq(range_date_processed)
+  hanse_data_db <- ee$Image(.internal_data$hansen)$select("lossyear")
+  hanse_data_img <- hanse_data_db$eq(range_date_processed)
 
   # Check if region is spatially representative
   if (isFALSE(force)) {
@@ -122,18 +114,12 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
       tidyr::pivot_longer(
         cols = tidyr::starts_with("constant"),
         names_to = "date",
-        values_to = "value"
-      ) |>
+        values_to = "value") |>
       dplyr::mutate(
         date = as.Date(
-          ISOdate(
-            factor(date, labels = range_date_original),
-            1,
-            1
-          )
-        ),
-        variable = "forest_loss"
-      ) |>
+          ISOdate(factor(date, labels = range_date_original), 1, 1)
+          ),
+        variable = "forest_loss") |>
       dplyr::relocate(c("date", "variable", "value"), .before = geom_col)
   } else {
     extract_area <- extract_ee_with_progress(
@@ -143,21 +129,17 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
       fun = "sum",
       sf = FALSE,
       quiet = quiet,
-      ...
-    ) |>
+      ...) |>
       tidyr::pivot_longer(
         cols = tidyr::starts_with("constant"),
         names_to = "date",
-        values_to = "value"
-      ) |>
+        values_to = "value") |>
       dplyr::mutate(
         date = as.Date(
           ISOdate(
-            factor(date, labels = range_date_original),
-            1,
-            1
-          )
-        ),
+            factor(date, labels = range_date_original), 1, 1
+            )
+          ),
         variable = "forest_loss"
       )
   }
