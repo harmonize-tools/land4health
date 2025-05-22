@@ -73,12 +73,12 @@ This example demonstrates how to calculate forest loss between 2005 and
 ``` r
 library(geoidep)
 # Downloading the adminstration limits of Loreto provinces
-provinces_loreto <- get_provinces(show_progress = FALSE) |> 
+provinces_loreto <- get_provinces(show_progress = FALSE) |>
   subset(nombdep == "LORETO")
 
 # Run forest loss calculation
-result <- provinces_loreto |> 
-  l4h_forest_loss(from = 2005, to = 2020,sf = TRUE)
+result <- provinces_loreto |>
+  l4h_forest_loss(from = 2005, to = 2020, sf = TRUE)
 head(result)
 #> Simple feature collection with 6 features and 11 fields
 #> Geometry type: MULTIPOLYGON
@@ -100,10 +100,9 @@ head(result)
 ``` r
 # Visualization with ggplot2
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 4.4.3
-ggplot(data = st_drop_geometry(result),aes(x = date,y = value)) +
-  geom_area(fill = '#38b000',alpha = 0.7) + 
-  facet_wrap(~nombprov) + 
+ggplot(data = st_drop_geometry(result), aes(x = date, y = value)) +
+  geom_area(fill = "#DC8665", alpha = 0.8) +
+  facet_wrap(~nombprov) +
   theme_minimal()
 ```
 
@@ -111,11 +110,11 @@ ggplot(data = st_drop_geometry(result),aes(x = date,y = value)) +
 
 ``` r
 # Spatial visualization
-ggplot(data = result) + 
-  geom_sf(aes(fill = value), color = NA) + 
-  scale_fill_viridis_c(name = "Forest loss mean \n(km²)") + 
-  theme_minimal(base_size = 15) + 
-  facet_wrap(date ~.)
+ggplot(data = result) +
+  geom_sf(aes(fill = value), color = NA) +
+  scale_fill_gradientn(name = "Forest loss mean \n(km²)",colours = c("#DC8665","#138086","#534666","#CD7672","#eeb462")) +
+  theme_minimal(base_size = 15) +
+  facet_wrap(date ~ .)
 ```
 
 <img src="man/figures/README-mapa-1.png" width="100%" />
@@ -123,21 +122,22 @@ ggplot(data = result) +
 ## 4. Example: Extract time series of climate variables
 
 ``` r
-etp_ts <- provinces_loreto |> 
+etp_ts <- provinces_loreto |>
   l4h_sebal_modis(
-    from = '2005-01-01',
-    to = '2022-12-31',
-    by = 'month')
+    from = "2005-01-01",
+    to = "2022-12-31",
+    by = "month"
+  )
 ```
 
 ``` r
-etp_ts |> 
-  st_drop_geometry() |> 
+etp_ts |>
+  st_drop_geometry() |>
   ggplot(aes(x = date, y = value, col = value)) +
-  geom_line() + 
-  scale_color_viridis_c("ETP (mm)") +
+  geom_line() +
+  scale_color_viridis_c("ETP (mm)",option = "mako") +
   theme_minimal() +
-  facet_wrap(~nombprov,ncol = 4)
+  facet_wrap(~nombprov, ncol = 4)
 ```
 
 <img src="man/figures/README-ts-1.png" width="100%" />
