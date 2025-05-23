@@ -29,7 +29,7 @@ jobs:
 
       - name: Run update script
         run: |
-          Rscript data-raw/update_internal_data.R
+          Rscript data-raw/internal_data.R
 
       - name: Commit and push if changes
         run: |
