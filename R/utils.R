@@ -1,23 +1,10 @@
 #' Reading a csv containing geoidep resources
 #' @importFrom utils read.csv
 #' @keywords internal
-get_data <- \(url = NULL){
-  if (is.null(url)) {
-    url <- getOption(
-      x = "land4health",
-      default = .internal_data$land4health
-    )
-  }
-  tryCatch(
-    {
-      data <- read.csv(url) |>
-        tidyr::as_tibble()
-      return(data)
-    },
-    error = function(e) {
-      cli::cli_abort("Could not read the file. Make sure {.pkg land4health} is installed and all its dependencies are available.")
-    }
-  )
+get_data <- function(){
+  url <- getOption(x = "land4health", default = .internal_data$land4health)
+  data <- read.csv(url) |> tidyr::as_tibble()
+  return(data)
 }
 
 #' Internal: Get an Earth Engine reducer
@@ -82,7 +69,6 @@ check_representativity <- function(region, scale = 30) {
 }
 
 #' Split an sf object into a list of single-row sf objects
-#'
 #' @param sf_region An object of class `sf` representing multiple geometries.
 #' @return A list of single-row `sf` objects.
 #' @keywords internal
@@ -90,6 +76,7 @@ split_sf <- function(sf_region) {
   if (!inherits(sf_region, "sf")) {
     cli::cli_abort("`sf_region` must be an {.pkg sf} object.")
   }
+
   lapply(seq_len(nrow(sf_region)), function(i) sf_region[i, , drop = FALSE])
 }
 
@@ -114,6 +101,7 @@ extract_ee_with_progress <- function(
     quiet = FALSE,
     via = "getInfo",
     ...) {
+
   # Split sf into list of single-row features
   geoms <- split_sf(sf_region)
 
@@ -137,7 +125,7 @@ extract_ee_with_progress <- function(
       sf    = sf,
       via   = via,
       quiet = TRUE,
-      # ...
+      ...
     ))
     pb$tick()
     out

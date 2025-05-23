@@ -1,9 +1,6 @@
 # cribbed from https://github.com/tidyverse/tidyverse/blob/main/R/attach.R
 # Uses MIT license
-core <- c(
-  "rgee",
-  "sf"
-)
+core <- c("rgee","sf")
 
 core_unloaded <- function() {
   search <- paste0("package:", core)
@@ -22,7 +19,6 @@ land4health_attach <- function() {
   suppressPackageStartupMessages(
     lapply(to_load, same_library)
   )
-
   invisible(to_load)
 }
 
@@ -41,5 +37,5 @@ l4h_packages <- function(include_self = TRUE) {
   if (include_self) {
     pkgs <- c(pkgs, "land4health")
   }
-  pkgs
+  return(pkgs)
 }

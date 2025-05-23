@@ -1,11 +1,11 @@
 .onAttach <- function(libname, pkgname) {
   if (interactive() && !isTRUE(getOption("land4health.shownWelcome"))) {
-    # Block 1 : Presentation of Harmonize --------------------------------------
+  # Block 1 : Presentation of Harmonize --------------------------------------
     cli::cli_h1("Welcome to land4health")
     cli::cli_text("{.emph A tool of {.href [{.pkg Harmonize Project}](https://www.harmonize-tools.org/)} to calculate and extract Remote Sensing Metrics for Spatial Health Analysis.}")
     cli::cli_text("{.emph Currently,`land4health` supports metrics related to the following categories:}")
 
-    # Block 2 : Metrics available ----------------------------------------------
+  # Block 2 : Metrics available ----------------------------------------------
     providers_count <- get_data() |>
       subset(select = "category") |>
       table() |>
@@ -22,7 +22,7 @@
     for (category in list_categories) {
       cli::cli_li(category)
     }
-    # Block 3: Additional help
+  # Block 3: Additional help
     cli::cli_text("{.emph For more information about metrics, please use the `get_metrics_metadata()` function.}")
     options(land4health.shownWelcome = TRUE)
   }
