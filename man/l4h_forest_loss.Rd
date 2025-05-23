@@ -2,41 +2,40 @@
 % Please edit documentation in R/l4h_forest_loss.R
 \name{l4h_forest_loss}
 \alias{l4h_forest_loss}
-\title{Calculate Forest Loss}
+\title{Extracts forest cover loss within a defined polygon}
 \usage{
 l4h_forest_loss(from, to, region, sf = TRUE, quiet = FALSE, force = FALSE, ...)
 }
 \arguments{
-\item{from}{A numeric year between 2001 and 2023. Indicates the start of the analysis period.}
+\item{from}{Integer. The start year of the analysis window, ranging from 2001 to one year before the current year (e.g., if today is 2025, the maximum is 2024).}
 
-\item{to}{A numeric year between 2001 and 2023. Indicates the end of the analysis period.}
+\item{to}{Integer. The end year of the analysis window, ranging from \code{from} to the current year. Must be \verb{>= from} (e.g., if \code{from = 2010}, valid \code{to} values are 2010–2025 for current year 2025).}
 
-\item{region}{A spatial object defining the region of interest.
-Can be an \code{sf}, \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).}
+\item{region}{A spatial object defining the region of interest. Accepts an \code{sf}, \code{sfc}, or \code{SpatVector} object (from the \pkg{terra} package).}
 
 \item{sf}{Logical. Return result as an \code{sf} object? Default is \code{TRUE}.}
 
-\item{quiet}{Logical. If TRUE, suppress the progress bar (default FALSE).}
+\item{quiet}{Logical. If \code{TRUE}, suppress the progress bar (default \code{FALSE}).}
 
 \item{force}{Logical. Force request extract.}
 
 \item{...}{arguments of \code{ee_extract} of \code{rgee} packages.}
 }
 \value{
-A \code{sf} or \code{tibble} object with forest loss per year in square kilometers.
+A \code{sf} or \code{tibble} object with \strong{forest loss per year in square kilometers}.
 }
 \description{
 Calculates forest loss within a user-defined region for a specified year range.
+Forest loss is defined as a \strong{stand-replacement disturbance}, or a change from forest to non-forest state.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \details{
-Forest loss is derived from the Hansen Global Forest Change dataset (\code{UMD/hansen/global_forest_change_2023_v1_11}).
+Forest loss is derived from the Hansen Global Forest Change dataset.
 The \code{lossyear} band encodes the year of forest cover loss as follows:
 \itemize{
-\item Values range from \strong{1 to 23}, corresponding to the years \strong{2001 to 2023}.
+\item Values range from \strong{1} to \strong{n}, where 1 corresponds to the year \strong{2001} and n to the year \strong{2000 + n}.
 \item A value of \strong{0} indicates \strong{no forest loss} detected.
-\item Forest loss is defined as a \strong{stand-replacement disturbance}, or a change from forest to non-forest state.
 }
 }
 \examples{
@@ -58,7 +57,7 @@ region <- st_as_sf(st_sfc(
 
 # Run forest loss calculation
 result <- l4h_forest_loss(from = 2005, to = 2007, region = region)
-print(result)
+head(result)
 }
 
 }

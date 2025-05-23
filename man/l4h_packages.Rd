@@ -2,7 +2,7 @@
 % Please edit documentation in R/attach.R
 \name{l4h_packages}
 \alias{l4h_packages}
-\title{List all land4health packages}
+\title{List all \emph{land4health} packages}
 \usage{
 l4h_packages(include_self = TRUE)
 }
@@ -14,7 +14,7 @@ resultant character vector.}
 A character vector of package names included in the "land4health" meta-package.
 }
 \description{
-List all land4health packages
+List all \emph{land4health} packages
 }
 \examples{
 l4h_packages()

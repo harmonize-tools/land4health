@@ -1,28 +1,27 @@
-#' Calculate Forest Loss
+#' Extracts forest cover loss within a defined polygon
 #'
 #' @description
 #' Calculates forest loss within a user-defined region for a specified year range.
+#' Forest loss is defined as a **stand-replacement disturbance**, or a change from forest to non-forest state.
 #'
 #' `r lifecycle::badge('stable')`
 #'
-#' @param from A numeric year between 2001 and 2023. Indicates the start of the analysis period.
-#' @param to A numeric year between 2001 and 2023. Indicates the end of the analysis period.
-#' @param region A spatial object defining the region of interest.
-#' Can be an \code{sf}, \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).
+#' @param from Integer. The start year of the analysis window, ranging from 2001 to one year before the current year (e.g., if today is 2025, the maximum is 2024).
+#' @param to Integer. The end year of the analysis window, ranging from `from` to the current year. Must be `>= from` (e.g., if `from = 2010`, valid `to` values are 2010–2025 for current year 2025).
+#' @param region A spatial object defining the region of interest. Accepts an `sf`, `sfc`, or `SpatVector` object (from the \pkg{terra} package).
 #' @param sf Logical. Return result as an `sf` object? Default is `TRUE`.
-#' @param quiet Logical. If TRUE, suppress the progress bar (default FALSE).
+#' @param quiet Logical. If `TRUE`, suppress the progress bar (default `FALSE`).
 #' @param force Logical. Force request extract.
 #' @param ... arguments of `ee_extract` of `rgee` packages.
 #'
-#' @return A `sf` or `tibble` object with forest loss per year in square kilometers.
+#' @return A `sf` or `tibble` object with **forest loss per year in square kilometers**.
 #'
 #' @details
 #' Forest loss is derived from the Hansen Global Forest Change dataset.
 #' The `lossyear` band encodes the year of forest cover loss as follows:
 #'
-#' - Values range from **1 to n**, corresponding to the years **2001 to 2000 + n**.
+#' - Values range from **1** to **n**, where 1 corresponds to the year **2001** and n to the year **2000 + n**.
 #' - A value of **0** indicates **no forest loss** detected.
-#' - Forest loss is defined as a **stand-replacement disturbance**, or a change from forest to non-forest state.
 #'
 #' @examples
 #' \dontrun{
@@ -43,7 +42,7 @@
 #'
 #' # Run forest loss calculation
 #' result <- l4h_forest_loss(from = 2005, to = 2007, region = region)
-#' print(result)
+#' head(result)
 #' }
 #'
 #' @references
@@ -93,6 +92,7 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
       scale = 30
     )
   }
+
   # Multiply by pixel area to get area lost in m² → convert to km²
   hansen_data_area <- hanse_data_img$
     multiply(ee$Image$pixelArea())$
@@ -116,11 +116,10 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
         names_to = "date",
         values_to = "value") |>
       dplyr::mutate(
-        date = as.Date(
-          ISOdate(factor(date, labels = range_date_original), 1, 1)
-          ),
+        date = as.Date(ISOdate(factor(date, labels = range_date_original), 1, 1)),
         variable = "forest_loss") |>
       dplyr::relocate(c("date", "variable", "value"), .before = geom_col)
+
   } else {
     extract_area <- extract_ee_with_progress(
       image = hansen_data_area,
@@ -129,17 +128,14 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
       fun = "sum",
       sf = FALSE,
       quiet = quiet,
-      ...) |>
+      ...
+      ) |>
       tidyr::pivot_longer(
         cols = tidyr::starts_with("constant"),
         names_to = "date",
         values_to = "value") |>
       dplyr::mutate(
-        date = as.Date(
-          ISOdate(
-            factor(date, labels = range_date_original), 1, 1
-            )
-          ),
+        date = as.Date(ISOdate(factor(date, labels = range_date_original), 1, 1)),
         variable = "forest_loss"
       )
   }
