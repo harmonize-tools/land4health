@@ -1,0 +1,42 @@
+name: Update internal datasets of land4health
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 0 1 1 *'
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
+
+      - name: Install R packages
+        run: |
+          Rscript -e 'install.packages(c("jsonlite", "dplyr", "tidyr", "cli", "usethis"))'
+
+      - name: Run update script
+        run: |
+          Rscript data-raw/update_internal_data.R
+
+      - name: Commit and push if changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add R/sysdata.rda
+          git diff --cached --quiet || (
+            git commit -m "Auto-update internal dataset: $(date -u +'%Y-%m-%d')"
+            git push origin main
+          )
