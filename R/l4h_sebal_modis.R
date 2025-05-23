@@ -17,7 +17,7 @@
 #' @param force Logical. If `TRUE`, forces download even if a local file already exists.
 #' @param ... arguments of `ee_extract` of `rgee` packages.
 #' @return A `sf` or `tibble` object with etp values.
-#' @examples
+#'
 #' @examples
 #' \dontrun{
 #' ## Assume `my_roi` is an sf polygon covering your area of interest.

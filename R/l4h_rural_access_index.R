@@ -79,7 +79,7 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
       ))
     }
 
-    img_index <- .internal_data$ruralpopulationwithaccess |> rgee::ee$Image()
+    img_index <- rgee::ee$Image(.internal_data$ruralaccess)
 
     # Extract with reducer
     if (isTRUE(sf)) {
@@ -104,8 +104,7 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
         dplyr::rename(rai_index_w = population)
     }
   } else {
-    img <- .internal_data$inaccessibilityindex |>
-      rgee::ee$Image()
+    img <- rgee::ee$Image(.internal_data$inaccessibility)
 
     img_index <- img$multiply(ee$Image$pixelArea())$
       divide(1e6)

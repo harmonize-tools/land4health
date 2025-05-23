@@ -1,15 +1,37 @@
+updated_db_ee <- function(type = NULL, db = NULL){
+
+  if(!is.null(db)){
+    url_ee <- switch(
+      type,
+      "eedataset" = 'https://raw.githubusercontent.com/samapriya/Earth-Engine-Datasets-List/master/gee_catalog.json',
+      "eeawesome"  = 'https://raw.githubusercontent.com/samapriya/awesome-gee-community-datasets/refs/heads/master/community_datasets.json',
+      cli::cli_abort("Error in '{type}', please verify type argument.")
+    )
+
+    catalog_ee <- jsonlite::fromJSON(url_ee) |>
+      tidyr::as_tibble()
+
+    id <- catalog_ee |>
+      dplyr::filter(stringr::str_detect(id, pattern = db)) |>
+      dplyr::select(id) |>
+      dplyr::pull()
+  } else {
+    id <- 'projects/mapbiomas-public/assets/peru/collection1/mapbiomas_peru_collection1_water_v1'
+  }
+
+
+  return(id)
+}
+
 .internal_data <- list(
-  land4health = "https://raw.githubusercontent.com/harmonize-tools/land4health/refs/heads/main/inst/exdata/sources.csv",
-  hansen = "UMD/hansen/global_forest_change_2023_v1_11",
-  inaccessibilityindex = "projects/sat-io/open-datasets/RAI/raimultiplier",
-  ruralpopulationwithaccess = "projects/sat-io/open-datasets/RAI/ruralpopaccess",
-  accessibility_healthcare = "Oxford/MAP/accessibility_to_healthcare_2019",
-  accessibility_cities = "Oxford/MAP/accessibility_to_cities_2015_v1_0",
-  water_coverage = "projects/mapbiomas-public/assets/peru/collection1/mapbiomas_peru_collection1_water_v1",
-  geesebal = "projects/et-brasil/assets/geesebal/myd11a2/sa/v0-02"
+  hansen            = updated_db_ee(type = 'eedataset', db = 'hansen'),
+  rai               = updated_db_ee(type = 'eeawesome', db = 'raimultiplier'),
+  ruralaccess       = updated_db_ee(type = 'eeawesome', db = 'ruralpopaccess'),
+  inaccessibility   = updated_db_ee(type = 'eeawesome', db = 'inaccessibility'),
+  access_healthcare = updated_db_ee(type = 'eedataset', db = 'accessibility_to_healthcare'),
+  access_cities     = updated_db_ee(type = 'eedataset', db = 'accessibility_to_cities'),
+  water_coverage    = updated_db_ee(type = 'mapbiomas', db = NULL),
+  geesebal          = updated_db_ee(type = 'eeawesome', db = 'geesebal')
 )
-usethis::use_data(
-  .internal_data,
-  internal = TRUE,
-  overwrite = TRUE
-)
+
+usethis::use_data(.internal_data, internal = TRUE, overwrite = TRUE)

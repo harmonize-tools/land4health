@@ -2,7 +2,7 @@
 #' @importFrom utils read.csv
 #' @keywords internal
 get_data <- function(){
-  url <- getOption(x = "land4health", default = .internal_data$land4health)
+  url <- system.file("exdata", "sources.csv", package = "land4health")
   data <- read.csv(url) |> tidyr::as_tibble()
   return(data)
 }
