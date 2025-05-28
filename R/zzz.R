@@ -23,7 +23,7 @@
       cli::cli_li(category)
     }
   # Block 3: Additional help
-    cli::cli_text("{.emph For more information about metrics, please use the `get_metrics_metadata()` function.}")
+    cli::cli_text("{.emph For more information about metrics, please use the `l4h_list_metrics()` function.}")
     options(land4health.shownWelcome = TRUE)
   }
 

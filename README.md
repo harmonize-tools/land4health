@@ -32,18 +32,20 @@ ee_Initialize(quiet = TRUE)
 ```
 
 ``` r
-── Welcome to land4health ──────────────────────────────────────────────────────────────────
-A tool of Harmonize Project to calculate and extract Remote Sensing Metrics for Spatial
-Health Analysis.
+── Welcome to land4health ─────────────────────────────────────────────────────────────────────
+A tool of Harmonize Project to calculate and extract Remote Sensing Metrics for Spatial Health
+Analysis.
 Currently,`land4health` supports metrics related to the following categories:
 • Enviroment
 • Human intervention
 • and more!
-For more information about metrics, please use the `get_metrics_metadata()` function.
-
-── Attaching core land4health packages ─────────────────────────────────────────────────────
+For more information about metrics, please use the `l4h_list_metrics()` function.
+Attaching core land4health packages:
 → rgee v1.1.7
 → sf v1.0.20
+Avisos:
+1: package ‘rgee’ was built under R version 4.4.3 
+2: package ‘sf’ was built under R version 4.4.3 
 ```
 
 ## 2. List of available metrics
@@ -100,6 +102,7 @@ head(result)
 ``` r
 # Visualization with ggplot2
 library(ggplot2)
+#> Warning: package 'ggplot2' was built under R version 4.4.3
 ggplot(data = st_drop_geometry(result), aes(x = date, y = value)) +
   geom_area(fill = "#DC8665", alpha = 0.8) +
   facet_wrap(~nombprov) +
