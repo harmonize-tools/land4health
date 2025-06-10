@@ -1,8 +1,12 @@
-category,metric,pixel_resolution_meters,dataset,start_year,end_year,resolution_temporal,layer_can_be_actived,tags,lifecycle,url
-Human intervention,Deforestation,30,Hansen Global Forest Change v1.11,2000,2023,annually,TRUE,forest,experimental,https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2023_v1_11
-Human intervention,Human Modification,300,Global Human Modification v1.5,1990,2017,5-year increments,TRUE,human-modification,experimental,https://gee-community-catalog.org/projects/ghm/
-Human intervention,Population,100,WorldPop,2000,2021,annually,TRUE,population,experimental,https://developers.google.com/earth-engine/datasets/catalog/WorldPop_GP_100m_pop?hl=es-419
-Human intervention,Urban area,500,MODIS Land Cover Type  (MCD12Q1.061),2001,2022,annually,TRUE,urban-areas,experimental,https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12Q1?hl=es-419
-Human intervention,Night time light,500,VIIRS Nighttime Light,1992,2023,annually,TRUE,urban-areas,experimental,https://gee-community-catalog.org/projects/srunet_npp_viirs_ntl/?h=night
-Human intervention,Human Settlement Layer,30,Global Human Settlement Layer (GHSL),1975,2030,5-year increments,TRUE,urban-areas,experimental,https://gee-community-catalog.org/projects/ghsl/#dataset-citations
-Enviroment,Urban Heat Island Intensity,1000,Urban Heat Island Intensity (UHII),2003,2020,monthly,TRUE,environment,experimental,https://gee-community-catalog.org/projects/uhii/?h=night
+category;metric;pixel_resolution_meters;dataset;start_year;end_year;resolution_temporal;layer_can_be_actived;tags;lifecycle;url
+Human intervention;Deforestation;30;Hansen Global Forest Change v1.11;2000;2023;annually;TRUE;forest;stable;https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2023_v1_11
+Human intervention;Human Modification;300;Global Human Modification v1.5;1990;2017;5-year increments;FALSE;human-modification;experimental;https://gee-community-catalog.org/projects/ghm/
+Human intervention;Population;100;WorldPop;2000;2021;annually;FALSE;population;experimental;https://developers.google.com/earth-engine/datasets/catalog/WorldPop_GP_100m_pop?hl=es-419
+Human intervention;Urban area;500;MODIS Land Cover Type  (MCD12Q1.061);2001;2022;annually;FALSE;urban-areas;experimental;https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12Q1?hl=es-419
+Human intervention;Night time light;500;VIIRS Nighttime Light;1992;2023;annually;FALSE;urban-areas;experimental;https://gee-community-catalog.org/projects/srunet_npp_viirs_ntl/?h=night
+Human intervention;Human Settlement Layer;30;Global Human Settlement Layer (GHSL);1975;2030;5-year increments;FALSE;urban-areas;experimental;https://gee-community-catalog.org/projects/ghsl/#dataset-citations
+Enviroment;Water proportion;30;MapBiomas-water;1985;2022;annually;TRUE;mapbiomas;experimental;https://plataforma.agua.mapbiomas.org/
+Enviroment;Urban Heat Island Intensity;1000;Urban Heat Island Intensity (UHII);2003;2020;monthly;FALSE;environment;experimental;https://gee-community-catalog.org/projects/uhii/?h=night
+Accesibility;Travel time to cities and healthcare;927.67;Malaria Atlas Project;2019;2020;annually;TRUE;accesibility;experimental;https://developers.google.com/earth-engine/datasets/tags/accessibility?hl=es-419
+Accesibility;Rural access index;100;Rural Access Index (RAI);2024;2024;annually;TRUE;accesibility;experimental;https://gee-community-catalog.org/projects/rai/
+Climate;Evapotranspiration;500;geeSEBAL-MODIS;2002;2022;daily;TRUE;environment;experimental;https://gee-community-catalog.org/projects/gee_sebal/

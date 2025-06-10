@@ -1,5 +1,4 @@
 updated_db_ee <- function(type = NULL, db = NULL){
-
   if(!is.null(db)){
     url_ee <- switch(
       type,
