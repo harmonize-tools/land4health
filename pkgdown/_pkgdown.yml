@@ -9,10 +9,6 @@ repo:
     source: https://github.com/harmonize-tools/land4health/HEAD
     issues: https://github.com/harmonize-tools/land4health/issues
 
-donate:
-    url: https://ko-fi.com/dieghernan
-
-
 template:
   bootstrap: 5
   light-switch: true

@@ -8,6 +8,10 @@ Authors@R: c(
 Description: Calculate and extract remote sensing metrics for spatial analysis in the field of health.
     This package offers R users a quick and straightforward way to obtain areal or zonal statistics of key environmental indicators,
     covariates, and vector-borne disease data ideal for modeling infectious diseases within the framework of spatial epidemiology.
+Maintainer: Yomali Ferreyra <yomali.ferreyra@upch.pe>
+URL:
+    https://github.com/harmonize-tools/land4health,
+    https://harmonize-tools.github.io/land4health/
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -31,7 +35,6 @@ Imports:
 Suggests: 
    rmarkdown,
    knitr
-URL: https://harmonize-tools.github.io/land4health/
 Depends: 
     R (>= 4.1.0)
 VignetteBuilder: knitr
