@@ -17,7 +17,7 @@ five tabs would open—you are asked to confirm in interactive sessions."><meta 
 
     <a class="navbar-brand me-2" href="../index.html">land4health</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,66 +107,57 @@ returned.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## 1  Show the full inventory (truncated to 10 rows).</span></span></span>
 <span class="r-in"><span><span class="fu">l4h_list_metrics</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    category.metric.pixel_resolution_meters.dataset.start_year.end_year.resolut…¹</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Human intervention;Deforestation;30;Hansen Global Forest Change v1.11;2000;2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Human intervention;Human Modification;300;Global Human Modification v1.5;199…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Human intervention;Population;100;WorldPop;2000;2021;annually;FALSE;populati…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Human intervention;Urban area;500;MODIS Land Cover Type  (MCD12Q1.061);2001;…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Human intervention;Night time light;500;VIIRS Nighttime Light;1992;2023;annu…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Human intervention;Human Settlement Layer;30;Global Human Settlement Layer (…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Enviroment;Water proportion;30;MapBiomas-water;1985;2022;annually;TRUE;mapbi…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Enviroment;Urban Heat Island Intensity;1000;Urban Heat Island Intensity (UHI…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Accesibility;Travel time to cities and healthcare;927.67;Malaria Atlas Proje…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Accesibility;Rural access index;100;Rural Access Index (RAI);2024;2024;annua…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ¹​category.metric.pixel_resolution_meters.dataset.start_year.end_year.resolution_temporal.layer_can_be_actived.tags.lifecycle.url</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category           metric  pixel_resolution_met…¹ dataset start_year end_year</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Human intervention Defore… 30                     Hansen…       <span style="text-decoration: underline;">2</span>000     <span style="text-decoration: underline;">2</span>023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Human intervention Human … 300                    Global…       <span style="text-decoration: underline;">1</span>990     <span style="text-decoration: underline;">2</span>017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Human intervention Popula… 100                    WorldP…       <span style="text-decoration: underline;">2</span>000     <span style="text-decoration: underline;">2</span>021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Human intervention Urban … 500                    MODIS …       <span style="text-decoration: underline;">2</span>001     <span style="text-decoration: underline;">2</span>022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Human intervention Night … 500                    VIIRS …       <span style="text-decoration: underline;">1</span>992     <span style="text-decoration: underline;">2</span>023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Human intervention Human … 30                     Global…       <span style="text-decoration: underline;">1</span>975     <span style="text-decoration: underline;">2</span>030</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Enviroment         Water … 30                     MapBio…       <span style="text-decoration: underline;">1</span>985     <span style="text-decoration: underline;">2</span>022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Enviroment         Urban … 1000                   Urban …       <span style="text-decoration: underline;">2</span>003     <span style="text-decoration: underline;">2</span>020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Accesibility       Travel… 927.67                 Malari…       <span style="text-decoration: underline;">2</span>019     <span style="text-decoration: underline;">2</span>020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Accesibility       Rural … 100                    Rural …       <span style="text-decoration: underline;">2</span>024     <span style="text-decoration: underline;">2</span>024</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​pixel_resolution_meters</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: resolution_temporal &lt;chr&gt;, layer_can_be_actived &lt;lgl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   tags &lt;chr&gt;, lifecycle &lt;chr&gt;, url &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ... (1 more)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## 2  Filter by category (“Human intervention”).</span></span></span>
 <span class="r-in"><span><span class="fu">l4h_list_metrics</span><span class="op">(</span>category <span class="op">=</span> <span class="st">"Human intervention"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unknown or uninitialised column: `category`.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in df[df$category == category, , drop = FALSE]:</span> Can't subset rows with `df$category == category`.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Logical subscript `df$category == category` must be size 1 or 11, not 0.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   category           metric   pixel_resolution_met…¹ dataset start_year end_year</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Human intervention Defores… 30                     Hansen…       <span style="text-decoration: underline;">2</span>000     <span style="text-decoration: underline;">2</span>023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Human intervention Human M… 300                    Global…       <span style="text-decoration: underline;">1</span>990     <span style="text-decoration: underline;">2</span>017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Human intervention Populat… 100                    WorldP…       <span style="text-decoration: underline;">2</span>000     <span style="text-decoration: underline;">2</span>021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Human intervention Urban a… 500                    MODIS …       <span style="text-decoration: underline;">2</span>001     <span style="text-decoration: underline;">2</span>022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Human intervention Night t… 500                    VIIRS …       <span style="text-decoration: underline;">1</span>992     <span style="text-decoration: underline;">2</span>023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Human intervention Human S… 30                     Global…       <span style="text-decoration: underline;">1</span>975     <span style="text-decoration: underline;">2</span>030</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​pixel_resolution_meters</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: resolution_temporal &lt;chr&gt;, layer_can_be_actived &lt;lgl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   tags &lt;chr&gt;, lifecycle &lt;chr&gt;, url &lt;chr&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## 3  Filter by provider (“WorldPop”) and store the result.</span></span></span>
 <span class="r-in"><span><span class="va">worldpop_tbl</span> <span class="op">&lt;-</span> <span class="fu">l4h_list_metrics</span><span class="op">(</span>provider <span class="op">=</span> <span class="st">"WorldPop"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unknown or uninitialised column: `dataset`.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in df[df$dataset == provider, , drop = FALSE]:</span> Can't subset rows with `df$dataset == provider`.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Logical subscript `df$dataset == provider` must be size 1 or 11, not 0.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   category           metric   pixel_resolution_met…¹ dataset start_year end_year</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Human intervention Populat… 100                    WorldP…       <span style="text-decoration: underline;">2</span>000     <span style="text-decoration: underline;">2</span>021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​pixel_resolution_meters</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: resolution_temporal &lt;chr&gt;, layer_can_be_actived &lt;lgl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   tags &lt;chr&gt;, lifecycle &lt;chr&gt;, url &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">worldpop_tbl</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'worldpop_tbl' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   category           metric   pixel_resolution_met…¹ dataset start_year end_year</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Human intervention Populat… 100                    WorldP…       <span style="text-decoration: underline;">2</span>000     <span style="text-decoration: underline;">2</span>021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​pixel_resolution_meters</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: resolution_temporal &lt;chr&gt;, layer_can_be_actived &lt;lgl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   tags &lt;chr&gt;, lifecycle &lt;chr&gt;, url &lt;chr&gt;</span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## 4  Pipe into dplyr (executes in &lt; 1 s, loaded only if available).</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"dplyr"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="fu">l4h_list_metrics</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">pixel_resolution_meters</span> <span class="op">&lt;=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">metric</span>, <span class="va">start_year</span>, <span class="va">end_year</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    category.metric.pixel_resolution_meters.dataset.start_year.end_year.resolut…¹</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Human intervention;Deforestation;30;Hansen Global Forest Change v1.11;2000;2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Human intervention;Human Modification;300;Global Human Modification v1.5;199…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Human intervention;Population;100;WorldPop;2000;2021;annually;FALSE;populati…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Human intervention;Urban area;500;MODIS Land Cover Type  (MCD12Q1.061);2001;…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Human intervention;Night time light;500;VIIRS Nighttime Light;1992;2023;annu…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Human intervention;Human Settlement Layer;30;Global Human Settlement Layer (…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Enviroment;Water proportion;30;MapBiomas-water;1985;2022;annually;TRUE;mapbi…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Enviroment;Urban Heat Island Intensity;1000;Urban Heat Island Intensity (UHI…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Accesibility;Travel time to cities and healthcare;927.67;Malaria Atlas Proje…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Accesibility;Rural access index;100;Rural Access Index (RAI);2024;2024;annua…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ¹​category.metric.pixel_resolution_meters.dataset.start_year.end_year.resolution_temporal.layer_can_be_actived.tags.lifecycle.url</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ... (1 more)</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in UseMethod("filter"):</span> no applicable method for 'filter' applied to an object of class "NULL"</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## 5  Trying to open links without filters triggers an error;</span></span></span>
-<span class="r-in"><span><span class="co">##    wrapped in \dontrun{} so R CMD check is not interrupted.</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="fu">l4h_list_metrics</span><span class="op">(</span>open_in_browser <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
