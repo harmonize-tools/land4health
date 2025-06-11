@@ -161,6 +161,8 @@ utils::globalVariables(
     "quiet",
     "variable",
     "value",
-    "all_of"
+    "all_of",
+    "tick",
+    ".find_python"
   )
 )

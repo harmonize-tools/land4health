@@ -12,6 +12,13 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+SystemRequirements: Python (>= 3.7.0)
+Config/reticulate:
+  list(
+    packages = list(
+      list(package = "earthengine-api==0.1.370")
+    )
+  )
 Imports: 
     cli,
     progress,
@@ -19,7 +26,8 @@ Imports:
     tidyr,
     dplyr,
     rgee,
-    sf
+    sf,
+    reticulate
 Suggests: 
    rmarkdown,
    knitr

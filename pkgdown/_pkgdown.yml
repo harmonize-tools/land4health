@@ -51,5 +51,6 @@ reference:
 
  - title: 'Utils'
    contents:
+   - l4h_install
    - l4h_list_metrics
    - l4h_packages

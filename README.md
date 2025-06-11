@@ -8,6 +8,8 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml)
+[![HTML
+Docs](https://img.shields.io/badge/docs-HTML-informational)](https://harmonize-tools.github.io/land4health/)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 <!-- badges: end -->
 
@@ -107,7 +109,6 @@ head(result)
 ``` r
 # Visualization with ggplot2
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 4.4.3
 ggplot(data = st_drop_geometry(result), aes(x = date, y = value)) +
   geom_area(fill = "#DC8665", alpha = 0.8) +
   facet_wrap(~nombprov) +
