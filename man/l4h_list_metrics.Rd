@@ -48,16 +48,4 @@ l4h_list_metrics(category = "Human intervention")
 worldpop_tbl <- l4h_list_metrics(provider = "WorldPop")
 head(worldpop_tbl)
 
-## 4  Pipe into dplyr (executes in < 1 s, loaded only if available).
-if (requireNamespace("dplyr", quietly = TRUE)) {
-  l4h_list_metrics() |>
-    dplyr::filter(pixel_resolution_meters <= 100) |>
-    dplyr::select(metric, start_year, end_year)
-}
-
-## 5  Trying to open links without filters triggers an error;
-##    wrapped in \dontrun{} so R CMD check is not interrupted.
-\dontrun{
-l4h_list_metrics(open_in_browser = TRUE)
-}
 }

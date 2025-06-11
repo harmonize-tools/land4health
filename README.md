@@ -32,39 +32,44 @@ ee_Initialize(quiet = TRUE)
 ```
 
 ``` r
-── Welcome to land4health ─────────────────────────────────────────────────────────────────────
-A tool of Harmonize Project to calculate and extract Remote Sensing Metrics for Spatial Health
-Analysis.
-Currently,`land4health` supports metrics related to the following categories:
+── Welcome to land4health ────────────────────────────────────────────────────
+A tool of Harmonize Project to calculate and extract Remote Sensing Metrics
+for Spatial Health Analysis. Currently,`land4health` supports metrics in the
+following categories:
+• Accesibility
+• Climate
 • Enviroment
-• Human intervention
 • and more!
-For more information about metrics, please use the `l4h_list_metrics()` function.
+For a complete list of available metrics, use the `l4h_list_metrics()`
+function.
+
+──────────────────────────────────────────────────────────────────────────────
 Attaching core land4health packages:
 → rgee v1.1.7
-→ sf v1.0.20
-Avisos:
-1: package ‘rgee’ was built under R version 4.4.3 
-2: package ‘sf’ was built under R version 4.4.3 
+→ sf v1.0.21
 ```
 
 ## 2. List of available metrics
 
 ``` r
 l4h_list_metrics()
-#> # A tibble: 7 × 11
-#>   category           metric   pixel_resolution_met…¹ dataset start_year end_year
-#>   <chr>              <chr>                     <int> <chr>        <int>    <int>
-#> 1 Human intervention Defores…                     30 Hansen…       2000     2023
-#> 2 Human intervention Human M…                    300 Global…       1990     2017
-#> 3 Human intervention Populat…                    100 WorldP…       2000     2021
-#> 4 Human intervention Urban a…                    500 MODIS …       2001     2022
-#> 5 Human intervention Night t…                    500 VIIRS …       1992     2023
-#> 6 Human intervention Human S…                     30 Global…       1975     2030
-#> 7 Enviroment         Urban H…                   1000 Urban …       2003     2020
+#> # A tibble: 10 × 11
+#>    category           metric  pixel_resolution_met…¹ dataset start_year end_year
+#>    <chr>              <chr>   <chr>                  <chr>        <int>    <int>
+#>  1 Human intervention Defore… 30                     Hansen…       2000     2023
+#>  2 Human intervention Human … 300                    Global…       1990     2017
+#>  3 Human intervention Popula… 100                    WorldP…       2000     2021
+#>  4 Human intervention Urban … 500                    MODIS …       2001     2022
+#>  5 Human intervention Night … 500                    VIIRS …       1992     2023
+#>  6 Human intervention Human … 30                     Global…       1975     2030
+#>  7 Enviroment         Water … 30                     MapBio…       1985     2022
+#>  8 Enviroment         Urban … 1000                   Urban …       2003     2020
+#>  9 Accesibility       Travel… 927.67                 Malari…       2019     2020
+#> 10 Accesibility       Rural … 100                    Rural …       2024     2024
 #> # ℹ abbreviated name: ¹​pixel_resolution_meters
 #> # ℹ 5 more variables: resolution_temporal <chr>, layer_can_be_actived <lgl>,
 #> #   tags <chr>, lifecycle <chr>, url <chr>
+#> ... (1 more)
 ```
 
 ## 3. Example: Calculate Forest Loss in a Custom Region

@@ -1,6 +1,6 @@
 Package: land4health
 Title: Remote Sensing Metrics for Spatial Health Analysis 
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: c(
     person("Antony", "Barja", email = "antony.barja@upch.pe", role = c("aut"), comment = c(ORCID = "0000-0001-5921-2858")),
     person("Yomali", "Ferreyra", email = "yomali.ferreyra@upch.pe", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5184-9595")),
@@ -20,6 +20,12 @@ Imports:
     dplyr,
     rgee,
     sf
+Suggests: 
+   rmarkdown,
+   knitr
 URL: https://harmonize-tools.github.io/land4health/
 Depends: 
     R (>= 4.1.0)
+VignetteBuilder: 
+    knitr
+BugReports: https://github.com/harmonize-tools/land4health/issues
