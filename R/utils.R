@@ -1,9 +1,9 @@
 #' Reading a csv containing geoidep resources
-#' @importFrom utils read.csv
+#' @importFrom utils read.csv2
 #' @keywords internal
 get_data <- function(){
   url <- system.file("exdata", "sources.csv", package = "land4health")
-  data <- read.csv(url) |> tidyr::as_tibble()
+  data <- read.csv2(url) |> tidyr::as_tibble()
   return(data)
 }
 
