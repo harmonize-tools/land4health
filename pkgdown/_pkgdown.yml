@@ -3,6 +3,10 @@ description: Extract remote sensing metrics for spatial health analysis 🛰️.
 home:
   title: Harmonize
 
+authors:
+  Antony Barja:
+    href: https://geografo.pe
+
 repo:
   url:
     home: https://github.com/harmonize-tools/land4health
