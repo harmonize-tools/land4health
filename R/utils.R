@@ -136,6 +136,11 @@ extract_ee_with_progress <- function(
   return(final_df)
 }
 
+#' @keywords internal
+#' @noRd
+`%||%` <- function(x, y) {
+  if (!is.null(x)) x else y
+}
 
 #' Global variables for get_early_warning
 #' This code declares global variables used in the some function to avoid R CMD check warnings.

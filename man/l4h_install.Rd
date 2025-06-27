@@ -7,24 +7,27 @@
 l4h_install(pip = TRUE, system = FALSE, force = FALSE, ...)
 }
 \arguments{
-\item{pip}{Logical. If TRUE (default), uses pip for installation. Set to FALSE if
-specifying a different installation method.}
+\item{pip}{Logical. If \code{TRUE} (default), uses pip for installation.
+Automatically set to \code{FALSE} if a method is specified via \code{...}.}
 
-\item{system}{Logical. If TRUE, uses system pip directly via system() call.}
+\item{system}{Logical. If \code{TRUE}, uses the system Python and pip via a
+system call. Defaults to \code{FALSE}.}
 
-\item{force}{Logical. If TRUE, forces reinstallation/upgrade of packages.}
+\item{force}{Logical. If \code{TRUE}, forces reinstallation of packages using
+\code{--force-reinstall}. Defaults to \code{FALSE}.}
 
-\item{...}{Additional arguments passed to reticulate::py_install(), such as:
+\item{...}{Additional arguments passed to \code{\link[reticulate]{py_install}}, such as:
 \itemize{
-\item method: Installation method ("auto", "virtualenv", "conda")
-\item envname: Environment name (default: "r-land4health")
+\item \code{method}: Installation method ("auto", "virtualenv", "conda")
+\item \code{envname}: Python environment name (default: "r-land4health")
 }}
 }
 \value{
-Invisibly returns NULL
+Invisibly returns \code{NULL}. This function is called for its side effects.
 }
 \description{
-Installs required Python packages (earthengine-api and numpy) using various methods.
+Installs required Python packages (\code{earthengine-api} and \code{numpy}) using
+virtualenv, conda, or system pip via the \code{reticulate} package.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
@@ -36,7 +39,8 @@ l4h_install()
 # Force reinstallation
 l4h_install(force = TRUE)
 
-# Use conda environment
+# Use a conda environment
 l4h_install(method = "conda")
 }
+
 }
