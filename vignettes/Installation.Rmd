@@ -1,5 +1,5 @@
 ---
-title: "1. Installation"
+title: "1. Introduction"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{1. Installation}
@@ -14,6 +14,67 @@ knitr::opts_chunk$set(
 )
 ```
 
+This vignette shows how to install the required components and register a new user on the **Google Earth Engine platform**, in order to use its API within the land4health package to access and extract multiple variables relevant to **Spatial Epidemiology**.
+
+##  1.1 What is Google Earth Engine?
+
+<img src='https://user-images.githubusercontent.com/23284899/152171996-54afdafa-4456-4d63-9c92-dca515b100a8.png' width='100%'/>
+
+Google Earth Engine is a cloud-based platform that helps access high-performance computing resources for processing and analyzing large geospatial datasets (Noel Golerick et al.,2017).
+
+
+## 1.2 Objectives:
+- Be accessible to various professionals without being experts in handling supercomputers.
+- Reduce pre-post processing time of satellite images on a local, regional or global scale.
+- Implement application development without being a backend/frontend expert.
+- Boost the development of big data for remote sensing.
+
+## 1.3 Components:
+
+- Data catalog: Curated collection of several petabytes of geospatial datasets widely used in remote sensing available to the general public.
+
+- High performance computing service: Google’s computational infrastructure to optimize parallel processing and distribution of geospatial data.
+
+- API and client libraries: Application programming interface for making requests to Earth Engine servers.
+  - API
+    - Client libraries
+    - Code Editor
+    - REST API
+  - Client libraries:
+    - JavaScript
+    - Python
+    - R (no official)
+
+## 1.4 Quickly review of Data catalog
+
+<img src='https://user-images.githubusercontent.com/23284899/152204233-96e00f05-7b2e-479c-b19a-43aee33b3d7c.jpg' width="100%"/>
+
+# 2. My Hello world in Google Earth Engine
+
+
+
+
+
+
+# 3. Installation and setup land4health
+
 ```{r setup}
 library(land4health)
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
