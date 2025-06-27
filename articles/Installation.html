@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>1. Installation • land4health</title>
+<title>1. Introduction • land4health</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -16,7 +16,7 @@
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="1. Installation">
+<meta property="og:title" content="1. Introduction">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -39,7 +39,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/Installation.html">1. Installation</a></li>
+<li><a class="dropdown-item" href="../articles/Installation.html">1. Introduction</a></li>
   </ul>
 </li>
       </ul>
@@ -69,7 +69,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>1. Installation</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>1. Introduction</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/harmonize-tools/land4health/HEAD/vignettes/Installation.Rmd"><code>vignettes/Installation.Rmd</code></a></small>
@@ -78,14 +78,131 @@
 
     
     
+<p>This vignette shows how to install the required components and
+register a new user on the <strong>Google Earth Engine
+platform</strong>, in order to use its API within the
+<code>land4health</code> package to access and extract multiple
+variables relevant to <strong>Spatial Epidemiology</strong>.</p>
+<div class="section level3">
+<h3 id="what-is-google-earth-engine">1.1 What is Google Earth Engine?<a class="anchor" aria-label="anchor" href="#what-is-google-earth-engine"></a>
+</h3>
+<p><img src="https://user-images.githubusercontent.com/23284899/152171996-54afdafa-4456-4d63-9c92-dca515b100a8.png" width="100%"></p>
+<p><strong>Google Earth Engine</strong> is a cloud-based platform that
+helps access high-performance computing resources for processing and
+analyzing large geospatial datasets (Noel Golerick et al.,2017).</p>
+</div>
+<div class="section level3">
+<h3 id="objectives">1.2 Objectives:<a class="anchor" aria-label="anchor" href="#objectives"></a>
+</h3>
+<ul>
+<li>Be accessible to various professionals without being experts in
+handling supercomputers.</li>
+<li>Reduce pre-post processing time of satellite images on a local,
+regional or global scale.</li>
+<li>Implement application development without being a backend/frontend
+expert.</li>
+<li>Boost the development of big data for remote sensing.</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="components">1.3 Components:<a class="anchor" aria-label="anchor" href="#components"></a>
+</h3>
+<ul>
+<li><p><strong>Data catalog</strong>: Curated collection of several
+petabytes of geospatial datasets widely used in remote sensing available
+to the general public.</p></li>
+<li><p><strong>High performance computing service</strong>: Google’s
+computational infrastructure to optimize parallel processing and
+distribution of geospatial data.</p></li>
+<li>
+<p><strong>API and client libraries</strong>: Application
+programming interface for making requests to Earth Engine servers.</p>
+<ul>
+<li>API
+<ul>
+<li>Client libraries</li>
+<li>Code Editor</li>
+<li>REST API</li>
+</ul>
+</li>
+<li>Client libraries:
+<ul>
+<li>JavaScript</li>
+<li>Python</li>
+<li>R (no official)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="quickly-review-of-data-catalog">1.4 Quickly review of Data catalog<a class="anchor" aria-label="anchor" href="#quickly-review-of-data-catalog"></a>
+</h3>
+<p><img src="https://user-images.githubusercontent.com/23284899/152204233-96e00f05-7b2e-479c-b19a-43aee33b3d7c.jpg" width="100%"></p>
+</div>
+<div class="section level2">
+<h2 id="installation-and-setup-land4health">2. Installation and setup land4health<a class="anchor" aria-label="anchor" href="#installation-and-setup-land4health"></a>
+</h2>
+<div class="section level3">
+<h3 id="gmail-register">2.1 GMAIL register<a class="anchor" aria-label="anchor" href="#gmail-register"></a>
+</h3>
+<p>To access all the benefits offered by the Earth Engine platform, you
+must have an active Google (Gmail) account. To register, go to 👉 <a href="https://code.earthengine.google.com/register" class="external-link uri">https://code.earthengine.google.com/register</a>.</p>
+<p>Earth Engine offers two registration options:</p>
+<ul>
+<li><p><strong>Commercial user</strong>: For commercial product
+development, service monetization, and related purposes.</p></li>
+<li><p><strong>Non-commercial user</strong>: For research, education,
+and academic activities.</p></li>
+</ul>
+<p>For our purposes, we will proceed by selecting the non-commercial
+user option.</p>
+<p><img src="https://user-images.githubusercontent.com/23284899/258835768-d84c50b2-0c74-4ee9-a7d8-c5bf7137360b.png" width="100%"></p>
+<p>You can install the development version of <code>land4health</code>
+from GitHub with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harmonize-tools/land4health">land4health</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">────────────────────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">#&gt; Attaching core <span style="color: #0000BB;">land4health</span> packages:</span></span>
-<span><span class="co">#&gt; → <span style="color: #0000BB;">rgee</span> v1.1.7</span></span>
-<span><span class="co">#&gt; → <span style="color: #0000BB;">sf</span> v1.0.21</span></span></code></pre></div>
-  </main>
+<code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"harmonize-tools/land4health"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harmonize-tools/land4health">land4health</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>── Welcome to land4health ───────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>A tool of Harmonize Project to calculate and extract Remote Sensing Metrics <span class="cf">for</span> Spatial Health Analysis.</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>Currently,<span class="st">`</span><span class="at">land4health</span><span class="st">`</span> supports metrics <span class="cf">in</span> the following categories<span class="sc">:</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>• Accesibility</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>• Climate</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>• Enviroment</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>• and more<span class="sc">!</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>For a complete list of available metrics, use the <span class="st">`</span><span class="at">l4h_list_metrics()</span><span class="st">`</span> function.</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>─────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>Attaching core land4health packages<span class="sc">:</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>→ rgee v1.<span class="fl">1.7</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>→ sf v1.<span class="fl">0.21</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/l4h_install.html">l4h_install</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>── Installing land4health Python dependencies ───────────────</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>ℹ Step <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span><span class="sc">:</span> Checking Python environment</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>ℹ Step <span class="dv">2</span><span class="sc">/</span><span class="dv">3</span><span class="sc">:</span> Installing Python packages</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>✔ Python packages installed successfully</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>ℹ Step <span class="dv">3</span><span class="sc">/</span><span class="dv">3</span><span class="sc">:</span> Finalizing setup</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>✔ land4health setup completed.</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ee_Initialize</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#&gt; ── rgee 1.1.7 ─────────────────────────────────────── earthengine-api 0.1.370 ── </span></span>
+<span><span class="co">#&gt;  ✔ user: not_defined </span></span>
+<span><span class="co">#&gt;  ✔ Initializing Google Earth Engine: ✔ Initializing Google Earth Engine:  DONE!</span></span>
+<span><span class="co">#&gt;  ✔ Earth Engine account: users/geografo2023 </span></span>
+<span><span class="co">#&gt;  ✔ Python Path: C:/Users/mvcs_dgppvu_ambi/AppData/Local/R/cache/R/reticulate/uv/cache/archive-v0/At8gJm7EZeLgoj4R1d2hk/Scripts/python.exe </span></span>
+<span><span class="co">#&gt; ────────────────────────────────────────────────────────────────────────────────</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">land4health</span><span class="fu">::</span><span class="fu"><a href="../reference/l4h_packages.html">l4h_packages</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "rgee"        "sf"          "land4health"</span></span></code></pre></div>
+</div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
