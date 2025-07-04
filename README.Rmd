@@ -27,12 +27,19 @@ This package offers R users a quick and easy way to obtain areal or zonal statis
 
 ## 1. Installation
 
-You can install the development version of land4health from [GitHub](https://github.com/) with:
+You can install CRAN version of  land4health with: 
 
+```r
+install.packages("land4health")
+```
+
+or you can install the development version with:
 ```r
 # install.packages("pak")
 pak::pak("harmonize-tools/land4health")
 ```
+
+
 ```{r message=FALSE,warning=FALSE}
 library(land4health)
 ee_Initialize(quiet = TRUE)

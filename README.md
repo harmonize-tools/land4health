@@ -4,7 +4,9 @@
 # land4health: Remote Sensing Metrics for Spatial Health Analysis <img src="man/figures/logo.png" align="right" hspace="10" vspace="0" width="15%">
 
 <!-- badges: start -->
-[![Lifecycle-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml)
 [![HTML-Docs](https://img.shields.io/badge/docs-HTML-informational)](https://harmonize-tools.github.io/land4health)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
@@ -17,8 +19,13 @@ infectious diseases 🦠 within the framework of spatial epidemiology 🏥.
 
 ## 1. Installation
 
-You can install the development version of land4health from
-[GitHub](https://github.com/) with:
+You can install CRAN version of land4health with:
+
+``` r
+install.packages("land4health")
+```
+
+or you can install the development version with:
 
 ``` r
 # install.packages("pak")
