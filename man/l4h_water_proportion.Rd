@@ -2,7 +2,7 @@
 % Please edit documentation in R/l4h_water_proportion.R
 \name{l4h_water_proportion}
 \alias{l4h_water_proportion}
-\title{Annual Proportion of Water Coverage from MapBiomas Perú}
+\title{Annual Proportion of Water Coverage from MapBiomas Peru}
 \usage{
 l4h_water_proportion(
   from,
@@ -41,7 +41,7 @@ a list, or an Earth Engine \code{ImageCollection} with yearly layers.
 }
 \description{
 The function returns the proportion of each region's area that is covered by surface water for each year.
-The values are expressed as a decimal ratio between 0 and 1 (e.g., 0.25 means 25\% of the area was covered by water).
+The values are expressed as a decimal ratio between 0 and 1 (e.g., 0.25 means 25\\% of the area was covered by water).
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
@@ -54,7 +54,7 @@ l4h_water_proportion(from = 2000, to = 2020, region = my_basin)
 }
 \references{
 \itemize{
-\item MapBiomas Perú (2021). \emph{Colección 1 – Annual water coverage}.
+\item MapBiomas Peru (2021). \emph{Collection 1 – Annual water coverage}.
 Mapbiomas project, available on: \url{https://peru.mapbiomas.org/colecciones-de-mapbiomas-peru/}
 }
 }

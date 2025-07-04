@@ -80,12 +80,12 @@ sebal_annual <- l4h_sebal_modis(
 }
 \references{
 \itemize{
-\item Comini, B., Ruhoff, A., Laipelt, L., Fleischmann, A., Huntington, J.,
-Morton, C., Melton, F., Erickson, T., Roberti, D., Souza, V., Biudes, M.,
-Machado, N., Santos, C. & Cosio, E. (2023). \emph{geeSEBAL‑MODIS:
+\item Comini,B., Ruhoff,A., Laipelt,L., Fleischmann,A., Huntington,J.,
+Morton,C., Melton,F., Erickson,T., Roberti,D., Souza,V., Biudes,M.,
+Machado,N., Santos,C. & Cosio,E. (2023). \emph{geeSEBAL‑MODIS:
 Continental‑scale evapotranspiration based on the surface energy
 balance for South America.} Preprint. DOI: 10.13140/RG.2.2.17579.11041
 \item geeSEBAL‑MODIS v0‑02 dataset. Licensed under the
-\emph{Creative Commons Attribution 4.0 International (CC‑BY‑4.0)} license.
+\emph{Creative Commons Attribution 4.0 International (CC‑BY‑4.0)} license.
 }
 }

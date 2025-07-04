@@ -50,14 +50,14 @@
 #' )
 #' }
 #' @references
-#' - Comini, B., Ruhoff, A., Laipelt, L., Fleischmann, A., Huntington, J.,
-#'   Morton, C., Melton, F., Erickson, T., Roberti, D., Souza, V., Biudes, M.,
-#'   Machado, N., Santos, C. & Cosio, E. (2023). *geeSEBAL‑MODIS:
-#'   Continental‑scale evapotranspiration based on the surface energy
-#'   balance for South America.* Preprint. DOI: 10.13140/RG.2.2.17579.11041
+#' - Comini,B., Ruhoff,A., Laipelt,L., Fleischmann,A., Huntington,J.,
+#'    Morton,C., Melton,F., Erickson,T., Roberti,D., Souza,V., Biudes,M.,
+#'    Machado,N., Santos,C. & Cosio,E. (2023). *geeSEBAL‑MODIS:
+#'    Continental‑scale evapotranspiration based on the surface energy
+#'    balance for South America.* Preprint. DOI: 10.13140/RG.2.2.17579.11041
 #'
 #' - geeSEBAL‑MODIS v0‑02 dataset. Licensed under the
-#'   *Creative Commons Attribution 4.0 International (CC‑BY‑4.0)* license.
+#'   *Creative Commons Attribution 4.0 International (CC‑BY‑4.0)* license.
 
 #' @export
 l4h_sebal_modis <- function(from, to, by = "8 days", region, fun = "mean", sf = TRUE, force = FALSE, quiet = FALSE, ...) {
