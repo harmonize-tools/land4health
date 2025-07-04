@@ -41,7 +41,7 @@ a list, or an Earth Engine \code{ImageCollection} with yearly layers.
 }
 \description{
 The function returns the proportion of each region's area that is covered by surface water for each year.
-The values are expressed as a decimal ratio between 0 and 1 (e.g., 0.25 means 25\\% of the area was covered by water).
+The values are expressed as a decimal ratio between 0 and 1 (e.g., 0.25 means 25\% of the area was covered by water).
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }

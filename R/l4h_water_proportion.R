@@ -2,7 +2,7 @@
 #'
 #' @description
 #' The function returns the proportion of each region's area that is covered by surface water for each year.
-#' The values are expressed as a decimal ratio between 0 and 1 (e.g., 0.25 means 25\% of the area was covered by water).
+#' The values are expressed as a decimal ratio between 0 and 1 (e.g., 0.25 means 25% of the area was covered by water).
 #'
 #' `r lifecycle::badge('experimental')`
 #'

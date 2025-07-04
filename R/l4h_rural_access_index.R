@@ -23,8 +23,8 @@
 #' @details
 #' This function uses the following datasets from the GEE Community Catalog:
 #' \itemize{
-#'   \item \code{projects/sat-io/open-datasets/RAI/ruralpopaccess} – raster of rural population with access to all-season roads
-#'   \item \code{projects/sat-io/open-datasets/RAI/inaccessibilityindex} – binary raster indicating access areas (1 = access, 0 = no access)
+#'   \item \code{projects/sat-io/open-datasets/RAI/ruralpopaccess/} – raster of rural population with access to all-season roads
+#'   \item \code{projects/sat-io/open-datasets/RAI/inaccessibilityindex/} – binary raster indicating access areas (1 = access, 0 = no access)
 #' }
 #'
 #' When \code{weighted = TRUE}, the RAI is calculated as the sum (or chosen summary via \code{fun}) of the accessible rural population
@@ -39,7 +39,7 @@
 #' \code{sf} or \code{tibble} object.
 #'
 #' @references
-#' GEE Community Catalog: \url{https://gee-community-catalog.org/projects/rai}
+#' GEE Community Catalog: \url{https://gee-community-catalog.org/projects/rai/}
 #'
 #' Frontiers in Remote Sensing (2024): \doi{10.3389/frsen.2024.1375476}
 #'

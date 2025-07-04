@@ -10,7 +10,7 @@ Description: Calculate and extract remote sensing metrics for spatial analysis i
     covariates, and vector-borne disease data ideal for modeling infectious diseases within the framework of spatial epidemiology.
 Maintainer: Antony Barja <antony.barja@upch.pe>
 URL:
-    https://github.com/harmonize-tools/land4health,
+    https://github.com/harmonize-tools/land4health/,
     https://harmonize-tools.github.io/land4health/
 License: MIT + file LICENSE
 Encoding: UTF-8

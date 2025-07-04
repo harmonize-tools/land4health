@@ -13,7 +13,7 @@ Calculate and extract remote sensing metrics for spatial analysis in the field o
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/harmonize-tools/land4health}
+  \item \url{https://github.com/harmonize-tools/land4health/}
   \item \url{https://harmonize-tools.github.io/land4health/}
   \item Report bugs at \url{https://github.com/harmonize-tools/land4health/issues}
 }
