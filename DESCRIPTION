@@ -2,8 +2,8 @@ Package: land4health
 Title: Remote Sensing Metrics for Spatial Health Analysis 
 Version: 0.1.0
 Authors@R: c(
-    person("Antony", "Barja", email = "antony.barja@upch.pe", role = c("aut"), comment = c(ORCID = "0000-0001-5921-2858")),
-    person("Yomali", "Ferreyra", email = "yomali.ferreyra@upch.pe", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-5184-9595")),
+    person("Antony", "Barja", email = "antony.barja@upch.pe", role = c("aut","cre"), comment = c(ORCID = "0000-0001-5921-2858")),
+    person("Yomali", "Ferreyra", email = "yomali.ferreyra@upch.pe", role = c("aut"), comment = c(ORCID = "0000-0002-5184-9595")),
     person("Diego", "Villa", role = c("ctb")))
 Description: Calculate and extract remote sensing metrics for spatial analysis in the field of health.
     This package offers R users a quick and straightforward way to obtain areal or zonal statistics of key environmental indicators,

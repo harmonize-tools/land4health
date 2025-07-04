@@ -12,3 +12,4 @@
 ^rgee$
 ^CITATION\.cff$
 ^CRAN-SUBMISSION$
+^cran-comments\.md$

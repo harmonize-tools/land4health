@@ -20,11 +20,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Yomali Ferreyra \email{yomali.ferreyra@upch.pe} (\href{https://orcid.org/0000-0002-5184-9595}{ORCID})
+\strong{Maintainer}: Antony Barja \email{antony.barja@upch.pe} (\href{https://orcid.org/0000-0001-5921-2858}{ORCID})
 
 Authors:
 \itemize{
-  \item Antony Barja \email{antony.barja@upch.pe} (\href{https://orcid.org/0000-0001-5921-2858}{ORCID})
+  \item Yomali Ferreyra \email{yomali.ferreyra@upch.pe} (\href{https://orcid.org/0000-0002-5184-9595}{ORCID})
 }
 
 Other contributors:

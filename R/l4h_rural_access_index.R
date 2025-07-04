@@ -30,7 +30,7 @@
 #' When \code{weighted = TRUE}, the RAI is calculated as the sum (or chosen summary via \code{fun}) of the accessible rural population
 #' divided by the total rural population within the specified region.
 #'
-#' When \code{weighted = FALSE}, the RAI is calculated as the ratio of pixel areas: the total area (in km²) with access
+#' When \code{weighted = FALSE}, the RAI is calculated as the ratio of pixel areas: the total area (in in km^2) with access
 #' divided by the total rural area.
 #'
 #' The \code{fun} parameter only applies when \code{weighted = TRUE}. It will be ignored otherwise.
