@@ -26,10 +26,10 @@ authors:
 repository-code: https://github.com/harmonize-tools/land4health
 url: https://harmonize-tools.github.io/land4health/
 contact:
-- family-names: Ferreyra
-  given-names: Yomali
-  email: yomali.ferreyra@upch.pe
-  orcid: https://orcid.org/0000-0002-5184-9595
+- family-names: Barja
+  given-names: Antony
+  email: antony.barja@upch.pe
+  orcid: https://orcid.org/0000-0001-5921-2858
 keywords:
 - geography
 - geohealth
