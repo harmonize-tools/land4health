@@ -44,29 +44,42 @@
 #' #' }
 #' # Function for extract urban areas
 #'
-#' l4h_urban_area <- function(from, to, region, scale = 1000) {
+#' l4h_urban_area <- function(from, to, region, scale = 1000, lc_band = "LC_Type1", sf = TRUE, quiet = FALSE, force = FALSE, ...) {
 #'
-#'     # Conditions about the times
-#'   start_year <- substr(from, 1, 4) %>% as.numeric()
-#'   end_year <- substr(to, 1, 4) %>% as.numeric()
+#'   lc_band <- match.arg(lc_band, choices = c("LC_Type1", "LC_Type2", "LC_Type3", "LC_Type4", "LC_Type5"))
 #'
-#'   if(start_year == end_year){
-#'     year <- unique(
-#'       c(start_year:end_year)
-#'     ) %>%
-#'       list()
+#'   # Conditions about the times
+#'   start_year <- as.numeric(substr(from, 1, 4))
+#'   end_year <- as.numeric(substr(to, 1, 4))
 #'
-#'     year_list <- ee$List(year)
-#'   } else {
-#'     year <- unique(
-#'       c(start_year:end_year)
-#'     )
-#'     year_list <- ee$List(year)
+#'   start_year_from_ee <- as.numeric(.internal_data$mcd12q1.061$startyear)
+#'   end_year_from_ee  <- as.numeric(.internal_data$mcd12q1.061$endyear)
+#'
+#'   if (start_year < start_year_from_ee || end_year > end_year_from_ee) {
+#'     cli::cli_abort(
+#'       glue::glue(
+#'         "MODIS MCD12Q1 data is only available from {start_year_from_ee} to {end_year_from_ee}."
+#'         )
+#'       )
 #'   }
 #'
-#'   # Message of error
-#'   if (to < 2001  | from > 2019) {
-#'     print(sprintf("No exist data of urban area"))
+#'   year_seq <- seq(start_year, end_year)
+#'   year_list <- ee$List(as.list(year_seq))
+#'
+#'   # Define supported classes
+#'   sf_classes <- c("sf", "sfc", "SpatVector")
+#'
+#'   # Check input object class
+#'   if (!inherits(region, sf_classes)) {
+#'     cli::cli_abort("Invalid {.arg region}: must be an {.cls sf}, {.cls sfc}, or {.cls SpatVector} object.")
+#'   }
+#'
+#'   # Check if region is spatially representative
+#'   if (isFALSE(force)) {
+#'     check_representativity(
+#'       region = region,
+#'       scale = 500
+#'     )
 #'   }
 #'
 #'   list_urban <-
@@ -74,8 +87,8 @@
 #'     map(
 #'       ee_utils_pyfunc(
 #'         function(x) {
-#'           ee$ImageCollection("MODIS/006/MCD12Q1")$
-#'             select(c('LC_Type2'))$
+#'           ee$ImageCollection(.internal_data$mcd12q1.061$id)$
+#'             select(c(lc_band))$
 #'             filter(
 #'               ee$Filter$calendarRange(
 #'                 x,
@@ -86,7 +99,7 @@
 #'             mean()$
 #'             multiply(
 #'               ee$Image$pixelArea())$
-#'             divide(100000)$
+#'             divide(1e6)$
 #'             rename('urban')
 #'         }
 #'       )
@@ -97,12 +110,43 @@
 #'     toBands()$
 #'     clip(region)
 #'
-#'   data <-
-#'     ee_sum(
-#'       x = urban_img,
-#'       y = region,
-#'       scale = scale
+#'   # Extract with reducer
+#'   if (isTRUE(sf)) {
+#'     extract_area <- extract_ee_with_progress(
+#'       image = urban_img,
+#'       sf_region = region,
+#'       scale = 500,
+#'       fun = "sum",
+#'       sf = TRUE,
+#'       quiet = quiet,
+#'       # ...
 #'     )
 #'
-#'   return(data)
+#'     geom_col <- attr(extract_area, "sf_column")
+#'     extract_area <- extract_area |>
+#'       tidyr::pivot_longer(
+#'         cols = tidyr::starts_with("constant"),
+#'         names_to = "date",
+#'         values_to = "value")
+#'
+#'   } else {
+#'     extract_area <- extract_ee_with_progress(
+#'       image = hansen_data_area,
+#'       sf_region = region,
+#'       scale = 30,
+#'       fun = "sum",
+#'       sf = FALSE,
+#'       quiet = quiet,
+#'       ...
+#'     ) |>
+#'       tidyr::pivot_longer(
+#'         cols = tidyr::starts_with("constant"),
+#'         names_to = "date",
+#'         values_to = "value") |>
+#'       dplyr::mutate(
+#'         date = as.Date(ISOdate(factor(date, labels = range_date_original), 1, 1)),
+#'         variable = "forest_loss"
+#'       )
+#'   }
+#'   return(extract_area)
 #' }
