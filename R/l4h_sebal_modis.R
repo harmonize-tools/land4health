@@ -104,7 +104,7 @@ l4h_sebal_modis <- function(from, to, by = "8 days", region, fun = "mean", sf = 
   reducer_fun <- get_reducer(name = fun)
 
   # Create binary image with lossyear in range
-  ic <- .internal_data$geesebal |>
+  ic <- .internal_data$geesebal$id |>
     ee$ImageCollection() |>
     ee$ImageCollection$select("ET_24h")
 

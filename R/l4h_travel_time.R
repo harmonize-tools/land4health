@@ -79,7 +79,7 @@ l4h_travel_time <- function(region, destination = "cities", transport_mode = "al
     )
 
     # Load healthcare image
-    img_index <- .internal_data$access_healthcare |>
+    img_index <- .internal_data$access_healthcare$id |>
       ee$Image() |>
       ee$Image$select(band) |>
       ee$Image$rename("healthcare_access")
@@ -92,7 +92,7 @@ l4h_travel_time <- function(region, destination = "cities", transport_mode = "al
     }
 
     # Load cities image
-    img_index <- .internal_data$access_cities |>
+    img_index <- .internal_data$access_cities$id |>
       ee$Image() |>
       ee$Image$select("accessibility") |>
       ee$Image$rename("city_access")

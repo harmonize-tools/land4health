@@ -79,7 +79,7 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
       ))
     }
 
-    img_index <- rgee::ee$Image(.internal_data$ruralaccess)
+    img_index <- rgee::ee$Image(.internal_data$ruralaccess$id)
 
     # Extract with reducer
     if (isTRUE(sf)) {

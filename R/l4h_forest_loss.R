@@ -82,7 +82,7 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
   }
 
   # Create binary image with lossyear in range
-  hanse_data_db <- ee$Image(.internal_data$hansen)$select("lossyear")
+  hanse_data_db <- ee$Image(.internal_data$hansen$id)$select("lossyear")
   hanse_data_img <- hanse_data_db$eq(range_date_processed)
 
   # Check if region is spatially representative

@@ -1,4 +1,5 @@
 updated_db_ee <- function(type = NULL, db = NULL){
+
   if(!is.null(db)){
     url_ee <- switch(
       type,
@@ -11,13 +12,11 @@ updated_db_ee <- function(type = NULL, db = NULL){
       tidyr::as_tibble()
 
     id <- catalog_ee |>
-      dplyr::filter(stringr::str_detect(id, pattern = db)) |>
-      dplyr::select(id) |>
-      dplyr::pull()
+      dplyr::filter(stringr::str_detect(id, pattern = db))
+
   } else {
     id <- 'projects/mapbiomas-public/assets/peru/collection1/mapbiomas_peru_collection1_water_v1'
   }
-
 
   return(id)
 }
@@ -30,7 +29,8 @@ updated_db_ee <- function(type = NULL, db = NULL){
   access_healthcare = updated_db_ee(type = 'eedataset', db = 'accessibility_to_healthcare'),
   access_cities     = updated_db_ee(type = 'eedataset', db = 'accessibility_to_cities'),
   water_coverage    = updated_db_ee(type = 'mapbiomas', db = NULL),
-  geesebal          = updated_db_ee(type = 'eeawesome', db = 'geesebal')
+  geesebal          = updated_db_ee(type = 'eeawesome', db = 'geesebal'),
+  mcd12q1.061       = updated_db_ee(type = 'eedataset', db = 'MODIS/061/MCD12Q1')
 )
 
 usethis::use_data(.internal_data, internal = TRUE, overwrite = TRUE)
