@@ -142,6 +142,15 @@ extract_ee_with_progress <- function(
   if (!is.null(x)) x else y
 }
 
+#' @keywords internal
+#' @noRd
+calculate_area <- function(mask) {
+  mask$
+    reproject('EPSG:4326', NULL, 1000)$
+    multiply(ee$Image$pixelArea())$
+    divide(1e6)
+}
+
 #' Global variables for get_early_warning
 #' This code declares global variables used in the some function to avoid R CMD check warnings.
 #' @name global-variables

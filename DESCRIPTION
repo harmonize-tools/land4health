@@ -31,8 +31,7 @@ Imports:
     dplyr,
     rgee,
     sf,
-    reticulate,
-    glue
+    reticulate
 Suggests: 
    rmarkdown,
    knitr

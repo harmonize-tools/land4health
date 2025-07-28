@@ -30,7 +30,7 @@ updated_db_ee <- function(type = NULL, db = NULL){
   access_cities     = updated_db_ee(type = 'eedataset', db = 'accessibility_to_cities'),
   water_coverage    = updated_db_ee(type = 'mapbiomas', db = NULL),
   geesebal          = updated_db_ee(type = 'eeawesome', db = 'geesebal'),
-  mcd12q1.061       = updated_db_ee(type = 'eedataset', db = 'MODIS/061/MCD12Q1')
+  ghsl              = updated_db_ee(type = 'eeawesome', db = 'GHS_SMOD')
 )
 
 usethis::use_data(.internal_data, internal = TRUE, overwrite = TRUE)
