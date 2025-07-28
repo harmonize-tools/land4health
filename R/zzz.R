@@ -14,7 +14,7 @@
     names(providers_count) <- c("category", "metrics_counts")
     category_data <- providers_count
     list_categories <- c(if (is.data.frame(category_data) && "category" %in% names(category_data)) {
-      category_data$category[1:min(4, nrow(category_data))] |> as.vector()
+      category_data$category[1:min(3, nrow(category_data))] |> as.vector()
     } else {
       character()
     }, "and more!")

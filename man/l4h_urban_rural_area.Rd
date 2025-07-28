@@ -40,6 +40,37 @@ areas by category and year over the specified region.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
+\examples{
+\dontrun{
+library(land4health)
+ee_Initialize()
+
+# Define region as a bounding box (Ucayali, Peru)
+region <- st_as_sf(st_sfc(
+  st_polygon(list(matrix(c(
+    -74.1, -4.4,
+    -74.1, -3.7,
+    -73.2, -3.7,
+    -73.2, -4.4,
+    -74.1, -4.4
+  ), ncol = 2, byrow = TRUE))),
+  crs = 4326
+))
+
+# Extract surface area of urban category (in km2)
+urban_area <- l4h_urban_area(category = "urban", region = region)
+head(urban_area)
+
+# Extract surface area of rural category (in km2)
+rural_area <- l4h_urban_area(category = "rural", region = region)
+head(rural_area)
+
+# Extract total surface area (urban + rural) (in km2)
+all_area <- l4h_urban_area(category = "all", region = region)
+head(all_area)
+}
+
+}
 \references{
 \itemize{
 \item European Commission, Joint Research Centre (JRC). GHS Settlement Grid R2023A (1975–2030).
