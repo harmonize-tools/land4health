@@ -151,6 +151,25 @@ calculate_area <- function(mask) {
     divide(1e6)
 }
 
+#' @keywords internal
+#' @noRd
+bitwiseExtract <- function(value, fromBit, toBit = fromBit) {
+  maskSize <- ee$Number(1)$add(toBit)$subtract(fromBit)
+  mask <- ee$Number(1)$leftShift(maskSize)$subtract(1)
+  value$rightShift(fromBit)$bitwiseAnd(mask)
+}
+
+#' @keywords internal
+#' @noRd
+mask_quality <- function(image, band, qc_band, level = c("strict", "moderate")) {
+  level <- match.arg(level)
+  qc  <- image$select(qc_band)
+  lst <- image$select(band)
+  quality_flag <- bitwiseExtract(qc, 0, 1)
+  mask <- switch(level,strict = quality_flag$eq(0),moderate = quality_flag$lte(1))
+  lst$updateMask(mask)$multiply(0.02)$subtract(273.15)$rename(band)$reproject('EPSG:4326', NULL, 1000)
+}
+
 #' Global variables for get_early_warning
 #' This code declares global variables used in the some function to avoid R CMD check warnings.
 #' @name global-variables

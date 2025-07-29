@@ -48,6 +48,7 @@ reference:
  - title: 'Climate'
    contents:
    - l4h_sebal_modis
+   - l4h_lst
 
  - title: 'Human intervention'
    contents:
