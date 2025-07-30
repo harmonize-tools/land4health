@@ -1,0 +1,20 @@
+// Define custom colors
+$stable-bg: #5d5aff;
+$experimental-bg: #f9fd08;
+
+$white: #ffffff;
+$black: #000000;
+
+// Lifecycle badge styles
+.lifecycle {
+  &-stable {
+    background-color: $stable-bg;
+    color: $white;
+  }
+
+  &-experimental,
+  &-deprecated {
+    background-color: $experimental-bg;
+    color: $black;
+  }
+}
