@@ -44,11 +44,12 @@ reference:
  - title: 'Enviroment'
    contents:
    - l4h_water_proportion
+   - l4h_co_column
 
  - title: 'Climate'
    contents:
    - l4h_sebal_modis
-   - l4h_lst
+   - l4h_surface_temp
 
  - title: 'Human intervention'
    contents:
