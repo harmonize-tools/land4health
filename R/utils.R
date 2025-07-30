@@ -196,6 +196,7 @@ utils::globalVariables(
     "value",
     "all_of",
     "tick",
-    ".find_python"
+    ".find_python",
+    "date"
   )
 )

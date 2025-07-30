@@ -46,3 +46,49 @@ consistent long-term time series at ~1km resolution.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
+\examples{
+\dontrun{
+library(land4health)
+library(sf)
+ee_Initialize()
+
+# Define a bounding box region in Ucayali, Peru
+region <- st_as_sf(st_sfc(
+  st_polygon(list(matrix(c(
+    -74.1, -4.4,
+    -74.1, -3.7,
+    -73.2, -3.7,
+    -73.2, -4.4,
+    -74.1, -4.4
+  ), ncol = 2, byrow = TRUE))),
+  crs = 4326
+))
+
+# Extract only DMSP-OLS data (1998–2010)
+ntl_dmsp <- l4h_night_lights(
+  from = "1998-01-01",
+  to = "2010-12-31",
+  region = region,
+  stat = "mean"
+)
+head(ntl_dmsp)
+
+# Extract only VIIRS data (2016–2021)
+ntl_viirs <- l4h_night_lights(
+  from = "2016-01-01",
+  to = "2021-12-31",
+  region = region,
+  stat = "mean"
+)
+head(ntl_viirs)
+
+# Extract both DMSP and VIIRS (2008–2020)
+ntl_mixed <- l4h_night_lights(
+  from = "2008-01-01",
+  to = "2020-12-31",
+  region = region,
+  stat = "mean"
+)
+head(ntl_mixed)
+}
+}

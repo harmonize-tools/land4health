@@ -20,6 +20,51 @@
 #'
 #' @return A `sf` or `tibble` with annual night‑time light statistics per region and date.
 #'
+#' @examples
+#' \dontrun{
+#' library(land4health)
+#' library(sf)
+#' ee_Initialize()
+#'
+#' # Define a bounding box region in Ucayali, Peru
+#' region <- st_as_sf(st_sfc(
+#'   st_polygon(list(matrix(c(
+#'     -74.1, -4.4,
+#'     -74.1, -3.7,
+#'     -73.2, -3.7,
+#'     -73.2, -4.4,
+#'     -74.1, -4.4
+#'   ), ncol = 2, byrow = TRUE))),
+#'   crs = 4326
+#' ))
+#'
+#' # Extract only DMSP-OLS data (1998–2010)
+#' ntl_dmsp <- l4h_night_lights(
+#'   from = "1998-01-01",
+#'   to = "2010-12-31",
+#'   region = region,
+#'   stat = "mean"
+#' )
+#' head(ntl_dmsp)
+#'
+#' # Extract only VIIRS data (2016–2021)
+#' ntl_viirs <- l4h_night_lights(
+#'   from = "2016-01-01",
+#'   to = "2021-12-31",
+#'   region = region,
+#'   stat = "mean"
+#' )
+#' head(ntl_viirs)
+#'
+#' # Extract both DMSP and VIIRS (2008–2020)
+#' ntl_mixed <- l4h_night_lights(
+#'   from = "2008-01-01",
+#'   to = "2020-12-31",
+#'   region = region,
+#'   stat = "mean"
+#' )
+#' head(ntl_mixed)
+#' }
 #' @export
 l4h_night_lights <- function(from, to, region, stat = "mean",
                              scale = 1000, sf = TRUE, quiet = FALSE,
@@ -96,22 +141,27 @@ l4h_night_lights <- function(from, to, region, stat = "mean",
       fun = stat,
       sf = TRUE,
       quiet = quiet,
-      ...
+      # ...
     )
 
     geom_col <- attr(extract_nlight, "sf_column")
     range_date_original <- seq(as.Date(from_date), as.Date(to_date), by = "1 days")
     extract_nlight <- extract_nlight |>
       tidyr::pivot_longer(
-        cols = tidyr::starts_with("Harmonized_DN"),
+        cols = grep("Harmonized_DN_NTL", names(extract_nlight), value = TRUE),
         names_to = "date",
         values_to = "value") |>
       dplyr::mutate(
+        provider = dplyr::case_when(
+          grepl("DMSP", date) ~ "dmsp",
+          grepl("VIIRS", date) ~ "viirs",
+          TRUE ~ NA_character_
+        ),
         date = sub(".*_(\\d{4})_.*", "\\1", date),
         date = paste0(date, "-01-01"),
         date = as.Date(date),
         variable = "night_lights") |>
-      dplyr::relocate(c("date", "variable", "value"), .before = all_of(geom_col))
+      dplyr::relocate(c("date", "variable", "provider", "value"), .before = all_of(geom_col))
 
   } else {
     extract_nlight <- extract_ee_with_progress(
@@ -124,10 +174,14 @@ l4h_night_lights <- function(from, to, region, stat = "mean",
       ...
     ) |>
       tidyr::pivot_longer(
-        cols = tidyr::starts_with("Harmonized_DN"),
+        cols = grep("Harmonized_DN_NTL", names(extract_nlight), value = TRUE),,
         names_to = "date",
         values_to = "value") |>
       dplyr::mutate(
+        provider = dplyr::case_when(
+          grepl("DMSP", date) ~ "dmsp",
+          grepl("VIIRS", date) ~ "viirs",
+          TRUE ~ NA_character_),
         date = sub(".*_(\\d{4})_.*", "\\1", date),
         date = paste0(date, "-01-01"),
         date = as.Date(date),
