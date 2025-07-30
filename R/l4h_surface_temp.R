@@ -157,7 +157,7 @@ l4h_surface_temp <- function(from, to, region, band = "day", level = "strict", s
       fun = stat,
       sf = TRUE,
       quiet = quiet,
-      # ...
+      ...
     )
 
     geom_col <- attr(extract_area, "sf_column")

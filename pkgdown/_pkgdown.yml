@@ -35,6 +35,8 @@ reference:
  - title: 'Human intervention'
    contents:
    - l4h_forest_loss
+   - l4h_night_lights
+   - l4h_urban_rural_area
 
  - title: 'Accesibility'
    contents:
@@ -50,10 +52,6 @@ reference:
    contents:
    - l4h_sebal_modis
    - l4h_surface_temp
-
- - title: 'Human intervention'
-   contents:
-   - l4h_urban_rural_area
 
  - title: 'Utils'
    contents:
