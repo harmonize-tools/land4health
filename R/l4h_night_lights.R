@@ -141,7 +141,7 @@ l4h_night_lights <- function(from, to, region, stat = "mean",
       fun = stat,
       sf = TRUE,
       quiet = quiet,
-      # ...
+      ...
     )
 
     geom_col <- attr(extract_nlight, "sf_column")

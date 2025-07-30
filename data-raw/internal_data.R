@@ -34,7 +34,8 @@ updated_db_ee <- function(type = NULL, db = NULL){
   lst                = updated_db_ee(type = 'eedataset', db = 'MODIS/061/MOD11A1'),
   co_column          = updated_db_ee(type = 'eedataset', db = 'COPERNICUS/S5P/OFFL/L3_CO'),
   night_lights_dmsp  = updated_db_ee(type = 'eeawesome', db = 'Harmonized_NTL/dmsp'),
-  night_lights_viirs = updated_db_ee(type = 'eeawesome', db = 'Harmonized_NTL/viirs')
+  night_lights_viirs = updated_db_ee(type = 'eeawesome', db = 'Harmonized_NTL/viirs'),
+  human_built        = updated_db_ee(type = 'eedataset', db = 'JRC/GHSL/P2023A/GHS_BUILT_S')
 )
 
 usethis::use_data(.internal_data, internal = TRUE, overwrite = TRUE)
