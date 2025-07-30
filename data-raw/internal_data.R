@@ -31,7 +31,8 @@ updated_db_ee <- function(type = NULL, db = NULL){
   water_coverage    = updated_db_ee(type = 'mapbiomas', db = NULL),
   geesebal          = updated_db_ee(type = 'eeawesome', db = 'geesebal'),
   ghsl              = updated_db_ee(type = 'eeawesome', db = 'GHS_SMOD'),
-  lst               = updated_db_ee(type = 'eedataset', db = 'MODIS/061/MOD11A1')
+  lst               = updated_db_ee(type = 'eedataset', db = 'MODIS/061/MOD11A1'),
+  co_column         =  updated_db_ee(type = 'eedataset', db = 'COPERNICUS/S5P/OFFL/L3_CO')
 )
 
 usethis::use_data(.internal_data, internal = TRUE, overwrite = TRUE)
