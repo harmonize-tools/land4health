@@ -2,6 +2,7 @@
 
 export(l4h_co_column)
 export(l4h_forest_loss)
+export(l4h_human_built)
 export(l4h_install)
 export(l4h_list_metrics)
 export(l4h_night_lights)

@@ -1,9 +1,9 @@
 #' Extracts built‑up surface area from GHSL Built‑Up Surface dataset
 #'
 #' @description
-#' Retrieves total built‑up surface area (in m² per 100 m grid cell) from the
+#' Retrieves total built‑up surface area (in m2 per 100m grid cell) from the
 #' GHSL Built-Up Surface dataset (GHS‑BUILT‑S R2023A), over a user-defined region and
-#' date range. The dataset is provided in 5‑year epochs (1975–2030) at ~100 m resolution.
+#' date range. The dataset is provided in 5‑year epochs (1975–2030) at ~100m resolution.
 #'
 #' `r lifecycle::badge('experimental')`
 #'
@@ -19,11 +19,10 @@
 #' @return A `sf` or `tibble` with columns `date`, `variable`, and `built_surface_m2`.
 #'
 #' @references
-#' Pesaresi, M. & Politis, P. (2023). GHS‑BUILT‑S R2023A: Global built-up surface grid (1975–2030).
-#' European Commission, Joint Research Centre. \doi{10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA} :contentReference[oaicite:1]{index=1}
-#'
-#' Dataset on Earth Engine: \url{https://developers.google.com/earth-engine/datasets/catalog/JRC_GHSL_P2023A_GHS_BUILT_S} :contentReference[oaicite:2]{index=2}
-#'
+#' - Pesaresi, M. & Politis, P. (2023). GHS‑BUILT‑S R2023A: Red de superficie construida de GHS, derivada de la composición de Sentinel-2 y Landsat, multitemporal (1975–2030). European Commission, Joint Research Centre (JRC). \doi{10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA}. PID: \url{http://data.europa.eu/89h/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea}
+#' - Pesaresi, M., Schiavina, M., Politis, P., Freire, S., Krasnodebska, K., Uhl, J.H., Carioli, A., et al. (2024). Avances en la capa de asentamientos humanos globales a través de la evaluación conjunta de datos de observación de la Tierra y encuestas demográficas. *International Journal of Digital Earth*, 17(1). \doi{10.1080/17538947.2024.2390454}
+#' - Dataset on Google Earth Engine: \url{https://developers.google.com/earth-engine/datasets/catalog/JRC_GHSL_P2023A_GHS_BUILT_S}
+
 #' @examples
 #' \dontrun{
 #' library(land4health)
@@ -140,7 +139,7 @@ l4h_human_built <- function(from, to, region,
       image = coll,
       sf_region = region,
       scale = scale,
-      fun = stat,
+      fun = "sum",
       sf = TRUE,
       quiet = quiet,
       # ...
@@ -164,7 +163,7 @@ l4h_human_built <- function(from, to, region,
       image = coll,
       sf_region = region,
       scale = scale,
-      fun = stat,
+      fun = "sum",
       sf = FALSE,
       quiet = quiet,
       ...

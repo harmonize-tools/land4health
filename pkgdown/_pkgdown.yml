@@ -37,6 +37,7 @@ reference:
    - l4h_forest_loss
    - l4h_night_lights
    - l4h_urban_rural_area
+   - l4h_human_built
 
  - title: 'Accesibility'
    contents:
