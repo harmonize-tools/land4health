@@ -1,5 +1,10 @@
 /* Own styles */
-.badge.lifecycle.lifecycle-estable {
-   color: var(--bs-white);
-   background-color: var(--bs-primary);
+.lifecycle-stable {
+    background-color: #5d5aff;
+    color: var(--bs-white);
+}
+
+.lifecycle-experimental, .lifecycle-deprecated {
+    background-color: #f9fd08;
+    color: var(--bs-black);
 }
