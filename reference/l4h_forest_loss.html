@@ -63,11 +63,11 @@ Forest loss is defined as a <strong>stand-replacement disturbance</strong>, or a
 
 
 <dl><dt id="arg-from">from<a class="anchor" aria-label="anchor" href="#arg-from"></a></dt>
-<dd><p>Integer. The start year of the analysis window, ranging from 2001 to one year before the current year (e.g., if today is 2025, the maximum is 2024).</p></dd>
+<dd><p>Character. Start date in <code>"YYYY-MM-DD"</code> format (only the year is used).</p></dd>
 
 
 <dt id="arg-to">to<a class="anchor" aria-label="anchor" href="#arg-to"></a></dt>
-<dd><p>Integer. The end year of the analysis window, ranging from <code>from</code> to the current year. Must be <code>&gt;= from</code> (e.g., if <code>from = 2010</code>, valid <code>to</code> values are 2010–2025 for current year 2025).</p></dd>
+<dd><p>Character. End date in <code>"YYYY-MM-DD"</code> format (only the year is used).</p></dd>
 
 
 <dt id="arg-region">region<a class="anchor" aria-label="anchor" href="#arg-region"></a></dt>
@@ -126,7 +126,7 @@ DOI: <a href="https://doi.org/10.1126/science.1244693" class="external-link">doi
 <span class="r-in"><span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Run forest loss calculation</span></span></span>
-<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">l4h_forest_loss</span><span class="op">(</span>from <span class="op">=</span> <span class="fl">2005</span>, to <span class="op">=</span> <span class="fl">2007</span>, region <span class="op">=</span> <span class="va">region</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">l4h_forest_loss</span><span class="op">(</span>from <span class="op">=</span> <span class="st">'2005-01-01'</span>, to <span class="op">=</span> <span class="st">'2007-01-01'</span>, region <span class="op">=</span> <span class="va">region</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
