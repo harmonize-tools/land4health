@@ -85,6 +85,7 @@ This example demonstrates how to calculate forest loss between 2005 and
 
 ``` r
 library(geoidep)
+
 # Downloading the adminstration limits of Loreto provinces
 provinces_loreto <- get_provinces(show_progress = FALSE) |>
   subset(nombdep == "LORETO")
@@ -113,8 +114,9 @@ head(result)
 ``` r
 # Visualization with ggplot2
 library(ggplot2)
+#> Warning: package 'ggplot2' was built under R version 4.4.3
 ggplot(data = st_drop_geometry(result), aes(x = date, y = value)) +
-  geom_area(fill = "#DC8665", alpha = 0.8) +
+  geom_area(fill = "#FDE725FF", alpha = 0.8) +
   facet_wrap(~nombprov) +
   theme_minimal()
 ```
@@ -125,7 +127,7 @@ ggplot(data = st_drop_geometry(result), aes(x = date, y = value)) +
 # Spatial visualization
 ggplot(data = result) +
   geom_sf(aes(fill = value), color = NA) +
-  scale_fill_gradientn(name = "Forest loss mean \n(km²)",colours = c("#DC8665","#138086","#534666","#CD7672","#eeb462")) +
+  scale_fill_viridis_c(name = "Forest loss mean \n(km²)") +
   theme_minimal(base_size = 15) +
   facet_wrap(date ~ .)
 ```
@@ -148,7 +150,7 @@ etp_ts |>
   st_drop_geometry() |>
   ggplot(aes(x = date, y = value, col = value)) +
   geom_line() +
-  scale_color_viridis_c("ETP (mm)",option = "mako") +
+  scale_color_viridis_c("ETP (mm)",option = "viridis") +
   theme_minimal() +
   facet_wrap(~nombprov, ncol = 4)
 ```
