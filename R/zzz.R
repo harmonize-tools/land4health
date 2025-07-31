@@ -1,4 +1,4 @@
-.onAttach <- function(libname, pkgname) {
+  .onAttach <- function(libname, pkgname) {
   if (interactive() && !isTRUE(getOption("land4health.shownWelcome"))) {
     # Block 1 : Presentation of Harmonize --------------------------------------
     cli::cli_h1("Welcome to land4health")

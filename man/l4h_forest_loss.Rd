@@ -7,9 +7,9 @@
 l4h_forest_loss(from, to, region, sf = TRUE, quiet = FALSE, force = FALSE, ...)
 }
 \arguments{
-\item{from}{Integer. The start year of the analysis window, ranging from 2001 to one year before the current year (e.g., if today is 2025, the maximum is 2024).}
+\item{from}{Character. Start date in \code{"YYYY-MM-DD"} format (only the year is used).}
 
-\item{to}{Integer. The end year of the analysis window, ranging from \code{from} to the current year. Must be \verb{>= from} (e.g., if \code{from = 2010}, valid \code{to} values are 2010–2025 for current year 2025).}
+\item{to}{Character. End date in \code{"YYYY-MM-DD"} format (only the year is used).}
 
 \item{region}{A spatial object defining the region of interest. Accepts an \code{sf}, \code{sfc}, or \code{SpatVector} object (from the \pkg{terra} package).}
 
@@ -56,7 +56,7 @@ region <- st_as_sf(st_sfc(
 ))
 
 # Run forest loss calculation
-result <- l4h_forest_loss(from = 2005, to = 2007, region = region)
+result <- l4h_forest_loss(from = '2005-01-01', to = '2007-01-01', region = region)
 head(result)
 }
 

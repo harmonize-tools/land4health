@@ -6,8 +6,8 @@
 #'
 #' `r lifecycle::badge('stable')`
 #'
-#' @param from Integer. The start year of the analysis window, ranging from 2001 to one year before the current year (e.g., if today is 2025, the maximum is 2024).
-#' @param to Integer. The end year of the analysis window, ranging from `from` to the current year. Must be `>= from` (e.g., if `from = 2010`, valid `to` values are 2010–2025 for current year 2025).
+#' @param from Character. Start date in `"YYYY-MM-DD"` format (only the year is used).
+#' @param to Character. End date in `"YYYY-MM-DD"` format (only the year is used).
 #' @param region A spatial object defining the region of interest. Accepts an `sf`, `sfc`, or `SpatVector` object (from the \pkg{terra} package).
 #' @param sf Logical. Return result as an `sf` object? Default is `TRUE`.
 #' @param quiet Logical. If `TRUE`, suppress the progress bar (default `FALSE`).
@@ -41,7 +41,7 @@
 #' ))
 #'
 #' # Run forest loss calculation
-#' result <- l4h_forest_loss(from = 2005, to = 2007, region = region)
+#' result <- l4h_forest_loss(from = '2005-01-01', to = '2007-01-01', region = region)
 #' head(result)
 #' }
 #'
@@ -52,26 +52,46 @@
 #'
 #' @export
 l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = FALSE, ...) {
-  # Validate input years
-  if (!is.numeric(from) || nchar(as.character(from)) != 4) {
-    cli::cli_abort("Parameter {.field from} must be a 4-digit numeric year. Got: {.val {from}}")
+
+  # Dataset date range
+  start_year <- as.numeric(.internal_data$hansen$startyear)
+  end_year   <- as.numeric(.internal_data$hansen$endyear)
+
+  # Regex para validar formato "YYYY-MM-DD"
+  valid_date_format <- function(x) grepl("^\\d{4}-\\d{2}-\\d{2}$", x)
+
+  # Verificar formato antes de convertir
+  if (!valid_date_format(from)) {
+    cli::cli_abort("Parameter {.field from} must be in 'YYYY-MM-DD' format. Got: {.val {from}}")
+  }
+  if (!valid_date_format(to)) {
+    cli::cli_abort("Parameter {.field to} must be in 'YYYY-MM-DD' format. Got: {.val {to}}")
   }
 
-  if (!is.numeric(to) || nchar(as.character(to)) != 4) {
-    cli::cli_abort("Parameter {.field to} must be a 4-digit numeric year. Got: {.val {to}}")
+  # Convertir a Date
+  from_date <- as.Date(from)
+  to_date   <- as.Date(to)
+
+  # Validar conversiones
+  if (is.na(from_date)) {
+    cli::cli_abort("Parameter {.field from} could not be parsed as a valid date. Got: {.val {from}}")
+  }
+  if (is.na(to_date)) {
+    cli::cli_abort("Parameter {.field to} could not be parsed as a valid date. Got: {.val {to}}")
   }
 
-  if (from < 2001 || to > 2023) {
-    cli::cli_abort("Years must be in the range 2001 to 2023. Got: {.val {from}} to {.val {to}}")
+  # Validar años en rango permitido
+  from_year <- as.numeric(format(from_date, "%Y"))
+  to_year   <- as.numeric(format(to_date, "%Y"))
+
+  if (from_year < start_year || to_year > end_year) {
+    cli::cli_abort("Years must be in the range {start_year} to {end_year}. Got: {.val {from_year}} to {.val {to_year}}")
   }
 
-  if (to < from) {
+  # Validar orden temporal
+  if (to_date < from_date) {
     cli::cli_abort("Parameter {.field to} must be greater than or equal to {.field from}")
   }
-
-  # Create year range (01, 02, ..., 23)
-  range_date_original <- from:to
-  range_date_processed <- as.integer(substr(as.character(range_date_original), start = 3, stop = 4))
 
   # Define supported classes
   sf_classes <- c("sf", "sfc", "SpatVector")
@@ -80,10 +100,6 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
   if (!inherits(region, sf_classes)) {
     cli::cli_abort("Invalid {.arg region}: must be an {.cls sf}, {.cls sfc}, or {.cls SpatVector} object.")
   }
-
-  # Create binary image with lossyear in range
-  hanse_data_db <- ee$Image(.internal_data$hansen$id)$select("lossyear")
-  hanse_data_img <- hanse_data_db$eq(range_date_processed)
 
   # Check if region is spatially representative
   if (isFALSE(force)) {
@@ -94,6 +110,12 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
   }
 
   # Multiply by pixel area to get area lost in m² → convert to km²
+  range_date_original <- from_year:to_year
+  range_date_processed <- as.integer(substr(as.character(range_date_original), start = 3, stop = 4))
+
+  hanse_data_db <- ee$Image(.internal_data$hansen$id)$select("lossyear")
+  hanse_data_img <- hanse_data_db$eq(range_date_processed)
+
   hansen_data_area <- hanse_data_img$
     multiply(ee$Image$pixelArea())$
     divide(1e6)
