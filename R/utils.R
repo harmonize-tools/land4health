@@ -197,6 +197,10 @@ utils::globalVariables(
     "all_of",
     "tick",
     ".find_python",
-    "date"
+    "date",
+    "value_rural",
+    "suhi",
+    "value_urban",
+    "count"
   )
 )
