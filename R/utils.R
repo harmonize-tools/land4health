@@ -201,6 +201,13 @@ utils::globalVariables(
     "value_rural",
     "suhi",
     "value_urban",
-    "count"
+    "count",
+    "dengue_total",
+    "adm_0_name",
+    "adm_1_name",
+    "adm_2_name",
+    "calendar_end_date",
+    "calendar_start_date",
+    "read.csv"
   )
 )

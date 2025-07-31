@@ -31,6 +31,9 @@ navbar:
       aria-label: Buy me a coffee
 
 reference:
+ - title: 'Vector-borne disease'
+   contents:
+   - l4h_dengue_cases
 
  - title: 'Human intervention'
    contents:
