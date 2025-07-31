@@ -5,7 +5,7 @@
 #' GHSL Built-Up Surface dataset (GHS‑BUILT‑S R2023A), over a user-defined region and
 #' date range. The dataset is provided in 5‑year epochs (1975–2030) at ~100m resolution.
 #'
-#' `r lifecycle::badge('experimental')`
+#' `r lifecycle::badge('stable')`
 #'
 #' @param from Character. Start date in "YYYY-MM-DD" format (only the year is used).
 #' @param to   Character. End date in "YYYY-MM-DD" format (only the year is used).

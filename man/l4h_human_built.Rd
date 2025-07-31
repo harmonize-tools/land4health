@@ -40,7 +40,7 @@ Retrieves total built‑up surface area (in m2 per 100m grid cell) from the
 GHSL Built-Up Surface dataset (GHS‑BUILT‑S R2023A), over a user-defined region and
 date range. The dataset is provided in 5‑year epochs (1975–2030) at ~100m resolution.
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 \dontrun{

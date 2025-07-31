@@ -4,7 +4,7 @@
 #' Retrieves the CO column number density (mol/m2) for a user-defined region and date range
 #' from the Sentinel‑5P TROPOMI OFFLINE L3 CO dataset.
 #'
-#' `r lifecycle::badge('experimental')`
+#' `r lifecycle::badge('stable')`
 #'
 #' @param from Character. Start date in `"YYYY-MM-DD"` format (e.g., `"2020-01-01"`).
 #' @param to Character. End date in `"YYYY-MM-DD"` format (e.g., `"2020-12-31"`).

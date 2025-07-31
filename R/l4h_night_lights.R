@@ -6,7 +6,7 @@
 #' The dataset harmonizes DMSP-OLS (1992‑2013) with VIIRS‑like data (2014‑2021), ensuring
 #' consistent long-term time series at ~1km resolution.
 #'
-#' `r lifecycle::badge('experimental')`
+#' `r lifecycle::badge('stable')`
 #'
 #' @param from Character. Start date in `"YYYY-MM-DD"` format (only the year is used).
 #' @param to Character. End date in `"YYYY-MM-DD"` format (only the year is used).

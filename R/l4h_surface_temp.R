@@ -5,7 +5,7 @@
 #' and time range using the MODIS MOD11A1.061 product. The function supports summarizing
 #' the temperature data over each date using a selected statistic (e.g., mean or median).
 #'
-#' `r lifecycle::badge('experimental')`
+#' `r lifecycle::badge('stable')`
 #'
 #' @param from Character or Date. Start date of the analysis (e.g., `"2020-01-01"`).
 #' @param to Character or Date. End date of the analysis (e.g., `"2020-12-31"`).

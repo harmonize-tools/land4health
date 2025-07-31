@@ -44,7 +44,7 @@ Harmonized Global Night Time Lights dataset for a user-defined region and time r
 The dataset harmonizes DMSP-OLS (1992‑2013) with VIIRS‑like data (2014‑2021), ensuring
 consistent long-term time series at ~1km resolution.
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \examples{
 \dontrun{

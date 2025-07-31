@@ -42,7 +42,7 @@ A \code{sf} or \code{tibble} containing CO column density (mol/m2) by date and g
 Retrieves the CO column number density (mol/m2) for a user-defined region and date range
 from the Sentinel‑5P TROPOMI OFFLINE L3 CO dataset.
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \details{
 The function uses the Earth Engine dataset \code{COPERNICUS/S5P/OFFL/L3_CO} and selects only the

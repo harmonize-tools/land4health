@@ -52,7 +52,7 @@ Extracts daytime or nighttime Land Surface Temperature (LST) for a user-defined 
 and time range using the MODIS MOD11A1.061 product. The function supports summarizing
 the temperature data over each date using a selected statistic (e.g., mean or median).
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
 \details{
 The MODIS MOD11A1.061 product provides daily Land Surface Temperature and quality information.

@@ -4,7 +4,7 @@
 #' Retrieves the travel time raster (in minutes) to the nearest healthcare facility
 #' or populated city, based on the Oxford Global Map of Accessibility datasets.
 #'
-#' `r lifecycle::badge('experimental')`
+#' `r lifecycle::badge('stable')`
 #'
 #' @param region A spatial object defining the region of interest.
 #' Can be an \code{sf}, \code{sfc} object, or a \code{SpatVector} (from the \pkg{terra} package).
