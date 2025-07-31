@@ -10,7 +10,7 @@ authors:
 repo:
   url:
     home: https://github.com/harmonize-tools/land4health
-    source: https://github.com/harmonize-tools/land4health/HEAD
+    source: https://github.com/harmonize-tools/land4health/tree/main
     issues: https://github.com/harmonize-tools/land4health/issues
 
 template:
