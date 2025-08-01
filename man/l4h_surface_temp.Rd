@@ -80,13 +80,23 @@ region <- st_as_sf(st_sfc(
 ))
 
 # Extract daytime LST for 2020
-lst_day <- l4h_surface_temp(from = "2020-01-01", to = "2020-12-31",
-                   region = region, band = "day", stat = "mean")
+lst_day <- l4h_surface_temp(
+  from = "2020-01-01",
+  to = "2020-12-31",
+  region = region,
+  band = "day",
+  stat = "mean")
+
 head(lst_day)
 
 # Extract nighttime LST
-lst_night <- l4h_surface_temp(from = "2020-01-01", to = "2020-12-31",
-                     region = region, band = "night", stat = "mean")
+lst_night <- l4h_surface_temp(
+ from = "2020-01-01",
+ to = "2020-12-31",
+ region = region,
+ band = "night",
+ stat = "mean")
+
 head(lst_night)
 }
 

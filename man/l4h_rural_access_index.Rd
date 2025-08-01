@@ -63,12 +63,33 @@ The \code{fun} parameter only applies when \code{weighted = TRUE}. It will be ig
 \examples{
 \dontrun{
 library(land4health)
+library(sf)
 ee_Initialize()
+
+# Define a bounding box region in Ucayali, Peru
+region <- st_as_sf(st_sfc(
+  st_polygon(list(matrix(c(
+    -74.1, -4.4,
+    -74.1, -3.7,
+    -73.2, -3.7,
+    -73.2, -4.4,
+    -74.1, -4.4
+  ), ncol = 2, byrow = TRUE))),
+
 # Population-weighted RAI
-l4h_rural_access_index(region, weighted = TRUE, fun = "sum", sf = TRUE)
+rai_w <- l4h_rural_access_index(
+    region = region,
+    weighted = TRUE,
+    fun = "sum",
+    sf = TRUE)
+head(rai_w)
 
 # Area-based RAI
-l4h_rural_access_index(region, weighted = FALSE, sf = TRUE)
+rai <- l4h_rural_access_index(
+    region = region,
+    weighted = FALSE,
+    sf = TRUE)
+head(rai)
 }
 
 }

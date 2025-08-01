@@ -32,7 +32,8 @@
 #' ))), crs = 4326))
 #'
 #' co_data <- l4h_co_column(
-#'   from = "2022-01-01", to = "2022-12-31",
+#'   from = "2022-01-01",
+#'   to = "2022-12-31",
 #'   region = region,
 #'   stat = "mean"
 #' )

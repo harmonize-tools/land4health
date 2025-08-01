@@ -26,18 +26,55 @@
 #' \code{sf} or \code{tibble} object.
 #'
 #' @examples
+#' @examples
 #' \dontrun{
-#' # Travel time to nearest hospital (all transport modes)
-#' l4h_travel_time(my_shape)
+#' library(land4health)
+#' library(sf)
+#' ee_Initialize()
 #'
-#' # Travel time to hospital (walking only)
-#' l4h_travel_time(my_shape, transport_mode = "walking_only")
+#' # Define a bounding-box region in Ucayali, Peru
+#' region <- st_as_sf(
+#'   st_sfc(
+#'     st_polygon(list(matrix(
+#'       c(
+#'         -74.1, -4.4,
+#'         -74.1, -3.7,
+#'         -73.2, -3.7,
+#'         -73.2, -4.4,
+#'         -74.1, -4.4
+#'       ), ncol = 2, byrow = TRUE
+#'     )))
+#'   ),
+#'   crs = 4326
+#' )
 #'
-#' # Travel time to cities
-#' l4h_travel_time(my_shape, destination = "cities")
+#' # Travel time to nearest healthcare facility (all modes)
+#' result_hosp_all <- l4h_travel_time(region = region)
+#' head(result_hosp_all)
 #'
-#' # Mean travel time to cities
-#' l4h_travel_time(my_shape, destination = "cities", reducer = ee$Reducer$mean())
+#' # Travel time to nearest healthcare facility (walking only)
+#' result_hosp_walk <- l4h_travel_time(
+#'   region        = region,
+#'   destination   = "healthcare",
+#'   transport_mode = "walking_only")
+#'
+#' head(result_hosp_walk)
+#'
+#' # Mean travel time to nearest cities (mixed modes)
+#' result_city_mean <- l4h_travel_time(
+#'   region      = region,
+#'   destination = "cities",
+#'   fun         = "mean")
+#'
+#' head(result_city_mean)
+#'
+#' # Sum of travel time to nearest cities
+#' result_city_sum <- l4h_travel_time(
+#'   region      = region,
+#'   destination = "cities",
+#'   fun         = "sum")
+#'
+#' head(result_city_sum)
 #' }
 #'
 #' @references

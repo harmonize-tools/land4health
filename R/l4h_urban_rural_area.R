@@ -36,15 +36,24 @@
 #' ))
 #'
 #' # Extract surface area of urban category (in km2)
-#' urban_area <- l4h_urban_area(category = "urban", region = region)
+#' urban_area <- l4h_urban_area(
+#'   category = "urban",
+#'   region = region)
+#'
 #' head(urban_area)
 #'
 #' # Extract surface area of rural category (in km2)
-#' rural_area <- l4h_urban_area(category = "rural", region = region)
+#' rural_area <- l4h_urban_area(
+#'   category = "rural",
+#'   region = region)
+#'
 #' head(rural_area)
 #'
 #' # Extract total surface area (urban + rural) (in km2)
-#' all_area <- l4h_urban_area(category = "all", region = region)
+#' all_area <- l4h_urban_area(
+#'   category = "all",
+#'   region = region)
+#'
 #' head(all_area)
 #' }
 #'

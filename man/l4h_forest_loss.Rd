@@ -56,7 +56,11 @@ region <- st_as_sf(st_sfc(
 ))
 
 # Run forest loss calculation
-result <- l4h_forest_loss(from = '2005-01-01', to = '2007-01-01', region = region)
+result <- l4h_forest_loss(
+  from = '2005-01-01',
+  to = '2007-01-01',
+  region = region)
+
 head(result)
 }
 
