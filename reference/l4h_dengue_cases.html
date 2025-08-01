@@ -134,12 +134,16 @@ a ready-to-use tibble.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># National extract for Peru in 2019</span></span></span>
 <span class="r-in"><span><span class="va">df_nat</span> <span class="op">&lt;-</span> <span class="fu">l4h_dengue_cases</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  from <span class="op">=</span> <span class="st">"2019-01-01"</span>, to <span class="op">=</span> <span class="st">"2019-12-31"</span>,</span></span>
-<span class="r-in"><span>  data_type <span class="op">=</span> <span class="st">"national"</span>, region <span class="op">=</span> <span class="st">"paho"</span>,</span></span>
-<span class="r-in"><span>  country <span class="op">=</span> <span class="st">"peru"</span>, cache <span class="op">=</span> <span class="cn">TRUE</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span>  from <span class="op">=</span> <span class="st">"2019-01-01"</span>,</span></span>
+<span class="r-in"><span>  to <span class="op">=</span> <span class="st">"2019-12-31"</span>,</span></span>
+<span class="r-in"><span>  data_type <span class="op">=</span> <span class="st">"national"</span>,</span></span>
+<span class="r-in"><span>  region <span class="op">=</span> <span class="st">"paho"</span>,</span></span>
+<span class="r-in"><span>  country <span class="op">=</span> <span class="st">"peru"</span>,</span></span>
+<span class="r-in"><span>  cache <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>  quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing national extract for Pan-American Region and PERU</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading National_extract_PAHO_V1_3.zip...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; GET /assets/National_extract_PAHO_V1_3.zip HTTP/2</span>
@@ -154,20 +158,20 @@ a ready-to-use tibble.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">last-modified</span>: Fri, 30 May 2025 15:17:43 GMT</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">access-control-allow-origin</span>: *</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">etag</span>: "6839cc17-32781"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">expires</span>: Thu, 31 Jul 2025 17:17:19 GMT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">expires</span>: Fri, 01 Aug 2025 15:09:00 GMT</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">cache-control</span>: max-age=600</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-proxy-cache</span>: MISS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-github-request-id</span>: A2A7:4CFE6:7C0111:8045FB:688BA2C6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-github-request-id</span>: E1B9:2A0690:33DFA6:38C6EF:688CD633</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">accept-ranges</span>: bytes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">age</span>: 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">date</span>: Thu, 31 Jul 2025 17:07:19 GMT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">date</span>: Fri, 01 Aug 2025 14:59:00 GMT</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">via</span>: 1.1 varnish</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-served-by</span>: cache-pao-kpao1770058-PAO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-served-by</span>: cache-chi-kigq8000050-CHI</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-cache</span>: MISS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-cache-hits</span>: 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-timer</span>: S1753981639.161662,VS0,VE125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-timer</span>: S1754060340.307337,VS0,VE89</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">vary</span>: Accept-Encoding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-fastly-request-id</span>: a01963c02ea0e1e8b2944d51febdbadd4fe65e82</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-fastly-request-id</span>: e87d82a466dde6a05747a7bdd36f0cce7a03ea39</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">content-length</span>: 206721</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting CSV...</span>
@@ -175,6 +179,7 @@ a ready-to-use tibble.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting CSV...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading National_extract_PAHO_V1_3.zip...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing national extract for Pan-American Region and PERU</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_nat</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 17</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   adm_0_name state area  full_name ISO_A0 FAO_GAUL_code RNE_iso_code IBGE_code</span>
@@ -191,10 +196,14 @@ a ready-to-use tibble.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Spatial extract for Brazil first half 2021</span></span></span>
 <span class="r-in"><span><span class="va">df_spat</span> <span class="op">&lt;-</span> <span class="fu">l4h_dengue_cases</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  from <span class="op">=</span> <span class="st">"2021-01-01"</span>, to <span class="op">=</span> <span class="st">"2021-12-31"</span>,</span></span>
-<span class="r-in"><span>  data_type <span class="op">=</span> <span class="st">"spatial"</span>, region <span class="op">=</span> <span class="st">"Pan-American Region"</span>,</span></span>
-<span class="r-in"><span>  country <span class="op">=</span> <span class="st">"brazil"</span>, cache <span class="op">=</span> <span class="cn">TRUE</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span>  from <span class="op">=</span> <span class="st">"2021-01-01"</span>,</span></span>
+<span class="r-in"><span>  to <span class="op">=</span> <span class="st">"2021-12-31"</span>,</span></span>
+<span class="r-in"><span>  data_type <span class="op">=</span> <span class="st">"spatial"</span>,</span></span>
+<span class="r-in"><span>  region <span class="op">=</span> <span class="st">"Pan-American Region"</span>,</span></span>
+<span class="r-in"><span>  country <span class="op">=</span> <span class="st">"brazil"</span>,</span></span>
+<span class="r-in"><span> cache <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span> quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_spat</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 17</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   adm_0_name state area  full_name ISO_A0 FAO_GAUL_code RNE_iso_code IBGE_code</span>
@@ -206,10 +215,13 @@ a ready-to-use tibble.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Temporal extract for Argentina in 2020</span></span></span>
 <span class="r-in"><span><span class="va">df_temp</span> <span class="op">&lt;-</span> <span class="fu">l4h_dengue_cases</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  from <span class="op">=</span> <span class="st">"2020-01-01"</span>, to <span class="op">=</span> <span class="st">"2020-12-31"</span>,</span></span>
-<span class="r-in"><span>  data_type <span class="op">=</span> <span class="st">"temporal"</span>, region <span class="op">=</span> <span class="st">"PAHO"</span>,</span></span>
-<span class="r-in"><span>  country <span class="op">=</span> <span class="st">"Argentina"</span>, cache <span class="op">=</span> <span class="cn">TRUE</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span>  from <span class="op">=</span> <span class="st">"2020-01-01"</span>,</span></span>
+<span class="r-in"><span>  to <span class="op">=</span> <span class="st">"2020-12-31"</span>,</span></span>
+<span class="r-in"><span>  data_type <span class="op">=</span> <span class="st">"temporal"</span>,</span></span>
+<span class="r-in"><span>  region <span class="op">=</span> <span class="st">"PAHO"</span>,</span></span>
+<span class="r-in"><span>  country <span class="op">=</span> <span class="st">"Argentina"</span>,</span></span>
+<span class="r-in"><span>  cache <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>  quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing temporal extract for Pan-American Region and ARGENTINA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading Temporal_extract_PAHO_V1_3.zip...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; GET /assets/Temporal_extract_PAHO_V1_3.zip HTTP/2</span>
@@ -225,20 +237,20 @@ a ready-to-use tibble.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">last-modified</span>: Fri, 30 May 2025 15:17:43 GMT</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">access-control-allow-origin</span>: *</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">etag</span>: "6839cc17-42ba8f"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">expires</span>: Thu, 31 Jul 2025 17:17:24 GMT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">expires</span>: Fri, 01 Aug 2025 15:09:05 GMT</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">cache-control</span>: max-age=600</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-proxy-cache</span>: MISS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-github-request-id</span>: B40C:244A2E:7962C1:7D9A2C:688BA2CC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-github-request-id</span>: 6D21:F0ABB:346178:3949CC:688CD637</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">accept-ranges</span>: bytes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">age</span>: 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">date</span>: Thu, 31 Jul 2025 17:07:24 GMT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">date</span>: Fri, 01 Aug 2025 14:59:05 GMT</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">via</span>: 1.1 varnish</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-served-by</span>: cache-pao-kpao1770058-PAO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-served-by</span>: cache-chi-kigq8000050-CHI</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-cache</span>: MISS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-cache-hits</span>: 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-timer</span>: S1753981644.420260,VS0,VE191</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-timer</span>: S1754060345.088310,VS0,VE185</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">vary</span>: Accept-Encoding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-fastly-request-id</span>: 352d8166f0b329cc159a4befccd224b88bfd640d</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-fastly-request-id</span>: 792a831046b533c6b69fbcd8e09b6486fe758945</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">content-length</span>: 4373135</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting CSV...</span>
@@ -246,6 +258,7 @@ a ready-to-use tibble.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting CSV...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading Temporal_extract_PAHO_V1_3.zip...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing temporal extract for Pan-American Region and ARGENTINA</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_temp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 17</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   adm_0_name state   area  full_name ISO_A0 FAO_GAUL_code RNE_iso_code IBGE_code</span>
