@@ -26,7 +26,6 @@
 #' \code{sf} or \code{tibble} object.
 #'
 #' @examples
-#' @examples
 #' \dontrun{
 #' library(land4health)
 #' library(sf)
