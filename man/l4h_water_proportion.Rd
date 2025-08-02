@@ -47,8 +47,26 @@ The values are expressed as a decimal ratio between 0 and 1 (e.g., 0.25 means 25
 }
 \examples{
 \dontrun{
+library(land4health)
+ee_Initialize()
+
+# Define region as a bounding box (Ucayali, Peru)
+region <- st_as_sf(st_sfc(
+  st_polygon(list(matrix(c(
+    -74.1, -4.4,
+    -74.1, -3.7,
+    -73.2, -3.7,
+    -73.2, -4.4,
+    -74.1, -4.4
+  ), ncol = 2, byrow = TRUE))),
+  crs = 4326
+))
+
 # Extract water coverage between 2000 and 2020
-l4h_water_proportion(from = 2000, to = 2020, region = my_basin)
+l4h_water_proportion(
+  from = 2000,
+  to = 2020,
+  region = region)
 }
 
 }
