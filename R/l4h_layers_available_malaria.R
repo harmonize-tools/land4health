@@ -50,7 +50,7 @@ l4h_layers_available_malaria <- function(year    = NULL,
                                          measure = NULL) {
   logger <- getOption("l4h.ows4r.logger", NULL)
   client <- suppressMessages(ows4R::WCSClient$new(
-    url            = "https://data.malariaatlas.org/geoserver/Malaria/ows",
+    url            = .internal_data$malaria_atlas,
     serviceVersion = "2.0.1",
     logger         = logger
   ))
