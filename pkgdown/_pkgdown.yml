@@ -34,6 +34,7 @@ reference:
  - title: 'Vector-borne disease'
    contents:
    - l4h_dengue_cases
+   - l4h_layers_available_malaria
 
  - title: 'Human intervention'
    contents:

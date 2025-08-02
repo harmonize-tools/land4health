@@ -33,7 +33,8 @@ Imports:
     sf,
     reticulate,
     glue,
-    httr2
+    httr2,
+    ows4R
 Suggests: 
    rmarkdown,
    knitr
