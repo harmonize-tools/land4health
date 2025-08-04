@@ -48,34 +48,50 @@ as \code{sf}/\code{tibble} objects in R.
 }
 \examples{
 \dontrun{
-## Assume `my_roi` is an sf polygon covering your area of interest.
-## 1. Eight-day composites (8 days)
-##    2020-01-01 → 2020-12-31, reducer = "mean"
+
+library(land4health)
+ee_Initialize()
+
+# Define a bounding box region in Ucayali, Peru
+region <- st_as_sf(st_sfc(
+  st_polygon(list(matrix(c(
+    -74.1, -4.4,
+    -74.1, -3.7,
+    -73.2, -3.7,
+    -73.2, -4.4,
+    -74.1, -4.4
+  ), ncol = 2, byrow = TRUE))),
+  crs = 4326
+))
+
+# 1. Eight-day composites (8 days)
+# 2020-01-01 → 2020-12-31, reducer = "mean"
 sebal_8d <- l4h_sebal_modis(
   from   = "2020-01-01",
   to     = "2020-12-31",
-  region = my_roi
+  region = region
 )
 
-## 2. Monthly means
-##    Same period, but aggregated to calendar months
+# 2. Monthly means
+# Same period, but aggregated to calendar months
 sebal_month <- l4h_sebal_modis(
   from   = "2020-01-01",
   to     = "2020-12-31",
   by     = "month",
-  region = my_roi
+  region = region
 )
 
-## 3. Annual evapotranspiration
-##    2015 → 2023, one value per year
+# 3. Annual evapotranspiration
+# 2015 → 2023, one value per year
 sebal_annual <- l4h_sebal_modis(
   from   = 2015,
   to     = 2023,
   by     = "annual",
   fun    = "sum",
-  region = my_roi,
+  region = region,
   sf     = FALSE
 )
+
 }
 }
 \references{

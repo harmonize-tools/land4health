@@ -201,6 +201,19 @@ references:
   year: '2025'
   doi: 10.32614/CRAN.package.httr2
 - type: software
+  title: ows4R
+  abstract: 'ows4R: Interface to OGC Web-Services (OWS)'
+  notes: Imports
+  url: https://eblondel.github.io/ows4R/
+  repository: https://CRAN.R-project.org/package=ows4R
+  authors:
+  - family-names: Blondel
+    given-names: Emmanuel
+    email: emmanuel.blondel1@gmail.com
+    orcid: https://orcid.org/0000-0002-5870-5762
+  year: '2025'
+  doi: 10.32614/CRAN.package.ows4R
+- type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
   notes: Suggests

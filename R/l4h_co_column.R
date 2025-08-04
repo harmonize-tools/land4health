@@ -26,11 +26,19 @@
 #' library(land4health)
 #' ee_Initialize()
 #'
-#' region <- st_as_sf(st_sfc(st_polygon(list(matrix(
-#'    c(-74.1, -4.4, -74.1, -3.7, -73.2, -3.7, -73.2, -4.4, -74.1, -4.4),
-#'    ncol = 2, byrow = TRUE
-#' ))), crs = 4326))
+#' # Define region as a bounding box polygon
+#' region <- st_as_sf(st_sfc(
+#'   st_polygon(list(matrix(c(
+#'     -74.1, -4.4,
+#'     -74.1, -3.7,
+#'     -73.2, -3.7,
+#'     -73.2, -4.4,
+#'     -74.1, -4.4
+#'   ), ncol = 2, byrow = TRUE))),
+#'   crs = 4326
+#' )
 #'
+#' # Run CO column calculation
 #' co_data <- l4h_co_column(
 #'   from = "2022-01-01",
 #'   to = "2022-12-31",
