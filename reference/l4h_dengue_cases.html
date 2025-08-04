@@ -57,12 +57,12 @@ a ready-to-use tibble.
 
     <div class="ref-description section level2">
     <p>A global database of publicly available dengue case data.
-The OpenDengue Project provides a harmonized, open-access repository of dengue surveillance data
+<strong>The OpenDengue Project</strong> provides a harmonized, open-access repository of dengue surveillance data
 from national ministries of health across Latin America and other regions. This function enables
 programmatic access to weekly case counts by downloading, caching, unzipping, reading, and filtering
 national, spatial, or temporal extracts by region and country for a specified date range, returning
 a ready-to-use tibble.</p>
-<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="figures/lifecycle-experimental.svg" alt="[Experimental]"></a></p>
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="figures/lifecycle-stable.svg" alt="[Stable]"></a></p>
     </div>
 
     <div class="section level2">
@@ -73,7 +73,6 @@ a ready-to-use tibble.</p>
 <span>  data_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"temporal"</span>, <span class="st">"spatial"</span>, <span class="st">"national"</span><span class="op">)</span>,</span>
 <span>  region <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  country <span class="op">=</span> <span class="st">"Peru"</span>,</span>
-<span>  version <span class="op">=</span> <span class="st">"V1_3"</span>,</span>
 <span>  cache <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -110,10 +109,6 @@ a ready-to-use tibble.</p>
 <dd><p>Country name (case-insensitive, e.g., <code>"peru"</code>), matched against <code>adm_0_name</code>.</p></dd>
 
 
-<dt id="arg-version">version<a class="anchor" aria-label="anchor" href="#arg-version"></a></dt>
-<dd><p>Version tag, e.g. <code>"V1_3"</code>.</p></dd>
-
-
 <dt id="arg-cache">cache<a class="anchor" aria-label="anchor" href="#arg-cache"></a></dt>
 <dd><p>Logical. If <code>TRUE</code>, caches the downloaded ZIP locally.</p></dd>
 
@@ -127,6 +122,14 @@ a ready-to-use tibble.</p>
     <p>A tibble with columns: <code>date_start</code>, <code>date_end</code>, <code>cases</code>, <code>state</code>, <code>area</code>, plus other fields.</p>
     </div>
     <div class="section level2">
+    <h2 id="credits">Credits<a class="anchor" aria-label="anchor" href="#credits"></a></h2>
+
+
+<p><img src="figures/innovalab-badges.svg" alt=""></p><ul><li><p>Developed by the Innovalab Team <a href="mailto:info@innovalab.com">info@innovalab.com</a></p></li>
+<li><p>Innovalab: Pioneering geospatial health analytics and open‐science tools.</p></li>
+<li><p>Stay connected: follow us on Twitter <a href="https://twitter.com/InnovalabGeo" class="external-link">@InnovalabGeo</a></p></li>
+</ul></div>
+    <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Morales, I. et al. (2024). OpenDengue: Harmonized dengue surveillance data for Latin America.</p>
     </div>
@@ -134,7 +137,6 @@ a ready-to-use tibble.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># National extract for Peru in 2019</span></span></span>
 <span class="r-in"><span><span class="va">df_nat</span> <span class="op">&lt;-</span> <span class="fu">l4h_dengue_cases</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  from <span class="op">=</span> <span class="st">"2019-01-01"</span>,</span></span>
@@ -146,38 +148,6 @@ a ready-to-use tibble.</p>
 <span class="r-in"><span>  quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing national extract for Pan-American Region and PERU</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading National_extract_PAHO_V1_3.zip...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; GET /assets/National_extract_PAHO_V1_3.zip HTTP/2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; <span style="font-weight: bold;">Host</span>: opendengue.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; <span style="font-weight: bold;">User-Agent</span>: httr2/1.2.1 r-curl/6.4.0 libcurl/8.5.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; <span style="font-weight: bold;">Accept</span>: */*</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; <span style="font-weight: bold;">Accept-Encoding</span>: deflate, gzip, br, zstd</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- HTTP/2 200 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">server</span>: GitHub.com</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">content-type</span>: application/x-zip-compressed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">last-modified</span>: Fri, 30 May 2025 15:17:43 GMT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">access-control-allow-origin</span>: *</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">etag</span>: "6839cc17-32781"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">expires</span>: Sat, 02 Aug 2025 18:27:35 GMT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">cache-control</span>: max-age=600</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-proxy-cache</span>: MISS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-github-request-id</span>: 6B72:3A6910:240C292:264713C:688E563F</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">accept-ranges</span>: bytes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">date</span>: Sat, 02 Aug 2025 18:18:12 GMT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">via</span>: 1.1 varnish</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">age</span>: 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-served-by</span>: cache-chi-kigq8000043-CHI</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-cache</span>: HIT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-cache-hits</span>: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-timer</span>: S1754158693.634667,VS0,VE36</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">vary</span>: Accept-Encoding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-fastly-request-id</span>: 3b92e1d4ac47159dcd0ceed11b97d9270de8f634</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">content-length</span>: 206721</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting CSV...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading National_extract_PAHO_V1_3.csv...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting CSV...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading National_extract_PAHO_V1_3.zip...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing national extract for Pan-American Region and PERU</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_nat</span><span class="op">)</span></span></span>
@@ -202,7 +172,10 @@ a ready-to-use tibble.</p>
 <span class="r-in"><span>  region <span class="op">=</span> <span class="st">"Pan-American Region"</span>,</span></span>
 <span class="r-in"><span>  country <span class="op">=</span> <span class="st">"brazil"</span>,</span></span>
 <span class="r-in"><span> cache <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span> quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span> quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing spatial extract for Pan-American Region and BRAZIL</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading Spatial_extract_PAHO_V1_3.zip...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing spatial extract for Pan-American Region and BRAZIL</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_spat</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 17</span></span>
@@ -224,39 +197,6 @@ a ready-to-use tibble.</p>
 <span class="r-in"><span>  quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing temporal extract for Pan-American Region and ARGENTINA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading Temporal_extract_PAHO_V1_3.zip...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; GET /assets/Temporal_extract_PAHO_V1_3.zip HTTP/2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; <span style="font-weight: bold;">Host</span>: opendengue.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; <span style="font-weight: bold;">User-Agent</span>: httr2/1.2.1 r-curl/6.4.0 libcurl/8.5.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; <span style="font-weight: bold;">Accept</span>: */*</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; <span style="font-weight: bold;">Accept-Encoding</span>: deflate, gzip, br, zstd</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -&gt; </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- HTTP/2 200 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">server</span>: GitHub.com</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">content-type</span>: application/x-zip-compressed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-origin-cache</span>: HIT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">last-modified</span>: Fri, 30 May 2025 15:17:43 GMT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">access-control-allow-origin</span>: *</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">etag</span>: "6839cc17-42ba8f"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">expires</span>: Sat, 02 Aug 2025 18:27:41 GMT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">cache-control</span>: max-age=600</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-proxy-cache</span>: MISS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-github-request-id</span>: 6B42:3500FD:24F7098:2732017:688E5645</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">accept-ranges</span>: bytes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">date</span>: Sat, 02 Aug 2025 18:18:17 GMT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">via</span>: 1.1 varnish</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">age</span>: 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-served-by</span>: cache-chi-kigq8000043-CHI</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-cache</span>: HIT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-cache-hits</span>: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-timer</span>: S1754158697.154395,VS0,VE64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">vary</span>: Accept-Encoding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">x-fastly-request-id</span>: 93993b6b83d61f33a8fc58bc6b85664ffdea8a3d</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- <span style="font-weight: bold;">content-length</span>: 4373135</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;- </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting CSV...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading Temporal_extract_PAHO_V1_3.csv...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting CSV...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading Temporal_extract_PAHO_V1_3.zip...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing temporal extract for Pan-American Region and ARGENTINA</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_temp</span><span class="op">)</span></span></span>
