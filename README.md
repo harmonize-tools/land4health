@@ -10,6 +10,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![R-CMD-check](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml)
 [![HTML-Docs](https://img.shields.io/badge/docs-HTML-informational)](https://harmonize-tools.github.io/land4health/)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+[![test-coverage.yaml](https://github.com/harmonize-tools/land4health/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/harmonize-tools/land4health/actions/workflows/test-coverage.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/harmonize-tools/land4health/graph/badge.svg)](https://app.codecov.io/gh/harmonize-tools/land4health)
 <!-- badges: end -->
