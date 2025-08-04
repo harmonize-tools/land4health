@@ -101,6 +101,7 @@ l4h_list_metrics <- function(category = NULL,
       print(df, row.names = FALSE)
     }
   }
+  invisible(df)
 }
 
 
