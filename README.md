@@ -10,6 +10,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![R-CMD-check](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml)
 [![HTML-Docs](https://img.shields.io/badge/docs-HTML-informational)](https://harmonize-tools.github.io/land4health/)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+[![Codecov test
+coverage](https://codecov.io/gh/harmonize-tools/land4health/graph/badge.svg)](https://app.codecov.io/gh/harmonize-tools/land4health)
 <!-- badges: end -->
 
 Calculate and extract remote sensing metrics for spatial health analysis
@@ -92,7 +94,7 @@ provinces_loreto <- get_provinces(show_progress = FALSE) |>
 
 # Run forest loss calculation
 result <- provinces_loreto |>
-  l4h_forest_loss(from = 2005, to = 2020, sf = TRUE)
+  l4h_forest_loss(from = '2005-01-01', to = '2020-01-01', sf = TRUE)
 head(result)
 #> Simple feature collection with 6 features and 11 fields
 #> Geometry type: MULTIPOLYGON
@@ -114,7 +116,6 @@ head(result)
 ``` r
 # Visualization with ggplot2
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 4.4.3
 ggplot(data = st_drop_geometry(result), aes(x = date, y = value)) +
   geom_area(fill = "#FDE725FF", alpha = 0.8) +
   facet_wrap(~nombprov) +
