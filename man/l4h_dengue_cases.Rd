@@ -13,7 +13,6 @@ l4h_dengue_cases(
   data_type = c("temporal", "spatial", "national"),
   region = NULL,
   country = "Peru",
-  version = "V1_3",
   cache = TRUE,
   quiet = FALSE
 )
@@ -32,8 +31,6 @@ l4h_dengue_cases(
 
 \item{country}{Country name (case-insensitive, e.g., \code{"peru"}), matched against \code{adm_0_name}.}
 
-\item{version}{Version tag, e.g. \code{"V1_3"}.}
-
 \item{cache}{Logical. If \code{TRUE}, caches the downloaded ZIP locally.}
 
 \item{quiet}{Logical. If \code{TRUE}, prints progress status via \strong{cli}.}
@@ -43,17 +40,26 @@ A tibble with columns: \code{date_start}, \code{date_end}, \code{cases}, \code{s
 }
 \description{
 A global database of publicly available dengue case data.
-The OpenDengue Project provides a harmonized, open-access repository of dengue surveillance data
+\strong{The OpenDengue Project} provides a harmonized, open-access repository of dengue surveillance data
 from national ministries of health across Latin America and other regions. This function enables
 programmatic access to weekly case counts by downloading, caching, unzipping, reading, and filtering
 national, spatial, or temporal extracts by region and country for a specified date range, returning
 a ready-to-use tibble.
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
 }
+\section{Credits}{
+
+\if{html}{\figure{innovalab-badges.svg}}
+\itemize{
+\item Developed by the Innovalab Team \href{mailto:info@innovalab.com}{info@innovalab.com}
+\item Innovalab: Pioneering geospatial health analytics and open‐science tools.
+\item Stay connected: follow us on Twitter \href{https://twitter.com/InnovalabGeo}{@InnovalabGeo}
+}
+}
+
 \examples{
 \donttest{
-
 # National extract for Peru in 2019
 df_nat <- l4h_dengue_cases(
   from = "2019-01-01",
@@ -74,7 +80,7 @@ df_spat <- l4h_dengue_cases(
   region = "Pan-American Region",
   country = "brazil",
  cache = TRUE,
- quiet = FALSE)
+ quiet = TRUE)
 
 head(df_spat)
 

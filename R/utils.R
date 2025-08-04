@@ -208,6 +208,8 @@ utils::globalVariables(
     "adm_2_name",
     "calendar_end_date",
     "calendar_start_date",
-    "read.csv"
+    "read.csv",
+    "version",
+    "file_name"
   )
 )
