@@ -32,42 +32,42 @@
 #'  - Innovalab: Pioneering geospatial health analytics and open‐science tools.
 #'  - Stay connected: follow us on Twitter [@InnovalabGeo](https://twitter.com/InnovalabGeo)
 #' @examples
-#' \donttest{
-#' # National extract for Peru in 2019
-#' df_nat <- l4h_dengue_cases(
-#'   from = "2019-01-01",
-#'   to = "2019-12-31",
-#'   data_type = "national",
-#'   region = "paho",
-#'   country = "peru",
-#'   cache = TRUE,
-#'   quiet = TRUE)
+#' if (interactive()) {
+#'   # National extract for Peru in 2019
+#'   df_nat <- l4h_dengue_cases(
+#'     from = "2019-01-01",
+#'     to = "2019-12-31",
+#'     data_type = "national",
+#'     region = "paho",
+#'     country = "peru",
+#'     cache = TRUE,
+#'     quiet = TRUE
+#'   )
+#'   head(df_nat)
 #'
-#' head(df_nat)
+#'   # Spatial extract for Brazil
+#'   df_spat <- l4h_dengue_cases(
+#'     from = "2021-01-01",
+#'     to = "2021-12-31",
+#'     data_type = "spatial",
+#'     region = "Pan-American Region",
+#'     country = "brazil",
+#'     cache = TRUE,
+#'     quiet = TRUE
+#'   )
+#'   head(df_spat)
 #'
-#' # Spatial extract for Brazil first half 2021
-#' df_spat <- l4h_dengue_cases(
-#'   from = "2021-01-01",
-#'   to = "2021-12-31",
-#'   data_type = "spatial",
-#'   region = "Pan-American Region",
-#'   country = "brazil",
-#'  cache = TRUE,
-#'  quiet = TRUE)
-#'
-#' head(df_spat)
-#'
-#' # Temporal extract for Argentina in 2020
-#' df_temp <- l4h_dengue_cases(
-#'   from = "2020-01-01",
-#'   to = "2020-12-31",
-#'   data_type = "temporal",
-#'   region = "PAHO",
-#'   country = "Argentina",
-#'   cache = TRUE,
-#'   quiet = TRUE)
-#'
-#' head(df_temp)
+#'   # Temporal extract for Argentina
+#'   df_temp <- l4h_dengue_cases(
+#'     from = "2020-01-01",
+#'     to = "2020-12-31",
+#'     data_type = "temporal",
+#'     region = "PAHO",
+#'     country = "Argentina",
+#'     cache = TRUE,
+#'     quiet = TRUE
+#'   )
+#'   head(df_temp)
 #' }
 #' @export
 l4h_dengue_cases <- function(
