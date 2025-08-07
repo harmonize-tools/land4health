@@ -6,7 +6,7 @@
 #' methodology (Stage I) to the GHS-POP R2023A and GHS-BUILT-S R2023A layers. The function summarizes
 #' areas by category and year over the specified region.
 #'
-#' `r lifecycle::badge('experimental')`
+#' `r lifecycle::badge('questioning')`
 #
 #' @param region An `sf` object defining the region of interest.
 #' @param category Character. Settlement category to extract: `"urban"`, `"rural"`, or `"all"`.

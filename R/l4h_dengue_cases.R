@@ -23,14 +23,16 @@
 #'
 #' @return A tibble with columns: `date_start`, `date_end`, `cases`, `state`, `area`, plus other fields.
 #'
-#' @source Data from the [OpenDengue Project](https://opendengue.org).
-#' @references Morales, I. et al. (2024). OpenDengue: Harmonized dengue surveillance data for Latin America.
-#'
 #' @section Credits:
 #' ![](innovalab-badges.svg)
 #'  - Developed by the Innovalab Team <info@innovalab.com>
 #'  - Innovalab: Pioneering geospatial health analytics and open‐science tools.
 #'  - Stay connected: follow us on Twitter [@InnovalabGeo](https://twitter.com/InnovalabGeo)
+#'
+#' @source Data from the [OpenDengue Project](https://opendengue.org).
+#' @references Morales, I. et al. (2024). OpenDengue: Harmonized dengue surveillance data for Latin America.
+#' @seealso Other similar or related functions: [l4h_layers_available_malaria()]
+#'
 #' @examples
 #' if (interactive()) {
 #'   # National extract for Peru in 2019

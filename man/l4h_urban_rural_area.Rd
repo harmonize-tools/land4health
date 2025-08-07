@@ -38,7 +38,7 @@ Calculates the surface area (in km2) of urban, rural, or all settlement classes 
 methodology (Stage I) to the GHS-POP R2023A and GHS-BUILT-S R2023A layers. The function summarizes
 areas by category and year over the specified region.
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#questioning}{\figure{lifecycle-questioning.svg}{options: alt='[Questioning]'}}}{\strong{[Questioning]}}
 }
 \examples{
 \dontrun{

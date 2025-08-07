@@ -100,3 +100,6 @@ if (interactive()) {
 \references{
 Morales, I. et al. (2024). OpenDengue: Harmonized dengue surveillance data for Latin America.
 }
+\seealso{
+Other similar or related functions: \code{\link[=l4h_layers_available_malaria]{l4h_layers_available_malaria()}}
+}
