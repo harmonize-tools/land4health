@@ -136,83 +136,43 @@ a ready-to-use tibble.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="co"># National extract for Peru in 2019</span></span></span>
-<span class="r-in"><span><span class="va">df_nat</span> <span class="op">&lt;-</span> <span class="fu">l4h_dengue_cases</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  from <span class="op">=</span> <span class="st">"2019-01-01"</span>,</span></span>
-<span class="r-in"><span>  to <span class="op">=</span> <span class="st">"2019-12-31"</span>,</span></span>
-<span class="r-in"><span>  data_type <span class="op">=</span> <span class="st">"national"</span>,</span></span>
-<span class="r-in"><span>  region <span class="op">=</span> <span class="st">"paho"</span>,</span></span>
-<span class="r-in"><span>  country <span class="op">=</span> <span class="st">"peru"</span>,</span></span>
-<span class="r-in"><span>  cache <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>  quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing national extract for Pan-American Region and PERU</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading National_extract_PAHO_V1_3.zip...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing national extract for Pan-American Region and PERU</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># National extract for Peru in 2019</span></span></span>
+<span class="r-in"><span>  <span class="va">df_nat</span> <span class="op">&lt;-</span> <span class="fu">l4h_dengue_cases</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    from <span class="op">=</span> <span class="st">"2019-01-01"</span>,</span></span>
+<span class="r-in"><span>    to <span class="op">=</span> <span class="st">"2019-12-31"</span>,</span></span>
+<span class="r-in"><span>    data_type <span class="op">=</span> <span class="st">"national"</span>,</span></span>
+<span class="r-in"><span>    region <span class="op">=</span> <span class="st">"paho"</span>,</span></span>
+<span class="r-in"><span>    country <span class="op">=</span> <span class="st">"peru"</span>,</span></span>
+<span class="r-in"><span>    cache <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>    quiet <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_nat</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_nat</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 17</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   adm_0_name state area  full_name ISO_A0 FAO_GAUL_code RNE_iso_code IBGE_code</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> PERU       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    PERU      PER          1<span style="text-decoration: underline;">011</span>442 PER          <span style="color: #BB0000;">NA</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> PERU       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    PERU      PER          1<span style="text-decoration: underline;">011</span>442 PER          <span style="color: #BB0000;">NA</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> PERU       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    PERU      PER          1<span style="text-decoration: underline;">011</span>442 PER          <span style="color: #BB0000;">NA</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> PERU       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    PERU      PER          1<span style="text-decoration: underline;">011</span>442 PER          <span style="color: #BB0000;">NA</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> PERU       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    PERU      PER          1<span style="text-decoration: underline;">011</span>442 PER          <span style="color: #BB0000;">NA</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> PERU       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    PERU      PER          1<span style="text-decoration: underline;">011</span>442 PER          <span style="color: #BB0000;">NA</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 9 more variables: date_start &lt;chr&gt;, date_end &lt;chr&gt;, Year &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cases &lt;dbl&gt;, case_definition_standardised &lt;chr&gt;, S_res &lt;chr&gt;, T_res &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   UUID &lt;chr&gt;, region &lt;chr&gt;</span></span>
+<span class="r-in"><span>  <span class="co"># Spatial extract for Brazil</span></span></span>
+<span class="r-in"><span>  <span class="va">df_spat</span> <span class="op">&lt;-</span> <span class="fu">l4h_dengue_cases</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    from <span class="op">=</span> <span class="st">"2021-01-01"</span>,</span></span>
+<span class="r-in"><span>    to <span class="op">=</span> <span class="st">"2021-12-31"</span>,</span></span>
+<span class="r-in"><span>    data_type <span class="op">=</span> <span class="st">"spatial"</span>,</span></span>
+<span class="r-in"><span>    region <span class="op">=</span> <span class="st">"Pan-American Region"</span>,</span></span>
+<span class="r-in"><span>    country <span class="op">=</span> <span class="st">"brazil"</span>,</span></span>
+<span class="r-in"><span>    cache <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>    quiet <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_spat</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Spatial extract for Brazil first half 2021</span></span></span>
-<span class="r-in"><span><span class="va">df_spat</span> <span class="op">&lt;-</span> <span class="fu">l4h_dengue_cases</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  from <span class="op">=</span> <span class="st">"2021-01-01"</span>,</span></span>
-<span class="r-in"><span>  to <span class="op">=</span> <span class="st">"2021-12-31"</span>,</span></span>
-<span class="r-in"><span>  data_type <span class="op">=</span> <span class="st">"spatial"</span>,</span></span>
-<span class="r-in"><span>  region <span class="op">=</span> <span class="st">"Pan-American Region"</span>,</span></span>
-<span class="r-in"><span>  country <span class="op">=</span> <span class="st">"brazil"</span>,</span></span>
-<span class="r-in"><span> cache <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span> quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing spatial extract for Pan-American Region and BRAZIL</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading Spatial_extract_PAHO_V1_3.zip...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing spatial extract for Pan-American Region and BRAZIL</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_spat</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 17</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   adm_0_name state area  full_name ISO_A0 FAO_GAUL_code RNE_iso_code IBGE_code</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> BRAZIL     <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>    BRAZIL    BRA               37 BRA          <span style="color: #BB0000;">NA</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 9 more variables: date_start &lt;chr&gt;, date_end &lt;chr&gt;, Year &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cases &lt;dbl&gt;, case_definition_standardised &lt;chr&gt;, S_res &lt;chr&gt;, T_res &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   UUID &lt;chr&gt;, region &lt;chr&gt;</span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Temporal extract for Argentina in 2020</span></span></span>
-<span class="r-in"><span><span class="va">df_temp</span> <span class="op">&lt;-</span> <span class="fu">l4h_dengue_cases</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  from <span class="op">=</span> <span class="st">"2020-01-01"</span>,</span></span>
-<span class="r-in"><span>  to <span class="op">=</span> <span class="st">"2020-12-31"</span>,</span></span>
-<span class="r-in"><span>  data_type <span class="op">=</span> <span class="st">"temporal"</span>,</span></span>
-<span class="r-in"><span>  region <span class="op">=</span> <span class="st">"PAHO"</span>,</span></span>
-<span class="r-in"><span>  country <span class="op">=</span> <span class="st">"Argentina"</span>,</span></span>
-<span class="r-in"><span>  cache <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>  quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing temporal extract for Pan-American Region and ARGENTINA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading Temporal_extract_PAHO_V1_3.zip...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Preparing temporal extract for Pan-American Region and ARGENTINA</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_temp</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 17</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   adm_0_name state   area  full_name ISO_A0 FAO_GAUL_code RNE_iso_code IBGE_code</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> ARGENTINA  <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    ARGENTINA ARG               12 ARG          <span style="color: #BB0000;">NA</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ARGENTINA  SALTA   ANTA  ARGENTIN… ARG             <span style="text-decoration: underline;">4</span>765 AR-A         <span style="color: #BB0000;">NA</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ARGENTINA  MISION… CAND… ARGENTIN… ARG             <span style="text-decoration: underline;">4</span>722 AR-N         <span style="color: #BB0000;">NA</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ARGENTINA  MISION… CAPI… ARGENTIN… ARG             <span style="text-decoration: underline;">4</span>723 AR-N         <span style="color: #BB0000;">NA</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ARGENTINA  ENTRE … DIAM… ARGENTIN… ARG             <span style="text-decoration: underline;">4</span>621 AR-E         <span style="color: #BB0000;">NA</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> ARGENTINA  MISION… ELDO… ARGENTIN… ARG             <span style="text-decoration: underline;">4</span>725 AR-N         <span style="color: #BB0000;">NA</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 9 more variables: date_start &lt;chr&gt;, date_end &lt;chr&gt;, Year &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cases &lt;dbl&gt;, case_definition_standardised &lt;chr&gt;, S_res &lt;chr&gt;, T_res &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   UUID &lt;chr&gt;, region &lt;chr&gt;</span></span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span>  <span class="co"># Temporal extract for Argentina</span></span></span>
+<span class="r-in"><span>  <span class="va">df_temp</span> <span class="op">&lt;-</span> <span class="fu">l4h_dengue_cases</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    from <span class="op">=</span> <span class="st">"2020-01-01"</span>,</span></span>
+<span class="r-in"><span>    to <span class="op">=</span> <span class="st">"2020-12-31"</span>,</span></span>
+<span class="r-in"><span>    data_type <span class="op">=</span> <span class="st">"temporal"</span>,</span></span>
+<span class="r-in"><span>    region <span class="op">=</span> <span class="st">"PAHO"</span>,</span></span>
+<span class="r-in"><span>    country <span class="op">=</span> <span class="st">"Argentina"</span>,</span></span>
+<span class="r-in"><span>    cache <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>    quiet <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_temp</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
