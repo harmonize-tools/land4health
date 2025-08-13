@@ -25,9 +25,14 @@
 #'
 #' @section Credits:
 #' ![](innovalab-badges.svg)
-#'  - Developed by the Innovalab Team <info@innovalab.com>
+#'  - Developed by the Innovalab Team, for more information send a email to <imt.innovlab@oficinas-upch.pe>
 #'  - Innovalab: Pioneering geospatial health analytics and open‐science tools.
-#'  - Stay connected: follow us on Twitter [@InnovalabGeo](https://twitter.com/InnovalabGeo)
+#'  - Follow us on :
+#'    - X [@InnovalabGeo](https://twitter.com/InnovalabGeo)
+#'    - Linkdein [@InnovalabGeo](https://twitter.com/InnovalabGeo)
+#'    - Instagram [@InnovalabGeo](https://twitter.com/InnovalabGeo)
+#'    - Facebook [@InnovalabGeo](https://twitter.com/InnovalabGeo)
+#'    - Spotify [@InnovalabGeo](https://twitter.com/InnovalabGeo)
 #'
 #' @source Data from the [OpenDengue Project](https://opendengue.org).
 #' @references Morales, I. et al. (2024). OpenDengue: Harmonized dengue surveillance data for Latin America.

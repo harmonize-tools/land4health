@@ -52,9 +52,16 @@ a ready-to-use tibble.
 
 \if{html}{\figure{innovalab-badges.svg}}
 \itemize{
-\item Developed by the Innovalab Team \href{mailto:info@innovalab.com}{info@innovalab.com}
+\item Developed by the Innovalab Team, for more information send a email to \href{mailto:imt.innovlab@oficinas-upch.pe}{imt.innovlab@oficinas-upch.pe}
 \item Innovalab: Pioneering geospatial health analytics and open‐science tools.
-\item Stay connected: follow us on Twitter \href{https://twitter.com/InnovalabGeo}{@InnovalabGeo}
+\item Follow us on :
+\itemize{
+\item X \href{https://twitter.com/InnovalabGeo}{@InnovalabGeo}
+\item Linkdein \href{https://twitter.com/InnovalabGeo}{@InnovalabGeo}
+\item Instagram \href{https://twitter.com/InnovalabGeo}{@InnovalabGeo}
+\item Facebook \href{https://twitter.com/InnovalabGeo}{@InnovalabGeo}
+\item Spotify \href{https://twitter.com/InnovalabGeo}{@InnovalabGeo}
+}
 }
 }
 

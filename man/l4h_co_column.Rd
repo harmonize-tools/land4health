@@ -36,7 +36,7 @@ l4h_co_column(
 \item{...}{Arguments passed to \code{rgee::ee_extract}.}
 }
 \value{
-A \code{sf} or \code{tibble} containing CO column density (mol/m2) by date and geometry.
+A \code{sf} or \code{tibble} containing CO column density (\strong{mol/m2}) by date and geometry.
 }
 \description{
 Retrieves the CO column number density (mol/m2) for a user-defined region and date range

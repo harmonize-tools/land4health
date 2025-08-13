@@ -6,16 +6,16 @@
 #'
 #' `r lifecycle::badge('stable')`
 #'
-#' @param from Character. Start date in `"YYYY-MM-DD"` format (e.g., `"2020-01-01"`).
-#' @param to Character. End date in `"YYYY-MM-DD"` format (e.g., `"2020-12-31"`).
+#' @param from   Character. Start date in `"YYYY-MM-DD"` format (e.g., `"2020-01-01"`).
+#' @param to     Character. End date in `"YYYY-MM-DD"` format (e.g., `"2020-12-31"`).
 #' @param region A spatial object (`sf`, `sfc`, or `SpatVector`) defining the region of interest.
-#' @param stat Character. Summary statistic to apply (`"mean"`, `"median"`, `"max"`, etc.).
-#' @param scale Numeric. Nominal scale in meters. Default is `1113`.
-#' @param sf Logical. Return result as `sf`? Default: `TRUE`.
-#' @param quiet Logical. Suppress progress messages? Default: `FALSE`.
-#' @param force Logical. Force extract without spatial check? Default: `FALSE`.
-#' @param ... Arguments passed to `rgee::ee_extract`.
-#' @return A `sf` or `tibble` containing CO column density (mol/m2) by date and geometry.
+#' @param stat   Character. Summary statistic to apply (`"mean"`, `"median"`, `"max"`, etc.).
+#' @param scale  Numeric. Nominal scale in meters. Default is `1113`.
+#' @param sf     Logical. Return result as `sf`? Default: `TRUE`.
+#' @param quiet  Logical. Suppress progress messages? Default: `FALSE`.
+#' @param force  Logical. Force extract without spatial check? Default: `FALSE`.
+#' @param ...        Arguments passed to `rgee::ee_extract`.
+#' @return A `sf` or `tibble` containing CO column density (__mol/m2__) by date and geometry.
 #'
 #' @details
 #' The function uses the Earth Engine dataset `COPERNICUS/S5P/OFFL/L3_CO` and selects only the
