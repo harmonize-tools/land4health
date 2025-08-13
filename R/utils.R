@@ -100,12 +100,13 @@ extract_ee_with_progress <- function(
     sf,
     quiet = FALSE,
     via = "getInfo",
-    ...) {
-
-  # Split sf into list of single-row features
+    ...
+) {
   geoms <- split_sf(sf_region)
 
-  # Initialize progress bar if not quiet
+  # Por defecto, no hace nada
+  tick <- function() {}
+
   if (!quiet) {
     pb <- progress::progress_bar$new(
       format     = "\033[32mExtracting data\033[0m \033[34m[:bar]\033[0m :percent | :current/:total | ETA: :eta",
@@ -115,7 +116,10 @@ extract_ee_with_progress <- function(
       complete   = "=",
       incomplete = "-"
     )
+    # Ahora tick avanza la barra
+    tick <- function() pb$tick()
   }
+
   results <- lapply(geoms, function(feat) {
     out <- suppressPackageStartupMessages(rgee::ee_extract(
       x     = image,
@@ -127,14 +131,14 @@ extract_ee_with_progress <- function(
       quiet = TRUE,
       ...
     ))
-    pb$tick()
+    tick()   # <- nunca falla: o hace pb$tick() o no hace nada
     out
   })
 
-  # Combine into one data.frame
-  final_df <- dplyr::bind_rows(results)
-  return(final_df)
+  if (length(results) == 0) return(dplyr::tibble())
+  dplyr::bind_rows(results)
 }
+
 
 #' @keywords internal
 #' @noRd
