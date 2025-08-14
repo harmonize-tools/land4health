@@ -18,6 +18,17 @@
 #'         a compact preview (max 10 rows) is printed before the tibble is
 #'         returned.
 #'
+#' @section Credits:
+#' [![](innovalab.svg)](https://www.innovalab.info/)
+#'
+#' Pioneering geospatial health analytics and open‐science tools.
+#' Developed by the Innovalab Team, for more information send a email to <imt.innovlab@oficinas-upch.pe>
+#'
+#' Follow us on :
+#'  - ![](linkedin-innova.png)[Innovalab Linkedin](https://twitter.com/InnovalabGeo), ![](twitter-innova.png)[Innovalab X](https://x.com/innovalab_imt)
+#'  - ![](facebook-innova.png)[Innovalab facebook](https://www.facebook.com/imt.innovalab), ![](instagram-innova.png)[Innovalab instagram](https://www.instagram.com/innovalab_imt/)
+#'  - ![](tiktok-innova.png)[Innovalab tiktok](https://twitter.com/InnovalabGeo), ![](spotify-innova.png)[Innovalab Podcast](https://www.innovalab.info/podcast)
+#'
 #' @examples
 #' ## All examples keep `open_in_browser = FALSE` to avoid side-effects
 #' ## during automated checks.

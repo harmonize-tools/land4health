@@ -23,6 +23,17 @@
 #' - Values range from **1** to **n**, where 1 corresponds to the year **2001** and n to the year **2000 + n**.
 #' - A value of **0** indicates **no forest loss** detected.
 #'
+#' @section Credits:
+#' [![](innovalab.svg)](https://www.innovalab.info/)
+#'
+#' Pioneering geospatial health analytics and open‐science tools.
+#' Developed by the Innovalab Team, for more information send a email to <imt.innovlab@oficinas-upch.pe>
+#'
+#' Follow us on :
+#'  - ![](linkedin-innova.png)[Innovalab Linkedin](https://twitter.com/InnovalabGeo), ![](twitter-innova.png)[Innovalab X](https://x.com/innovalab_imt)
+#'  - ![](facebook-innova.png)[Innovalab facebook](https://www.facebook.com/imt.innovalab), ![](instagram-innova.png)[Innovalab instagram](https://www.instagram.com/innovalab_imt/)
+#'  - ![](tiktok-innova.png)[Innovalab tiktok](https://twitter.com/InnovalabGeo), ![](spotify-innova.png)[Innovalab Podcast](https://www.innovalab.info/podcast)
+#'
 #' @examples
 #' \dontrun{
 #' library(land4health)

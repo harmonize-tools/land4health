@@ -34,6 +34,21 @@ If \code{open_in_browser = TRUE}, all matching URLs are opened in your default
 browser; for safety you \strong{must} supply at least one filter, and—if more than
 five tabs would open—you are asked to confirm in interactive sessions.
 }
+\section{Credits}{
+
+\href{https://www.innovalab.info/}{\if{html}{\figure{innovalab.svg}}}
+
+Pioneering geospatial health analytics and open‐science tools.
+Developed by the Innovalab Team, for more information send a email to \href{mailto:imt.innovlab@oficinas-upch.pe}{imt.innovlab@oficinas-upch.pe}
+
+Follow us on :
+\itemize{
+\item \figure{linkedin-innova.png}\href{https://twitter.com/InnovalabGeo}{Innovalab Linkedin}, \figure{twitter-innova.png}\href{https://x.com/innovalab_imt}{Innovalab X}
+\item \figure{facebook-innova.png}\href{https://www.facebook.com/imt.innovalab}{Innovalab facebook}, \figure{instagram-innova.png}\href{https://www.instagram.com/innovalab_imt/}{Innovalab instagram}
+\item \figure{tiktok-innova.png}\href{https://twitter.com/InnovalabGeo}{Innovalab tiktok}, \figure{spotify-innova.png}\href{https://www.innovalab.info/podcast}{Innovalab Podcast}
+}
+}
+
 \examples{
 ## All examples keep `open_in_browser = FALSE` to avoid side-effects
 ## during automated checks.

@@ -62,6 +62,21 @@ Only pixels where the quality control bits 0–1 equal \code{00} (high quality) 
 LST values are originally stored as Kelvin multiplied by 0.02. This function automatically
 converts them to degrees Celsius using the formula: \verb{LST = (value × 0.02) - 273.15}.
 }
+\section{Credits}{
+
+\href{https://www.innovalab.info/}{\if{html}{\figure{innovalab.svg}}}
+
+Pioneering geospatial health analytics and open‐science tools.
+Developed by the Innovalab Team, for more information send a email to \href{mailto:imt.innovlab@oficinas-upch.pe}{imt.innovlab@oficinas-upch.pe}
+
+Follow us on :
+\itemize{
+\item \figure{linkedin-innova.png}\href{https://twitter.com/InnovalabGeo}{Innovalab Linkedin}, \figure{twitter-innova.png}\href{https://x.com/innovalab_imt}{Innovalab X}
+\item \figure{facebook-innova.png}\href{https://www.facebook.com/imt.innovalab}{Innovalab facebook}, \figure{instagram-innova.png}\href{https://www.instagram.com/innovalab_imt/}{Innovalab instagram}
+\item \figure{tiktok-innova.png}\href{https://twitter.com/InnovalabGeo}{Innovalab tiktok}, \figure{spotify-innova.png}\href{https://www.innovalab.info/podcast}{Innovalab Podcast}
+}
+}
+
 \examples{
 \dontrun{
 library(land4health)

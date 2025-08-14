@@ -20,6 +20,16 @@
 #' @details
 #' The function uses the Earth Engine dataset `COPERNICUS/S5P/OFFL/L3_CO` and selects only the
 #' `"CO_column_number_density"` band. It supports summarization using a reducer statistic per image.
+#' @section Credits:
+#' [![](innovalab.svg)](https://www.innovalab.info/)
+#'
+#' Pioneering geospatial health analytics and open‐science tools.
+#' Developed by the Innovalab Team, for more information send a email to <imt.innovlab@oficinas-upch.pe>
+#'
+#' Follow us on :
+#'  - ![](linkedin-innova.png)[Innovalab Linkedin](https://twitter.com/InnovalabGeo), ![](twitter-innova.png)[Innovalab X](https://x.com/innovalab_imt)
+#'  - ![](facebook-innova.png)[Innovalab facebook](https://www.facebook.com/imt.innovalab), ![](instagram-innova.png)[Innovalab instagram](https://www.instagram.com/innovalab_imt/)
+#'  - ![](tiktok-innova.png)[Innovalab tiktok](https://twitter.com/InnovalabGeo), ![](spotify-innova.png)[Innovalab Podcast](https://www.innovalab.info/podcast)
 #'
 #' @examples
 #' \dontrun{
