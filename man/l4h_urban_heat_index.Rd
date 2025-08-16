@@ -60,9 +60,9 @@ Developed by the Innovalab Team, for more information send a email to \href{mail
 
 Follow us on :
 \itemize{
-\item \figure{linkedin-innova.png}\href{https://twitter.com/InnovalabGeo}{Innovalab Linkedin}, \figure{twitter-innova.png}\href{https://x.com/innovalab_imt}{Innovalab X}
+\item \figure{linkedin-innova.png}\href{https://www.linkedin.com/company/innovalab-imt}{Innovalab Linkedin}, \figure{twitter-innova.png}\href{https://x.com/innovalab_imt}{Innovalab X}
 \item \figure{facebook-innova.png}\href{https://www.facebook.com/imt.innovalab}{Innovalab facebook}, \figure{instagram-innova.png}\href{https://www.instagram.com/innovalab_imt/}{Innovalab instagram}
-\item \figure{tiktok-innova.png}\href{https://twitter.com/InnovalabGeo}{Innovalab tiktok}, \figure{spotify-innova.png}\href{https://www.innovalab.info/podcast}{Innovalab Podcast}
+\item \figure{tiktok-innova.png}\href{https://www.tiktok.com/@innovalab_imt}{Innovalab tiktok}, \figure{spotify-innova.png}\href{https://www.innovalab.info/podcast}{Innovalab Podcast}
 }
 }
 

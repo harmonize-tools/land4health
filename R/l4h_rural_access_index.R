@@ -45,9 +45,9 @@
 #' Developed by the Innovalab Team, for more information send a email to <imt.innovlab@oficinas-upch.pe>
 #'
 #' Follow us on :
-#'  - ![](linkedin-innova.png)[Innovalab Linkedin](https://twitter.com/InnovalabGeo), ![](twitter-innova.png)[Innovalab X](https://x.com/innovalab_imt)
+#'  - ![](linkedin-innova.png)[Innovalab Linkedin](https://www.linkedin.com/company/innovalab-imt), ![](twitter-innova.png)[Innovalab X](https://x.com/innovalab_imt)
 #'  - ![](facebook-innova.png)[Innovalab facebook](https://www.facebook.com/imt.innovalab), ![](instagram-innova.png)[Innovalab instagram](https://www.instagram.com/innovalab_imt/)
-#'  - ![](tiktok-innova.png)[Innovalab tiktok](https://twitter.com/InnovalabGeo), ![](spotify-innova.png)[Innovalab Podcast](https://www.innovalab.info/podcast)
+#'  - ![](tiktok-innova.png)[Innovalab tiktok](https://www.tiktok.com/@innovalab_imt), ![](spotify-innova.png)[Innovalab Podcast](https://www.innovalab.info/podcast)
 #'
 #' @references
 #' GEE Community Catalog: \url{https://gee-community-catalog.org/projects/rai/}

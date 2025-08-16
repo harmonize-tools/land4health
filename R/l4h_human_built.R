@@ -25,9 +25,9 @@
 #' Developed by the Innovalab Team, for more information send a email to <imt.innovlab@oficinas-upch.pe>
 #'
 #' Follow us on :
-#'  - ![](linkedin-innova.png)[Innovalab Linkedin](https://twitter.com/InnovalabGeo), ![](twitter-innova.png)[Innovalab X](https://x.com/innovalab_imt)
+#'  - ![](linkedin-innova.png)[Innovalab Linkedin](https://www.linkedin.com/company/innovalab-imt), ![](twitter-innova.png)[Innovalab X](https://x.com/innovalab_imt)
 #'  - ![](facebook-innova.png)[Innovalab facebook](https://www.facebook.com/imt.innovalab), ![](instagram-innova.png)[Innovalab instagram](https://www.instagram.com/innovalab_imt/)
-#'  - ![](tiktok-innova.png)[Innovalab tiktok](https://twitter.com/InnovalabGeo), ![](spotify-innova.png)[Innovalab Podcast](https://www.innovalab.info/podcast)
+#'  - ![](tiktok-innova.png)[Innovalab tiktok](https://www.tiktok.com/@innovalab_imt), ![](spotify-innova.png)[Innovalab Podcast](https://www.innovalab.info/podcast)
 #'
 #' @references
 #' - Pesaresi, M. & Politis, P. (2023). GHS‑BUILT‑S R2023A: Red de superficie construida de GHS, derivada de la composición de Sentinel-2 y Landsat, multitemporal (1975–2030). European Commission, Joint Research Centre (JRC). \doi{10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA}. PID: \url{http://data.europa.eu/89h/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea}
