@@ -1,3 +1,27 @@
+# land4health 0.2.0
+
+New release with new functions and some wrapper for extract data to [**Malaria-Atlas**](https://malariaatlas.org/) and [**OpenDengue**](https://opendengue.org/) projects.
+
+### Vector-borne disease
+-  ✔ add `l4h_dengue_cases()`
+-  ✔ add `l4h_layers_available_malaria()`
+
+###  Human intervention
+- ✔ add `l4h_night_lights()`
+- ✔ add `l4h_urban_rural_area()`
+- ✔ add `l4h_human_built()`
+
+### Environment
+- ✔ add `l4h_co_column()`
+- ✔ add `l4h_urban_heat_index()`
+
+### Climate
+- ✔ add `l4h_surface_temp()`
+
+### Others
+- New badge to give credit to Innovalab ![](https://raw.githubusercontent.com/harmonize-tools/land4health/ef742944b79b0523b16f3f3fd26e7388ca4e9551/man/figures/innovalab.svg). 
+ 
+
 # land4health 0.1.0
 
 This initial release of **land4health** lays the foundation for the core 
