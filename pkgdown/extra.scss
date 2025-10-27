@@ -1,36 +1,4 @@
 // Define custom colors
-$stable-bg: #0000ff;         // azul
-$experimental-bg: #f9fd08;   // amarillo
-$questioning-bg: #F4A020;    // naranja
-$deprecated-bg: #FF5C5C;     // rojo claro
-
-$white: #ffffff;
-$black: #000000;
-
-// Lifecycle badge styles
-.lifecycle {
-  &-stable {
-    background-color: $stable-bg;
-    color: $white;
-  }
-
-  &-experimental {
-    background-color: $experimental-bg;
-    color: $black;
-  }
-
-  &-questioning {
-    background-color: $questioning-bg;
-    color: $black;
-  }
-
-  &-deprecated {
-    background-color: $deprecated-bg;
-    color: $white;
-  }
-}
-
-
 // Font family
 @import url('https://fonts.googleapis.com/css?family=Raleway|Ubuntu+Mono');
 
