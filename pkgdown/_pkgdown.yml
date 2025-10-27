@@ -56,6 +56,7 @@ reference:
 
  - title: 'Climate'
    contents:
+   - l4h_terra_climate
    - l4h_sebal_modis
    - l4h_surface_temp
 
