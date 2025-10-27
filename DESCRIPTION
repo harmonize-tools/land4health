@@ -15,7 +15,7 @@ URL:
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 SystemRequirements: Python (>= 3.7.0)
 Config/reticulate:
   list(
@@ -29,7 +29,7 @@ Imports:
     lifecycle,
     tidyr,
     dplyr,
-    rgee,
+    rgee (== 1.1.7),
     sf,
     reticulate,
     glue,

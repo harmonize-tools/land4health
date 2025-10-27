@@ -214,6 +214,8 @@ utils::globalVariables(
     "calendar_start_date",
     "read.csv",
     "version",
-    "file_name"
+    "file_name",
+    "band_info",
+    "adist"
   )
 )
