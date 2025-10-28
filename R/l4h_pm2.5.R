@@ -1,42 +1,51 @@
-#' Extract TerraClimate variables (monthly) from Google Earth Engine
+#' Extract Global PM2.5 (monthly) from Google Earth Engine
 #'
 #' @description
-#' Extracts one or more **TerraClimate** variables for a user-defined region
-#' and time range from the Earth Engine dataset **IDAHO_EPSCOR/TERRACLIMATE**.
-#' The function summarizes each monthly image over the region using a chosen
-#' statistic (e.g., mean/median), applies the appropriate **scale factors** to
-#' return values in native units, and returns an `sf` or `tibble`.
+#' Extracts monthly **PM2.5** concentrations for a user-defined region
+#' and time range from the Earth Engine Community Catalog dataset
+#' **Global PM2.5 (V6GL02 CNN)**. Each monthly image is summarized over the
+#' region using a selected statistic (e.g., mean/median). The function returns
+#' either an `sf` or a `tibble`, with dates normalized to the **first day
+#' of each month**.
 #'
 #' `r lifecycle::badge('experimental')`
 #'
 #' @param from Character or Date. Start date (`"YYYY-MM-DD"`).
 #' @param to Character or Date. End date (`"YYYY-MM-DD"`).
-#' @param band Character vector. One or more TerraClimate variables to extract.
-#'   Supported codes: `"aet"`, `"def"`, `"pdsi"`, `"pet"`, `"pr"`, `"ro"`,
-#'   `"soil"`, `"srad"`, `"swe"`, `"tmmn"`, `"tmmx"`, `"vap"`, `"vpd"`, `"vs"`.
-#'   Scale factors and units (aplicadas automáticamente):
-#'   - `aet` (mm, ×0.1), `def` (mm, ×0.1), `pdsi` (unitless, ×0.01),
-#'   - `pet` (mm, ×0.1), `pr` (mm, ×1), `ro` (mm, ×1), `soil` (mm, ×0.1),
-#'   - `srad` (W/m², ×0.1), `swe` (mm, ×1),
-#'   - `tmmn` (°C, ×0.1), `tmmx` (°C, ×0.1),
-#'   - `vap` (kPa, ×0.001), `vpd` (kPa, ×0.01), `vs` (m/s, ×0.01).
+#' @param band Character (kept for API symmetry). The dataset exposes a single band,
+#'   currently `'b1'` (PM\eqn{_{2.5}} in µg/m\eqn{^3}). The function selects `'b1'`
+#'   internally; this argument is ignored.
 #' @param region Spatial object defining the region of interest.
 #'   Accepts an `sf`, `sfc`, or `SpatVector` object.
 #' @param scale Numeric. Reducer scale in meters. Default `1000`.
-#'   (TerraClimate pixel ≈ **4638 m**; usar ~4500–5000 m suele ser adecuado.)
+#'   (Use a value close to the dataset's native grid; typical choices are a few km.)
 #' @param stat Character. Summary statistic per image per region. One of
-#'   `"mean"`, `"median"`, `"min"`, `"max"`. Passed internally to the extractor.
+#'   `"mean"`, `"median"`, `"min"`, `"max"`.
 #' @param sf Logical. If `TRUE`, returns an `sf`; if `FALSE`, returns a `tibble`.
 #'   Default `TRUE`.
 #' @param quiet Logical. If `TRUE`, suppresses progress bars/messages. Default `FALSE`.
-#' @param force Logical. If `TRUE`, fuerza la extracción aun si hay caché. Default `TRUE`.
+#' @param force Logical. If `TRUE`, forces extraction even if cached results exist.
+#'   Default `TRUE`.
 #' @param ... Additional arguments passed to the extraction backend.
 #'
 #' @return An `sf` or `tibble` with columns:
-#'   - `date` (Date, primer día del mes),
-#'   - `variable` (character, código TerraClimate),
-#'   - `value` (numérico, en unidades nativas ya escaladas),
+#'   - `date` (`Date`) — first day of the month,
+#'   - `variable` (`character`) — fixed as `"pm2.5"`,
+#'   - `value` (`numeric`) — PM2.5 in **µg/m\eqn{^3}**,
 #'   plus geometry if `sf = TRUE`, and any attributes from `region`.
+#'
+#' @details
+#' This function queries the Global PM2.5 monthly product (V6GL02, CNN‐based fusion)
+#' from the **GEE Community Catalog** and aggregates it over the provided region and dates.
+#' The dataset provides monthly surface PM2.5 concentrations (µg/m\eqn{^3}).
+#' Values are returned in native units (no extra scale factor is applied here).
+#'
+#' **Notes**
+#' - Dates are validated (`YYYY-MM-DD`) and constrained to the dataset range used
+#'   in this package (default: 2000–2019).
+#' - Output dates are normalized to the first day of each month found in the bands.
+#' - The function expects a reasonable `scale` relative to the dataset resolution
+#'   to avoid oversampling or excessive smoothing.
 #'
 #' @section Credits:
 #' [![](innovalab.svg)](https://www.innovalab.info/)
@@ -65,40 +74,31 @@
 #'     -74.1, -4.4
 #'   ), ncol = 2, byrow = TRUE))), crs = 4326))
 #'
-#' # Precipitación mensual (mm) 2020, promedio espacial
-#' out_pr <- l4h_terra_climate(
-#'   from = "2020-01-01",
-#'   to   = "2020-12-31",
-#'   band = "pr",
+#' # PM2.5 mensual (µg/m^3) para 2010, promedio espacial
+#' out_pm <- l4h_pm2.5(
+#'   from   = "2010-01-01",
+#'   to     = "2010-12-31",
+#'   band   = "b1",        # ignorado (única banda)
 #'   region = region,
-#'   stat = "mean",
-#'   scale = 5000
+#'   stat   = "mean",
+#'   scale  = 3000
 #' )
-#' head(out_pr)
-#'
-#' # Múltiples variables: Tmax (°C) + VPD (kPa)
-#' out_multi <- l4h_terra_climate(
-#'   from = "2019-01-01",
-#'   to   = "2019-12-31",
-#'   band = c("tmmx","vpd"),
-#'   region = region,
-#'   stat = "median",
-#'   scale = 5000
-#' )
+#' head(out_pm)
 #' }
 #'
 #' @references
-#' Abatzoglou, J. T., Dobrowski, S. Z., Parks, S. A., & Hegewisch, K. C. (2018).
-#' TerraClimate, a high-resolution global dataset of monthly climate and climatic
-#' water balance from 1958–2015. *Scientific Data*, 5, 170191.
-#' \doi{10.1038/sdata.2017.191}
+#' GEE Community Catalog – Global PM2.5 (V6GL02 CNN).
+#' \url{https://gee-community-catalog.org/projects/global_pm25/}
 #'
 #' @export
-l4h_terra_climate <- function(from, to, band, region, scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = TRUE, ...){
+
+
+
+l4h_pm2.5 <- function(from, to, band, region, scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = TRUE, ...){
 
   # Dataset date range
-  start_year <- as.numeric(.internal_data$terraclimate$startyear)
-  end_year   <- as.numeric(.internal_data$lst$endyear)
+  start_year <- '2000-01-01'
+  end_year   <- '2019-12-31'
 
   # Regex para validar formato "YYYY-MM-DD"
   valid_date_format <- function(x) grepl("^\\d{4}-\\d{2}-\\d{2}$", x)
@@ -156,51 +156,8 @@ l4h_terra_climate <- function(from, to, band, region, scale = 1000, stat = "mean
     )
   }
 
-  band_info <- function(band) {
-    choices <- c("aet","def","pdsi","pet","pr","ro","soil","srad","swe",
-                 "tmmn","tmmx","vap","vpd","vs")
-    scales <- c(
-      aet=0.1, def=0.1, pdsi=0.01, pet=0.1, pr=1.0, ro=1.0,
-      soil=0.1, srad=0.1, swe=1.0, tmmn=0.1, tmmx=0.1,
-      vap=0.001, vpd=0.01, vs=0.01
-    )
-
-    if (missing(band) || !is.character(band) || length(band) < 1L) {
-      cli::cli_abort(c(
-        "x" = "Provide one or more band names as a character vector.",
-        "!" = "Valid options are: {.or {choices}}."
-      ), call = NULL)
-    }
-
-    band_lower <- tolower(band)
-
-    invalid <- unique(band_lower[!band_lower %in% choices])
-    if (length(invalid)) {
-      suggestion <- vapply(
-        invalid,
-        function(b) choices[which.min(adist(b, choices))],
-        character(1)
-      )
-      sug_str <- paste0(
-        "{.val ", suggestion, "} (for {.val ", invalid, "})"
-      )
-      cli::cli_abort(c(
-        "x" = "Some band names are invalid.",
-        "!" = "Valid options are: {.or {choices}}.",
-        "i" = paste("Closest matches:", paste(sug_str, collapse = ", "))
-      ), call = NULL)
-    }
-
-    out <- unname(scales[band_lower])
-    names(out) <- band_lower
-    out
-  }
-
-
-  factor_band <- band_info(band = band)
-
-  collection <- ee$ImageCollection(.internal_data$terraclimate$id)$
-    select(band)$
+  collection <- ee$ImageCollection(.internal_data$pm2.5$id)$
+    select('b1')$
     filterDate(from_ee, to_ee)$
     toBands()
 
@@ -219,12 +176,12 @@ l4h_terra_climate <- function(from, to, band, region, scale = 1000, stat = "mean
     range_date_original <- seq(as.Date(from_date), as.Date(to_date), by = "1 months")
     extract_area <- extract_area |>
       tidyr::pivot_longer(
-        cols = tidyr::starts_with("X"),
+        cols = tidyr::starts_with("V6GL02"),
         names_to = "date",
         values_to = "value") |>
       dplyr::mutate(
-        variable = sub(".*_([A-Za-z]+)$", "\\1", date),
-        date = paste0(sub("^X(\\d{4}\\d{2}).*", "\\1", date),'01'),
+        variable = "pm2.5",
+        date = paste0(regmatches(variable, regexpr("\\d{6}", variable)),'01'),
         date = as.Date(date, format = "%Y%m%d")) |>
       dplyr::relocate(c("date", "variable", "value"), .before = all_of(geom_col))
 
@@ -239,14 +196,13 @@ l4h_terra_climate <- function(from, to, band, region, scale = 1000, stat = "mean
       ...
     ) |>
       tidyr::pivot_longer(
-        cols = tidyr::starts_with("X"),
+        cols = tidyr::starts_with("V6GL02"),
         names_to = "date",
         values_to = "value") |>
       dplyr::mutate(
-        variable = sub(".*_([A-Za-z]+)$", "\\1", date),
-        date = paste0(sub("^X(\\d{4}\\d{2}).*", "\\1", date),'01'),
+        variable = "pm2.5",
+        date = paste0(regmatches(variable, regexpr("\\d{6}", variable)),'01'),
         date = as.Date(date, format = "%Y%m%d"))
-
   }
   return(extract_area)
 }
