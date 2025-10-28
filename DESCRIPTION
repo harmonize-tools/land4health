@@ -29,7 +29,7 @@ Imports:
     lifecycle,
     tidyr,
     dplyr,
-    rgee (== 1.1.7),
+    rgee,
     sf,
     reticulate,
     glue,

@@ -38,6 +38,7 @@ keywords:
 - geohealth
 - harmonize
 - health-geography
+- innovalab
 - rgee
 - rspatial
 - spatial-epidemiology
@@ -138,6 +139,10 @@ references:
     given-names: Cesar
     email: csaybar@gmail.com
     orcid: https://orcid.org/0000-0003-2745-9535
+  - family-names: Stigler
+    given-names: Matthieu
+    email: Matthieu.Stigler@gmail.com
+    orcid: https://orcid.org/0000-0002-6802-4290
   year: '2025'
   doi: 10.32614/CRAN.package.rgee
 - type: software
