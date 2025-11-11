@@ -34,10 +34,13 @@ navbar:
       menu:
         - text: 1. Environmental indicators – Brazil
           href: https://healthinnovation.github.io/l4h_brazil_case/cases1_brazil.html
+          target: _blank
         - text: 2. Dengue – Colombia
           href: https://healthinnovation.github.io/l4h_colombia_case/case2_colombia.html
+          target: _blank
         - text: 3. Malaria – Peruvian Amazon
           href: https://healthinnovation.github.io/l4h_peru_case/case3_peru.html
+          target: _blank
 
 
 reference:
