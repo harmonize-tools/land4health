@@ -121,12 +121,6 @@ extract_ee_with_progress <- function(
   }
 
   results <- lapply(geoms, function(feat) {
-    if (!requireNamespace("geojsonio", quietly = TRUE)) {
-      cli::cli_abort(c(
-        "x" = "Package {.pkg geojsonio} is required but not installed.",
-        "i" = "Install it with: {.code install.packages('geojsonio')}"
-      ))
-    }
     out <- suppressPackageStartupMessages(rgee::ee_extract(
       x     = image,
       y     = feat,
