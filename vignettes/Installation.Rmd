@@ -94,7 +94,7 @@ Attaching core land4health packages:
 ```
 
 ```{r eval=FALSE}
-rgee::ee_install()
+l4h_install()
 ```
 
 ```r
@@ -107,7 +107,8 @@ rgee::ee_install()
 ```
 
 ```{r initialize, eval=FALSE}
-ee_Initialize()
+l4h_use_python() 
+rgee::ee_Initialize()
 ```
 
 ```r
