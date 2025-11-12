@@ -27,11 +27,14 @@ Imports:
     glue,
     httr2,
     ows4R,
-    reticulate
+    reticulate,
+    rappdirs
 Suggests: 
     rmarkdown,
     knitr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    geojsonio,
+    rstudioapi
 Remotes:
     cran/rgee@1.1.7
 Depends: 

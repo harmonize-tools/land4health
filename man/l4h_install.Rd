@@ -4,7 +4,7 @@
 \alias{l4h_install}
 \title{Install Python dependencies for land4health package}
 \usage{
-l4h_install(pip = TRUE, system = FALSE, force = FALSE, ...)
+l4h_install(pip = TRUE, system = FALSE, force = FALSE, restart = TRUE, ...)
 }
 \arguments{
 \item{pip}{Logical. If TRUE (default), uses pip for installation. Set to FALSE if
@@ -13,6 +13,8 @@ specifying a different installation method.}
 \item{system}{Logical. If TRUE, uses system pip directly via system() call.}
 
 \item{force}{Logical. If TRUE, forces reinstallation/upgrade of packages.}
+
+\item{restart}{Logical. If TRUE, automatically restarts R session after installation. Default TRUE.}
 
 \item{...}{Additional arguments passed to reticulate::py_install(), such as:
 \itemize{
@@ -30,11 +32,11 @@ Installs required Python packages (earthengine-api and numpy) using various meth
 }
 \examples{
 \dontrun{
-# Basic installation
+# Basic installation with auto-restart
 l4h_install()
 
-# Force reinstallation
-l4h_install(force = TRUE)
+# Force reinstallation without restart
+l4h_install(force = TRUE, restart = FALSE)
 
 # Use conda environment
 l4h_install(method = "conda")

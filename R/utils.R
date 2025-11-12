@@ -120,6 +120,14 @@ extract_ee_with_progress <- function(
     tick <- function() pb$tick()
   }
 
+  if (inherits(sf_region, "sf")) {
+    if (!requireNamespace("geojsonio", quietly = TRUE)) {
+      cli::cli_abort(
+        "{.pkg geojsonio} is required when passing {.cls sf} objects to {.fun rgee::ee_extract}.
+       Install it with: install.packages('geojsonio')."
+      )
+    }
+  }
   results <- lapply(geoms, function(feat) {
     out <- suppressPackageStartupMessages(rgee::ee_extract(
       x     = image,
@@ -216,7 +224,43 @@ utils::globalVariables(
     "version",
     "file_name",
     "band_info",
-    "adist"
+    "adist",
+    ".create_env_loader",
+    ".create_env_loader"
   )
 )
+
+# Internal function to create environment loader
+.create_env_loader <- function(env_name, env_method) {
+  # Create a temporary file to store environment info
+  config_dir <- rappdirs::user_config_dir("land4health")
+
+  if (!dir.exists(config_dir)) {
+    dir.create(config_dir, recursive = TRUE)
+  }
+
+  config_file <- file.path(config_dir, "python_env.rds")
+
+  env_config <- list(
+    envname = env_name,
+    method = env_method,
+    timestamp = Sys.time()
+  )
+
+  saveRDS(env_config, config_file)
+
+  cli::cli_alert_success("Environment configuration saved")
+}
+
+# Internal function to load environment config
+.load_env_config <- function() {
+  config_file <- file.path(rappdirs::user_config_dir("land4health"), "python_env.rds")
+
+  if (file.exists(config_file)) {
+    return(readRDS(config_file))
+  }
+
+  return(NULL)
+}
+
 
