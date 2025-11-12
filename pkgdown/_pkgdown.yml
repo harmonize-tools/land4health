@@ -24,11 +24,13 @@ navbar:
    bg: custom
    structure:
     right: [search, github, donate, lightswitch]
+
    components:
     donate:
       icon: fa-hand-holding-dollar
       href: https://ko-fi.com/ambarja
       aria-label: Buy me a coffee
+
     tutorials:
       text: Examples
       menu:
@@ -42,6 +44,15 @@ navbar:
           href: https://healthinnovation.github.io/l4h_peru_case/case3_peru.html
           target: _blank
 
+    news:
+      text: Resources
+      menu:
+        - text: 1. rgee installation
+          href: https://healthinnovation.github.io/epi-rgee/
+          target: _blank
+        - text: 2. rgee for applications in epidemiology
+          href: https://epi-rgee.netlify.app/
+          target: _blank
 
 reference:
  - title: 'Vector-borne disease'
