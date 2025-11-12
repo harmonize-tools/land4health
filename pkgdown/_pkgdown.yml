@@ -89,3 +89,4 @@ reference:
    contents:
    - l4h_list_metrics
    - l4h_packages
+   - l4h_install

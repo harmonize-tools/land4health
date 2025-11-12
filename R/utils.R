@@ -226,7 +226,3 @@ utils::globalVariables(
   )
 )
 
-# Dependeces extras for examples
-#' @import geojsonio
-NULL
-

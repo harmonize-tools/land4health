@@ -27,9 +27,9 @@ Imports:
     glue,
     httr2,
     ows4R,
-    reticulate,
-    geojsonio
+    reticulate
 Suggests: 
+    geojsonio,
     rmarkdown,
     knitr,
     testthat (>= 3.0.0)

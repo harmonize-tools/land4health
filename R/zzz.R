@@ -1,7 +1,4 @@
   .onAttach <- function(libname, pkgname) {
-    suppressMessages({
-      requireNamespace("geojsonio", quietly = TRUE)
-    })
   if (interactive() && !isTRUE(getOption("land4health.shownWelcome"))) {
     # Block 1 : Presentation of Harmonize --------------------------------------
     cli::cli_h1("Welcome to land4health")
