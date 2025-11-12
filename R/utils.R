@@ -263,4 +263,13 @@ utils::globalVariables(
   return(NULL)
 }
 
+#' Convert sf to GeoJSON (internal)
+#' @keywords internal
+#' @importFrom geojsonio geojson_json
+as_geojson_min <- function(x) {
+  # Asegura WGS84 porque EE y GeoJSON esperan lon/lat
+  x <- sf::st_transform(x, 4326)
+  # Devuelve un string GeoJSON (sirve como validación/serialización)
+  geojsonio::geojson_json(x)
+}
 

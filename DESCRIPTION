@@ -28,12 +28,12 @@ Imports:
     httr2,
     ows4R,
     reticulate,
-    rappdirs
+    rappdirs,
+    geojsonio
 Suggests: 
     rmarkdown,
     knitr,
     testthat (>= 3.0.0),
-    geojsonio,
     rstudioapi
 Remotes:
     cran/rgee@1.1.7
