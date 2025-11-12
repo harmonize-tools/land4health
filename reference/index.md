@@ -70,3 +70,6 @@
 - [`l4h_install()`](https://github.com/harmonize-tools/land4health/reference/l4h_install.md)
   **\[experimental\]** : Install Python dependencies for land4health
   package
+
+- [`l4h_use_python()`](https://github.com/harmonize-tools/land4health/reference/l4h_use_python.md)
+  : Configure Python environment for land4health

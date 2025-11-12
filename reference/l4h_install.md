@@ -8,7 +8,7 @@ various methods.
 ## Usage
 
 ``` r
-l4h_install(pip = TRUE, system = FALSE, force = FALSE, ...)
+l4h_install(pip = TRUE, system = FALSE, force = FALSE, restart = TRUE, ...)
 ```
 
 ## Arguments
@@ -26,6 +26,11 @@ l4h_install(pip = TRUE, system = FALSE, force = FALSE, ...)
 
   Logical. If TRUE, forces reinstallation/upgrade of packages.
 
+- restart:
+
+  Logical. If TRUE, automatically restarts R session after installation.
+  Default TRUE.
+
 - ...:
 
   Additional arguments passed to reticulate::py_install(), such as:
@@ -42,11 +47,11 @@ Invisibly returns NULL
 
 ``` r
 if (FALSE) { # \dontrun{
-# Basic installation
+# Basic installation with auto-restart
 l4h_install()
 
-# Force reinstallation
-l4h_install(force = TRUE)
+# Force reinstallation without restart
+l4h_install(force = TRUE, restart = FALSE)
 
 # Use conda environment
 l4h_install(method = "conda")
