@@ -7,6 +7,7 @@ Human intervention;Night time light;500;VIIRS Nighttime Light;1992;2023;annually
 Human intervention;Human Settlement Layer;30;Global Human Settlement Layer (GHSL);1975;2030;5-year increments;FALSE;urban-areas;experimental;https://gee-community-catalog.org/projects/ghsl/#dataset-citations
 Enviroment;Water proportion;30;MapBiomas-water;1985;2022;annually;TRUE;mapbiomas;experimental;https://plataforma.agua.mapbiomas.org/
 Enviroment;Urban Heat Island Intensity;1000;Urban Heat Island Intensity (UHII);2003;2020;monthly;FALSE;environment;experimental;https://gee-community-catalog.org/projects/uhii/?h=night
-Accesibility;Travel time to cities and healthcare;927.67;Malaria Atlas Project;2019;2020;annually;TRUE;accesibility;experimental;https://developers.google.com/earth-engine/datasets/tags/accessibility?hl=es-419
-Accesibility;Rural access index;100;Rural Access Index (RAI);2024;2024;annually;TRUE;accesibility;experimental;https://gee-community-catalog.org/projects/rai/
+Accessibility;Travel time to cities and healthcare;927.67;Malaria Atlas Project;2019;2020;annually;TRUE;accesibility;experimental;https://developers.google.com/earth-engine/datasets/tags/accessibility?hl=es-419
+Accessibility;Rural access index;100;Rural Access Index (RAI);2024;2024;annually;TRUE;accesibility;experimental;https://gee-community-catalog.org/projects/rai/
 Climate;Evapotranspiration;500;geeSEBAL-MODIS;2002;2022;daily;TRUE;environment;experimental;https://gee-community-catalog.org/projects/gee_sebal/
+
