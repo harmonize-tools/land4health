@@ -11,7 +11,7 @@ You can install the development version with:
 
 ``` r
 # install.packages("pak")
-pak::pak("harmonize-tools/land4health")
+pak::pkg_install("harmonize-tools/land4health")
 ```
 
 ``` r
