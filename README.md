@@ -17,7 +17,7 @@ coverage](https://codecov.io/gh/harmonize-tools/land4health/graph/badge.svg)](ht
 
 Calculate and extract remote sensing metrics for spatial health analysis
 🛰️. This package offers R users a quick and easy way to obtain areal or
-zonal statistics of key indicators and covariates, ideal for modeling
+zonal statistics of key indicators and covariates, ideal for modelling
 infectious diseases 🦠 within the framework of spatial epidemiology 🏥.
 
 ## 1. Installation
