@@ -2,7 +2,7 @@
   if (interactive() && !isTRUE(getOption("land4health.shownWelcome"))) {
     # Block 1 : Presentation of Harmonize --------------------------------------
     cli::cli_h1("Welcome to land4health")
-    cli::cli_text("{.emph A tool of {.href [{.pkg Harmonize Project}](https://www.harmonize-tools.org/)} to calculate and extract Remote Sensing Metrics for Spatial Health Analysis.}")
+    cli::cli_text("{.emph A tool of the {.href [{.pkg Harmonize Project}](https://www.harmonize-tools.org/)} to calculate and extract Remote Sensing Metrics for Spatial Health Analysis.}")
     cli::cli_text("{.emph Currently,`land4health` supports metrics related to the following categories:}")
 
     # Block 2 : Metrics available ----------------------------------------------
