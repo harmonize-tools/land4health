@@ -22,13 +22,7 @@ infectious diseases 🦠 within the framework of spatial epidemiology 🏥.
 
 ## 1. Installation
 
-You can install CRAN version of land4health with:
-
-``` r
-install.packages("land4health")
-```
-
-or you can install the development version with:
+You can install the development version with:
 
 ``` r
 # install.packages("pak")
@@ -37,7 +31,13 @@ pak::pak("harmonize-tools/land4health")
 
 ``` r
 library(land4health)
-ee_Initialize(quiet = TRUE)
+l4h_install()
+#> Using virtual environment "r-land4health" ...
+```
+
+``` r
+l4h_use_python()
+rgee::ee_Initialize(quiet = TRUE)
 ```
 
 ``` r
@@ -117,6 +117,7 @@ head(result)
 ``` r
 # Visualization with ggplot2
 library(ggplot2)
+#> Warning: package 'ggplot2' was built under R version 4.4.3
 ggplot(data = st_drop_geometry(result), aes(x = date, y = value)) +
   geom_area(fill = "#FDE725FF", alpha = 0.8) +
   facet_wrap(~nombprov) +
