@@ -29,7 +29,6 @@ Imports:
     ows4R,
     reticulate
 Suggests: 
-    geojsonio,
     rmarkdown,
     knitr,
     testthat (>= 3.0.0)
