@@ -34,7 +34,7 @@ Suggests:
     knitr,
     testthat (>= 3.0.0)
 Remotes:
-    url::https://cran.r-project.org/src/contrib/Archive/rgee/rgee_1.1.7.tar.gz
+    cran/rgee@1.1.7
 Depends: 
     R (>= 4.1.0)
 VignetteBuilder: knitr

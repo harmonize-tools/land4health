@@ -139,10 +139,6 @@ references:
     given-names: Cesar
     email: csaybar@gmail.com
     orcid: https://orcid.org/0000-0003-2745-9535
-  - family-names: Stigler
-    given-names: Matthieu
-    email: Matthieu.Stigler@gmail.com
-    orcid: https://orcid.org/0000-0002-6802-4290
   year: '2025'
   doi: 10.32614/CRAN.package.rgee
 - type: software
@@ -199,6 +195,44 @@ references:
     orcid: https://orcid.org/0000-0002-5870-5762
   year: '2025'
   doi: 10.32614/CRAN.package.ows4R
+- type: software
+  title: reticulate
+  abstract: 'reticulate: Interface to ''Python'''
+  notes: Imports
+  url: https://rstudio.github.io/reticulate/
+  repository: https://CRAN.R-project.org/package=reticulate
+  authors:
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@posit.co
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@posit.co
+  - family-names: Tang
+    given-names: Yuan
+    email: terrytangyuan@gmail.com
+    orcid: https://orcid.org/0000-0001-5243-233X
+  year: '2025'
+  doi: 10.32614/CRAN.package.reticulate
+- type: software
+  title: geojsonio
+  abstract: 'geojsonio: Convert Data from and to ''GeoJSON'' or ''TopoJSON'''
+  notes: Imports
+  url: https://docs.ropensci.org/geojsonio/
+  repository: https://CRAN.R-project.org/package=geojsonio
+  authors:
+  - family-names: Chamberlain
+    given-names: Scott
+    email: myrmecocystus@gmail.com
+  - family-names: Teucher
+    given-names: Andy
+    email: andy.teucher@gmail.com
+  - family-names: Mahoney
+    given-names: Michael
+    email: mike.mahoney.218@gmail.com
+    orcid: https://orcid.org/0000-0003-2402-304X
+  year: '2025'
+  doi: 10.32614/CRAN.package.geojsonio
 - type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
