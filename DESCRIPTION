@@ -26,11 +26,15 @@ Imports:
     sf,
     glue,
     httr2,
-    ows4R
+    ows4R,
+    reticulate,
+    geojsonio
 Suggests: 
     rmarkdown,
     knitr,
     testthat (>= 3.0.0)
+Remotes:
+    url::https://cran.r-project.org/src/contrib/Archive/rgee/rgee_1.1.7.tar.gz
 Depends: 
     R (>= 4.1.0)
 VignetteBuilder: knitr
