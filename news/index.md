@@ -72,7 +72,8 @@ outlined in issue
 
 #### Utils
 
-- ✔ add `l4h_install()`
+- ✔ add
+  [`l4h_install()`](https://github.com/harmonize-tools/land4health/reference/l4h_install.md)
 - ✔ add
   [`l4h_list_metrics()`](https://github.com/harmonize-tools/land4health/reference/l4h_list_metrics.md)
 - ✔ add
