@@ -83,8 +83,8 @@ l4h_list_metrics()
 #>  4 Human intervention Urban … 500                    MODIS …       2001     2022
 #>  5 Human intervention Night … 500                    VIIRS …       1992     2023
 #>  6 Human intervention Human … 30                     Global…       1975     2030
-#>  7 Enviroment         Water … 30                     MapBio…       1985     2022
-#>  8 Enviroment         Urban … 1000                   Urban …       2003     2020
+#>  7 Environment        Water … 30                     MapBio…       1985     2022
+#>  8 Environment        Urban … 1000                   Urban …       2003     2020
 #>  9 Accessibility      Travel… 927.67                 Malari…       2019     2020
 #> 10 Accessibility      Rural … 100                    Rural …       2024     2024
 #> # ℹ abbreviated name: ¹​pixel_resolution_meters
