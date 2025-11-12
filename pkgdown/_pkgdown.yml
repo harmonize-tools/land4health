@@ -90,3 +90,4 @@ reference:
    - l4h_list_metrics
    - l4h_packages
    - l4h_install
+   - l4h_use_python

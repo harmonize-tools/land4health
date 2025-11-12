@@ -224,9 +224,7 @@ utils::globalVariables(
     "version",
     "file_name",
     "band_info",
-    "adist",
-    ".create_env_loader",
-    ".create_env_loader"
+    "adist"
   )
 )
 
