@@ -215,6 +215,22 @@ references:
   year: '2025'
   doi: 10.32614/CRAN.package.reticulate
 - type: software
+  title: rappdirs
+  abstract: 'rappdirs: Application Directories: Determine Where to Save Data, Caches,
+    and Logs'
+  notes: Imports
+  url: https://rappdirs.r-lib.org
+  repository: https://CRAN.R-project.org/package=rappdirs
+  authors:
+  - family-names: Ratnakumar
+    given-names: Sridhar
+  - family-names: Mick
+    given-names: Trent
+  - family-names: Davis
+    given-names: Trevor
+  year: '2025'
+  doi: 10.32614/CRAN.package.rappdirs
+- type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
   notes: Suggests
@@ -284,6 +300,46 @@ references:
   year: '2025'
   doi: 10.32614/CRAN.package.testthat
   version: '>= 3.0.0'
+- type: software
+  title: geojsonio
+  abstract: 'geojsonio: Convert Data from and to ''GeoJSON'' or ''TopoJSON'''
+  notes: Suggests
+  url: https://docs.ropensci.org/geojsonio/
+  repository: https://CRAN.R-project.org/package=geojsonio
+  authors:
+  - family-names: Chamberlain
+    given-names: Scott
+    email: myrmecocystus@gmail.com
+  - family-names: Teucher
+    given-names: Andy
+    email: andy.teucher@gmail.com
+  - family-names: Mahoney
+    given-names: Michael
+    email: mike.mahoney.218@gmail.com
+    orcid: https://orcid.org/0000-0003-2402-304X
+  year: '2025'
+  doi: 10.32614/CRAN.package.geojsonio
+- type: software
+  title: rstudioapi
+  abstract: 'rstudioapi: Safely Access the RStudio API'
+  notes: Suggests
+  url: https://rstudio.github.io/rstudioapi/
+  repository: https://CRAN.R-project.org/package=rstudioapi
+  authors:
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@rstudio.com
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@posit.co
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Ritchie
+    given-names: Gary
+    email: gary@posit.co
+  year: '2025'
+  doi: 10.32614/CRAN.package.rstudioapi
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
   notes: Depends
