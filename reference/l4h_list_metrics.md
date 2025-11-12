@@ -85,8 +85,8 @@ l4h_list_metrics()
 #>  6 Human intervention Human … 30                     Global…       1975     2030
 #>  7 Enviroment         Water … 30                     MapBio…       1985     2022
 #>  8 Enviroment         Urban … 1000                   Urban …       2003     2020
-#>  9 Accesibility       Travel… 927.67                 Malari…       2019     2020
-#> 10 Accesibility       Rural … 100                    Rural …       2024     2024
+#>  9 Accessibility      Travel… 927.67                 Malari…       2019     2020
+#> 10 Accessibility      Rural … 100                    Rural …       2024     2024
 #> # ℹ abbreviated name: ¹​pixel_resolution_meters
 #> # ℹ 5 more variables: resolution_temporal <chr>, layer_can_be_actived <lgl>,
 #> #   tags <chr>, lifecycle <chr>, url <chr>
