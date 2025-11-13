@@ -27,12 +27,12 @@ rgee::ee_Initialize(quiet = TRUE)
 
 ``` r
 ── Welcome to land4health ────────────────────────────────────────────────────
-A tool of Harmonize Project to calculate and extract Remote Sensing Metrics
+A tool of the Harmonize Project to calculate and extract Remote Sensing Metrics
 for Spatial Health Analysis. Currently,`land4health` supports metrics in the
 following categories:
-• Accesibility
+• Accessibility
 • Climate
-• Enviroment
+• Environment
 • and more!
 For a complete list of available metrics, use the `l4h_list_metrics()`
 function.
