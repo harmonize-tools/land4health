@@ -22,7 +22,7 @@ Imports:
     lifecycle,
     tidyr,
     dplyr,
-    rgee,
+    rgee (>= 1.1.7, < 1.1.8), 
     sf,
     glue,
     httr2,
