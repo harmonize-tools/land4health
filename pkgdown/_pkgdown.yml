@@ -78,6 +78,7 @@ reference:
    - l4h_water_proportion
    - l4h_co_column
    - l4h_urban_heat_index
+   - l4h_vegetation
 
  - title: 'Climate'
    contents:

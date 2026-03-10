@@ -224,7 +224,8 @@ utils::globalVariables(
     "version",
     "file_name",
     "band_info",
-    "adist"
+    "adist",
+    "band_raw"
   )
 )
 
