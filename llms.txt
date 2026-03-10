@@ -190,6 +190,8 @@ etp_ts |>
 - [`l4h_urban_heat_index()`](https://github.com/harmonize-tools/land4health/reference/l4h_urban_heat_index.md)
   **\[experimental\]** : Calculates the Surface Urban Heat Island (SUHI)
   index using MODIS LST and GHS-SMOD
+- [`l4h_vegetation()`](https://github.com/harmonize-tools/land4health/reference/l4h_vegetation.md)
+  **\[stable\]** : Extract vegetation indices from MODIS MOD13A1
 
 ## Climate
 
