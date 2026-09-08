@@ -225,7 +225,8 @@ l4h_terra_climate <- function(from, to, band, region, scale = 1000, stat = "mean
       dplyr::mutate(
         variable = sub(".*_([A-Za-z]+)$", "\\1", date),
         date = paste0(sub("^X(\\d{4}\\d{2}).*", "\\1", date),'01'),
-        date = as.Date(date, format = "%Y%m%d")) |>
+        date = as.Date(date, format = "%Y%m%d"),
+        value = value * factor_band[tolower(variable)]) |>
       dplyr::relocate(c("date", "variable", "value"), .before = all_of(geom_col))
 
   } else {
@@ -245,7 +246,8 @@ l4h_terra_climate <- function(from, to, band, region, scale = 1000, stat = "mean
       dplyr::mutate(
         variable = sub(".*_([A-Za-z]+)$", "\\1", date),
         date = paste0(sub("^X(\\d{4}\\d{2}).*", "\\1", date),'01'),
-        date = as.Date(date, format = "%Y%m%d"))
+        date = as.Date(date, format = "%Y%m%d"),
+        value = value * factor_band[tolower(variable)])
 
   }
   return(extract_area)
