@@ -74,11 +74,13 @@ You can install the development version of `land4health` from GitHub
 with:
 
 ``` r
+
 # install.packages("pak")
 pak::pkg_install("harmonize-tools/land4health")
 ```
 
 ``` r
+
 library(land4health)
 ```
 
@@ -99,6 +101,7 @@ Attaching core land4health packages:
 ```
 
 ``` r
+
 l4h_install()
 ```
 
@@ -112,11 +115,13 @@ l4h_install()
 ```
 
 ``` r
+
 l4h_use_python() 
 rgee::ee_Initialize()
 ```
 
 ``` r
+
 #> ── rgee 1.1.7 ─────────────────────────────────────── earthengine-api 0.1.370 ── 
 #>  ✔ user: not_defined 
 #>  ✔ Initializing Google Earth Engine: ✔ Initializing Google Earth Engine:  DONE!
@@ -126,6 +131,7 @@ rgee::ee_Initialize()
 ```
 
 ``` r
+
 land4health::l4h_packages()
 #> Registered S3 method overwritten by 'geojsonsf':
 #>   method        from   

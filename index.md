@@ -10,17 +10,20 @@ infectious diseases 🦠 within the framework of spatial epidemiology 🏥.
 You can install the development version with:
 
 ``` r
+
 # install.packages("pak")
 pak::pkg_install("harmonize-tools/land4health")
 ```
 
 ``` r
+
 library(land4health)
 l4h_install()
 #> Using virtual environment "r-land4health" ...
 ```
 
 ``` r
+
 l4h_use_python()
 rgee::ee_Initialize(quiet = TRUE)
 ```
@@ -46,6 +49,7 @@ Attaching core land4health packages:
 ## 2. List of available metrics
 
 ``` r
+
 l4h_list_metrics()
 #> # A tibble: 10 × 11
 #>    category           metric  pixel_resolution_met…¹ dataset start_year end_year
@@ -72,6 +76,7 @@ This example demonstrates how to calculate forest loss between 2005 and
 2020 using a custom polygon and Earth Engine.
 
 ``` r
+
 library(geoidep)
 
 # Downloading the adminstration limits of Loreto provinces
@@ -100,6 +105,7 @@ head(result)
 ```
 
 ``` r
+
 # Visualization with ggplot2
 library(ggplot2)
 #> Warning: package 'ggplot2' was built under R version 4.4.3
@@ -112,6 +118,7 @@ ggplot(data = st_drop_geometry(result), aes(x = date, y = value)) +
 ![](reference/figures/README-area-1.png)
 
 ``` r
+
 # Spatial visualization
 ggplot(data = result) +
   geom_sf(aes(fill = value), color = NA) +
@@ -125,6 +132,7 @@ ggplot(data = result) +
 ## 4. Example: Extract time series of climate variables
 
 ``` r
+
 etp_ts <- provinces_loreto |>
   l4h_sebal_modis(
     from = "2005-01-01",
@@ -134,6 +142,7 @@ etp_ts <- provinces_loreto |>
 ```
 
 ``` r
+
 etp_ts |>
   st_drop_geometry() |>
   ggplot(aes(x = date, y = value, col = value)) +
