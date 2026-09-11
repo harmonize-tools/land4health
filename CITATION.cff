@@ -1,7 +1,7 @@
-# --------------------------------------------
-# CITATION file created with {cffr} R package
+# ------------------------------------------------
+# CITATION.cff file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
-# --------------------------------------------
+# ------------------------------------------------
  
 cff-version: 1.2.0
 message: 'To cite package "land4health" in publications use:'
@@ -13,10 +13,10 @@ identifiers:
 - type: url
   value: https://harmonize-tools.github.io/land4health/
 abstract: Calculate and extract remote sensing metrics for spatial analysis in the
-  field of health. This package offers R users a quick and straightforward way to
-  obtain areal or zonal statistics of key environmental indicators, covariates, and
-  vector-borne disease data ideal for modeling infectious diseases within the framework
-  of spatial epidemiology.
+  field of health. The package offers R users a quick and straightforward way to obtain
+  areal or zonal statistics of key environmental indicators, covariates, and vector-borne
+  disease data ideal for modeling infectious diseases within the framework of spatial
+  epidemiology.
 authors:
 - family-names: Barja
   given-names: Antony
@@ -56,6 +56,7 @@ references:
     email: gabor@posit.co
   year: '2026'
   doi: 10.32614/CRAN.package.cli
+  version: '>= 3.2.0'
 - type: software
   title: lifecycle
   abstract: 'lifecycle: Manage the Life Cycle of your Package Functions'
@@ -125,9 +126,12 @@ references:
     given-names: Cesar
     email: csaybar@gmail.com
     orcid: https://orcid.org/0000-0003-2745-9535
+  - family-names: Stigler
+    given-names: Matthieu
+    email: Matthieu.Stigler@gmail.com
+    orcid: https://orcid.org/0000-0002-6802-4290
   year: '2026'
   doi: 10.32614/CRAN.package.rgee
-  version: <= 1.1.7
 - type: software
   title: sf
   abstract: 'sf: Simple Features for R'
@@ -173,6 +177,9 @@ references:
   url: https://rstudio.github.io/reticulate/
   repository: https://CRAN.R-project.org/package=reticulate
   authors:
+  - family-names: Kalinowski
+    given-names: Tomasz
+    email: tomasz@posit.co
   - family-names: Ushey
     given-names: Kevin
     email: kevin@posit.co
@@ -203,25 +210,6 @@ references:
   year: '2026'
   doi: 10.32614/CRAN.package.rappdirs
 - type: software
-  title: geojsonio
-  abstract: 'geojsonio: Convert Data from and to ''GeoJSON'' or ''TopoJSON'''
-  notes: Imports
-  url: https://docs.ropensci.org/geojsonio/
-  repository: https://CRAN.R-project.org/package=geojsonio
-  authors:
-  - family-names: Chamberlain
-    given-names: Scott
-    email: myrmecocystus@gmail.com
-  - family-names: Teucher
-    given-names: Andy
-    email: andy.teucher@gmail.com
-  - family-names: Mahoney
-    given-names: Michael
-    email: mike.mahoney.218@gmail.com
-    orcid: https://orcid.org/0000-0003-2402-304X
-  year: '2026'
-  doi: 10.32614/CRAN.package.geojsonio
-- type: software
   title: tibble
   abstract: 'tibble: Simple Data Frames'
   notes: Imports
@@ -237,6 +225,25 @@ references:
     email: hadley@rstudio.com
   year: '2026'
   doi: 10.32614/CRAN.package.tibble
+- type: software
+  title: geojsonio
+  abstract: 'geojsonio: Convert Data from and to ''GeoJSON'' or ''TopoJSON'''
+  notes: Suggests
+  url: https://docs.ropensci.org/geojsonio/
+  repository: https://CRAN.R-project.org/package=geojsonio
+  authors:
+  - family-names: Chamberlain
+    given-names: Scott
+    email: myrmecocystus@gmail.com
+  - family-names: Teucher
+    given-names: Andy
+    email: andy.teucher@gmail.com
+  - family-names: Mahoney
+    given-names: Michael
+    email: mike.mahoney.218@gmail.com
+    orcid: https://orcid.org/0000-0003-2402-304X
+  year: '2026'
+  doi: 10.32614/CRAN.package.geojsonio
 - type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
@@ -334,9 +341,12 @@ references:
   url: https://www.R-project.org/
   authors:
   - name: R Core Team
+    website: https://ror.org/02zz1nj61
   institution:
     name: R Foundation for Statistical Computing
+    website: https://ror.org/05qewa988
     address: Vienna, Austria
   year: '2026'
+  doi: 10.32614/R.manuals
   version: '>= 4.1.0'
 
