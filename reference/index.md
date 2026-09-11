@@ -31,7 +31,7 @@
 
 ## Enviroment
 
-- [`l4h_pm2.5()`](https://github.com/harmonize-tools/land4health/reference/l4h_pm2.5.md)
+- [`l4h_pm25()`](https://github.com/harmonize-tools/land4health/reference/l4h_pm25.md)
   **\[experimental\]** : Extract Global PM2.5 (monthly) from Google
   Earth Engine
 - [`l4h_water_proportion()`](https://github.com/harmonize-tools/land4health/reference/l4h_water_proportion.md)

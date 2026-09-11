@@ -133,8 +133,5 @@ rgee::ee_Initialize()
 ``` r
 
 land4health::l4h_packages()
-#> Registered S3 method overwritten by 'geojsonsf':
-#>   method        from   
-#>   print.geojson geojson
 #> [1] "rgee"        "sf"          "land4health"
 ```

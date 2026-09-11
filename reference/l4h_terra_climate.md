@@ -21,7 +21,7 @@ l4h_terra_climate(
   stat = "mean",
   sf = TRUE,
   quiet = FALSE,
-  force = TRUE,
+  force = FALSE,
   ...
 )
 ```
@@ -80,8 +80,9 @@ l4h_terra_climate(
 
 - force:
 
-  Logical. If `TRUE`, fuerza la extracción aun si hay caché. Default
-  `TRUE`.
+  Logical. Si es `TRUE`, omite el chequeo de representatividad (los
+  polígonos menores a 1 píxel igual se extraen, solo se emite una
+  advertencia). Default `FALSE`.
 
 - ...:
 

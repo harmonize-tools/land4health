@@ -20,7 +20,7 @@ l4h_surface_temp(
   stat = "mean",
   sf = TRUE,
   quiet = FALSE,
-  force = TRUE,
+  force = FALSE,
   ...
 )
 ```
@@ -74,8 +74,9 @@ l4h_surface_temp(
 
 - force:
 
-  Logical. If `TRUE`, forces the extraction even if results are cached.
-  Default is `FALSE`.
+  Logical. If `TRUE`, skips the representativity check (polygons smaller
+  than 1 pixel are still extracted, only a warning is issued). Default
+  is `FALSE`.
 
 - ...:
 

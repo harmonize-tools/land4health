@@ -18,7 +18,8 @@ l4h_vegetation(
   fun = c("mean", "max", "min", "median", "sum", "sd", "first"),
   scale = 500,
   sf = FALSE,
-  quiet = FALSE
+  quiet = FALSE,
+  force = FALSE
 )
 ```
 
@@ -67,6 +68,12 @@ l4h_vegetation(
 - quiet:
 
   Logical. If `TRUE`, suppresses the progress bar. Default: `FALSE`.
+
+- force:
+
+  Logical. If `TRUE`, skips the representativity check (polygons smaller
+  than 1 pixel are still extracted, only a warning is issued). Default:
+  `FALSE`.
 
 ## Value
 

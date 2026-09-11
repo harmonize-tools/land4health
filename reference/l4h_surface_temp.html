@@ -78,7 +78,7 @@ the temperature data over each date using a selected statistic (e.g., mean or me
 <span>  stat <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>  sf <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  force <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  force <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -127,7 +127,9 @@ Default is <code>"moderate"</code>.</p></dd>
 
 
 <dt id="arg-force">force<a class="anchor" aria-label="anchor" href="#arg-force"></a></dt>
-<dd><p>Logical. If <code>TRUE</code>, forces the extraction even if results are cached. Default is <code>FALSE</code>.</p></dd>
+<dd><p>Logical. If <code>TRUE</code>, skips the representativity check
+(polygons smaller than 1 pixel are still extracted, only a warning is issued).
+Default is <code>FALSE</code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>

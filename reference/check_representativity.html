@@ -79,7 +79,10 @@ in a specified Earth Engine image.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Invisible <code>TRUE</code> if representative; otherwise <code>FALSE</code>.</p>
+    <p>Invisible <code>TRUE</code> if all polygons cover at least 1 pixel;
+otherwise invisible <code>FALSE</code> with a <code>cli</code> warning reporting how many
+polygons fall below 1 pixel. Extraction is never stopped; use <code>force = TRUE</code>
+in the calling <code>l4h_*</code> function to skip this check entirely.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
