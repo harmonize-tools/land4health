@@ -13,7 +13,7 @@ l4h_terra_climate(
   stat = "mean",
   sf = TRUE,
   quiet = FALSE,
-  force = TRUE,
+  force = FALSE,
   ...
 )
 }
@@ -48,7 +48,9 @@ Default \code{TRUE}.}
 
 \item{quiet}{Logical. If \code{TRUE}, suppresses progress bars/messages. Default \code{FALSE}.}
 
-\item{force}{Logical. If \code{TRUE}, fuerza la extracción aun si hay caché. Default \code{TRUE}.}
+\item{force}{Logical. Si es \code{TRUE}, omite el chequeo de representatividad
+(los polígonos menores a 1 píxel igual se extraen, solo se emite una advertencia).
+Default \code{FALSE}.}
 
 \item{...}{Additional arguments passed to the extraction backend.}
 }

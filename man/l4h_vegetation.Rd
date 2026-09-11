@@ -13,7 +13,8 @@ l4h_vegetation(
   fun = c("mean", "max", "min", "median", "sum", "sd", "first"),
   scale = 500,
   sf = FALSE,
-  quiet = FALSE
+  quiet = FALSE,
+  force = FALSE
 )
 }
 \arguments{
@@ -42,6 +43,10 @@ Default: \code{500} (native MOD13A1 resolution).}
 geometries attached. Default: \code{FALSE}.}
 
 \item{quiet}{Logical. If \code{TRUE}, suppresses the progress bar.
+Default: \code{FALSE}.}
+
+\item{force}{Logical. If \code{TRUE}, skips the representativity check
+(polygons smaller than 1 pixel are still extracted, only a warning is issued).
 Default: \code{FALSE}.}
 }
 \value{

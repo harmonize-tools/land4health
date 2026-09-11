@@ -13,7 +13,10 @@ check_representativity(region, scale = 30)
 \item{scale}{Numeric. Pixel resolution in meters (e.g., 30 for Hansen).}
 }
 \value{
-Invisible \code{TRUE} if representative; otherwise \code{FALSE}.
+Invisible \code{TRUE} if all polygons cover at least 1 pixel;
+otherwise invisible \code{FALSE} with a \code{cli} warning reporting how many
+polygons fall below 1 pixel. Extraction is never stopped; use \code{force = TRUE}
+in the calling \verb{l4h_*} function to skip this check entirely.
 }
 \description{
 Evaluates whether a given polygon covers a minimum number of valid pixels

@@ -19,7 +19,9 @@
 #' @param stat Character. Summary statistic to apply per image per region. One of `"mean"`, `"median"`, `"min"`, `"max"`. Passed to `ee_extract()`.
 #' @param sf Logical. If `TRUE`, returns an `sf` object; if `FALSE`, returns a `tibble`. Default is `TRUE`.
 #' @param quiet Logical. If `TRUE`, suppresses progress bars and messages. Default is `FALSE`.
-#' @param force Logical. If `TRUE`, forces the extraction even if results are cached. Default is `FALSE`.
+#' @param force Logical. If `TRUE`, skips the representativity check
+#'   (polygons smaller than 1 pixel are still extracted, only a warning is issued).
+#'   Default is `FALSE`.
 #' @param ... Additional arguments passed to `rgee::ee_extract()`.
 #'
 #' @return A `sf` or `tibble` object with LST values (in degrees Celsius) extracted from MODIS MOD11A1.
@@ -91,7 +93,7 @@
 #'
 #' @export
 
-l4h_surface_temp <- function(from, to, region, band = "day", level = "strict", scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = TRUE, ...){
+l4h_surface_temp <- function(from, to, region, band = "day", level = "strict", scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = FALSE, ...){
 
   # Dataset date range
   start_year <- as.numeric(.internal_data$lst$startyear)

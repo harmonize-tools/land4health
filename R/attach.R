@@ -16,6 +16,9 @@ same_library <- function(pkg) {
 # attaches all the packages from core that are not loaded
 land4health_attach <- function() {
   to_load <- core_unloaded()
+  # suppressPackageStartupMessages (no solo startup) para tragar también el
+  # "Registered S3 method overwritten by 'geojsonsf'" y los
+  # "Linking to GEOS..." que disparan sf/rgee al adjuntarse
   suppressPackageStartupMessages(
     lapply(to_load, same_library)
   )

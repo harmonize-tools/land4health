@@ -35,37 +35,36 @@ get_reducer <- function(name) {
 #' in a specified Earth Engine image.
 #' @param region An `sf` polygon object representing the area of interest.
 #' @param scale Numeric. Pixel resolution in meters (e.g., 30 for Hansen).
-#' @return Invisible `TRUE` if representative; otherwise `FALSE`.
+#' @return Invisible `TRUE` if all polygons cover at least 1 pixel;
+#'   otherwise invisible `FALSE` with a `cli` warning reporting how many
+#'   polygons fall below 1 pixel. Extraction is never stopped; use `force = TRUE`
+#'   in the calling `l4h_*` function to skip this check entirely.
 #' @keywords internal
 check_representativity <- function(region, scale = 30) {
   if (!inherits(region, "sf")) {
     cli::cli_abort("The {.arg region} must be an {.cls sf} object.")
   }
 
-  # Selection of polygon of size minimum
-  region_area_km2 <- region |>
-    sf::st_transform(crs = 3857) |>
-    (\(x) dplyr::mutate(x, area_km2 = as.vector(sf::st_area(sf::st_geometry(x)) / 1e6)))() |>
-    dplyr::arrange(area_km2) |>
-    dplyr::slice(1) |>
-    sf::st_drop_geometry() |>
-    dplyr::select(area_km2)
+  # Area of every polygon in km2 (R base + sf, no dplyr)
+  areas_km2 <- as.numeric(sf::st_area(sf::st_transform(region, crs = 3857)) / 1e6)
 
-  # Pixel area
-  pixels_area <- (scale^2) / 1e6
-  condicion <- region_area_km2 < pixels_area
+  # Area of 1 pixel in km2
+  pixel_area <- (scale^2) / 1e6
 
-  # Condition
-  if (isTRUE(condicion)) {
-    msg <- c(
+  n <- length(areas_km2)
+  n_bad <- sum(areas_km2 < pixel_area, na.rm = TRUE)
+
+  # Inform only: never abort, `force` in callers controls skipping
+  if (n_bad > 0) {
+    cli::cli_warn(c(
       "!" = "The region does not cover enough pixels to be representative.",
-      "i" = "Area Minimum required: {round(pixels_area,2)} km2 at {scale}m resolution.",
-      "x" = "Smallest region covers: {round(min(region_area_km2), 2)}km2 area",
-      "v" = "Consider using a larger polygon or buffering the input region."
-    ) |>
-      cli::cli_alert_warning()
-    return(msg)
+      "i" = "Pixel area required: {round(pixel_area, 4)} km2 at {scale} m resolution.",
+      "x" = "{n_bad} of {n} polygons fall below 1 pixel. Smallest covers {round(min(areas_km2, na.rm = TRUE), 4)} km2."
+    ))
+    return(invisible(FALSE))
   }
+
+  invisible(TRUE)
 }
 
 #' Split an sf object into a list of single-row sf objects
@@ -104,24 +103,19 @@ extract_ee_with_progress <- function(
 ) {
   geoms <- split_sf(sf_region)
 
-  # Por defecto, no hace nada
+  # cli progress bar unless suppressed (or nothing to extract).
+  # `tick()` is a no-op when quiet, so the loop below never branches.
+  show_bar <- !quiet && length(geoms) > 0
   tick <- function() {}
 
-  if (!quiet) {
-    pb <- progress::progress_bar$new(
-      format     = "\033[32mExtracting data\033[0m \033[34m[:bar]\033[0m :percent | :current/:total | ETA: :eta",
-      total      = length(geoms),
-      clear      = FALSE,
-      width      = 50,
-      complete   = "=",
-      incomplete = "-"
-    )
-    # Ahora tick avanza la barra
-    tick <- function() pb$tick()
+  if (show_bar) {
+    cli::cli_progress_bar("Extracting data", total = length(geoms))
+    # Advances the current bar by one step
+    tick <- function() cli::cli_progress_update()
   }
 
   if (inherits(sf_region, "sf")) {
-    if (!requireNamespace("geojsonio", quietly = TRUE)) {
+    if (!suppressPackageStartupMessages(requireNamespace("geojsonio", quietly = TRUE))) {
       cli::cli_abort(
         "{.pkg geojsonio} is required when passing {.cls sf} objects to {.fun rgee::ee_extract}.
        Install it with: install.packages('geojsonio')."
@@ -139,9 +133,11 @@ extract_ee_with_progress <- function(
       quiet = TRUE,
       ...
     ))
-    tick()   # <- nunca falla: o hace pb$tick() o no hace nada
+    tick()   # <- no-op when quiet, otherwise advances the cli bar
     out
   })
+
+  if (show_bar) cli::cli_progress_done()
 
   if (length(results) == 0) return(dplyr::tibble())
   dplyr::bind_rows(results)
@@ -264,11 +260,18 @@ utils::globalVariables(
 
 #' Convert sf to GeoJSON (internal)
 #' @keywords internal
-#' @importFrom geojsonio geojson_json
 as_geojson_min <- function(x) {
   # Asegura WGS84 porque EE y GeoJSON esperan lon/lat
   x <- sf::st_transform(x, 4326)
-  # Devuelve un string GeoJSON (sirve como validación/serialización)
-  geojsonio::geojson_json(x)
+  # Carga diferida con mensajes suprimidos: geojsonio arrastra
+  # geojson + geojsonsf y dispara "Registered S3 method overwritten"
+  # si se cargara al hacer library(land4health). Al estar en Suggests
+  # solo se carga aqui, y suprimido.
+  if (!requireNamespace("geojsonio", quietly = TRUE)) {
+    cli::cli_abort(
+      "{.pkg geojsonio} is required. Install it with: install.packages('geojsonio')."
+    )
+  }
+  suppressPackageStartupMessages(geojsonio::geojson_json(x))
 }
 

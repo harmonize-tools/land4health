@@ -6,7 +6,7 @@ Authors@R: c(
     person("Yomali", "Ferreyra", email = "yomali.ferreyra@upch.pe", role = c("aut"), comment = c(ORCID = "0000-0002-5184-9595")),
     person("Diego", "Villa", role = c("ctb")))
 Description: Calculate and extract remote sensing metrics for spatial analysis in the field of health.
-    This package offers R users a quick and straightforward way to obtain areal or zonal statistics of key environmental indicators,
+    The package offers R users a quick and straightforward way to obtain areal or zonal statistics of key environmental indicators,
     covariates, and vector-borne disease data ideal for modeling infectious diseases within the framework of spatial epidemiology.
 Maintainer: Yomali Ferreyra <yomali.ferreyra@upch.pe>
 URL:
@@ -15,31 +15,27 @@ URL:
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Imports: 
-    cli,
-    progress,
+    cli (>= 3.2.0),
     lifecycle,
     tidyr,
     dplyr,
-    rgee (<= 1.1.7), 
+    rgee, 
     sf,
-    glue,
     httr2,
     ows4R,
     reticulate,
     rappdirs,
-    geojsonio,
     tibble
 Suggests: 
+    geojsonio,
     rmarkdown,
     knitr,
     testthat (>= 3.0.0),
     rstudioapi
-Remotes:
-    cran/rgee@1.1.7
 Depends: 
     R (>= 4.1.0)
 VignetteBuilder: knitr
 BugReports: https://github.com/harmonize-tools/land4health/issues
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.0

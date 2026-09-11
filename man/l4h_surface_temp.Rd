@@ -14,7 +14,7 @@ l4h_surface_temp(
   stat = "mean",
   sf = TRUE,
   quiet = FALSE,
-  force = TRUE,
+  force = FALSE,
   ...
 )
 }
@@ -40,7 +40,9 @@ Default is \code{"moderate"}.}
 
 \item{quiet}{Logical. If \code{TRUE}, suppresses progress bars and messages. Default is \code{FALSE}.}
 
-\item{force}{Logical. If \code{TRUE}, forces the extraction even if results are cached. Default is \code{FALSE}.}
+\item{force}{Logical. If \code{TRUE}, skips the representativity check
+(polygons smaller than 1 pixel are still extracted, only a warning is issued).
+Default is \code{FALSE}.}
 
 \item{...}{Additional arguments passed to \code{rgee::ee_extract()}.}
 }

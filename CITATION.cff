@@ -57,20 +57,6 @@ references:
   year: '2026'
   doi: 10.32614/CRAN.package.cli
 - type: software
-  title: progress
-  abstract: 'progress: Terminal Progress Bars'
-  notes: Imports
-  url: https://github.com/r-lib/progress#readme
-  repository: https://CRAN.R-project.org/package=progress
-  authors:
-  - family-names: Csárdi
-    given-names: Gábor
-    email: csardi.gabor@gmail.com
-  - family-names: FitzJohn
-    given-names: Rich
-  year: '2026'
-  doi: 10.32614/CRAN.package.progress
-- type: software
   title: lifecycle
   abstract: 'lifecycle: Manage the Life Cycle of your Package Functions'
   notes: Imports
@@ -155,22 +141,6 @@ references:
     orcid: https://orcid.org/0000-0001-8049-7069
   year: '2026'
   doi: 10.32614/CRAN.package.sf
-- type: software
-  title: glue
-  abstract: 'glue: Interpreted String Literals'
-  notes: Imports
-  url: https://glue.tidyverse.org/
-  repository: https://CRAN.R-project.org/package=glue
-  authors:
-  - family-names: Hester
-    given-names: Jim
-    orcid: https://orcid.org/0000-0002-2739-7082
-  - family-names: Bryan
-    given-names: Jennifer
-    email: jenny@posit.co
-    orcid: https://orcid.org/0000-0002-6983-2759
-  year: '2026'
-  doi: 10.32614/CRAN.package.glue
 - type: software
   title: httr2
   abstract: 'httr2: Perform HTTP Requests and Process the Responses'
