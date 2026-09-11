@@ -16,21 +16,19 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Imports: 
-    cli,
-    progress,
+    cli (>= 3.2.0),
     lifecycle,
     tidyr,
     dplyr,
     rgee, 
     sf,
-    glue,
     httr2,
     ows4R,
     reticulate,
     rappdirs,
-    geojsonio,
     tibble
 Suggests: 
+    geojsonio,
     rmarkdown,
     knitr,
     testthat (>= 3.0.0),

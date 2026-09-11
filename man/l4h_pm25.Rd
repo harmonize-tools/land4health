@@ -13,7 +13,7 @@ l4h_pm25(
   stat = "mean",
   sf = TRUE,
   quiet = FALSE,
-  force = TRUE,
+  force = FALSE,
   ...
 )
 }
@@ -40,8 +40,9 @@ Default \code{TRUE}.}
 
 \item{quiet}{Logical. If \code{TRUE}, suppresses progress bars/messages. Default \code{FALSE}.}
 
-\item{force}{Logical. If \code{TRUE}, forces extraction even if cached results exist.
-Default \code{TRUE}.}
+\item{force}{Logical. If \code{TRUE}, skips the representativity check
+(polygons smaller than 1 pixel are still extracted, only a warning is issued).
+Default \code{FALSE}.}
 
 \item{...}{Additional arguments passed to the extraction backend.}
 }

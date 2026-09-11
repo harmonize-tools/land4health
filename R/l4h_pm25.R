@@ -24,8 +24,9 @@
 #' @param sf Logical. If `TRUE`, returns an `sf`; if `FALSE`, returns a `tibble`.
 #'   Default `TRUE`.
 #' @param quiet Logical. If `TRUE`, suppresses progress bars/messages. Default `FALSE`.
-#' @param force Logical. If `TRUE`, forces extraction even if cached results exist.
-#'   Default `TRUE`.
+#' @param force Logical. If `TRUE`, skips the representativity check
+#'   (polygons smaller than 1 pixel are still extracted, only a warning is issued).
+#'   Default `FALSE`.
 #' @param ... Additional arguments passed to the extraction backend.
 #'
 #' @return An `sf` or `tibble` with columns:
@@ -94,7 +95,7 @@
 
 
 
-l4h_pm25 <- function(from, to, band, region, scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = TRUE, ...){
+l4h_pm25 <- function(from, to, band, region, scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = FALSE, ...){
 
   # Dataset date range
   start_year <- '2000-01-01'

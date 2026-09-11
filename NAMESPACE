@@ -30,7 +30,6 @@ importFrom(dplyr,
   right_join,
   select
 )
-importFrom(geojsonio,geojson_json)
 importFrom(lifecycle,deprecated)
 importFrom(sf,
   st_drop_geometry,

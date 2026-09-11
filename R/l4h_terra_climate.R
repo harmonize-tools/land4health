@@ -29,7 +29,9 @@
 #' @param sf Logical. If `TRUE`, returns an `sf`; if `FALSE`, returns a `tibble`.
 #'   Default `TRUE`.
 #' @param quiet Logical. If `TRUE`, suppresses progress bars/messages. Default `FALSE`.
-#' @param force Logical. If `TRUE`, fuerza la extracción aun si hay caché. Default `TRUE`.
+#' @param force Logical. Si es `TRUE`, omite el chequeo de representatividad
+#'   (los polígonos menores a 1 píxel igual se extraen, solo se emite una advertencia).
+#'   Default `FALSE`.
 #' @param ... Additional arguments passed to the extraction backend.
 #'
 #' @return An `sf` or `tibble` with columns:
@@ -94,7 +96,7 @@
 #' \doi{10.1038/sdata.2017.191}
 #'
 #' @export
-l4h_terra_climate <- function(from, to, band, region, scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = TRUE, ...){
+l4h_terra_climate <- function(from, to, band, region, scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = FALSE, ...){
 
   # Dataset date range
   start_year <- as.numeric(.internal_data$terraclimate$startyear)

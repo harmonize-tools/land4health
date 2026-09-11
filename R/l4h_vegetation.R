@@ -25,6 +25,9 @@
 #'   geometries attached. Default: \code{FALSE}.
 #' @param quiet Logical. If \code{TRUE}, suppresses the progress bar.
 #'   Default: \code{FALSE}.
+#' @param force Logical. If \code{TRUE}, skips the representativity check
+#'   (polygons smaller than 1 pixel are still extracted, only a warning is issued).
+#'   Default: \code{FALSE}.
 #'
 #' @details
 #' ## Temporal aggregation
@@ -129,7 +132,8 @@ l4h_vegetation <- function(
     fun   = c("mean", "max", "min", "median", "sum", "sd", "first"),
     scale = 500,
     sf    = FALSE,
-    quiet = FALSE
+    quiet = FALSE,
+    force = FALSE
 ) {
 
   # -- 0. Argument validation ------------------------------------------------
@@ -151,7 +155,9 @@ l4h_vegetation <- function(
   }
 
   # -- 1. Representativity check --------------------------------------------
-  check_representativity(region, scale = scale)
+  if (isFALSE(force)) {
+    check_representativity(region, scale = scale)
+  }
 
   # -- 2. Scale factor per band ---------------------------------------------
   scale_factor <- c(NDVI = 0.0001, EVI = 0.0001, SAVI = 1)[[band]]

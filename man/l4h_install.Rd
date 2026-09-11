@@ -4,7 +4,14 @@
 \alias{l4h_install}
 \title{Install Python dependencies for land4health package}
 \usage{
-l4h_install(pip = TRUE, system = FALSE, force = FALSE, restart = TRUE, ...)
+l4h_install(
+  pip = TRUE,
+  system = FALSE,
+  force = FALSE,
+  restart = TRUE,
+  backend = c("auto", "uv", "pip"),
+  ...
+)
 }
 \arguments{
 \item{pip}{Logical. If TRUE (default), uses pip for installation. Set to FALSE if
@@ -16,6 +23,12 @@ specifying a different installation method.}
 
 \item{restart}{Logical. If TRUE, automatically restarts R session after installation. Default TRUE.}
 
+\item{backend}{Character. Installation backend: \code{"auto"} (default) uses \code{uv}
+when it is installed and falls back to \code{"pip"} otherwise; \code{"uv"} requires
+\code{uv} (see \url{https://docs.astral.sh/uv/}); \code{"pip"} always uses
+\code{reticulate::py_install()}. Note: \code{uv} manages \code{virtualenv} environments
+only — an explicit \code{method = "conda"} always uses the \code{"pip"} backend.}
+
 \item{...}{Additional arguments passed to reticulate::py_install(), such as:
 \itemize{
 \item method: Installation method ("auto", "virtualenv", "conda")
@@ -26,17 +39,26 @@ specifying a different installation method.}
 Invisibly returns NULL
 }
 \description{
-Installs required Python packages (earthengine-api and numpy) using various methods.
+Installs required Python packages (earthengine-api and numpy).
+By default uses \strong{uv} when available (much faster downloads with a live
+progress bar in the console) and falls back to pip via
+\code{reticulate::py_install()} otherwise.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \examples{
 \dontrun{
-# Basic installation with auto-restart
+# Basic installation with auto-restart (uv when available)
 l4h_install()
 
 # Force reinstallation without restart
 l4h_install(force = TRUE, restart = FALSE)
+
+# Force the uv backend (fails loudly if uv is missing)
+l4h_install(backend = "uv")
+
+# Classic pip backend
+l4h_install(backend = "pip")
 
 # Use conda environment
 l4h_install(method = "conda")

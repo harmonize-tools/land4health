@@ -158,9 +158,9 @@ l4h_dengue_cases <- function(
   if (quiet) cli::cli_status("Preparing {data_type} extract for {region_name} and {country}")
 
   # Build download URL
-  url <- glue::glue(
-    "https://opendengue.org/assets/",
-    "{types[[data_type]]}_extract_{region_code}_{version}.zip"
+  url <- sprintf(
+    "https://opendengue.org/assets/%s_extract_%s_%s.zip",
+    types[[data_type]], region_code, version
   )
   if (quiet) cli::cli_status("Downloading {basename(url)}...")
 
