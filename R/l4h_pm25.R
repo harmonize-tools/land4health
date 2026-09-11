@@ -75,7 +75,7 @@
 #'   ), ncol = 2, byrow = TRUE))), crs = 4326))
 #'
 #' # PM2.5 mensual (µg/m^3) para 2010, promedio espacial
-#' out_pm <- l4h_pm2.5(
+#' out_pm <- l4h_pm25(
 #'   from   = "2010-01-01",
 #'   to     = "2010-12-31",
 #'   band   = "b1",        # ignorado (única banda)
@@ -94,7 +94,7 @@
 
 
 
-l4h_pm2.5 <- function(from, to, band, region, scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = TRUE, ...){
+l4h_pm25 <- function(from, to, band, region, scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = TRUE, ...){
 
   # Dataset date range
   start_year <- '2000-01-01'

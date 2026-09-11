@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Calculate and extract remote sensing metrics for spatial analysis in the field of health. This package offers R users a quick and straightforward way to obtain areal or zonal statistics of key environmental indicators, covariates, and vector-borne disease data ideal for modeling infectious diseases within the framework of spatial epidemiology.
+Calculate and extract remote sensing metrics for spatial analysis in the field of health. The package offers R users a quick and straightforward way to obtain areal or zonal statistics of key environmental indicators, covariates, and vector-borne disease data ideal for modeling infectious diseases within the framework of spatial epidemiology.
 }
 \seealso{
 Useful links:
@@ -24,6 +24,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Antony Barja \email{antony.barja@upch.pe} (\href{https://orcid.org/0000-0001-5921-2858}{ORCID})
   \item Yomali Ferreyra \email{yomali.ferreyra@upch.pe} (\href{https://orcid.org/0000-0002-5184-9595}{ORCID})
 }
 
