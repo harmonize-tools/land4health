@@ -25,13 +25,13 @@
 ## Accesibility
 
 - [`l4h_rural_access_index()`](https://github.com/harmonize-tools/land4health/reference/l4h_rural_access_index.md)
-  **\[stable\]** : Compute Rural Access Index (RAI)
+  **\[experimental\]** : Compute Rural Access Index (RAI)
 - [`l4h_travel_time()`](https://github.com/harmonize-tools/land4health/reference/l4h_travel_time.md)
   **\[stable\]** : Travel Time to Healthcare or Cities (Oxford Dataset)
 
 ## Enviroment
 
-- [`l4h_pm25()`](https://github.com/harmonize-tools/land4health/reference/l4h_pm25.md)
+- [`l4h_pm2_5()`](https://github.com/harmonize-tools/land4health/reference/l4h_pm2_5.md)
   **\[experimental\]** : Extract Global PM2.5 (monthly) from Google
   Earth Engine
 - [`l4h_water_proportion()`](https://github.com/harmonize-tools/land4health/reference/l4h_water_proportion.md)
@@ -49,13 +49,13 @@
 ## Climate
 
 - [`l4h_terra_climate()`](https://github.com/harmonize-tools/land4health/reference/l4h_terra_climate.md)
-  **\[experimental\]** : Extract TerraClimate variables (monthly) from
-  Google Earth Engine
+  **\[stable\]** : Extract TerraClimate variables (monthly) from Google
+  Earth Engine
 - [`l4h_sebal_modis()`](https://github.com/harmonize-tools/land4health/reference/l4h_sebal_modis.md)
-  **\[stable\]** : Download and process evapotranspiration data
+  **\[experimental\]** : Download and process evapotranspiration data
 - [`l4h_surface_temp()`](https://github.com/harmonize-tools/land4health/reference/l4h_surface_temp.md)
-  **\[stable\]** : Extracts Land Surface Temperature (LST) from MODIS
-  MOD11A1
+  **\[experimental\]** : Extracts Land Surface Temperature (LST) from
+  MODIS MOD11A1
 
 ## Utils
 

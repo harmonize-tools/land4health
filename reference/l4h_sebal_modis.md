@@ -6,7 +6,7 @@ mm/day), and allows temporal aggregation by 8-day images or monthly or
 yearly composites period. Optionally, results can be returned as
 `sf`/`tibble` objects in R.
 
-**\[stable\]**
+**NA**
 
 ## Usage
 
@@ -73,27 +73,30 @@ A `sf` or `tibble` object with etp values.
 
 ## Credits
 
-[![](figures/innovalab.svg)](https://www.innovalab.info/)
+[![](figures/innovalab.png)](https://www.innovalab.info/)
 
-Pioneering geospatial health analytics and open‐science tools. Developed
-by the Innovalab Team, for more information send a email to
-<imt.innovlab@oficinas-upch.pe>
+Pioneering geospatial health analytics and open-science tools. Developed
+by the Innovalab Team. For more information, send an email to
+<imt.innovlab@oficinas-upch.pe>.
 
-Follow us on :
+Follow us on:
 
 - ![](figures/linkedin-innova.png)[Innovalab
-  Linkedin](https://www.linkedin.com/company/innovalab-imt),
-  ![](figures/twitter-innova.png)[Innovalab
+  Linkedin](https://www.linkedin.com/company/innovalab-imt)
+
+- ![](figures/twitter-innova.png)[Innovalab
   X](https://x.com/innovalab_imt)
 
 - ![](figures/facebook-innova.png)[Innovalab
-  facebook](https://www.facebook.com/imt.innovalab),
-  ![](figures/instagram-innova.png)[Innovalab
+  facebook](https://www.facebook.com/imt.innovalab)
+
+- ![](figures/instagram-innova.png)[Innovalab
   instagram](https://www.instagram.com/innovalab_imt/)
 
 - ![](figures/tiktok-innova.png)[Innovalab
-  tiktok](https://www.tiktok.com/@innovalab_imt),
-  ![](figures/spotify-innova.png)[Innovalab
+  tiktok](https://www.tiktok.com/@innovalab_imt)
+
+- ![](figures/spotify-innova.png)[Innovalab
   Podcast](https://www.innovalab.info/podcast)
 
 ## References

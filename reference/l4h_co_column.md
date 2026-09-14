@@ -4,7 +4,7 @@ Retrieves the CO column number density (mol/m2) for a user-defined
 region and date range from the Sentinel‑5P TROPOMI OFFLINE L3 CO
 dataset.
 
-**\[stable\]**
+**NA**
 
 ## Usage
 
@@ -76,27 +76,30 @@ summarization using a reducer statistic per image.
 
 ## Credits
 
-[![](figures/innovalab.svg)](https://www.innovalab.info/)
+[![](figures/innovalab.png)](https://www.innovalab.info/)
 
-Pioneering geospatial health analytics and open‐science tools. Developed
-by the Innovalab Team, for more information send a email to
-<imt.innovlab@oficinas-upch.pe>
+Pioneering geospatial health analytics and open-science tools. Developed
+by the Innovalab Team. For more information, send an email to
+<imt.innovlab@oficinas-upch.pe>.
 
-Follow us on :
+Follow us on:
 
 - ![](figures/linkedin-innova.png)[Innovalab
-  Linkedin](https://www.linkedin.com/company/innovalab-imt),
-  ![](figures/twitter-innova.png)[Innovalab
+  Linkedin](https://www.linkedin.com/company/innovalab-imt)
+
+- ![](figures/twitter-innova.png)[Innovalab
   X](https://x.com/innovalab_imt)
 
 - ![](figures/facebook-innova.png)[Innovalab
-  facebook](https://www.facebook.com/imt.innovalab),
-  ![](figures/instagram-innova.png)[Innovalab
+  facebook](https://www.facebook.com/imt.innovalab)
+
+- ![](figures/instagram-innova.png)[Innovalab
   instagram](https://www.instagram.com/innovalab_imt/)
 
 - ![](figures/tiktok-innova.png)[Innovalab
-  tiktok](https://www.tiktok.com/@innovalab_imt),
-  ![](figures/spotify-innova.png)[Innovalab
+  tiktok](https://www.tiktok.com/@innovalab_imt)
+
+- ![](figures/spotify-innova.png)[Innovalab
   Podcast](https://www.innovalab.info/podcast)
 
 ## References

@@ -4,12 +4,16 @@ and time range from the Earth Engine dataset IDAHO_EPSCOR/TERRACLIMATE.
 The function summarizes each monthly image over the region using a chosen
 statistic (e.g., mean/median), applies the appropriate scale factors to
 return values in native units, and returns an sf or tibble.
+
+
 "><meta property="og:description" content="Extracts one or more TerraClimate variables for a user-defined region
 and time range from the Earth Engine dataset IDAHO_EPSCOR/TERRACLIMATE.
 The function summarizes each monthly image over the region using a chosen
 statistic (e.g., mean/median), applies the appropriate scale factors to
 return values in native units, and returns an sf or tibble.
-"><meta property="og:image" content="https://github.com/harmonize-tools/land4health/logo.png"></head><body>
+
+
+"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -17,7 +21,7 @@ return values in native units, and returns an sf or tibble.
 
     <a class="navbar-brand me-2" href="../index.html">land4health</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +62,8 @@ return values in native units, and returns an sf or tibble.
 </nav><div class="container template-reference-topic">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>Extract TerraClimate variables (monthly) from Google Earth Engine</h1>
+
+      <h1>Extract TerraClimate variables (monthly) from Google Earth Engine</h1>
       <small class="dont-index">Source: <a href="https://github.com/harmonize-tools/land4health/tree/main/R/l4h_terra_climate.R"><code>R/l4h_terra_climate.R</code></a></small>
       <div class="d-none name"><code>l4h_terra_climate.Rd</code></div>
     </div>
@@ -69,7 +74,8 @@ and time range from the Earth Engine dataset <strong>IDAHO_EPSCOR/TERRACLIMATE</
 The function summarizes each monthly image over the region using a chosen
 statistic (e.g., mean/median), applies the appropriate <strong>scale factors</strong> to
 return values in native units, and returns an <code>sf</code> or <code>tibble</code>.</p>
-<p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="figures/lifecycle-experimental.svg" alt="[Experimental]"></a></p>
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link">
+  <img src="figures/lifecycle-stable.png" width="120"></a></p>
     </div>
 
     <div class="section level2">
@@ -119,7 +125,7 @@ Accepts an <code>sf</code>, <code>sfc</code>, or <code>SpatVector</code> object.
 
 <dt id="arg-scale">scale<a class="anchor" aria-label="anchor" href="#arg-scale"></a></dt>
 <dd><p>Numeric. Reducer scale in meters. Default <code>1000</code>.
-(TerraClimate pixel ≈ <strong>4638 m</strong>; usar ~4500–5000 m suele ser adecuado.)</p></dd>
+(TerraClimate pixel approx 4638 m; a range of 4500-5000 m is typically appropriate.)</p></dd>
 
 
 <dt id="arg-stat">stat<a class="anchor" aria-label="anchor" href="#arg-stat"></a></dt>
@@ -157,12 +163,16 @@ plus geometry if <code>sf = TRUE</code>, and any attributes from <code>region</c
     <h2 id="credits">Credits<a class="anchor" aria-label="anchor" href="#credits"></a></h2>
 
 
-<p><a href="https://www.innovalab.info/" class="external-link"><img src="figures/innovalab.svg" alt=""></a></p>
-<p>Pioneering geospatial health analytics and open‐science tools.
-Developed by the Innovalab Team, for more information send a email to <a href="mailto:imt.innovlab@oficinas-upch.pe">imt.innovlab@oficinas-upch.pe</a></p>
-<p>Follow us on :</p><ul><li><p><img src="figures/linkedin-innova.png" alt=""><a href="https://www.linkedin.com/company/innovalab-imt" class="external-link">Innovalab Linkedin</a>, <img src="figures/twitter-innova.png" alt=""><a href="https://x.com/innovalab_imt" class="external-link">Innovalab X</a></p></li>
-<li><p><img src="figures/facebook-innova.png" alt=""><a href="https://www.facebook.com/imt.innovalab" class="external-link">Innovalab facebook</a>, <img src="figures/instagram-innova.png" alt=""><a href="https://www.instagram.com/innovalab_imt/" class="external-link">Innovalab instagram</a></p></li>
-<li><p><img src="figures/tiktok-innova.png" alt=""><a href="https://www.tiktok.com/@innovalab_imt" class="external-link">Innovalab tiktok</a>, <img src="figures/spotify-innova.png" alt=""><a href="https://www.innovalab.info/podcast" class="external-link">Innovalab Podcast</a></p></li>
+<p><a href="https://www.innovalab.info/" class="external-link"><img src="figures/innovalab.png" width="120"></a></p>
+<p>Pioneering geospatial health analytics and open-science tools.
+Developed by the Innovalab Team. For more information, send an email to
+<a href="mailto:imt.innovlab@oficinas-upch.pe">imt.innovlab@oficinas-upch.pe</a>.</p>
+<p>Follow us on:</p><ul><li><p><img src="figures/linkedin-innova.png" width="16"><a href="https://www.linkedin.com/company/innovalab-imt" class="external-link">Innovalab Linkedin</a></p></li>
+<li><p><img src="figures/twitter-innova.png" width="16"><a href="https://x.com/innovalab_imt" class="external-link">Innovalab X</a></p></li>
+<li><p><img src="figures/facebook-innova.png" width="16"><a href="https://www.facebook.com/imt.innovalab" class="external-link">Innovalab facebook</a></p></li>
+<li><p><img src="figures/instagram-innova.png" width="16"><a href="https://www.instagram.com/innovalab_imt/" class="external-link">Innovalab instagram</a></p></li>
+<li><p><img src="figures/tiktok-innova.png" width="16"><a href="https://www.tiktok.com/@innovalab_imt" class="external-link">Innovalab tiktok</a></p></li>
+<li><p><img src="figures/spotify-innova.png" width="16"><a href="https://www.innovalab.info/podcast" class="external-link">Innovalab Podcast</a></p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

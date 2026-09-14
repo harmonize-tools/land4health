@@ -15,13 +15,13 @@ Source:
 [`DESCRIPTION`](https://github.com/harmonize-tools/land4health/tree/main/DESCRIPTION)
 
 Barja A, Ferreyra Y (2026). *land4health: Remote Sensing Metrics for
-Spatial Health Analysis*. R package version 0.1.0,
+Spatial Health Analysis*. R package version 0.2.0,
 <https://github.com/harmonize-tools/land4health/>.
 
     @Manual{,
       title = {land4health: Remote Sensing Metrics for Spatial Health Analysis},
       author = {Antony Barja and Yomali Ferreyra},
       year = {2026},
-      note = {R package version 0.1.0},
+      note = {R package version 0.2.0},
       url = {https://github.com/harmonize-tools/land4health/},
     }
