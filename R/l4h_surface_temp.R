@@ -5,7 +5,12 @@
 #' and time range using the MODIS MOD11A1.061 product. The function supports summarizing
 #' the temperature data over each date using a selected statistic (e.g., mean or median).
 #'
-#' `r lifecycle::badge('stable')`
+#' \if{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+#'   \figure{lifecycle-experimental.png}{options: width="120"}
+#' }}
+#' \if{latex}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+#'   \figure{lifecycle-experimental.pdf}{options: width=2cm}
+#' }}
 #'
 #' @param from Character or Date. Start date of the analysis (e.g., `"2020-01-01"`).
 #' @param to Character or Date. End date of the analysis (e.g., `"2020-12-31"`).
@@ -27,15 +32,22 @@
 #' @return A `sf` or `tibble` object with LST values (in degrees Celsius) extracted from MODIS MOD11A1.
 #'
 #' @section Credits:
-#' [![](innovalab.svg)](https://www.innovalab.info/)
+#' \if{html}{\href{https://www.innovalab.info/}{\figure{innovalab.png}{options: width="120"}}}
+#' \if{latex}{\href{https://www.innovalab.info/}{\figure{innovalab.pdf}{options: width=2cm}}}
 #'
-#' Pioneering geospatial health analytics and open‐science tools.
-#' Developed by the Innovalab Team, for more information send a email to <imt.innovlab@oficinas-upch.pe>
+#' Pioneering geospatial health analytics and open-science tools.
+#' Developed by the Innovalab Team. For more information, send an email to
+#' \email{imt.innovlab@oficinas-upch.pe}.
 #'
-#' Follow us on :
-#'  - ![](linkedin-innova.png)[Innovalab Linkedin](https://www.linkedin.com/company/innovalab-imt), ![](twitter-innova.png)[Innovalab X](https://x.com/innovalab_imt)
-#'  - ![](facebook-innova.png)[Innovalab facebook](https://www.facebook.com/imt.innovalab), ![](instagram-innova.png)[Innovalab instagram](https://www.instagram.com/innovalab_imt/)
-#'  - ![](tiktok-innova.png)[Innovalab tiktok](https://www.tiktok.com/@innovalab_imt), ![](spotify-innova.png)[Innovalab Podcast](https://www.innovalab.info/podcast)
+#' Follow us on:
+#' \itemize{
+#'   \item \if{html}{\figure{linkedin-innova.png}{options: width="16"}} \if{latex}{\figure{linkedin-innova.pdf}{options: width=0.4cm}} \href{https://www.linkedin.com/company/innovalab-imt}{Innovalab Linkedin}
+#'   \item \if{html}{\figure{twitter-innova.png}{options: width="16"}} \if{latex}{\figure{twitter-innova.pdf}{options: width=0.4cm}} \href{https://x.com/innovalab_imt}{Innovalab X}
+#'   \item \if{html}{\figure{facebook-innova.png}{options: width="16"}} \if{latex}{\figure{facebook-innova.pdf}{options: width=0.4cm}} \href{https://www.facebook.com/imt.innovalab}{Innovalab facebook}
+#'   \item \if{html}{\figure{instagram-innova.png}{options: width="16"}} \if{latex}{\figure{instagram-innova.pdf}{options: width=0.4cm}} \href{https://www.instagram.com/innovalab_imt/}{Innovalab instagram}
+#'   \item \if{html}{\figure{tiktok-innova.png}{options: width="16"}} \if{latex}{\figure{tiktok-innova.pdf}{options: width=0.4cm}} \href{https://www.tiktok.com/@innovalab_imt}{Innovalab tiktok}
+#'   \item \if{html}{\figure{spotify-innova.png}{options: width="16"}} \if{latex}{\figure{spotify-innova.pdf}{options: width=0.4cm}} \href{https://www.innovalab.info/podcast}{Innovalab Podcast}
+#' }
 #'
 #' @details
 #' The MODIS MOD11A1.061 product provides daily Land Surface Temperature and quality information.
@@ -173,7 +185,7 @@ l4h_surface_temp <- function(from, to, region, band = "day", level = "strict", s
 
   # Extract with reducer
   if (isTRUE(sf)) {
-    extract_area <- extract_ee_with_progress(
+    extract_area <- l4h_ee_extract(
       image = collection,
       sf_region = region,
       scale = scale,
@@ -198,7 +210,7 @@ l4h_surface_temp <- function(from, to, region, band = "day", level = "strict", s
       dplyr::relocate(c("date", "variable", "value"), .before = all_of(geom_col))
 
   } else {
-    extract_area <- extract_ee_with_progress(
+    extract_area <- l4h_ee_extract(
       image = collection,
       sf_region = region,
       scale = scale,

@@ -6,7 +6,12 @@
 #' methodology (Stage I) to the GHS-POP R2023A and GHS-BUILT-S R2023A layers. The function summarizes
 #' areas by category and year over the specified region.
 #'
-#' `r lifecycle::badge('questioning')`
+#' \if{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#questioning}{
+#'   \figure{lifecycle-questioning.png}{options: width="120"}
+#' }}
+#' \if{latex}{\href{https://lifecycle.r-lib.org/articles/stages.html#questioning}{
+#'   \figure{lifecycle-questioning.pdf}{options: width=2cm}
+#' }}
 #
 #' @param region An `sf` object defining the region of interest.
 #' @param category Character. Settlement category to extract: `"urban"`, `"rural"`, or `"all"`.
@@ -19,15 +24,22 @@
 #' @return A `tibble` with estimated settlement area (in km2) by year and category.
 #'
 #' @section Credits:
-#' [![](innovalab.svg)](https://www.innovalab.info/)
+#' \if{html}{\href{https://www.innovalab.info/}{\figure{innovalab.png}{options: width="120"}}}
+#' \if{latex}{\href{https://www.innovalab.info/}{\figure{innovalab.pdf}{options: width=2cm}}}
 #'
-#' Pioneering geospatial health analytics and open‐science tools.
-#' Developed by the Innovalab Team, for more information send a email to <imt.innovlab@oficinas-upch.pe>
+#' Pioneering geospatial health analytics and open-science tools.
+#' Developed by the Innovalab Team. For more information, send an email to
+#' \email{imt.innovlab@oficinas-upch.pe}.
 #'
-#' Follow us on :
-#'  - ![](linkedin-innova.png)[Innovalab Linkedin](https://www.linkedin.com/company/innovalab-imt), ![](twitter-innova.png)[Innovalab X](https://x.com/innovalab_imt)
-#'  - ![](facebook-innova.png)[Innovalab facebook](https://www.facebook.com/imt.innovalab), ![](instagram-innova.png)[Innovalab instagram](https://www.instagram.com/innovalab_imt/)
-#'  - ![](tiktok-innova.png)[Innovalab tiktok](https://www.tiktok.com/@innovalab_imt), ![](spotify-innova.png)[Innovalab Podcast](https://www.innovalab.info/podcast)
+#' Follow us on:
+#' \itemize{
+#'   \item \if{html}{\figure{linkedin-innova.png}{options: width="16"}} \if{latex}{\figure{linkedin-innova.pdf}{options: width=0.4cm}} \href{https://www.linkedin.com/company/innovalab-imt}{Innovalab Linkedin}
+#'   \item \if{html}{\figure{twitter-innova.png}{options: width="16"}} \if{latex}{\figure{twitter-innova.pdf}{options: width=0.4cm}} \href{https://x.com/innovalab_imt}{Innovalab X}
+#'   \item \if{html}{\figure{facebook-innova.png}{options: width="16"}} \if{latex}{\figure{facebook-innova.pdf}{options: width=0.4cm}} \href{https://www.facebook.com/imt.innovalab}{Innovalab facebook}
+#'   \item \if{html}{\figure{instagram-innova.png}{options: width="16"}} \if{latex}{\figure{instagram-innova.pdf}{options: width=0.4cm}} \href{https://www.instagram.com/innovalab_imt/}{Innovalab instagram}
+#'   \item \if{html}{\figure{tiktok-innova.png}{options: width="16"}} \if{latex}{\figure{tiktok-innova.pdf}{options: width=0.4cm}} \href{https://www.tiktok.com/@innovalab_imt}{Innovalab tiktok}
+#'   \item \if{html}{\figure{spotify-innova.png}{options: width="16"}} \if{latex}{\figure{spotify-innova.pdf}{options: width=0.4cm}} \href{https://www.innovalab.info/podcast}{Innovalab Podcast}
+#' }
 #'
 #' @examples
 #' \dontrun{
@@ -107,7 +119,7 @@ l4h_urban_rural_area <- function(region, category = "all", scale = 1000, sf = TR
 
   # Extract with reducer
   if (isTRUE(sf)) {
-    extract_area <- extract_ee_with_progress(
+    extract_area <- l4h_ee_extract(
       image = img_db,
       sf_region = region,
       scale = 1000,
@@ -130,7 +142,7 @@ l4h_urban_rural_area <- function(region, category = "all", scale = 1000, sf = TR
 
 
   } else {
-    extract_area <- extract_ee_with_progress(
+    extract_area <- l4h_ee_extract(
       image = img_db,
       sf_region = region,
       scale = 1000,

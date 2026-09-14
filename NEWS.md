@@ -18,9 +18,12 @@ New release with new functions and some wrapper for extract data to [**Malaria-A
 ### Climate
 - ✔ add `l4h_surface_temp()`
 
+### Climate
+- ✔ add `l4h_ee_extract()`
+
 ### Others
 - New badge to give credit to Innovalab ![](https://raw.githubusercontent.com/harmonize-tools/land4health/ef742944b79b0523b16f3f3fd26e7388ca4e9551/man/figures/innovalab.svg). 
- 
+- Remove lifecycle dependence 
 
 # land4health 0.1.0
 

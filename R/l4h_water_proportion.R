@@ -4,7 +4,12 @@
 #' The function returns the proportion of each region's area that is covered by surface water for each year.
 #' The values are expressed as a decimal ratio between 0 and 1 (e.g., 0.25 means 25\% of the area was covered by water).
 #'
-#' `r lifecycle::badge('experimental')`
+#' \if{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+#'   \figure{lifecycle-experimental.png}{options: width="120"}
+#' }}
+#' \if{latex}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+#'   \figure{lifecycle-experimental.pdf}{options: width=2cm}
+#' }}
 #'
 #' @param from Integer. Start year (e.g., 1985).
 #' @param to Integer. End year (e.g., 2022). Must be equal to or greater than `from`.
@@ -26,15 +31,22 @@
 #' Mapbiomas project, available on: \url{https://peru.mapbiomas.org/colecciones-de-mapbiomas-peru/}
 #'
 #' @section Credits:
-#' [![](innovalab.svg)](https://www.innovalab.info/)
+#' \if{html}{\href{https://www.innovalab.info/}{\figure{innovalab.png}{options: width="120"}}}
+#' \if{latex}{\href{https://www.innovalab.info/}{\figure{innovalab.pdf}{options: width=2cm}}}
 #'
-#' Pioneering geospatial health analytics and open‐science tools.
-#' Developed by the Innovalab Team, for more information send a email to <imt.innovlab@oficinas-upch.pe>
+#' Pioneering geospatial health analytics and open-science tools.
+#' Developed by the Innovalab Team. For more information, send an email to
+#' \email{imt.innovlab@oficinas-upch.pe}.
 #'
-#' Follow us on :
-#'  - ![](linkedin-innova.png)[Innovalab Linkedin](https://www.linkedin.com/company/innovalab-imt), ![](twitter-innova.png)[Innovalab X](https://x.com/innovalab_imt)
-#'  - ![](facebook-innova.png)[Innovalab facebook](https://www.facebook.com/imt.innovalab), ![](instagram-innova.png)[Innovalab instagram](https://www.instagram.com/innovalab_imt/)
-#'  - ![](tiktok-innova.png)[Innovalab tiktok](https://www.tiktok.com/@innovalab_imt), ![](spotify-innova.png)[Innovalab Podcast](https://www.innovalab.info/podcast)
+#' Follow us on:
+#' \itemize{
+#'   \item \if{html}{\figure{linkedin-innova.png}{options: width="16"}} \if{latex}{\figure{linkedin-innova.pdf}{options: width=0.4cm}} \href{https://www.linkedin.com/company/innovalab-imt}{Innovalab Linkedin}
+#'   \item \if{html}{\figure{twitter-innova.png}{options: width="16"}} \if{latex}{\figure{twitter-innova.pdf}{options: width=0.4cm}} \href{https://x.com/innovalab_imt}{Innovalab X}
+#'   \item \if{html}{\figure{facebook-innova.png}{options: width="16"}} \if{latex}{\figure{facebook-innova.pdf}{options: width=0.4cm}} \href{https://www.facebook.com/imt.innovalab}{Innovalab facebook}
+#'   \item \if{html}{\figure{instagram-innova.png}{options: width="16"}} \if{latex}{\figure{instagram-innova.pdf}{options: width=0.4cm}} \href{https://www.instagram.com/innovalab_imt/}{Innovalab instagram}
+#'   \item \if{html}{\figure{tiktok-innova.png}{options: width="16"}} \if{latex}{\figure{tiktok-innova.pdf}{options: width=0.4cm}} \href{https://www.tiktok.com/@innovalab_imt}{Innovalab tiktok}
+#'   \item \if{html}{\figure{spotify-innova.png}{options: width="16"}} \if{latex}{\figure{spotify-innova.pdf}{options: width=0.4cm}} \href{https://www.innovalab.info/podcast}{Innovalab Podcast}
+#' }
 #'
 #' @examples
 #' \dontrun{
@@ -109,7 +121,7 @@ l4h_water_proportion <- function(from, to, region, fun = "mean", sf = TRUE, quie
 
   # Extract with reducer
   water_data_index <- function() {
-    extract_area <- extract_ee_with_progress(
+    extract_area <- l4h_ee_extract(
       image = water_data_area,
       sf_region = region,
       fun = fun,

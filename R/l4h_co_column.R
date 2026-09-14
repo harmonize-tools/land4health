@@ -4,7 +4,13 @@
 #' Retrieves the CO column number density (mol/m2) for a user-defined region and date range
 #' from the Sentinel‑5P TROPOMI OFFLINE L3 CO dataset.
 #'
-#' `r lifecycle::badge('stable')`
+#' \if{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{
+#'   \figure{lifecycle-stable.png}{options: width="120"}
+#' }}
+#' \if{latex}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{
+#'   \figure{lifecycle-stable.pdf}{options: width=2cm}
+#' }}
+#'
 #'
 #' @param from   Character. Start date in `"YYYY-MM-DD"` format (e.g., `"2020-01-01"`).
 #' @param to     Character. End date in `"YYYY-MM-DD"` format (e.g., `"2020-12-31"`).
@@ -15,21 +21,30 @@
 #' @param quiet  Logical. Suppress progress messages? Default: `FALSE`.
 #' @param force  Logical. Force extract without spatial check? Default: `FALSE`.
 #' @param ...        Arguments passed to `rgee::ee_extract`.
+#'
 #' @return A `sf` or `tibble` containing CO column density (__mol/m2__) by date and geometry.
 #'
 #' @details
 #' The function uses the Earth Engine dataset `COPERNICUS/S5P/OFFL/L3_CO` and selects only the
 #' `"CO_column_number_density"` band. It supports summarization using a reducer statistic per image.
+#'
 #' @section Credits:
-#' [![](innovalab.svg)](https://www.innovalab.info/)
+#' \if{html}{\href{https://www.innovalab.info/}{\figure{innovalab.png}{options: width="120"}}}
+#' \if{latex}{\href{https://www.innovalab.info/}{\figure{innovalab.pdf}{options: width=2cm}}}
 #'
-#' Pioneering geospatial health analytics and open‐science tools.
-#' Developed by the Innovalab Team, for more information send a email to <imt.innovlab@oficinas-upch.pe>
+#' Pioneering geospatial health analytics and open-science tools.
+#' Developed by the Innovalab Team. For more information, send an email to
+#' \email{imt.innovlab@oficinas-upch.pe}.
 #'
-#' Follow us on :
-#'  - ![](linkedin-innova.png)[Innovalab Linkedin](https://www.linkedin.com/company/innovalab-imt), ![](twitter-innova.png)[Innovalab X](https://x.com/innovalab_imt)
-#'  - ![](facebook-innova.png)[Innovalab facebook](https://www.facebook.com/imt.innovalab), ![](instagram-innova.png)[Innovalab instagram](https://www.instagram.com/innovalab_imt/)
-#'  - ![](tiktok-innova.png)[Innovalab tiktok](https://www.tiktok.com/@innovalab_imt), ![](spotify-innova.png)[Innovalab Podcast](https://www.innovalab.info/podcast)
+#' Follow us on:
+#' \itemize{
+#'   \item \if{html}{\figure{linkedin-innova.png}{options: width="16"}} \if{latex}{\figure{linkedin-innova.pdf}{options: width=0.4cm}} \href{https://www.linkedin.com/company/innovalab-imt}{Innovalab Linkedin}
+#'   \item \if{html}{\figure{twitter-innova.png}{options: width="16"}} \if{latex}{\figure{twitter-innova.pdf}{options: width=0.4cm}} \href{https://x.com/innovalab_imt}{Innovalab X}
+#'   \item \if{html}{\figure{facebook-innova.png}{options: width="16"}} \if{latex}{\figure{facebook-innova.pdf}{options: width=0.4cm}} \href{https://www.facebook.com/imt.innovalab}{Innovalab facebook}
+#'   \item \if{html}{\figure{instagram-innova.png}{options: width="16"}} \if{latex}{\figure{instagram-innova.pdf}{options: width=0.4cm}} \href{https://www.instagram.com/innovalab_imt/}{Innovalab instagram}
+#'   \item \if{html}{\figure{tiktok-innova.png}{options: width="16"}} \if{latex}{\figure{tiktok-innova.pdf}{options: width=0.4cm}} \href{https://www.tiktok.com/@innovalab_imt}{Innovalab tiktok}
+#'   \item \if{html}{\figure{spotify-innova.png}{options: width="16"}} \if{latex}{\figure{spotify-innova.pdf}{options: width=0.4cm}} \href{https://www.innovalab.info/podcast}{Innovalab Podcast}
+#' }
 #'
 #' @examples
 #' \dontrun{
@@ -125,7 +140,7 @@ l4h_co_column <- function(from, to, region, stat = "mean",
 
   # Extract with reducer
   if (isTRUE(sf)) {
-    extract_co <- extract_ee_with_progress(
+    extract_co <- l4h_ee_extract(
       image = co_ic,
       sf_region = region,
       scale = scale,
@@ -149,7 +164,7 @@ l4h_co_column <- function(from, to, region, stat = "mean",
       dplyr::relocate(c("date", "variable", "value"), .before = all_of(geom_col))
 
   } else {
-    extract_co <- extract_ee_with_progress(
+    extract_co <- l4h_ee_extract(
       image = co_ic,
       sf_region = region,
       scale = scale,

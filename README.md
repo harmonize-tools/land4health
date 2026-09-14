@@ -17,7 +17,7 @@ coverage](https://codecov.io/gh/harmonize-tools/land4health/graph/badge.svg)](ht
 
 Calculate and extract remote sensing metrics for spatial health analysis
 🛰️. This package offers R users a quick and easy way to obtain areal or
-zonal statistics of key indicators and covariates, ideal for modelling
+zonal statistics of key indicators and covariates, ideal for modeling
 infectious diseases 🦠 within the framework of spatial epidemiology 🏥.
 
 ## 1. Installation
@@ -26,37 +26,20 @@ You can install the development version with:
 
 ``` r
 # install.packages("pak")
-pak::pkg_install("harmonize-tools/land4health")
+pak::pak("harmonize-tools/land4health")
 ```
 
 ``` r
 library(land4health)
-l4h_install()
-#> Using virtual environment "r-land4health" ...
+# l4h_install()
 ```
 
-``` r
-l4h_use_python()
-rgee::ee_Initialize(quiet = TRUE)
-```
-
-``` r
-── Welcome to land4health ────────────────────────────────────────────────────
-A tool of the Harmonize Project to calculate and extract Remote Sensing Metrics
-for Spatial Health Analysis. Currently,`land4health` supports metrics in the
-following categories:
-• Accessibility
-• Climate
-• Environment
-• and more!
-For a complete list of available metrics, use the `l4h_list_metrics()`
-function.
-
-──────────────────────────────────────────────────────────────────────────────
-Attaching core land4health packages:
-→ rgee v1.1.7
-→ sf v1.0.21
-```
+    #> ── rgee 1.1.8 ──────────────────────────────────────── earthengine-api 1.7.38 ── 
+    #>  ✔ user: antony.barja8@gmail.com 
+    #>  ✔ Initializing Google Earth Engine: ✔ Initializing Google Earth Engine:  DONE!
+    #>  ✔ Earth Engine account: projects/1009866941441/assets/BM_Castropampa 
+    #>  ✔ Python Path: C:/Python314/python.exe 
+    #> ────────────────────────────────────────────────────────────────────────────────
 
 ## 2. List of available metrics
 
@@ -71,10 +54,10 @@ l4h_list_metrics()
 #>  4 Human intervention Urban … 500                    MODIS …       2001     2022
 #>  5 Human intervention Night … 500                    VIIRS …       1992     2023
 #>  6 Human intervention Human … 30                     Global…       1975     2030
-#>  7 Enviroment         Water … 30                     MapBio…       1985     2022
-#>  8 Enviroment         Urban … 1000                   Urban …       2003     2020
-#>  9 Accesibility       Travel… 927.67                 Malari…       2019     2020
-#> 10 Accesibility       Rural … 100                    Rural …       2024     2024
+#>  7 Environment        Water … 30                     MapBio…       1985     2022
+#>  8 Environment        Urban … 1000                   Urban …       2003     2020
+#>  9 Accessibility      Travel… 927.67                 Malari…       2019     2020
+#> 10 Accessibility      Rural … 100                    Rural …       2024     2024
 #> # ℹ abbreviated name: ¹​pixel_resolution_meters
 #> # ℹ 5 more variables: resolution_temporal <chr>, layer_can_be_actived <lgl>,
 #> #   tags <chr>, lifecycle <chr>, url <chr>
@@ -97,34 +80,34 @@ provinces_loreto <- get_provinces(show_progress = FALSE) |>
 result <- provinces_loreto |>
   l4h_forest_loss(from = '2005-01-01', to = '2020-01-01', sf = TRUE)
 head(result)
-#> Simple feature collection with 6 features and 11 fields
+#> Simple feature collection with 6 features and 8 fields
 #> Geometry type: MULTIPOLYGON
 #> Dimension:     XY
-#> Bounding box:  xmin: -76.89454 ymin: -6.14773 xmax: -75.38564 ymax: -3.681529
+#> Bounding box:  xmin: -75.78115 ymin: -4.709709 xmax: -72.11719 ymax: -0.63937
 #> Geodetic CRS:  WGS 84
-#> # A tibble: 6 × 12
-#>      id objectid ccdd  ccpp  nombdep nombprov shape_length shape_area date      
-#>   <int>    <dbl> <chr> <chr> <chr>   <chr>           <dbl>      <dbl> <date>    
-#> 1   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2005-01-01
-#> 2   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2006-01-01
-#> 3   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2007-01-01
-#> 4   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2008-01-01
-#> 5   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2009-01-01
-#> 6   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2010-01-01
-#> # ℹ 3 more variables: variable <chr>, value <dbl>, geometry <MULTIPOLYGON [°]>
+#> # A tibble: 6 × 9
+#>   ccdd  ccpp  fuente                  nombdep nombprov date       variable value
+#>   <chr> <chr> <chr>                   <chr>   <chr>    <date>     <chr>    <dbl>
+#> 1 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2005-01-01 forest_…  47.0
+#> 2 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2006-01-01 forest_…  17.7
+#> 3 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2007-01-01 forest_…  59.7
+#> 4 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2008-01-01 forest_…  99.8
+#> 5 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2009-01-01 forest_… 105. 
+#> 6 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2010-01-01 forest_…  69.5
+#> # ℹ 1 more variable: geometry <MULTIPOLYGON [°]>
 ```
 
 ``` r
 # Visualization with ggplot2
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 4.4.3
+#> Warning: package 'ggplot2' was built under R version 4.5.3
 ggplot(data = st_drop_geometry(result), aes(x = date, y = value)) +
   geom_area(fill = "#FDE725FF", alpha = 0.8) +
   facet_wrap(~nombprov) +
   theme_minimal()
 ```
 
-<img src="man/figures/README-area-1.png" width="100%" />
+<img src="man/figures/README-area-1.png" alt="" width="100%" />
 
 ``` r
 # Spatial visualization
@@ -135,7 +118,7 @@ ggplot(data = result) +
   facet_wrap(date ~ .)
 ```
 
-<img src="man/figures/README-mapa-1.png" width="100%" />
+<img src="man/figures/README-mapa-1.png" alt="" width="100%" />
 
 ## 4. Example: Extract time series of climate variables
 
@@ -158,4 +141,4 @@ etp_ts |>
   facet_wrap(~nombprov, ncol = 4)
 ```
 
-<img src="man/figures/README-ts-1.png" width="100%" />
+<img src="man/figures/README-ts-1.png" alt="" width="100%" />

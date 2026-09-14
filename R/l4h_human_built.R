@@ -5,7 +5,12 @@
 #' GHSL Built-Up Surface dataset (GHS‑BUILT‑S R2023A), over a user-defined region and
 #' date range. The dataset is provided in 5‑year epochs (1975–2030) at ~100m resolution.
 #'
-#' `r lifecycle::badge('stable')`
+#' \if{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{
+#'   \figure{lifecycle-stable.png}{options: width="120"}
+#' }}
+#' \if{latex}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{
+#'   \figure{lifecycle-stable.pdf}{options: width=2cm}
+#' }}
 #'
 #' @param from Character. Start date in "YYYY-MM-DD" format (only the year is used).
 #' @param to   Character. End date in "YYYY-MM-DD" format (only the year is used).
@@ -19,15 +24,22 @@
 #' @return A `sf` or `tibble` with columns `date`, `variable`, and `built_surface_m2`.
 #'
 #' @section Credits:
-#' [![](innovalab.svg)](https://www.innovalab.info/)
+#' \if{html}{\href{https://www.innovalab.info/}{\figure{innovalab.png}{options: width="120"}}}
+#' \if{latex}{\href{https://www.innovalab.info/}{\figure{innovalab.pdf}{options: width=2cm}}}
 #'
-#' Pioneering geospatial health analytics and open‐science tools.
-#' Developed by the Innovalab Team, for more information send a email to <imt.innovlab@oficinas-upch.pe>
+#' Pioneering geospatial health analytics and open-science tools.
+#' Developed by the Innovalab Team. For more information, send an email to
+#' \email{imt.innovlab@oficinas-upch.pe}.
 #'
-#' Follow us on :
-#'  - ![](linkedin-innova.png)[Innovalab Linkedin](https://www.linkedin.com/company/innovalab-imt), ![](twitter-innova.png)[Innovalab X](https://x.com/innovalab_imt)
-#'  - ![](facebook-innova.png)[Innovalab facebook](https://www.facebook.com/imt.innovalab), ![](instagram-innova.png)[Innovalab instagram](https://www.instagram.com/innovalab_imt/)
-#'  - ![](tiktok-innova.png)[Innovalab tiktok](https://www.tiktok.com/@innovalab_imt), ![](spotify-innova.png)[Innovalab Podcast](https://www.innovalab.info/podcast)
+#' Follow us on:
+#' \itemize{
+#'   \item \if{html}{\figure{linkedin-innova.png}{options: width="16"}} \if{latex}{\figure{linkedin-innova.pdf}{options: width=0.4cm}} \href{https://www.linkedin.com/company/innovalab-imt}{Innovalab Linkedin}
+#'   \item \if{html}{\figure{twitter-innova.png}{options: width="16"}} \if{latex}{\figure{twitter-innova.pdf}{options: width=0.4cm}} \href{https://x.com/innovalab_imt}{Innovalab X}
+#'   \item \if{html}{\figure{facebook-innova.png}{options: width="16"}} \if{latex}{\figure{facebook-innova.pdf}{options: width=0.4cm}} \href{https://www.facebook.com/imt.innovalab}{Innovalab facebook}
+#'   \item \if{html}{\figure{instagram-innova.png}{options: width="16"}} \if{latex}{\figure{instagram-innova.pdf}{options: width=0.4cm}} \href{https://www.instagram.com/innovalab_imt/}{Innovalab instagram}
+#'   \item \if{html}{\figure{tiktok-innova.png}{options: width="16"}} \if{latex}{\figure{tiktok-innova.pdf}{options: width=0.4cm}} \href{https://www.tiktok.com/@innovalab_imt}{Innovalab tiktok}
+#'   \item \if{html}{\figure{spotify-innova.png}{options: width="16"}} \if{latex}{\figure{spotify-innova.pdf}{options: width=0.4cm}} \href{https://www.innovalab.info/podcast}{Innovalab Podcast}
+#' }
 #'
 #' @references
 #' - Pesaresi, M. & Politis, P. (2023). GHS‑BUILT‑S R2023A: Red de superficie construida de GHS, derivada de la composición de Sentinel-2 y Landsat, multitemporal (1975–2030). European Commission, Joint Research Centre (JRC). \doi{10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA}. PID: \url{http://data.europa.eu/89h/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea}
@@ -146,7 +158,7 @@ l4h_human_built <- function(from, to, region,
 
   # Extract with reducer
   if (isTRUE(sf)) {
-    extract_hbuilt <- extract_ee_with_progress(
+    extract_hbuilt <- l4h_ee_extract(
       image = coll,
       sf_region = region,
       scale = scale,
@@ -170,7 +182,7 @@ l4h_human_built <- function(from, to, region,
       dplyr::relocate(c("date", "variable", "value"), .before = all_of(geom_col))
 
   } else {
-    extract_hbuilt <- extract_ee_with_progress(
+    extract_hbuilt <- l4h_ee_extract(
       image = coll,
       sf_region = region,
       scale = scale,

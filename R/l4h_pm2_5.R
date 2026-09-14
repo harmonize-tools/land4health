@@ -8,7 +8,12 @@
 #' either an `sf` or a `tibble`, with dates normalized to the **first day
 #' of each month**.
 #'
-#' `r lifecycle::badge('experimental')`
+#' \if{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+#'   \figure{lifecycle-experimental.png}{options: width="120"}
+#' }}
+#' \if{latex}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+#'   \figure{lifecycle-experimental.pdf}{options: width=2cm}
+#' }}
 #'
 #' @param from Character or Date. Start date (`"YYYY-MM-DD"`).
 #' @param to Character or Date. End date (`"YYYY-MM-DD"`).
@@ -49,15 +54,22 @@
 #'   to avoid oversampling or excessive smoothing.
 #'
 #' @section Credits:
-#' [![](innovalab.svg)](https://www.innovalab.info/)
+#' \if{html}{\href{https://www.innovalab.info/}{\figure{innovalab.png}{options: width="120"}}}
+#' \if{latex}{\href{https://www.innovalab.info/}{\figure{innovalab.pdf}{options: width=2cm}}}
 #'
-#' Pioneering geospatial health analytics and open‐science tools.
-#' Developed by the Innovalab Team, for more information send a email to <imt.innovlab@oficinas-upch.pe>
+#' Pioneering geospatial health analytics and open-science tools.
+#' Developed by the Innovalab Team. For more information, send an email to
+#' \email{imt.innovlab@oficinas-upch.pe}.
 #'
-#' Follow us on :
-#'  - ![](linkedin-innova.png)[Innovalab Linkedin](https://www.linkedin.com/company/innovalab-imt), ![](twitter-innova.png)[Innovalab X](https://x.com/innovalab_imt)
-#'  - ![](facebook-innova.png)[Innovalab facebook](https://www.facebook.com/imt.innovalab), ![](instagram-innova.png)[Innovalab instagram](https://www.instagram.com/innovalab_imt/)
-#'  - ![](tiktok-innova.png)[Innovalab tiktok](https://www.tiktok.com/@innovalab_imt), ![](spotify-innova.png)[Innovalab Podcast](https://www.innovalab.info/podcast)
+#' Follow us on:
+#' \itemize{
+#'   \item \if{html}{\figure{linkedin-innova.png}{options: width="16"}} \if{latex}{\figure{linkedin-innova.pdf}{options: width=0.4cm}} \href{https://www.linkedin.com/company/innovalab-imt}{Innovalab Linkedin}
+#'   \item \if{html}{\figure{twitter-innova.png}{options: width="16"}} \if{latex}{\figure{twitter-innova.pdf}{options: width=0.4cm}} \href{https://x.com/innovalab_imt}{Innovalab X}
+#'   \item \if{html}{\figure{facebook-innova.png}{options: width="16"}} \if{latex}{\figure{facebook-innova.pdf}{options: width=0.4cm}} \href{https://www.facebook.com/imt.innovalab}{Innovalab facebook}
+#'   \item \if{html}{\figure{instagram-innova.png}{options: width="16"}} \if{latex}{\figure{instagram-innova.pdf}{options: width=0.4cm}} \href{https://www.instagram.com/innovalab_imt/}{Innovalab instagram}
+#'   \item \if{html}{\figure{tiktok-innova.png}{options: width="16"}} \if{latex}{\figure{tiktok-innova.pdf}{options: width=0.4cm}} \href{https://www.tiktok.com/@innovalab_imt}{Innovalab tiktok}
+#'   \item \if{html}{\figure{spotify-innova.png}{options: width="16"}} \if{latex}{\figure{spotify-innova.pdf}{options: width=0.4cm}} \href{https://www.innovalab.info/podcast}{Innovalab Podcast}
+#' }
 #'
 #' @examples
 #' \dontrun{
@@ -76,7 +88,7 @@
 #'   ), ncol = 2, byrow = TRUE))), crs = 4326))
 #'
 #' # PM2.5 mensual (µg/m^3) para 2010, promedio espacial
-#' out_pm <- l4h_pm25(
+#' out_pm <- l4h_pm2_5(
 #'   from   = "2010-01-01",
 #'   to     = "2010-12-31",
 #'   band   = "b1",        # ignorado (única banda)
@@ -95,7 +107,7 @@
 
 
 
-l4h_pm25 <- function(from, to, band, region, scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = FALSE, ...){
+l4h_pm2_5 <- function(from, to, band, region, scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = FALSE, ...){
 
   # Dataset date range
   start_year <- '2000-01-01'
@@ -164,7 +176,7 @@ l4h_pm25 <- function(from, to, band, region, scale = 1000, stat = "mean", sf = T
 
   # Extract with reducer
   if (isTRUE(sf)) {
-    extract_area <- extract_ee_with_progress(
+    extract_area <- l4h_ee_extract(
       image = collection,
       sf_region = region,
       scale = scale,
@@ -187,7 +199,7 @@ l4h_pm25 <- function(from, to, band, region, scale = 1000, stat = "mean", sf = T
       dplyr::relocate(c("date", "variable", "value"), .before = all_of(geom_col))
 
   } else {
-    extract_area <- extract_ee_with_progress(
+    extract_area <- l4h_ee_extract(
       image = collection,
       sf_region = region,
       scale = scale,

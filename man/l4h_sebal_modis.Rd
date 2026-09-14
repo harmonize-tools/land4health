@@ -44,20 +44,30 @@ extracts the \code{etp} band (daily evapotranspiration in mm/day), and allows te
 by 8-day images or monthly or yearly composites period. Optionally, results can be returned
 as \code{sf}/\code{tibble} objects in R.
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+\if{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+  \figure{lifecycle-experimental.png}{options: width="120"}
+}}
+\if{latex}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+  \figure{lifecycle-experimental.pdf}{options: width=2cm}
+}}
 }
 \section{Credits}{
 
-\href{https://www.innovalab.info/}{\if{html}{\figure{innovalab.svg}}}
+\if{html}{\href{https://www.innovalab.info/}{\figure{innovalab.png}{options: width="120"}}}
+\if{latex}{\href{https://www.innovalab.info/}{\figure{innovalab.pdf}{options: width=2cm}}}
 
-Pioneering geospatial health analytics and open‐science tools.
-Developed by the Innovalab Team, for more information send a email to \href{mailto:imt.innovlab@oficinas-upch.pe}{imt.innovlab@oficinas-upch.pe}
+Pioneering geospatial health analytics and open-science tools.
+Developed by the Innovalab Team. For more information, send an email to
+\email{imt.innovlab@oficinas-upch.pe}.
 
-Follow us on :
+Follow us on:
 \itemize{
-\item \figure{linkedin-innova.png}\href{https://www.linkedin.com/company/innovalab-imt}{Innovalab Linkedin}, \figure{twitter-innova.png}\href{https://x.com/innovalab_imt}{Innovalab X}
-\item \figure{facebook-innova.png}\href{https://www.facebook.com/imt.innovalab}{Innovalab facebook}, \figure{instagram-innova.png}\href{https://www.instagram.com/innovalab_imt/}{Innovalab instagram}
-\item \figure{tiktok-innova.png}\href{https://www.tiktok.com/@innovalab_imt}{Innovalab tiktok}, \figure{spotify-innova.png}\href{https://www.innovalab.info/podcast}{Innovalab Podcast}
+\item \if{html}{\figure{linkedin-innova.png}{options: width="16"}} \if{latex}{\figure{linkedin-innova.pdf}{options: width=0.4cm}} \href{https://www.linkedin.com/company/innovalab-imt}{Innovalab Linkedin}
+\item \if{html}{\figure{twitter-innova.png}{options: width="16"}} \if{latex}{\figure{twitter-innova.pdf}{options: width=0.4cm}} \href{https://x.com/innovalab_imt}{Innovalab X}
+\item \if{html}{\figure{facebook-innova.png}{options: width="16"}} \if{latex}{\figure{facebook-innova.pdf}{options: width=0.4cm}} \href{https://www.facebook.com/imt.innovalab}{Innovalab facebook}
+\item \if{html}{\figure{instagram-innova.png}{options: width="16"}} \if{latex}{\figure{instagram-innova.pdf}{options: width=0.4cm}} \href{https://www.instagram.com/innovalab_imt/}{Innovalab instagram}
+\item \if{html}{\figure{tiktok-innova.png}{options: width="16"}} \if{latex}{\figure{tiktok-innova.pdf}{options: width=0.4cm}} \href{https://www.tiktok.com/@innovalab_imt}{Innovalab tiktok}
+\item \if{html}{\figure{spotify-innova.png}{options: width="16"}} \if{latex}{\figure{spotify-innova.pdf}{options: width=0.4cm}} \href{https://www.innovalab.info/podcast}{Innovalab Podcast}
 }
 }
 

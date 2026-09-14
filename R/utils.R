@@ -80,68 +80,7 @@ split_sf <- function(sf_region) {
 }
 
 
-#' Extract Earth Engine data with a progress bar
-#' @param image An Earth Engine Image object (from `rgee`).
-#' @param sf_region An `sf` object containing regions to extract.
-#' @param scale Numeric. Scale in meters for extraction.
-#' @param fun A reducer function, e.g. `ee$Reducer$mean()`.
-#' @param sf Logical. Should the function return an sf object?
-#' @param quiet Logical. If TRUE, suppress the progress bar (default FALSE).
-#' @param via Character. Either "getInfo" or "drive".
-#' @param ... arguments of `ee_extract` of `rgee` packages.
-#' @return An `sf` or  `data.frame` object.
-#' @keywords internal
-extract_ee_with_progress <- function(
-    image,
-    sf_region,
-    scale,
-    fun,
-    sf,
-    quiet = FALSE,
-    via = "getInfo",
-    ...
-) {
-  geoms <- split_sf(sf_region)
 
-  # cli progress bar unless suppressed (or nothing to extract).
-  # `tick()` is a no-op when quiet, so the loop below never branches.
-  show_bar <- !quiet && length(geoms) > 0
-  tick <- function() {}
-
-  if (show_bar) {
-    cli::cli_progress_bar("Extracting data", total = length(geoms))
-    # Advances the current bar by one step
-    tick <- function() cli::cli_progress_update()
-  }
-
-  if (inherits(sf_region, "sf")) {
-    if (!suppressPackageStartupMessages(requireNamespace("geojsonio", quietly = TRUE))) {
-      cli::cli_abort(
-        "{.pkg geojsonio} is required when passing {.cls sf} objects to {.fun rgee::ee_extract}.
-       Install it with: install.packages('geojsonio')."
-      )
-    }
-  }
-  results <- lapply(geoms, function(feat) {
-    out <- suppressPackageStartupMessages(rgee::ee_extract(
-      x     = image,
-      y     = feat,
-      scale = scale,
-      fun   = get_reducer(name = fun),
-      sf    = sf,
-      via   = via,
-      quiet = TRUE,
-      ...
-    ))
-    tick()   # <- no-op when quiet, otherwise advances the cli bar
-    out
-  })
-
-  if (show_bar) cli::cli_progress_done()
-
-  if (length(results) == 0) return(dplyr::tibble())
-  dplyr::bind_rows(results)
-}
 
 
 #' @keywords internal
@@ -275,3 +214,106 @@ as_geojson_min <- function(x) {
   suppressPackageStartupMessages(geojsonio::geojson_json(x))
 }
 
+#' Internal Earth Engine data extraction (Optimized)
+#'
+#' Transfers geometries to Earth Engine and extracts statistics using direct
+#' invocations of the reduceRegions method to avoid earthengine-api incompatibilities.
+#'
+#' @param image An \code{ee$Image} or \code{ee$ImageCollection} object.
+#' @param sf_region An \code{sf} or \code{sfc} object containing the regions of interest.
+#' @param scale Spatial resolution in meters. If \code{NULL}, the native resolution is used.
+#' @param fun Reducer name (\code{"mean"}, \code{"sum"}, etc.) or an \code{ee$Reducer} object.
+#' @param sf Logical. If \code{TRUE}, returns an \code{sf} object; if \code{FALSE}, a \code{tibble}.
+#' @param tile_scale Scale factor for internal EE subdivisions (1 to 16). Default is 1.
+#' @param quiet Logical. If \code{TRUE}, suppresses the progress bar. Default is \code{FALSE}.
+#' @param force Logical. If \code{FALSE}, evaluates representativeness before processing.
+#' @param ... Additional arguments passed internally to \code{rgee::sf_as_ee}.
+#'
+#' @return An \code{sf} or \code{tbl_df} (\code{data.frame}) object with the extracted data.
+#' @keywords internal
+l4h_ee_extract <- function(image,
+                           sf_region,
+                           scale = NULL,
+                           fun = "mean",
+                           sf = TRUE,
+                           tile_scale = 1,
+                           quiet = FALSE,
+                           force = FALSE,
+                           ...) {
+
+  # 1. Geometry validation
+  sf_classes <- c("sf", "sfc", "SpatVector")
+  if (!inherits(sf_region, sf_classes)) {
+    cli::cli_abort("Parameter {.arg sf_region} must be an object of class {.cls sf}, {.cls sfc}, or {.cls SpatVector}.")
+  }
+
+  if (inherits(sf_region, "SpatVector")) {
+    sf_region <- sf::st_as_sf(sf_region)
+  }
+
+  # Evaluate representativeness using check_representativity
+  if (isFALSE(force) && !is.null(scale)) {
+    check_representativity(region = sf_region, scale = scale)
+  }
+
+  # 2. Convert 'fun' to ee$Reducer using get_reducer()
+  ee_reducer <- if (is.character(fun)) {
+    get_reducer(name = fun)
+  } else if (inherits(fun, "ee.reducer.Reducer")) {
+    fun
+  } else {
+    cli::cli_abort("Parameter {.arg fun} must be a string (e.g. 'mean') or an {.cls ee$Reducer} object.")
+  }
+
+  # 3. Normalize raster (ImageCollection to multiband Image if applicable)
+  if (inherits(image, "ee.imagecollection.ImageCollection")) {
+    image <- image$toBands()
+  } else if (!inherits(image, "ee.image.Image")) {
+    cli::cli_abort("Parameter {.arg image} must be an {.cls ee.Image} or {.cls ee.ImageCollection} object.")
+  }
+
+  # 4. Split geometries and configure progress bar
+  geoms <- split_sf(sf_region)
+  show_bar <- !quiet && length(geoms) > 0
+  tick <- function() {}
+  bar_id <- NULL
+
+  if (show_bar) {
+    bar_id <- cli::cli_progress_bar("Extracting Earth Engine data", total = length(geoms))
+    tick <- function() cli::cli_progress_update(id = bar_id)
+  }
+
+  # 5. Extract by geometries
+  results <- lapply(geoms, function(feat) {
+    ee_y <- rgee::sf_as_ee(feat, quiet = TRUE, ...)
+
+    reduce_args <- list(
+      collection = ee_y,
+      reducer    = ee_reducer,
+      tileScale  = as.integer(tile_scale)
+    )
+
+    if (!is.null(scale)) {
+      reduce_args$scale <- as.numeric(scale)
+    }
+
+    # Direct invocation (avoids the 'image = img' failure)
+    ee_reduced <- do.call(image$reduceRegions, reduce_args)
+
+    out <- if (isTRUE(sf)) {
+      rgee::ee_as_sf(ee_reduced, quiet = TRUE)
+    } else {
+      sf_obj <- rgee::ee_as_sf(ee_reduced, quiet = TRUE)
+      sf::st_drop_geometry(sf_obj)
+    }
+
+    tick()
+    out
+  })
+
+  if (show_bar) cli::cli_progress_done(id = bar_id)
+
+  if (length(results) == 0) return(dplyr::tibble())
+
+  dplyr::bind_rows(results)
+}

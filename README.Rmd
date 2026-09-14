@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
+
 # land4health: Remote Sensing Metrics for Spatial Health Analysis <img src="man/figures/logo.png" align="right" hspace="10" vspace="0" width="15%">
 
 <!-- badges: start -->
@@ -37,31 +38,13 @@ pak::pak("harmonize-tools/land4health")
 
 ```{r message=FALSE,warning=FALSE}
 library(land4health)
-l4h_install()
+# l4h_install()
 ```
 
-```{r message=FALSE,warning=FALSE}
-l4h_use_python()
-rgee::ee_Initialize(quiet = TRUE)
+```{r, echo=FALSE,message=FALSE,warning=FALSE}
+ee_Initialize(user = 'antony.barja8@gmail.com')
 ```
 
-```r
-── Welcome to land4health ────────────────────────────────────────────────────
-A tool of Harmonize Project to calculate and extract Remote Sensing Metrics
-for Spatial Health Analysis. Currently,`land4health` supports metrics in the
-following categories:
-• Accesibility
-• Climate
-• Enviroment
-• and more!
-For a complete list of available metrics, use the `l4h_list_metrics()`
-function.
-
-──────────────────────────────────────────────────────────────────────────────
-Attaching core land4health packages:
-→ rgee v1.1.7
-→ sf v1.0.21
-```
 ## 2. List of available metrics
 
 ```{r}
