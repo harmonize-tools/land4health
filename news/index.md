@@ -1,5 +1,32 @@
 # Changelog
 
+## land4health 0.3.0
+
+#### Vector-borne disease
+
+- ✔ add
+  [`l4h_malaria()`](https://github.com/harmonize-tools/land4health/reference/l4h_malaria.md),
+  this function extracts modeled malaria metrics (incidence rate,
+  incidence count, parasite rate, mortality rate, mortality count) for
+  *Plasmodium falciparum* and *Plasmodium vivax* from the [Malaria Atlas
+  Project](https://malariaatlas.org/) GeoServer via WCS 2.0.1.
+  Automatically selects the latest release available.
+
+#### Climate
+
+- ✔ add
+  [`l4h_chirps()`](https://github.com/harmonize-tools/land4health/reference/l4h_chirps.md),
+  this function extracts precipitation values (daily, monthly, and
+  annual) from [CHIRPS v3](https://www.chc.ucsb.edu/data/chirps3). The
+  user can choose between IMERG-based (`product = "sat"`) or ERA5-based
+  (`product = "rnl"`) daily products.
+
+#### Removed
+
+- Removed `l4h_water_proportion()`. The MapBiomas Peru water dataset
+  does not yet have a stable API or consistent versioning for reliable
+  programmatic access.
+
 ## land4health 0.2.0
 
 New release with new functions and some wrapper for extract data to
@@ -9,9 +36,8 @@ New release with new functions and some wrapper for extract data to
 #### Vector-borne disease
 
 - ✔ add
-  [`l4h_dengue_cases()`](https://github.com/harmonize-tools/land4health/reference/l4h_dengue_cases.md)
-- ✔ add
-  [`l4h_layers_available_malaria()`](https://github.com/harmonize-tools/land4health/reference/l4h_layers_available_malaria.md)
+  [`l4h_dengue()`](https://github.com/harmonize-tools/land4health/reference/l4h_dengue.md)
+- ✔ add `l4h_layers_available_malaria()`
 
 #### Human intervention
 
@@ -43,7 +69,9 @@ New release with new functions and some wrapper for extract data to
 
 - New badge to give credit to Innovalab
   ![](https://raw.githubusercontent.com/harmonize-tools/land4health/ef742944b79b0523b16f3f3fd26e7388ca4e9551/man/figures/innovalab.svg).
-- Remove lifecycle dependence
+- Reduction in the number of dependeces
+- Improving the progress bar using only the
+  [cli](https://cli.r-lib.org/articles/progress-advanced.html) package.
 
 ## land4health 0.1.0
 
@@ -68,8 +96,7 @@ outlined in issue
 
 #### Environment
 
-- ✔ add
-  [`l4h_water_proportion()`](https://github.com/harmonize-tools/land4health/reference/l4h_water_proportion.md)
+- ✔ add `l4h_water_proportion()`
 
 #### Climate
 

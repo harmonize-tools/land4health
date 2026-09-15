@@ -122,3 +122,37 @@ Frontiers in Remote Sensing (2024):
 [doi:10.3389/frsen.2024.1375476](https://doi.org/10.3389/frsen.2024.1375476)
 
 ## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+library(land4health)
+ee_Initialize()
+
+# Define a bounding box region in Ucayali, Peru
+region <- st_as_sf(st_sfc(
+  st_polygon(list(matrix(c(
+    -74.1, -4.4,
+    -74.1, -3.7,
+    -73.2, -3.7,
+    -73.2, -4.4,
+    -74.1, -4.4
+  ), ncol = 2, byrow = TRUE))),
+  crs = 4326
+))
+
+# Population-weighted RAI
+rai_w <- l4h_rural_access_index(
+    region = region,
+    weighted = TRUE,
+    fun = "sum",
+    sf = TRUE)
+head(rai_w)
+
+# Area-based RAI
+rai <- l4h_rural_access_index(
+    region = region,
+    weighted = FALSE,
+    sf = TRUE)
+head(rai)
+} # }
+```

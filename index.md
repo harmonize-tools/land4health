@@ -1,4 +1,4 @@
-# land4health: Remote Sensing Metrics for Spatial Health Analysis ![](reference/figures/logo.png)
+# land4health: Remote Sensing Metrics for Spatial Health Analysis
 
 Calculate and extract remote sensing metrics for spatial health analysis
 🛰️. This package offers R users a quick and easy way to obtain areal or
@@ -51,7 +51,7 @@ l4h_list_metrics()
 #> # ℹ abbreviated name: ¹​pixel_resolution_meters
 #> # ℹ 5 more variables: resolution_temporal <chr>, layer_can_be_actived <lgl>,
 #> #   tags <chr>, lifecycle <chr>, url <chr>
-#> ... (1 more)
+#> ... (3 more)
 ```
 
 ## 3. Example: Calculate Forest Loss in a Custom Region

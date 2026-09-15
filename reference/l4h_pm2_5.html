@@ -15,7 +15,7 @@ either an sf or a tibble, with dates normalized to the first day
 of each month.
 
 
-"></head><body>
+"><meta property="og:image" content="https://github.com/harmonize-tools/land4health/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -64,8 +64,7 @@ of each month.
 </nav><div class="container template-reference-topic">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>Extract Global PM2.5 (monthly) from Google Earth Engine</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Extract Global PM2.5 (monthly) from Google Earth Engine</h1>
       <small class="dont-index">Source: <a href="https://github.com/harmonize-tools/land4health/tree/main/R/l4h_pm2_5.R"><code>R/l4h_pm2_5.R</code></a></small>
       <div class="d-none name"><code>l4h_pm2_5.Rd</code></div>
     </div>
@@ -86,7 +85,6 @@ of each month</strong>.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">l4h_pm2_5</span><span class="op">(</span></span>
 <span>  <span class="va">from</span>,</span>
 <span>  <span class="va">to</span>,</span>
-<span>  <span class="va">band</span>,</span>
 <span>  <span class="va">region</span>,</span>
 <span>  scale <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  stat <span class="op">=</span> <span class="st">"mean"</span>,</span>
@@ -107,12 +105,6 @@ of each month</strong>.</p>
 
 <dt id="arg-to">to<a class="anchor" aria-label="anchor" href="#arg-to"></a></dt>
 <dd><p>Character or Date. End date (<code>"YYYY-MM-DD"</code>).</p></dd>
-
-
-<dt id="arg-band">band<a class="anchor" aria-label="anchor" href="#arg-band"></a></dt>
-<dd><p>Character (kept for API symmetry). The dataset exposes a single band,
-currently <code>'b1'</code> (PM\(_{2.5}\) in µg/m\(^3\)). The function selects <code>'b1'</code>
-internally; this argument is ignored.</p></dd>
 
 
 <dt id="arg-region">region<a class="anchor" aria-label="anchor" href="#arg-region"></a></dt>
@@ -192,13 +184,12 @@ Developed by the Innovalab Team. For more information, send an email to
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harmonize-tools/land4health/">land4health</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">rgee</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># ROI simple (EPSG:4326)</span></span></span>
-<span class="r-in"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">st_sfc</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html" class="external-link">st_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu">st_as_sf</span><span class="op">(</span><span class="fu">st_sfc</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">st_polygon</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="op">-</span><span class="fl">74.1</span>, <span class="op">-</span><span class="fl">4.4</span>,</span></span>
 <span class="r-in"><span>    <span class="op">-</span><span class="fl">74.1</span>, <span class="op">-</span><span class="fl">3.7</span>,</span></span>
 <span class="r-in"><span>    <span class="op">-</span><span class="fl">73.2</span>, <span class="op">-</span><span class="fl">3.7</span>,</span></span>
@@ -206,11 +197,11 @@ Developed by the Innovalab Team. For more information, send an email to
 <span class="r-in"><span>    <span class="op">-</span><span class="fl">74.1</span>, <span class="op">-</span><span class="fl">4.4</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># PM2.5 mensual (µg/m^3) para 2010, promedio espacial</span></span></span>
+<span class="r-in"><span><span class="co"># Monthly PM2.5 (ug/m^3) for 2010, spatial mean</span></span></span>
 <span class="r-in"><span><span class="va">out_pm</span> <span class="op">&lt;-</span> <span class="fu">l4h_pm2_5</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  from   <span class="op">=</span> <span class="st">"2010-01-01"</span>,</span></span>
 <span class="r-in"><span>  to     <span class="op">=</span> <span class="st">"2010-12-31"</span>,</span></span>
-<span class="r-in"><span>  band   <span class="op">=</span> <span class="st">"b1"</span>,        <span class="co"># ignorado (única banda)</span></span></span>
+<span class="r-in"><span>  band   <span class="op">=</span> <span class="st">"b1"</span>,        <span class="co"># ignored (single band)</span></span></span>
 <span class="r-in"><span>  region <span class="op">=</span> <span class="va">region</span>,</span></span>
 <span class="r-in"><span>  stat   <span class="op">=</span> <span class="st">"mean"</span>,</span></span>
 <span class="r-in"><span>  scale  <span class="op">=</span> <span class="fl">3000</span></span></span>

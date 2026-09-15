@@ -9,7 +9,7 @@ The RAI represents the proportion of the rural population living within 2 km of 
 aligning with SDG indicator 9.1.1.
 
 
-"></head><body>
+"><meta property="og:image" content="https://github.com/harmonize-tools/land4health/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -58,8 +58,7 @@ aligning with SDG indicator 9.1.1.
 </nav><div class="container template-reference-topic">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>Compute Rural Access Index (RAI)</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Compute Rural Access Index (RAI)</h1>
       <small class="dont-index">Source: <a href="https://github.com/harmonize-tools/land4health/tree/main/R/l4h_rural_access_index.R"><code>R/l4h_rural_access_index.R</code></a></small>
       <div class="d-none name"><code>l4h_rural_access_index.Rd</code></div>
     </div>
@@ -160,7 +159,39 @@ Developed by the Innovalab Team. For more information, send an email to
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harmonize-tools/land4health/">land4health</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ee_Initialize</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Define a bounding box region in Ucayali, Peru</span></span></span>
+<span class="r-in"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu">st_as_sf</span><span class="op">(</span><span class="fu">st_sfc</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">st_polygon</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="op">-</span><span class="fl">74.1</span>, <span class="op">-</span><span class="fl">4.4</span>,</span></span>
+<span class="r-in"><span>    <span class="op">-</span><span class="fl">74.1</span>, <span class="op">-</span><span class="fl">3.7</span>,</span></span>
+<span class="r-in"><span>    <span class="op">-</span><span class="fl">73.2</span>, <span class="op">-</span><span class="fl">3.7</span>,</span></span>
+<span class="r-in"><span>    <span class="op">-</span><span class="fl">73.2</span>, <span class="op">-</span><span class="fl">4.4</span>,</span></span>
+<span class="r-in"><span>    <span class="op">-</span><span class="fl">74.1</span>, <span class="op">-</span><span class="fl">4.4</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  crs <span class="op">=</span> <span class="fl">4326</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Population-weighted RAI</span></span></span>
+<span class="r-in"><span><span class="va">rai_w</span> <span class="op">&lt;-</span> <span class="fu">l4h_rural_access_index</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    region <span class="op">=</span> <span class="va">region</span>,</span></span>
+<span class="r-in"><span>    weighted <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>    fun <span class="op">=</span> <span class="st">"sum"</span>,</span></span>
+<span class="r-in"><span>    sf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">rai_w</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Area-based RAI</span></span></span>
+<span class="r-in"><span><span class="va">rai</span> <span class="op">&lt;-</span> <span class="fu">l4h_rural_access_index</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    region <span class="op">=</span> <span class="va">region</span>,</span></span>
+<span class="r-in"><span>    weighted <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>    sf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">rai</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

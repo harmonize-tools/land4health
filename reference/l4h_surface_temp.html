@@ -9,7 +9,7 @@ and time range using the MODIS MOD11A1.061 product. The function supports summar
 the temperature data over each date using a selected statistic (e.g., mean or median).
 
 
-"></head><body>
+"><meta property="og:image" content="https://github.com/harmonize-tools/land4health/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -58,8 +58,7 @@ the temperature data over each date using a selected statistic (e.g., mean or me
 </nav><div class="container template-reference-topic">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>Extracts Land Surface Temperature (LST) from MODIS MOD11A1</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Extracts Land Surface Temperature (LST) from MODIS MOD11A1</h1>
       <small class="dont-index">Source: <a href="https://github.com/harmonize-tools/land4health/tree/main/R/l4h_surface_temp.R"><code>R/l4h_surface_temp.R</code></a></small>
       <div class="d-none name"><code>l4h_surface_temp.Rd</code></div>
     </div>
@@ -185,8 +184,8 @@ and Emissivity Daily L3 Global 1km SIN Grid V006 (Version 6.1). NASA EOSDIS Land
 <span class="r-in"><span><span class="fu">ee_Initialize</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Define a bounding box region in Ucayali, Peru</span></span></span>
-<span class="r-in"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">st_sfc</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html" class="external-link">st_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu">st_as_sf</span><span class="op">(</span><span class="fu">st_sfc</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">st_polygon</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="op">-</span><span class="fl">74.1</span>, <span class="op">-</span><span class="fl">4.4</span>,</span></span>
 <span class="r-in"><span>    <span class="op">-</span><span class="fl">74.1</span>, <span class="op">-</span><span class="fl">3.7</span>,</span></span>
 <span class="r-in"><span>    <span class="op">-</span><span class="fl">73.2</span>, <span class="op">-</span><span class="fl">3.7</span>,</span></span>

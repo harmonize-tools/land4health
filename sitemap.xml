@@ -8,19 +8,21 @@
 <url><loc>https://github.com/harmonize-tools/land4health/index.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/news/index.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/as_geojson_min.html</loc></url>
+<url><loc>https://github.com/harmonize-tools/land4health/reference/check_ee_initialized.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/check_representativity.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/get_data.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/get_reducer.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/global-variables.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/index.html</loc></url>
+<url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_chirps.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_co_column.html</loc></url>
-<url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_dengue_cases.html</loc></url>
+<url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_dengue.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_ee_extract.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_forest_loss.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_human_built.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_install.html</loc></url>
-<url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_layers_available_malaria.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_list_metrics.html</loc></url>
+<url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_malaria.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_night_lights.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_packages.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_pm2_5.html</loc></url>
@@ -33,8 +35,8 @@
 <url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_urban_rural_area.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_use_python.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_vegetation.html</loc></url>
-<url><loc>https://github.com/harmonize-tools/land4health/reference/l4h_water_proportion.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/land4health-package.html</loc></url>
+<url><loc>https://github.com/harmonize-tools/land4health/reference/safe_toBands.html</loc></url>
 <url><loc>https://github.com/harmonize-tools/land4health/reference/split_sf.html</loc></url>
 </urlset>
 

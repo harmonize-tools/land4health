@@ -15,7 +15,6 @@ of each month**.
 l4h_pm2_5(
   from,
   to,
-  band,
   region,
   scale = 1000,
   stat = "mean",
@@ -35,12 +34,6 @@ l4h_pm2_5(
 - to:
 
   Character or Date. End date (`"YYYY-MM-DD"`).
-
-- band:
-
-  Character (kept for API symmetry). The dataset exposes a single band,
-  currently `'b1'` (PM\\\_{2.5}\\ in µg/m\\^3\\). The function selects
-  `'b1'` internally; this argument is ignored.
 
 - region:
 
@@ -144,7 +137,6 @@ GEE Community Catalog – Global PM2.5 (V6GL02 CNN).
 
 ``` r
 if (FALSE) { # \dontrun{
-library(sf)
 library(land4health)
 rgee::ee_Initialize()
 
@@ -158,11 +150,11 @@ region <- st_as_sf(st_sfc(
     -74.1, -4.4
   ), ncol = 2, byrow = TRUE))), crs = 4326))
 
-# PM2.5 mensual (µg/m^3) para 2010, promedio espacial
+# Monthly PM2.5 (ug/m^3) for 2010, spatial mean
 out_pm <- l4h_pm2_5(
   from   = "2010-01-01",
   to     = "2010-12-31",
-  band   = "b1",        # ignorado (única banda)
+  band   = "b1",        # ignored (single band)
   region = region,
   stat   = "mean",
   scale  = 3000

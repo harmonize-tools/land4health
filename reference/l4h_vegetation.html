@@ -11,7 +11,7 @@ for a given spatial region, applying quality filtering via the
 DetailedQA bitmask.
 
 
-"></head><body>
+"><meta property="og:image" content="https://github.com/harmonize-tools/land4health/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -60,8 +60,7 @@ DetailedQA bitmask.
 </nav><div class="container template-reference-topic">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>Extract vegetation indices from MODIS MOD13A1</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Extract vegetation indices from MODIS MOD13A1</h1>
       <small class="dont-index">Source: <a href="https://github.com/harmonize-tools/land4health/tree/main/R/l4h_vegetation.R"><code>R/l4h_vegetation.R</code></a></small>
       <div class="d-none name"><code>l4h_vegetation.Rd</code></div>
     </div>
@@ -239,6 +238,8 @@ Developed by the Innovalab Team. For more information, send an email to
 <span class="r-in"><span>    sf   <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result_monthly</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Annual mean NDVI</span></span></span>
 <span class="r-in"><span><span class="va">result_annual</span> <span class="op">&lt;-</span> <span class="va">provinces</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">l4h_vegetation</span><span class="op">(</span></span></span>
@@ -249,6 +250,8 @@ Developed by the Innovalab Team. For more information, send an email to
 <span class="r-in"><span>    fun  <span class="op">=</span> <span class="st">"mean"</span>,</span></span>
 <span class="r-in"><span>    sf   <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="fu">glimpse</span><span class="op">(</span><span class="va">result_annual</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

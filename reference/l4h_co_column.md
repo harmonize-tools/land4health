@@ -1,7 +1,7 @@
 # Extracts carbon monoxide (CO) concentration from Sentinel-5P TROPOMI
 
 Retrieves the CO column number density (mol/m2) for a user-defined
-region and date range from the Sentinel‑5P TROPOMI OFFLINE L3 CO
+region and date range from the Sentinel-5P TROPOMI OFFLINE L3 CO
 dataset.
 
 **NA**
@@ -48,31 +48,31 @@ l4h_co_column(
 
 - sf:
 
-  Logical. Return result as `sf`? Default: `TRUE`.
+  Logical. Return result as `sf`? Default is `TRUE`.
 
 - quiet:
 
-  Logical. Suppress progress messages? Default: `FALSE`.
+  Logical. Suppress progress messages? Default is `FALSE`.
 
 - force:
 
-  Logical. Force extract without spatial check? Default: `FALSE`.
+  Logical. Force extract without spatial check? Default is `FALSE`.
 
 - ...:
 
-  Arguments passed to
-  [`rgee::ee_extract`](https://r-spatial.github.io/rgee/reference/ee_extract.html).
+  Arguments passed to the extraction backend.
 
 ## Value
 
-A `sf` or `tibble` containing CO column density (**mol/m2**) by date and
+An `sf` or `tibble` containing CO column density (mol/m2) by date and
 geometry.
 
 ## Details
 
 The function uses the Earth Engine dataset `COPERNICUS/S5P/OFFL/L3_CO`
-and selects only the `"CO_column_number_density"` band. It supports
-summarization using a reducer statistic per image.
+and selects only the `"CO_column_number_density"` band. Images are
+composited to daily means before extraction to avoid exceeding the
+5000-band limit on `toBands()`.
 
 ## Credits
 
@@ -104,8 +104,36 @@ Follow us on:
 
 ## References
 
-COPERNICUS/S5P/OFFL/L3_CO. Sentinel‑5P Offline L3 Carbon Monoxide.
+COPERNICUS/S5P/OFFL/L3_CO. Sentinel-5P Offline L3 Carbon Monoxide.
 European Union / ESA / Copernicus.
 <https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_CO>
 
 ## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+library(land4health)
+ee_Initialize()
+
+# Define region as a bounding box polygon
+region <- st_as_sf(st_sfc(
+  st_polygon(list(matrix(c(
+    -74.1, -4.4,
+    -74.1, -3.7,
+    -73.2, -3.7,
+    -73.2, -4.4,
+    -74.1, -4.4
+  ), ncol = 2, byrow = TRUE))),
+  crs = 4326)
+)
+
+# Run CO column calculation
+co_data <- l4h_co_column(
+  from = "2022-01-01",
+  to = "2022-12-31",
+  region = region,
+  stat = "mean"
+)
+head(co_data)
+} # }
+```

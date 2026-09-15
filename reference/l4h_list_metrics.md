@@ -86,14 +86,14 @@ l4h_list_metrics()
 #>  4 Human intervention Urban … 500                    MODIS …       2001     2022
 #>  5 Human intervention Night … 500                    VIIRS …       1992     2023
 #>  6 Human intervention Human … 30                     Global…       1975     2030
-#>  7 Environment        Water … 30                     MapBio…       1985     2022
-#>  8 Environment        Urban … 1000                   Urban …       2003     2020
-#>  9 Accessibility      Travel… 927.67                 Malari…       2019     2020
-#> 10 Accessibility      Rural … 100                    Rural …       2024     2024
+#>  7 Environment        Urban … 1000                   Urban …       2003     2020
+#>  8 Accessibility      Travel… 927.67                 Malari…       2019     2020
+#>  9 Accessibility      Rural … 100                    Rural …       2024     2024
+#> 10 Climate            Evapot… 500                    geeSEB…       2002     2022
 #> # ℹ abbreviated name: ¹​pixel_resolution_meters
 #> # ℹ 5 more variables: resolution_temporal <chr>, layer_can_be_actived <lgl>,
 #> #   tags <chr>, lifecycle <chr>, url <chr>
-#> ... (1 more)
+#> ... (2 more)
 
 ## 2  Filter by category (“Human intervention”).
 l4h_list_metrics(category = "Human intervention")

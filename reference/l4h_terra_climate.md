@@ -41,7 +41,7 @@ l4h_terra_climate(
   Character vector. One or more TerraClimate variables to extract.
   Supported codes: `"aet"`, `"def"`, `"pdsi"`, `"pet"`, `"pr"`, `"ro"`,
   `"soil"`, `"srad"`, `"swe"`, `"tmmn"`, `"tmmx"`, `"vap"`, `"vpd"`,
-  `"vs"`. Scale factors and units (aplicadas automáticamente):
+  `"vs"`. Scale factors and units (applied automatically):
 
   - `aet` (mm, ×0.1), `def` (mm, ×0.1), `pdsi` (unitless, ×0.01),
 
@@ -80,9 +80,9 @@ l4h_terra_climate(
 
 - force:
 
-  Logical. Si es `TRUE`, omite el chequeo de representatividad (los
-  polígonos menores a 1 píxel igual se extraen, solo se emite una
-  advertencia). Default `FALSE`.
+  Logical. If `TRUE`, skips the representativity check (polygons smaller
+  than 1 pixel are still extracted, only a warning is issued). Default
+  `FALSE`.
 
 - ...:
 
@@ -92,12 +92,12 @@ l4h_terra_climate(
 
 An `sf` or `tibble` with columns:
 
-- `date` (Date, primer día del mes),
+- `date` (Date, first day of the month),
 
-- `variable` (character, código TerraClimate),
+- `variable` (character, TerraClimate code),
 
-- `value` (numérico, en unidades nativas ya escaladas), plus geometry if
-  `sf = TRUE`, and any attributes from `region`.
+- `value` (numeric, in native units with scale factors applied), plus
+  geometry if `sf = TRUE`, and any attributes from `region`.
 
 ## Credits
 
@@ -139,7 +139,6 @@ climate and climatic water balance from 1958–2015. *Scientific Data*, 5,
 
 ``` r
 if (FALSE) { # \dontrun{
-library(sf)
 library(land4health)
 rgee::ee_Initialize()
 
@@ -153,7 +152,7 @@ region <- st_as_sf(st_sfc(
     -74.1, -4.4
   ), ncol = 2, byrow = TRUE))), crs = 4326))
 
-# Precipitación mensual (mm) 2020, promedio espacial
+# Monthly precipitation (mm) 2020, spatial mean
 out_pr <- l4h_terra_climate(
   from = "2020-01-01",
   to   = "2020-12-31",
@@ -164,7 +163,7 @@ out_pr <- l4h_terra_climate(
 )
 head(out_pr)
 
-# Múltiples variables: Tmax (°C) + VPD (kPa)
+# Multiple variables: Tmax (C) + VPD (kPa)
 out_multi <- l4h_terra_climate(
   from = "2019-01-01",
   to   = "2019-12-31",
