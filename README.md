@@ -61,7 +61,7 @@ l4h_list_metrics()
 #> # ℹ abbreviated name: ¹​pixel_resolution_meters
 #> # ℹ 5 more variables: resolution_temporal <chr>, layer_can_be_actived <lgl>,
 #> #   tags <chr>, lifecycle <chr>, url <chr>
-#> ... (1 more)
+#> ... (3 more)
 ```
 
 ## 3. Example: Calculate Forest Loss in a Custom Region

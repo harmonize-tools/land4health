@@ -7,6 +7,44 @@ get_data <- function(){
   return(data)
 }
 
+#' Internal: Check that Earth Engine is initialized
+#' @keywords internal
+check_ee_initialized <- function() {
+  ee <- tryCatch(rgee::ee, error = function(e) NULL)
+  if (is.null(ee)) {
+    cli::cli_abort(c(
+      "x" = "The {.pkg rgee} package is not loaded.",
+      "i" = "Run {.code library(rgee)} and then {.code rgee::ee_Initialize()} before using GEE functions."
+    ))
+  }
+  initialized <- tryCatch({
+    ee$Number(1)$getInfo()
+    TRUE
+  }, error = function(e) FALSE)
+  if (!initialized) {
+    cli::cli_abort(c(
+      "x" = "Earth Engine is not initialized.",
+      "i" = "Run {.code rgee::ee_Initialize()} before using GEE functions."
+    ))
+  }
+}
+
+#' Internal: Safe toBands with band count check
+#' @param collection An ee$ImageCollection.
+#' @param max_bands Maximum allowed bands. Default 5000.
+#' @return An ee$Image with named bands.
+#' @keywords internal
+safe_toBands <- function(collection, max_bands = 5000) {
+  n <- collection$size()$getInfo()
+  if (n > max_bands) {
+    cli::cli_abort(c(
+      "x" = "The ImageCollection has {.val {n}} images, exceeding the limit of {.val {max_bands}} bands for {.fn toBands}.",
+      "i" = "Use a shorter date range or coarser temporal aggregation (e.g., {.arg by = \"month\"} or {.arg by = \"annual\"})."
+    ))
+  }
+  collection$toBands()
+}
+
 #' Internal: Get an Earth Engine reducer
 #' Returns a reducer object (e.g., `ee$Reducer$mean()`) based on a string name.
 #' @param name A string: one of `"mean"`, `"sum"`, `"min"`, `"max"`, `"median"`, `"stdDev"` and `"first"`
@@ -132,9 +170,7 @@ utils::globalVariables(
     "rai_index",
     "population",
     "accessibility",
-    "water_coverage",
     "geom_col",
-    "water_proportion",
     "modis_img",
     "fecha",
     "month",
@@ -160,7 +196,10 @@ utils::globalVariables(
     "file_name",
     "band_info",
     "adist",
-    "band_raw"
+    "band_raw",
+    ".row_id",
+    "id",
+    "band"
   )
 )
 
@@ -241,6 +280,9 @@ l4h_ee_extract <- function(image,
                            force = FALSE,
                            ...) {
 
+  # 0. Check Earth Engine is initialized
+  check_ee_initialized()
+
   # 1. Geometry validation
   sf_classes <- c("sf", "sfc", "SpatVector")
   if (!inherits(sf_region, sf_classes)) {
@@ -267,7 +309,7 @@ l4h_ee_extract <- function(image,
 
   # 3. Normalize raster (ImageCollection to multiband Image if applicable)
   if (inherits(image, "ee.imagecollection.ImageCollection")) {
-    image <- image$toBands()
+    image <- safe_toBands(image)
   } else if (!inherits(image, "ee.image.Image")) {
     cli::cli_abort("Parameter {.arg image} must be an {.cls ee.Image} or {.cls ee.ImageCollection} object.")
   }

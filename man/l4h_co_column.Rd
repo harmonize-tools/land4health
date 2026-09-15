@@ -27,20 +27,20 @@ l4h_co_column(
 
 \item{scale}{Numeric. Nominal scale in meters. Default is \code{1113}.}
 
-\item{sf}{Logical. Return result as \code{sf}? Default: \code{TRUE}.}
+\item{sf}{Logical. Return result as \code{sf}? Default is \code{TRUE}.}
 
-\item{quiet}{Logical. Suppress progress messages? Default: \code{FALSE}.}
+\item{quiet}{Logical. Suppress progress messages? Default is \code{FALSE}.}
 
-\item{force}{Logical. Force extract without spatial check? Default: \code{FALSE}.}
+\item{force}{Logical. Force extract without spatial check? Default is \code{FALSE}.}
 
-\item{...}{Arguments passed to \code{rgee::ee_extract}.}
+\item{...}{Arguments passed to the extraction backend.}
 }
 \value{
-A \code{sf} or \code{tibble} containing CO column density (\strong{mol/m2}) by date and geometry.
+An \code{sf} or \code{tibble} containing CO column density (mol/m2) by date and geometry.
 }
 \description{
 Retrieves the CO column number density (mol/m2) for a user-defined region and date range
-from the Sentinel‑5P TROPOMI OFFLINE L3 CO dataset.
+from the Sentinel-5P TROPOMI OFFLINE L3 CO dataset.
 
 \if{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{
   \figure{lifecycle-stable.png}{options: width="120"}
@@ -51,7 +51,8 @@ from the Sentinel‑5P TROPOMI OFFLINE L3 CO dataset.
 }
 \details{
 The function uses the Earth Engine dataset \code{COPERNICUS/S5P/OFFL/L3_CO} and selects only the
-\code{"CO_column_number_density"} band. It supports summarization using a reducer statistic per image.
+\code{"CO_column_number_density"} band. Images are composited to daily means before
+extraction to avoid exceeding the 5000-band limit on \code{toBands()}.
 }
 \section{Credits}{
 
@@ -87,7 +88,7 @@ region <- st_as_sf(st_sfc(
     -73.2, -4.4,
     -74.1, -4.4
   ), ncol = 2, byrow = TRUE))),
-  crs = 4326
+  crs = 4326)
 )
 
 # Run CO column calculation
@@ -102,6 +103,6 @@ head(co_data)
 
 }
 \references{
-COPERNICUS/S5P/OFFL/L3_CO. Sentinel‑5P Offline L3 Carbon Monoxide. European Union / ESA / Copernicus.
+COPERNICUS/S5P/OFFL/L3_CO. Sentinel-5P Offline L3 Carbon Monoxide. European Union / ESA / Copernicus.
 \url{https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_CO}
 }

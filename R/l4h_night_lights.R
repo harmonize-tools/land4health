@@ -46,7 +46,6 @@
 #' @examples
 #' \dontrun{
 #' library(land4health)
-#' library(sf)
 #' ee_Initialize()
 #'
 #' # Define a bounding box region in Ucayali, Peru

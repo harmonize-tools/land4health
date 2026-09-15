@@ -26,7 +26,8 @@ Imports:
     ows4R,
     reticulate,
     rappdirs,
-    tibble
+    tibble,
+    terra
 Suggests: 
     geojsonio,
     rmarkdown,

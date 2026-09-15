@@ -151,6 +151,8 @@ result_monthly <- provinces |>
     sf   = TRUE
   )
 
+ head(result_monthly)
+
 # Annual mean NDVI
 result_annual <- provinces |>
   l4h_vegetation(
@@ -161,6 +163,8 @@ result_annual <- provinces |>
     fun  = "mean",
     sf   = TRUE
   )
+
+ glimpse(result_annual)
 }
 
 }

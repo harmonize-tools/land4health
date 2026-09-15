@@ -17,9 +17,6 @@
 #'
 #' @param from Character or Date. Start date (`"YYYY-MM-DD"`).
 #' @param to Character or Date. End date (`"YYYY-MM-DD"`).
-#' @param band Character (kept for API symmetry). The dataset exposes a single band,
-#'   currently `'b1'` (PM\eqn{_{2.5}} in µg/m\eqn{^3}). The function selects `'b1'`
-#'   internally; this argument is ignored.
 #' @param region Spatial object defining the region of interest.
 #'   Accepts an `sf`, `sfc`, or `SpatVector` object.
 #' @param scale Numeric. Reducer scale in meters. Default `1000`.
@@ -73,7 +70,6 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(sf)
 #' library(land4health)
 #' rgee::ee_Initialize()
 #'
@@ -87,11 +83,11 @@
 #'     -74.1, -4.4
 #'   ), ncol = 2, byrow = TRUE))), crs = 4326))
 #'
-#' # PM2.5 mensual (µg/m^3) para 2010, promedio espacial
+#' # Monthly PM2.5 (ug/m^3) for 2010, spatial mean
 #' out_pm <- l4h_pm2_5(
 #'   from   = "2010-01-01",
 #'   to     = "2010-12-31",
-#'   band   = "b1",        # ignorado (única banda)
+#'   band   = "b1",        # ignored (single band)
 #'   region = region,
 #'   stat   = "mean",
 #'   scale  = 3000
@@ -107,7 +103,7 @@
 
 
 
-l4h_pm2_5 <- function(from, to, band, region, scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = FALSE, ...){
+l4h_pm2_5 <- function(from, to, region, scale = 1000, stat = "mean", sf = TRUE, quiet = FALSE, force = FALSE, ...){
 
   # Dataset date range
   start_year <- '2000-01-01'
@@ -169,53 +165,51 @@ l4h_pm2_5 <- function(from, to, band, region, scale = 1000, stat = "mean", sf = 
     )
   }
 
+  # Check Earth Engine is initialized
+  check_ee_initialized()
+
   collection <- ee$ImageCollection(.internal_data$pm2.5$id)$
     select('b1')$
     filterDate(from_ee, to_ee)$
     toBands()
 
   # Extract with reducer
-  if (isTRUE(sf)) {
-    extract_area <- l4h_ee_extract(
-      image = collection,
-      sf_region = region,
-      scale = scale,
-      fun = stat,
-      sf = TRUE,
-      quiet = quiet,
-      ...
-    )
-    geom_col <- attr(extract_area, "sf_column")
-    range_date_original <- seq(as.Date(from_date), as.Date(to_date), by = "1 months")
-    extract_area <- extract_area |>
-      tidyr::pivot_longer(
-        cols = tidyr::starts_with("V6GL02"),
-        names_to = "date",
-        values_to = "value") |>
-      dplyr::mutate(
-        variable = "pm2.5",
-        date = paste0(regmatches(variable, regexpr("\\d{6}", variable)),'01'),
-        date = as.Date(date, format = "%Y%m%d")) |>
-      dplyr::relocate(c("date", "variable", "value"), .before = all_of(geom_col))
+  extract_area <- l4h_ee_extract(
+    image     = collection,
+    sf_region = region,
+    scale     = scale,
+    fun       = stat,
+    sf        = sf,
+    quiet     = quiet,
+    ...
+  )
 
-  } else {
-    extract_area <- l4h_ee_extract(
-      image = collection,
-      sf_region = region,
-      scale = scale,
-      fun = stat,
-      sf = FALSE,
-      quiet = quiet,
-      ...
-    ) |>
-      tidyr::pivot_longer(
-        cols = tidyr::starts_with("V6GL02"),
-        names_to = "date",
-        values_to = "value") |>
-      dplyr::mutate(
-        variable = "pm2.5",
-        date = paste0(regmatches(variable, regexpr("\\d{6}", variable)),'01'),
-        date = as.Date(date, format = "%Y%m%d"))
+  geom_col  <- attr(extract_area, "sf_column")
+  id_cols   <- setdiff(names(region), geom_col)
+  band_cols <- setdiff(names(extract_area), c(geom_col, id_cols))
+
+  band_cols <- band_cols[order(sub(".*_(\\d{6})\\..*", "\\1", band_cols))]
+
+  for (col in band_cols) {
+    extract_area[[col]] <- as.numeric(extract_area[[col]])
   }
+
+  extract_area <- extract_area |>
+    tidyr::pivot_longer(
+      cols      = dplyr::all_of(band_cols),
+      names_to  = "band",
+      values_to = "value"
+    ) |>
+    dplyr::mutate(
+      variable = "pm2.5",
+      date     = as.Date(paste0(sub(".*_(\\d{6})\\..*", "\\1", band), "01"), format = "%Y%m%d")
+    ) |>
+    dplyr::select(-band) |>
+    dplyr::relocate(c("date", "variable", "value"), .before = dplyr::all_of(geom_col))
+
+  if (isFALSE(sf)) {
+    extract_area <- sf::st_drop_geometry(extract_area)
+  }
+
   return(extract_area)
 }

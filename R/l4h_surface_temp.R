@@ -196,10 +196,18 @@ l4h_surface_temp <- function(from, to, region, band = "day", level = "strict", s
     )
 
     geom_col <- attr(extract_area, "sf_column")
-    range_date_original <- seq(as.Date(from_date), as.Date(to_date), by = "1 days")
+    id_cols  <- setdiff(names(region), geom_col)
+    band_cols <- setdiff(names(extract_area), c(geom_col, id_cols))
+
+    for (col in band_cols) {
+      extract_area[[col]] <- as.numeric(extract_area[[col]])
+    }
+
+    date_seq <- seq(as.Date(from_date), as.Date(to_date), by = "1 day")
+
     extract_area <- extract_area |>
       tidyr::pivot_longer(
-        cols = tidyr::starts_with("X"),
+        cols = dplyr::all_of(band_cols),
         names_to = "date",
         values_to = "value") |>
       dplyr::mutate(
@@ -207,7 +215,7 @@ l4h_surface_temp <- function(from, to, region, band = "day", level = "strict", s
         date = gsub("_", "-", date),
         date = as.Date(date),
         variable = paste0("LST-",band,"-1km")) |>
-      dplyr::relocate(c("date", "variable", "value"), .before = all_of(geom_col))
+      dplyr::relocate(c("date", "variable", "value"), .before = dplyr::all_of(geom_col))
 
   } else {
     extract_area <- l4h_ee_extract(
@@ -218,9 +226,17 @@ l4h_surface_temp <- function(from, to, region, band = "day", level = "strict", s
       sf = FALSE,
       quiet = quiet,
       ...
-    ) |>
+    )
+
+    band_cols <- grep("^X", names(extract_area), value = TRUE)
+
+    for (col in band_cols) {
+      extract_area[[col]] <- as.numeric(extract_area[[col]])
+    }
+
+    extract_area <- extract_area |>
       tidyr::pivot_longer(
-        cols = tidyr::starts_with("X"),
+        cols = dplyr::all_of(band_cols),
         names_to = "date",
         values_to = "value") |>
       dplyr::mutate(

@@ -107,10 +107,10 @@ sebal_month <- l4h_sebal_modis(
 )
 
 # 3. Annual evapotranspiration
-# 2015 → 2023, one value per year
+# 2015 → 2022, one value per year
 sebal_annual <- l4h_sebal_modis(
-  from   = 2015,
-  to     = 2023,
+  from   = "2015-01-01",
+  to     = "2022-12-31",
   by     = "annual",
   fun    = "sum",
   region = region,

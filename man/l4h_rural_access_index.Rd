@@ -88,7 +88,6 @@ Follow us on:
 \examples{
 \dontrun{
 library(land4health)
-library(sf)
 ee_Initialize()
 
 # Define a bounding box region in Ucayali, Peru
@@ -100,6 +99,8 @@ region <- st_as_sf(st_sfc(
     -73.2, -4.4,
     -74.1, -4.4
   ), ncol = 2, byrow = TRUE))),
+  crs = 4326
+))
 
 # Population-weighted RAI
 rai_w <- l4h_rural_access_index(

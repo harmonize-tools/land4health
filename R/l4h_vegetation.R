@@ -122,6 +122,8 @@
 #'     sf   = TRUE
 #'   )
 #'
+#'  head(result_monthly)
+#'
 #' # Annual mean NDVI
 #' result_annual <- provinces |>
 #'   l4h_vegetation(
@@ -132,6 +134,8 @@
 #'     fun  = "mean",
 #'     sf   = TRUE
 #'   )
+#'
+#'  glimpse(result_annual)
 #' }
 #'
 #' @export
@@ -148,7 +152,6 @@ l4h_vegetation <- function(
     force = FALSE
 ) {
 
-  # -- 0. Argument validation ------------------------------------------------
   band <- match.arg(band)
   by   <- match.arg(by)
   fun  <- match.arg(fun)
@@ -166,18 +169,14 @@ l4h_vegetation <- function(
     )
   }
 
-  # -- 1. Representativity check --------------------------------------------
   if (isFALSE(force)) {
     check_representativity(region, scale = scale)
   }
 
-  # -- 2. Scale factor per band ---------------------------------------------
   scale_factor <- c(NDVI = 0.0001, EVI = 0.0001, SAVI = 1)[[band]]
 
-  # -- 3. Region to WGS84 ---------------------------------------------------
   region_sf <- sf::st_transform(region, crs = 4326)
 
-  # -- 4. MODIS collection --------------------------------------------------
   if (band == "SAVI") {
     collection <- ee$ImageCollection("MODIS/061/MOD13A1")$
       select(c("sur_refl_b01", "sur_refl_b02", "DetailedQA"))
@@ -186,7 +185,7 @@ l4h_vegetation <- function(
       select(c(band, "DetailedQA"))
   }
 
-  # -- 5. QA filter (uses bitwiseExtract() from utils.R) --------------------
+  # QA filter (uses bitwiseExtract() from utils.R)
   .apply_qa_filter <- function(image) {
     qa <- image$select("DetailedQA")
     f1 <- bitwiseExtract(qa, 0, 1)   # bits 0-1: VI quality
@@ -201,7 +200,6 @@ l4h_vegetation <- function(
     }
   }
 
-  # -- 6. SAVI on-the-fly expression ----------------------------------------
   .compute_savi <- function(img) {
     img$expression(
       "(1 + L) * float(nir - red) / (nir + red + L)",
@@ -213,7 +211,6 @@ l4h_vegetation <- function(
     )$rename("SAVI")
   }
 
-  # -- 7. Temporal composites (driven by `by`) ------------------------------
   years <- ee$List$sequence(start_year, end_year)
 
   if (by == "month") {
@@ -257,13 +254,11 @@ l4h_vegetation <- function(
     )
   }
 
-  # -- 8. Filter to exact date range + apply scale factor -------------------
   image_stack <- temporal_collection$
     filter(ee$Filter$date(from, to))$
     toBands()$
     multiply(scale_factor)
 
-  # -- 9. Extract using land4health wrapper (progress bar included) ---------
   cli::cli_alert_info(
     "Extracting {band} ({fun}, by {by}) | MODIS MOD13A1 | {from} to {to}"
   )
@@ -277,7 +272,6 @@ l4h_vegetation <- function(
     quiet     = quiet
   )
 
-  # -- 10. Build date sequence matching the image_stack bands ---------------
   date_seq <- if (by == "month") {
     seq(as.Date(from), as.Date(to), by = "1 month")
   } else {
@@ -288,7 +282,6 @@ l4h_vegetation <- function(
     )
   }
 
-  # -- 11. Reshape to land4health long format --------------------------------
   geom_col  <- attr(region_sf, "sf_column")
   id_cols   <- setdiff(names(region_sf), geom_col)
   band_cols <- setdiff(names(result_wide), id_cols)
@@ -307,11 +300,17 @@ l4h_vegetation <- function(
     dplyr::select(-band_raw) |>
     dplyr::select(dplyr::all_of(id_cols), date, variable, value)
 
-  # -- 12. Optionally attach geometries -------------------------------------
   if (sf) {
-    result_long <- region_sf |>
-      dplyr::select(dplyr::all_of(id_cols)) |>
-      dplyr::right_join(result_long, by = id_cols)
+    if (length(id_cols) > 0) {
+      result_long <- region_sf |>
+        dplyr::select(dplyr::all_of(id_cols)) |>
+        dplyr::right_join(result_long, by = id_cols)
+    } else {
+      result_long <- sf::st_bind_cols(
+        region_sf[, attr(region_sf, "sf_column"), drop = FALSE],
+        result_long
+      )
+    }
   }
 
   return(result_long)

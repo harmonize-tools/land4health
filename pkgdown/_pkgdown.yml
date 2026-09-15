@@ -1,7 +1,8 @@
 url: https://github.com/harmonize-tools/land4health
-description: Extract remote sensing metrics for spatial health analysis 🛰️. Quick and easy areal and zonal statistics for infectious disease modeling in spatial epidemiology 🦠🏥
+description: Extract remote sensing metrics for spatial health analysis 🛰. Quick and easy areal and zonal statistics for infectious disease modeling in spatial epidemiology 🦠🏥.
 home:
-  title: Harmonize
+
+  title: land4health
 
 authors:
   Antony Barja:
@@ -57,8 +58,8 @@ navbar:
 reference:
  - title: 'Vector-borne disease'
    contents:
-   - l4h_dengue_cases
-   - l4h_layers_available_malaria
+   - l4h_dengue
+   - l4h_malaria
 
  - title: 'Human intervention'
    contents:
@@ -67,15 +68,14 @@ reference:
    - l4h_urban_rural_area
    - l4h_human_built
 
- - title: 'Accesibility'
+ - title: 'Accessibility'
    contents:
    - l4h_rural_access_index
    - l4h_travel_time
 
- - title: 'Enviroment'
+ - title: 'Environment'
    contents:
    - l4h_pm2_5
-   - l4h_water_proportion
    - l4h_co_column
    - l4h_urban_heat_index
    - l4h_vegetation
@@ -85,6 +85,7 @@ reference:
    - l4h_terra_climate
    - l4h_sebal_modis
    - l4h_surface_temp
+   - l4h_chirps
 
  - title: 'Utils'
    contents:
@@ -92,3 +93,4 @@ reference:
    - l4h_packages
    - l4h_install
    - l4h_use_python
+   - l4h_ee_extract

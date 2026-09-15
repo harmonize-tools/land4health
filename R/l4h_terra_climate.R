@@ -19,7 +19,7 @@
 #' @param band Character vector. One or more TerraClimate variables to extract.
 #'   Supported codes: `"aet"`, `"def"`, `"pdsi"`, `"pet"`, `"pr"`, `"ro"`,
 #'   `"soil"`, `"srad"`, `"swe"`, `"tmmn"`, `"tmmx"`, `"vap"`, `"vpd"`, `"vs"`.
-#'   Scale factors and units (aplicadas automáticamente):
+#'   Scale factors and units (applied automatically):
 #'   - `aet` (mm, ×0.1), `def` (mm, ×0.1), `pdsi` (unitless, ×0.01),
 #'   - `pet` (mm, ×0.1), `pr` (mm, ×1), `ro` (mm, ×1), `soil` (mm, ×0.1),
 #'   - `srad` (W/m², ×0.1), `swe` (mm, ×1),
@@ -34,15 +34,15 @@
 #' @param sf Logical. If `TRUE`, returns an `sf`; if `FALSE`, returns a `tibble`.
 #'   Default `TRUE`.
 #' @param quiet Logical. If `TRUE`, suppresses progress bars/messages. Default `FALSE`.
-#' @param force Logical. Si es `TRUE`, omite el chequeo de representatividad
-#'   (los polígonos menores a 1 píxel igual se extraen, solo se emite una advertencia).
+#' @param force Logical. If `TRUE`, skips the representativity check
+#'   (polygons smaller than 1 pixel are still extracted, only a warning is issued).
 #'   Default `FALSE`.
 #' @param ... Additional arguments passed to the extraction backend.
 #'
 #' @return An `sf` or `tibble` with columns:
-#'   - `date` (Date, primer día del mes),
-#'   - `variable` (character, código TerraClimate),
-#'   - `value` (numérico, en unidades nativas ya escaladas),
+#'   - `date` (Date, first day of the month),
+#'   - `variable` (character, TerraClimate code),
+#'   - `value` (numeric, in native units with scale factors applied),
 #'   plus geometry if `sf = TRUE`, and any attributes from `region`.
 #'
 #' @section Credits:
@@ -65,7 +65,6 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(sf)
 #' library(land4health)
 #' rgee::ee_Initialize()
 #'
@@ -79,7 +78,7 @@
 #'     -74.1, -4.4
 #'   ), ncol = 2, byrow = TRUE))), crs = 4326))
 #'
-#' # Precipitación mensual (mm) 2020, promedio espacial
+#' # Monthly precipitation (mm) 2020, spatial mean
 #' out_pr <- l4h_terra_climate(
 #'   from = "2020-01-01",
 #'   to   = "2020-12-31",
@@ -90,7 +89,7 @@
 #' )
 #' head(out_pr)
 #'
-#' # Múltiples variables: Tmax (°C) + VPD (kPa)
+#' # Multiple variables: Tmax (C) + VPD (kPa)
 #' out_multi <- l4h_terra_climate(
 #'   from = "2019-01-01",
 #'   to   = "2019-12-31",
@@ -169,6 +168,9 @@ l4h_terra_climate <- function(from, to, band, region, scale = 1000, stat = "mean
       scale = 30
     )
   }
+
+  # Check Earth Engine is initialized
+  check_ee_initialized()
 
   band_info <- function(band) {
     choices <- c("aet","def","pdsi","pet","pr","ro","soil","srad","swe",

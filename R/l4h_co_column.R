@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Retrieves the CO column number density (mol/m2) for a user-defined region and date range
-#' from the Sentinel‑5P TROPOMI OFFLINE L3 CO dataset.
+#' from the Sentinel-5P TROPOMI OFFLINE L3 CO dataset.
 #'
 #' \if{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{
 #'   \figure{lifecycle-stable.png}{options: width="120"}
@@ -17,16 +17,17 @@
 #' @param region A spatial object (`sf`, `sfc`, or `SpatVector`) defining the region of interest.
 #' @param stat   Character. Summary statistic to apply (`"mean"`, `"median"`, `"max"`, etc.).
 #' @param scale  Numeric. Nominal scale in meters. Default is `1113`.
-#' @param sf     Logical. Return result as `sf`? Default: `TRUE`.
-#' @param quiet  Logical. Suppress progress messages? Default: `FALSE`.
-#' @param force  Logical. Force extract without spatial check? Default: `FALSE`.
-#' @param ...        Arguments passed to `rgee::ee_extract`.
+#' @param sf     Logical. Return result as `sf`? Default is `TRUE`.
+#' @param quiet  Logical. Suppress progress messages? Default is `FALSE`.
+#' @param force  Logical. Force extract without spatial check? Default is `FALSE`.
+#' @param ...    Arguments passed to the extraction backend.
 #'
-#' @return A `sf` or `tibble` containing CO column density (__mol/m2__) by date and geometry.
+#' @return An `sf` or `tibble` containing CO column density (mol/m2) by date and geometry.
 #'
 #' @details
 #' The function uses the Earth Engine dataset `COPERNICUS/S5P/OFFL/L3_CO` and selects only the
-#' `"CO_column_number_density"` band. It supports summarization using a reducer statistic per image.
+#' `"CO_column_number_density"` band. Images are composited to daily means before
+#' extraction to avoid exceeding the 5000-band limit on `toBands()`.
 #'
 #' @section Credits:
 #' \if{html}{\href{https://www.innovalab.info/}{\figure{innovalab.png}{options: width="120"}}}
@@ -60,7 +61,7 @@
 #'     -73.2, -4.4,
 #'     -74.1, -4.4
 #'   ), ncol = 2, byrow = TRUE))),
-#'   crs = 4326
+#'   crs = 4326)
 #' )
 #'
 #' # Run CO column calculation
@@ -74,7 +75,7 @@
 #' }
 #'
 #' @references
-#' COPERNICUS/S5P/OFFL/L3_CO. Sentinel‑5P Offline L3 Carbon Monoxide. European Union / ESA / Copernicus.
+#' COPERNICUS/S5P/OFFL/L3_CO. Sentinel-5P Offline L3 Carbon Monoxide. European Union / ESA / Copernicus.
 #' \url{https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S5P_OFFL_L3_CO}
 #'
 #' @export
@@ -86,7 +87,7 @@ l4h_co_column <- function(from, to, region, stat = "mean",
   start_year <- as.numeric(.internal_data$co_column$startyear)
   end_year   <- as.numeric(.internal_data$co_column$endyear)
 
-  # Regex para validar formato "YYYY-MM-DD"
+  # Validate date format
   valid_date_format <- function(x) grepl("^\\d{4}-\\d{2}-\\d{2}$", x)
 
   if (!valid_date_format(from)) {
@@ -120,68 +121,79 @@ l4h_co_column <- function(from, to, region, stat = "mean",
   from_ee <- rgee::rdate_to_eedate(from_date)
   to_ee   <- rgee::rdate_to_eedate(to_date)
 
-  # Validar objeto espacial
+  # Validate spatial object
   sf_classes <- c("sf", "sfc", "SpatVector")
-
   if (!inherits(region, sf_classes)) {
     cli::cli_abort("Invalid {.arg region}: must be an {.cls sf}, {.cls sfc}, or {.cls SpatVector} object.")
   }
 
-  # Chequeo de representatividad espacial
+  # Check representativeness
   if (isFALSE(force)) {
     check_representativity(region = region, scale = scale)
   }
 
-  # Dataset de CO Sentinel-5P
-  co_ic <- ee$ImageCollection(.internal_data$co_column$id)$
+  check_ee_initialized()
+
+  # Sentinel-5P has many granules per day; toBands() would exceed 5000 bands.
+  # Solution: composite to daily means first, then toBands().
+
+  ic <- ee$ImageCollection(.internal_data$co_column$id)$
     filterDate(from_ee, to_ee)$
-    select("CO_column_number_density")$
-    toBands()
+    select("CO_column_number_density")
 
-  # Extract with reducer
-  if (isTRUE(sf)) {
-    extract_co <- l4h_ee_extract(
-      image = co_ic,
-      sf_region = region,
-      scale = scale,
-      fun = stat,
-      sf = TRUE,
-      quiet = quiet,
-      ...
-    )
+  # Build daily composite: group by date, take mean of all granules per day
+  date_seq  <- seq(from_date, to_date, by = "day")
+  n_days    <- length(date_seq)
 
-    geom_col <- attr(extract_co, "sf_column")
-    range_date_original <- seq(as.Date(from_date), as.Date(to_date), by = "1 days")
-    extract_co <- extract_co |>
-      tidyr::pivot_longer(
-        cols = tidyr::starts_with("X"),
-        names_to = "date",
-        values_to = "value") |>
-      dplyr::mutate(
-        date = sub("^X\\d{8}T\\d+_(\\d{4})(\\d{2})(\\d{2}).*", "\\1-\\2-\\3", date),
-        date = as.Date(date),
-        variable = "CO_column_density") |>
-      dplyr::relocate(c("date", "variable", "value"), .before = all_of(geom_col))
+  daily_names <- format(date_seq, "day_%Y%m%d")
 
-  } else {
-    extract_co <- l4h_ee_extract(
-      image = co_ic,
-      sf_region = region,
-      scale = scale,
-      fun = stat,
-      sf = FALSE,
-      quiet = quiet,
-      ...
-    ) |>
-      tidyr::pivot_longer(
-        cols = tidyr::starts_with("X"),
-        names_to = "date",
-        values_to = "value") |>
-      dplyr::mutate(
-        date = sub("^X\\d{8}T\\d+_(\\d{4})(\\d{2})(\\d{2}).*", "\\1-\\2-\\3", date),
-        date = as.Date(date),
-        variable = "CO_column_density")
+  daily_images <- lapply(seq_along(date_seq), function(i) {
+    d <- date_seq[i]
+    day_start <- rgee::rdate_to_eedate(d)
+    day_end   <- rgee::rdate_to_eedate(d + 1)
+    ic$
+      filterDate(day_start, day_end)$
+      mean()$
+      set("system:time_start", as.numeric(as.POSIXct(d)) * 1000)$
+      rename(daily_names[i])
+  })
 
+  collection <- ee$ImageCollection$fromImages(daily_images)$toBands()
+
+  # Extract
+  extract_co <- l4h_ee_extract(
+    image     = collection,
+    sf_region = region,
+    scale     = scale,
+    fun       = stat,
+    sf        = sf,
+    quiet     = quiet,
+    ...
+  )
+
+  # Pivot to long format
+  geom_col  <- attr(extract_co, "sf_column")
+  band_cols <- grep("^X\\d+_day_\\d{8}$", names(extract_co), value = TRUE)
+  band_cols <- band_cols[order(as.Date(sub(".*_", "", band_cols), format = "%Y%m%d"))]
+
+  # Coerce all band columns to numeric (safety against mixed types from GEE)
+  for (col in band_cols) {
+    extract_co[[col]] <- as.numeric(extract_co[[col]])
   }
+
+  extract_co <- extract_co |>
+    tidyr::pivot_longer(
+      cols      = dplyr::all_of(band_cols),
+      names_to  = "band",
+      values_to = "value"
+    ) |>
+    dplyr::mutate(
+      date     = as.Date(sub(".*_", "", band), format = "%Y%m%d"),
+      variable = "CO_column_density",
+      value    = dplyr::if_else(value == 0, NA_real_, value) # O NA_integer_ si son enteros
+    ) |>
+    dplyr::select(-band) |>
+    dplyr::relocate(c("date", "variable", "value"), .before = dplyr::all_of(geom_col))
+
   return(extract_co)
 }

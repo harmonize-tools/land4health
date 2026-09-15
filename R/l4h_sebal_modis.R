@@ -77,10 +77,10 @@
 #' )
 #'
 #' # 3. Annual evapotranspiration
-#' # 2015 → 2023, one value per year
+#' # 2015 → 2022, one value per year
 #' sebal_annual <- l4h_sebal_modis(
-#'   from   = 2015,
-#'   to     = 2023,
+#'   from   = "2015-01-01",
+#'   to     = "2022-12-31",
 #'   by     = "annual",
 #'   fun    = "sum",
 #'   region = region,
@@ -100,16 +100,23 @@
 
 #' @export
 l4h_sebal_modis <- function(from, to, by = "8 days", region, fun = "mean", sf = TRUE, force = FALSE, quiet = FALSE, ...) {
-  # Validar que la conversion fue exitosa
+  # Validate that from and to are Date or character strings
+  if (!inherits(from, "Date") && !is.character(from)) {
+    cli::cli_abort("Parameter {.field from} must be a Date or character string (e.g., '2020-01-01'). Got: {.cls {class(from)}}")
+  }
+  if (!inherits(to, "Date") && !is.character(to)) {
+    cli::cli_abort("Parameter {.field to} must be a Date or character string (e.g., '2020-12-31'). Got: {.cls {class(to)}}")
+  }
+
+  # Convert to Date
+  if (!inherits(from, "Date")) from <- as.Date(from)
+  if (!inherits(to, "Date")) to <- as.Date(to)
+
   if (is.na(from) || is.na(to)) {
     cli::cli_abort("Dates must be in the format 'YYYY-MM-DD'. Valid example: '2024-01-01'.")
   }
 
-  # Validar que from y to sean fechas
-  if (!inherits(from, "Date")) from <- as.Date(from)
-  if (!inherits(to, "Date")) to <- as.Date(to)
-
-  # Validacion de fechas
+  # Validate date range
   if (from < as.Date("2002-07-01") || to > as.Date("2022-12-31")) {
     cli::cli_abort("Dates must be in the range 2002-07-01 to 2022-12-31. Received: {.val {from}} a {.val {to}}")
   }
@@ -139,6 +146,9 @@ l4h_sebal_modis <- function(from, to, by = "8 days", region, fun = "mean", sf = 
     cli::cli_abort("Invalid {.arg region}: must be an {.cls sf}, {.cls sfc}, or {.cls SpatVector} object.")
   }
 
+  # Check Earth Engine is initialized
+  check_ee_initialized()
+
   # Reducer function
   reducer_fun <- get_reducer(name = fun)
 
@@ -148,9 +158,8 @@ l4h_sebal_modis <- function(from, to, by = "8 days", region, fun = "mean", sf = 
     ee$ImageCollection$select("ET_24h")
 
   if (by == "8 days") {
-    modis_ic <- ic |>
-      ee$ImageCollection$filterDate(from_ee, to_ee) |>
-      ee$ImageCollection$toBands()
+    filtered_ic <- ic |> ee$ImageCollection$filterDate(from_ee, to_ee)
+    modis_ic <- safe_toBands(filtered_ic)
     modis_name <- modis_ic$bandNames()$getInfo()
     modis_date <- as.numeric(gsub("_.*", "", modis_name))
     modis_rename <- paste0("etp_", modis_date)

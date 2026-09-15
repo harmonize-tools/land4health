@@ -25,10 +25,9 @@ updated_db_ee <- function(type = NULL, db = NULL){
   hansen             = updated_db_ee(type = 'eedataset', db = 'hansen'),
   rai                = updated_db_ee(type = 'eeawesome', db = 'raimultiplier'),
   ruralaccess        = updated_db_ee(type = 'eeawesome', db = 'ruralpopaccess'),
-  inaccessibility    = updated_db_ee(type = 'eeawesome', db = 'inaccessibility'),
+  inaccessibility    = updated_db_ee(type = 'eeawesome', db = 'RAI'),
   access_healthcare  = updated_db_ee(type = 'eedataset', db = 'accessibility_to_healthcare'),
   access_cities      = updated_db_ee(type = 'eedataset', db = 'accessibility_to_cities'),
-  water_coverage     = updated_db_ee(type = 'mapbiomas', db = NULL),
   geesebal           = updated_db_ee(type = 'eeawesome', db = 'geesebal'),
   ghsl               = updated_db_ee(type = 'eeawesome', db = 'GHS_SMOD'),
   lst                = updated_db_ee(type = 'eedataset', db = 'MODIS/061/MOD11A1'),
@@ -38,7 +37,9 @@ updated_db_ee <- function(type = NULL, db = NULL){
   human_built        = updated_db_ee(type = 'eedataset', db = 'JRC/GHSL/P2023A/GHS_BUILT_S'),
   malaria_atlas      = "https://data.malariaatlas.org/geoserver/Malaria/ows",
   terraclimate       =  updated_db_ee(type = 'eedataset', db = 'IDAHO_EPSCOR/TERRACLIMATE'),
-  pm2.5              =  updated_db_ee(type = 'eeawesome', db = 'GLOBAL-SATELLITE-PM25/MONTHLY')
+  pm2.5              =  updated_db_ee(type = 'eeawesome', db = 'GLOBAL-SATELLITE-PM25/MONTHLY'),
+  chirps_sat         =  updated_db_ee(type = 'eedataset', db = 'UCSB-CHC/CHIRPS/V3/DAILY_SAT'),
+  chirps_rnl         =  updated_db_ee(type = 'eedataset', db = 'UCSB-CHC/CHIRPS/V3/DAILY_RNL')
 )
 
 usethis::use_data(.internal_data, internal = TRUE, overwrite = TRUE)

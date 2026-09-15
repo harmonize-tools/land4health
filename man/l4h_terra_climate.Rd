@@ -25,7 +25,7 @@ l4h_terra_climate(
 \item{band}{Character vector. One or more TerraClimate variables to extract.
 Supported codes: \code{"aet"}, \code{"def"}, \code{"pdsi"}, \code{"pet"}, \code{"pr"}, \code{"ro"},
 \code{"soil"}, \code{"srad"}, \code{"swe"}, \code{"tmmn"}, \code{"tmmx"}, \code{"vap"}, \code{"vpd"}, \code{"vs"}.
-Scale factors and units (aplicadas automáticamente):
+Scale factors and units (applied automatically):
 \itemize{
 \item \code{aet} (mm, ×0.1), \code{def} (mm, ×0.1), \code{pdsi} (unitless, ×0.01),
 \item \code{pet} (mm, ×0.1), \code{pr} (mm, ×1), \code{ro} (mm, ×1), \code{soil} (mm, ×0.1),
@@ -48,8 +48,8 @@ Default \code{TRUE}.}
 
 \item{quiet}{Logical. If \code{TRUE}, suppresses progress bars/messages. Default \code{FALSE}.}
 
-\item{force}{Logical. Si es \code{TRUE}, omite el chequeo de representatividad
-(los polígonos menores a 1 píxel igual se extraen, solo se emite una advertencia).
+\item{force}{Logical. If \code{TRUE}, skips the representativity check
+(polygons smaller than 1 pixel are still extracted, only a warning is issued).
 Default \code{FALSE}.}
 
 \item{...}{Additional arguments passed to the extraction backend.}
@@ -57,9 +57,9 @@ Default \code{FALSE}.}
 \value{
 An \code{sf} or \code{tibble} with columns:
 \itemize{
-\item \code{date} (Date, primer día del mes),
-\item \code{variable} (character, código TerraClimate),
-\item \code{value} (numérico, en unidades nativas ya escaladas),
+\item \code{date} (Date, first day of the month),
+\item \code{variable} (character, TerraClimate code),
+\item \code{value} (numeric, in native units with scale factors applied),
 plus geometry if \code{sf = TRUE}, and any attributes from \code{region}.
 }
 }
@@ -99,7 +99,6 @@ Follow us on:
 
 \examples{
 \dontrun{
-library(sf)
 library(land4health)
 rgee::ee_Initialize()
 
@@ -113,7 +112,7 @@ region <- st_as_sf(st_sfc(
     -74.1, -4.4
   ), ncol = 2, byrow = TRUE))), crs = 4326))
 
-# Precipitación mensual (mm) 2020, promedio espacial
+# Monthly precipitation (mm) 2020, spatial mean
 out_pr <- l4h_terra_climate(
   from = "2020-01-01",
   to   = "2020-12-31",
@@ -124,7 +123,7 @@ out_pr <- l4h_terra_climate(
 )
 head(out_pr)
 
-# Múltiples variables: Tmax (°C) + VPD (kPa)
+# Multiple variables: Tmax (C) + VPD (kPa)
 out_multi <- l4h_terra_climate(
   from = "2019-01-01",
   to   = "2019-12-31",

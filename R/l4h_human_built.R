@@ -49,7 +49,6 @@
 #' @examples
 #' \dontrun{
 #' library(land4health)
-#' library(sf)
 #' ee_Initialize()
 #'
 #' # Define a bounding box region in Ucayali, Peru
@@ -157,50 +156,54 @@ l4h_human_built <- function(from, to, region,
   coll <- coll$select("built_surface")$toBands()
 
   # Extract with reducer
-  if (isTRUE(sf)) {
-    extract_hbuilt <- l4h_ee_extract(
-      image = coll,
-      sf_region = region,
-      scale = scale,
-      fun = "sum",
-      sf = TRUE,
-      quiet = quiet,
-      # ...
+  extract_hbuilt <- l4h_ee_extract(
+    image = coll,
+    sf_region = region,
+    scale = scale,
+    fun = "sum",
+    sf = sf,
+    quiet = quiet,
+    ...
+  )
+
+  geom_col  <- attr(extract_hbuilt, "sf_column")
+  id_cols   <- setdiff(names(region), geom_col)
+  band_cols <- setdiff(names(extract_hbuilt), c(geom_col, id_cols))
+
+  # GHSL epochs: every 5 years from 1975 to 2030
+  all_epochs   <- seq(1975, 2030, by = 5)
+  expected_eps <- all_epochs[all_epochs >= from_year & all_epochs <= to_year]
+
+  n_bands <- length(band_cols)
+  n_eps   <- length(expected_eps)
+
+  if (n_bands != n_eps) {
+    cli::cli_abort(
+      "Band count ({n_bands}) does not match expected GHSL epochs ({n_eps}: {.val {expected_eps}})."
     )
-
-    geom_col <- attr(extract_hbuilt, "sf_column")
-    extract_hbuilt <- extract_hbuilt |>
-      tidyr::pivot_longer(
-        cols = grep("built_surface", names(extract_hbuilt), value = TRUE),
-        names_to = "date",
-        values_to = "value") |>
-      dplyr::mutate(
-        date = sub("^X(\\d{4}).*", "\\1", date),
-        date = paste0(date, "-01-01"),
-        date = as.Date(date),
-        variable = "built_surface") |>
-      dplyr::relocate(c("date", "variable", "value"), .before = all_of(geom_col))
-
-  } else {
-    extract_hbuilt <- l4h_ee_extract(
-      image = coll,
-      sf_region = region,
-      scale = scale,
-      fun = "sum",
-      sf = FALSE,
-      quiet = quiet,
-      ...
-    ) |>
-      tidyr::pivot_longer(
-        cols = grep("built_surface", names(extract_hbuilt), value = TRUE),
-        names_to = "date",
-        values_to = "value") |>
-      dplyr::mutate(
-        date = sub("^X(\\d{4}).*", "\\1", date),
-        date = paste0(date, "-01-01"),
-        date = as.Date(date),
-        variable = "built_surface")
-
   }
+
+  for (col in band_cols) {
+    extract_hbuilt[[col]] <- as.numeric(extract_hbuilt[[col]])
+  }
+
+  # toBands() preserves chronological order; match positionally
+  extract_hbuilt <- extract_hbuilt |>
+    tidyr::pivot_longer(
+      cols      = dplyr::all_of(band_cols),
+      names_to  = "band",
+      values_to = "value"
+    ) |>
+    dplyr::mutate(
+      date     = as.Date(paste0(gsub("\\D", "", band), "-01-01")) ,
+      variable = "built_surface"
+    ) |>
+    dplyr::select(-band) |>
+    dplyr::relocate(c("date", "variable", "value"), .before = dplyr::all_of(geom_col))
+
+  if (isFALSE(sf)) {
+    extract_hbuilt <- sf::st_drop_geometry(extract_hbuilt)
+  }
+
   return(extract_hbuilt)
 }

@@ -69,7 +69,6 @@
 #' @examples
 #' \dontrun{
 #' library(land4health)
-#' library(sf)
 #' ee_Initialize()
 #'
 #' # Define a bounding box region in Ucayali, Peru
@@ -81,6 +80,8 @@
 #'     -73.2, -4.4,
 #'     -74.1, -4.4
 #'   ), ncol = 2, byrow = TRUE))),
+#'   crs = 4326
+#' ))
 #'
 #' # Population-weighted RAI
 #' rai_w <- l4h_rural_access_index(
@@ -123,7 +124,11 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
       ))
     }
 
-    img_index <- rgee::ee$Image(.internal_data$ruralaccess$id)
+    rai_id <- tryCatch(.internal_data$ruralaccess$id, error = function(e) character(0))
+    if (length(rai_id) == 0 || !is.character(rai_id) || nchar(rai_id[1]) == 0) {
+      rai_id <- "projects/sat-io/open-datasets/RAI/ruralpopaccess"
+    }
+    img_index <- rgee::ee$Image(rai_id[1])
 
     # Extract with reducer
     if (isTRUE(sf)) {
@@ -134,8 +139,7 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
         fun = fun,
         sf = TRUE,
         quiet = quiet
-      ) |>
-        dplyr::rename(rai_index_w = population)
+      )
     } else {
       extract_area <- l4h_ee_extract(
         image = img_index,
@@ -144,11 +148,20 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
         fun = fun,
         sf = FALSE,
         quiet = quiet
-      ) |>
-        dplyr::rename(rai_index_w = population)
+      )
+    }
+
+    band_col <- setdiff(names(extract_area), c(attr(extract_area, "sf_column"), names(region)))
+    if (length(band_col) == 1) {
+      extract_area <- extract_area |>
+        dplyr::rename(rai_index_w = dplyr::all_of(band_col))
     }
   } else {
-    img <- rgee::ee$Image(.internal_data$inaccessibility)
+    inacc_id <- tryCatch(.internal_data$inaccessibility$id, error = function(e) character(0))
+    if (length(inacc_id) == 0 || !is.character(inacc_id) || nchar(inacc_id[1]) == 0) {
+      inacc_id <- "projects/sat-io/open-datasets/RAI/raimultiplier"
+    }
+    img <- rgee::ee$Image(inacc_id[1])
 
     img_index <- img$multiply(ee$Image$pixelArea())$
       divide(1e6)
@@ -161,17 +174,12 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
         scale = 100,
         fun = "sum",
         sf = TRUE
-      ) |>
-        (\(x) dplyr::mutate(x, area_km2 = as.vector(sf::st_area(sf::st_geometry(x)) / 1e6)))() |>
-        dplyr::rename(rai_index = b1) |>
-        dplyr::mutate(rai_index = rai_index / area_km2) |>
-        dplyr::select(-area_km2)
+      )
 
-      geom_col <- attr(extract_area, "sf_column")
-
+      band_col <- setdiff(names(extract_area), c(attr(extract_area, "sf_column"), names(region)))
       extract_area <- extract_area |>
         (\(x) dplyr::mutate(x, area_km2 = as.vector(sf::st_area(sf::st_geometry(x)) / 1e6)))() |>
-        dplyr::rename(rai_index = b1) |>
+        dplyr::rename(rai_index = dplyr::all_of(band_col)) |>
         dplyr::mutate(rai_index = rai_index / area_km2) |>
         dplyr::select(-area_km2)
     } else {
@@ -180,13 +188,19 @@ l4h_rural_access_index <- function(region, weighted = FALSE, fun = NULL, sf = FA
         sf_region = region,
         scale = 100,
         fun = "sum",
-        sf = TRUE
-      ) |>
-        (\(x) dplyr::mutate(x, area_km2 = as.vector(sf::st_area(sf::st_geometry(x)) / 1e6)))() |>
-        dplyr::rename(rai_index = b1) |>
+        sf = FALSE
+      )
+
+      band_col <- setdiff(names(extract_area), names(region))
+      extract_area <- extract_area |>
+        (\(x) {
+          geom <- sf::st_geometry(region)
+          x$area_km2 <- as.vector(sf::st_area(geom) / 1e6)
+          x
+        })() |>
+        dplyr::rename(rai_index = dplyr::all_of(band_col)) |>
         dplyr::mutate(rai_index = rai_index / area_km2) |>
-        dplyr::select(-area_km2) |>
-        sf::st_drop_geometry()
+        dplyr::select(-area_km2)
     }
   }
 

@@ -7,7 +7,6 @@
 l4h_pm2_5(
   from,
   to,
-  band,
   region,
   scale = 1000,
   stat = "mean",
@@ -21,10 +20,6 @@ l4h_pm2_5(
 \item{from}{Character or Date. Start date (\code{"YYYY-MM-DD"}).}
 
 \item{to}{Character or Date. End date (\code{"YYYY-MM-DD"}).}
-
-\item{band}{Character (kept for API symmetry). The dataset exposes a single band,
-currently \code{'b1'} (PM\eqn{_{2.5}} in µg/m\eqn{^3}). The function selects \code{'b1'}
-internally; this argument is ignored.}
 
 \item{region}{Spatial object defining the region of interest.
 Accepts an \code{sf}, \code{sfc}, or \code{SpatVector} object.}
@@ -107,7 +102,6 @@ Follow us on:
 
 \examples{
 \dontrun{
-library(sf)
 library(land4health)
 rgee::ee_Initialize()
 
@@ -121,11 +115,11 @@ region <- st_as_sf(st_sfc(
     -74.1, -4.4
   ), ncol = 2, byrow = TRUE))), crs = 4326))
 
-# PM2.5 mensual (µg/m^3) para 2010, promedio espacial
+# Monthly PM2.5 (ug/m^3) for 2010, spatial mean
 out_pm <- l4h_pm2_5(
   from   = "2010-01-01",
   to     = "2010-12-31",
-  band   = "b1",        # ignorado (única banda)
+  band   = "b1",        # ignored (single band)
   region = region,
   stat   = "mean",
   scale  = 3000

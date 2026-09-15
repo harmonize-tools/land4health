@@ -6,6 +6,8 @@
 \alias{land4health-package}
 \title{land4health: Remote Sensing Metrics for Spatial Health Analysis}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Calculate and extract remote sensing metrics for spatial analysis in the field of health. The package offers R users a quick and straightforward way to obtain areal or zonal statistics of key environmental indicators, covariates, and vector-borne disease data ideal for modeling infectious diseases within the framework of spatial epidemiology.
 }
 \seealso{
