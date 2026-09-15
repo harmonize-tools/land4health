@@ -1,7 +1,6 @@
 url: https://github.com/harmonize-tools/land4health
 description: Extract remote sensing metrics for spatial health analysis 🛰. Quick and easy areal and zonal statistics for infectious disease modeling in spatial epidemiology 🦠🏥.
 home:
-
   title: land4health
 
 authors:
@@ -22,11 +21,12 @@ development:
   mode: auto
 
 navbar:
-   bg: custom
-   structure:
+  bg: custom
+  structure:
+    left: [reference, tutorials, resources, news]
     right: [search, github, donate, lightswitch]
 
-   components:
+  components:
     donate:
       icon: fa-hand-holding-dollar
       href: https://ko-fi.com/ambarja
@@ -45,7 +45,7 @@ navbar:
           href: https://healthinnovation.github.io/l4h_peru_case/case3_peru.html
           target: _blank
 
-    news:
+    resources:
       text: Resources
       menu:
         - text: 1. rgee installation
@@ -56,41 +56,41 @@ navbar:
           target: _blank
 
 reference:
- - title: 'Vector-borne disease'
-   contents:
-   - l4h_dengue
-   - l4h_malaria
+  - title: 'Vector-borne disease'
+    contents:
+      - l4h_dengue
+      - l4h_malaria
 
- - title: 'Human intervention'
-   contents:
-   - l4h_forest_loss
-   - l4h_night_lights
-   - l4h_urban_rural_area
-   - l4h_human_built
+  - title: 'Human intervention'
+    contents:
+      - l4h_forest_loss
+      - l4h_night_lights
+      - l4h_urban_rural_area
+      - l4h_human_built
 
- - title: 'Accessibility'
-   contents:
-   - l4h_rural_access_index
-   - l4h_travel_time
+  - title: 'Accessibility'
+    contents:
+      - l4h_rural_access_index
+      - l4h_travel_time
 
- - title: 'Environment'
-   contents:
-   - l4h_pm2_5
-   - l4h_co_column
-   - l4h_urban_heat_index
-   - l4h_vegetation
+  - title: 'Environment'
+    contents:
+      - l4h_pm2_5
+      - l4h_co_column
+      - l4h_urban_heat_index
+      - l4h_vegetation
 
- - title: 'Climate'
-   contents:
-   - l4h_terra_climate
-   - l4h_sebal_modis
-   - l4h_surface_temp
-   - l4h_chirps
+  - title: 'Climate'
+    contents:
+      - l4h_terra_climate
+      - l4h_sebal_modis
+      - l4h_surface_temp
+      - l4h_chirps
 
- - title: 'Utils'
-   contents:
-   - l4h_list_metrics
-   - l4h_packages
-   - l4h_install
-   - l4h_use_python
-   - l4h_ee_extract
+  - title: 'Utils'
+    contents:
+      - l4h_list_metrics
+      - l4h_packages
+      - l4h_install
+      - l4h_use_python
+      - l4h_ee_extract
