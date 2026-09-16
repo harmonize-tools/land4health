@@ -108,7 +108,7 @@ dplyr::glimpse(built_tbl)
 }
 \references{
 \itemize{
-\item Pesaresi, M. & Politis, P. (2023). GHS‑BUILT‑S R2023A: Red de superficie construida de GHS, derivada de la composición de Sentinel-2 y Landsat, multitemporal (1975–2030). European Commission, Joint Research Centre (JRC). \doi{10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA}. PID: \url{http://data.europa.eu/89h/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea}
+\item Pesaresi, M. & Politis, P. (2023). GHS‑BUILT‑S R2023A: Red de superficie construida de GHS, derivada de la composición de Sentinel-2 y Landsat, multitemporal (1975–2030). European Commission, Joint Research Centre (JRC). \doi{10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA}.
 \item Pesaresi, M., Schiavina, M., Politis, P., Freire, S., Krasnodebska, K., Uhl, J.H., Carioli, A., et al. (2024). Avances en la capa de asentamientos humanos globales a través de la evaluación conjunta de datos de observación de la Tierra y encuestas demográficas. \emph{International Journal of Digital Earth}, 17(1). \doi{10.1080/17538947.2024.2390454}
 \item Dataset on Google Earth Engine: \url{https://developers.google.com/earth-engine/datasets/catalog/JRC_GHSL_P2023A_GHS_BUILT_S}
 }

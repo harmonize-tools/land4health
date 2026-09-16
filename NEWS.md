@@ -1,6 +1,7 @@
 # land4health 0.2.0
 
-### Vector-borne disease
+## 1. Vector-borne disease
+
 - ✔ add `l4h_malaria()`, this function extracts modeled malaria metrics (incidence rate,
     incidence count, parasite rate, mortality rate, mortality count) for *Plasmodium falciparum*
     and *Plasmodium vivax* from the [Malaria Atlas Project](https://malariaatlas.org/) GeoServer
@@ -10,7 +11,7 @@
    open-access repository of dengue surveillance data from national ministries of health. The function supports national,
    spatial, and temporal extracts filtered by WHO region and country for a specified date range.
 
-### Climate
+## 2. Climate
 
 - ✔ add `l4h_chirps()`, this function extracts precipitation values (daily, monthly, and annual) from [CHIRPS v3](https://www.chc.ucsb.edu/data/chirps3). 
     The user can choose between IMERG-based (`product = "sat"`) or ERA5-based (`product = "rnl"`) daily products.
@@ -18,12 +19,8 @@
 - ✔ add `l4h_surface_temp()`,extracts daytime or nighttime Land Surface Temperature (LST) for a user-defined region
     and time range using the MODIS MOD11A1.061 product
 
-### Removed
+## 3. Human intervention
 
-- Removed `l4h_water_proportion()`. The MapBiomas Peru water dataset does not yet have
-    a stable API or consistent versioning for reliable programmatic access.
-
-###  Human intervention
 - ✔ add `l4h_night_lights()`, extracts global night‑time lights using harmonized DMSP‑OLS and VIIRS data.
 
 - ✔ add `l4h_urban_rural_area()`, calculates the surface area (in km2) of urban, rural, or all settlement classes every 5 years between 
@@ -31,19 +28,28 @@
 
 - ✔ add `l4h_human_built()`, extracts built‑up surface area from GHSL Built‑Up Surface dataset.
 
-### Environment
+## 4. Environment
+
 - ✔ add `l4h_co_column()`, extracts carbon monoxide (CO) concentration from Sentinel-5P TROPOMI.
 
 - ✔ add `l4h_urban_heat_index()`, calculates the Surface Urban Heat Island (SUHI) index using MODIS LST and GHS-SMOD.
 
 
-### Utils
+## 5. Utils
+
 - ✔ add `l4h_ee_extract()` like an alternative to some problems with[`ee_extract`](https://github.com/r-spatial/rgee/issues/402)
 
-### Others
-- New badge to give credit to Innovalab ![](https://raw.githubusercontent.com/harmonize-tools/land4health/ef742944b79b0523b16f3f3fd26e7388ca4e9551/man/figures/innovalab.svg). 
+## 6. Others
+
+- New badge to give credit to Innovalab [![](https://raw.githubusercontent.com/harmonize-tools/land4health/ef742944b79b0523b16f3f3fd26e7388ca4e9551/man/figures/innovalab.svg)](https://www.innovalab.info/). 
 - Reduction in the number of dependeces
 - Improving the progress bar using only the [cli](https://cli.r-lib.org/articles/progress-advanced.html) package.
+
+
+## 7. Removed
+
+- Removed `l4h_water_proportion()`. The MapBiomas Peru water dataset does not yet have
+    a stable API or consistent versioning for reliable programmatic access.
 
 
 # land4health 0.1.0

@@ -131,7 +131,7 @@ head(lst_night)
 \references{
 Wan, Z., Hook, S., & Hulley, G. (2015). MOD11A1 MODIS/Terra Land Surface Temperature
 and Emissivity Daily L3 Global 1km SIN Grid V006 (Version 6.1). NASA EOSDIS Land Processes DAAC.
-\url{https://doi.org/10.5067/MODIS/MOD11A1.061}
+\doi{https://doi.org/10.5067/MODIS/MOD11A1.061}
 
 MODIS MOD11A1.061 - Google Earth Engine Dataset Catalog.
 \url{https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD11A1}
