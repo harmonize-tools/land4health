@@ -103,6 +103,7 @@
 #'   region  = region,
 #'   sf      = FALSE
 #' )
+#' head(out_pv)
 #' }
 #'
 #' @references

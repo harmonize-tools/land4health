@@ -135,7 +135,8 @@
 #'     sf   = TRUE
 #'   )
 #'
-#'  glimpse(result_annual)
+#'  str(result_annual)
+#'
 #' }
 #'
 #' @export
