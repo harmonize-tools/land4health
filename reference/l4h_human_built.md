@@ -98,8 +98,7 @@ Follow us on:
   y Landsat, multitemporal (1975–2030). European Commission, Joint
   Research Centre (JRC).
   [doi:10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA](https://doi.org/10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA)
-  . PID:
-  <http://data.europa.eu/89h/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea>
+  .
 
 - Pesaresi, M., Schiavina, M., Politis, P., Freire, S., Krasnodebska,
   K., Uhl, J.H., Carioli, A., et al. (2024). Avances en la capa de

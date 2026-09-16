@@ -18,16 +18,13 @@ Useful links:
 
 ## Author
 
-**Maintainer**: Antony Barja <antony.barja@upch.pe>
-([ORCID](https://orcid.org/0000-0001-5921-2858))
+**Maintainer**: Yomali Ferreyra <yomali.ferreyra@upch.pe>
+([ORCID](https://orcid.org/0000-0002-5184-9595))
 
 Authors:
 
 - Antony Barja <antony.barja@upch.pe>
-  ([ORCID](https://orcid.org/0000-0001-5921-2858))
-
-- Yomali Ferreyra <yomali.ferreyra@upch.pe>
-  ([ORCID](https://orcid.org/0000-0002-5184-9595))
+  ([ORCID](https://orcid.org/0000-0001-5921-2858)) \[copyright holder\]
 
 Other contributors:
 
