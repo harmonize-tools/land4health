@@ -106,23 +106,10 @@ l4h_dengue <- function(
     quiet        = FALSE
 ) {
 
-  # version
-  url <- "https://api.github.com/repos/OpenDengue/master-repo/contents/assets?ref=main"
-  resp <- httr2::request(url) |>
-    httr2::req_user_agent("land4health/1.0") |>
-    httr2::req_perform()
-  items <- resp |> httr2::resp_body_json()
-  file_name <- items[[1]]$name
-  version <- sub(".*_([Vv][0-9]+_[0-9]+)\\.zip$", "\\1", basename(file_name))
+  # Validate extract type (before any network call)
+  data_type <- match.arg(data_type)
 
-  # If extraction failed or the result is not a valid version, abort
-  if (identical(version, file_name) || !grepl("^[Vv][0-9]+_[0-9]+$", version)) {
-    cli::cli_abort(
-      "Function under construction due to version change. {.val {file_name}} does not contain a valid version tag."
-    )
-  }
-
-  # Parse dates
+  # Parse and validate dates (before any network call)
   from <- as.Date(from)
   to   <- as.Date(to)
 
@@ -155,9 +142,6 @@ l4h_dengue <- function(
     euro  = "European Region"
   )
 
-  # Validate extract type
-  data_type <- match.arg(data_type)
-
   # Normalize region (code or full name)
   if (is.null(region)) region <- "paho"
   input <- tolower(region)
@@ -177,6 +161,22 @@ l4h_dengue <- function(
 
   # Normalize country
   country <- toupper(country)
+
+  # version (network call after validation)
+  url <- "https://api.github.com/repos/OpenDengue/master-repo/contents/assets?ref=main"
+  resp <- httr2::request(url) |>
+    httr2::req_user_agent("land4health/1.0") |>
+    httr2::req_perform()
+  items <- resp |> httr2::resp_body_json()
+  file_name <- items[[1]]$name
+  version <- sub(".*_([Vv][0-9]+_[0-9]+)\\.zip$", "\\1", basename(file_name))
+
+  # If extraction failed or the result is not a valid version, abort
+  if (identical(version, file_name) || !grepl("^[Vv][0-9]+_[0-9]+$", version)) {
+    cli::cli_abort(
+      "Function under construction due to version change. {.val {file_name}} does not contain a valid version tag."
+    )
+  }
   if (quiet) cli::cli_status("Preparing {data_type} extract for {region_name} and {country}")
 
   # Build download URL
