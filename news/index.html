@@ -50,54 +50,35 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.3.0" id="land4health-030">land4health 0.3.0<a class="anchor" aria-label="anchor" href="#land4health-030"></a></h2>
-<div class="section level4">
-<h4 id="vector-borne-disease-0-3-0">Vector-borne disease<a class="anchor" aria-label="anchor" href="#vector-borne-disease-0-3-0"></a></h4>
-<ul><li>✔ add <code><a href="../reference/l4h_malaria.html">l4h_malaria()</a></code>, this function extracts modeled malaria metrics (incidence rate, incidence count, parasite rate, mortality rate, mortality count) for <em>Plasmodium falciparum</em> and <em>Plasmodium vivax</em> from the <a href="https://malariaatlas.org/" class="external-link">Malaria Atlas Project</a> GeoServer via WCS 2.0.1. Automatically selects the latest release available.</li>
-</ul></div>
-<div class="section level4">
-<h4 id="climate-0-3-0">Climate<a class="anchor" aria-label="anchor" href="#climate-0-3-0"></a></h4>
-<ul><li>✔ add <code><a href="../reference/l4h_chirps.html">l4h_chirps()</a></code>, this function extracts precipitation values (daily, monthly, and annual) from <a href="https://www.chc.ucsb.edu/data/chirps3" class="external-link">CHIRPS v3</a>. The user can choose between IMERG-based (<code>product = "sat"</code>) or ERA5-based (<code>product = "rnl"</code>) daily products.</li>
-</ul></div>
-<div class="section level4">
-<h4 id="removed-0-3-0">Removed<a class="anchor" aria-label="anchor" href="#removed-0-3-0"></a></h4>
-<ul><li>Removed <code>l4h_water_proportion()</code>. The MapBiomas Peru water dataset does not yet have a stable API or consistent versioning for reliable programmatic access.</li>
-</ul></div>
-</div>
-    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="land4health-020">land4health 0.2.0<a class="anchor" aria-label="anchor" href="#land4health-020"></a></h2>
-<p>New release with new functions and some wrapper for extract data to <a href="https://malariaatlas.org/" class="external-link"><strong>Malaria-Atlas</strong></a> and <a href="https://opendengue.org/" class="external-link"><strong>OpenDengue</strong></a> projects.</p>
 <div class="section level4">
 <h4 id="vector-borne-disease-0-2-0">Vector-borne disease<a class="anchor" aria-label="anchor" href="#vector-borne-disease-0-2-0"></a></h4>
-<ul><li>✔ add <code><a href="../reference/l4h_dengue.html">l4h_dengue()</a></code>
-</li>
-<li>✔ add <code>l4h_layers_available_malaria()</code>
-</li>
-</ul></div>
-<div class="section level4">
-<h4 id="human-intervention-0-2-0">Human intervention<a class="anchor" aria-label="anchor" href="#human-intervention-0-2-0"></a></h4>
-<ul><li>✔ add <code><a href="../reference/l4h_night_lights.html">l4h_night_lights()</a></code>
-</li>
-<li>✔ add <code><a href="../reference/l4h_urban_rural_area.html">l4h_urban_rural_area()</a></code>
-</li>
-<li>✔ add <code><a href="../reference/l4h_human_built.html">l4h_human_built()</a></code>
-</li>
-</ul></div>
-<div class="section level4">
-<h4 id="environment-0-2-0">Environment<a class="anchor" aria-label="anchor" href="#environment-0-2-0"></a></h4>
-<ul><li>✔ add <code><a href="../reference/l4h_co_column.html">l4h_co_column()</a></code>
-</li>
-<li>✔ add <code><a href="../reference/l4h_urban_heat_index.html">l4h_urban_heat_index()</a></code>
-</li>
+<ul><li><p>✔ add <code><a href="../reference/l4h_malaria.html">l4h_malaria()</a></code>, this function extracts modeled malaria metrics (incidence rate, incidence count, parasite rate, mortality rate, mortality count) for <em>Plasmodium falciparum</em> and <em>Plasmodium vivax</em> from the <a href="https://malariaatlas.org/" class="external-link">Malaria Atlas Project</a> GeoServer via WCS 2.0.1. Automatically selects the latest release available.</p></li>
+<li><p>✔ add <code><a href="../reference/l4h_dengue.html">l4h_dengue()</a></code> ,downloads dengue case counts from the <strong>OpenDengue Project</strong>, a harmonized, open-access repository of dengue surveillance data from national ministries of health. The function supports national, spatial, and temporal extracts filtered by WHO region and country for a specified date range.</p></li>
 </ul></div>
 <div class="section level4">
 <h4 id="climate-0-2-0">Climate<a class="anchor" aria-label="anchor" href="#climate-0-2-0"></a></h4>
-<ul><li>✔ add <code><a href="../reference/l4h_surface_temp.html">l4h_surface_temp()</a></code>
-</li>
+<ul><li><p>✔ add <code><a href="../reference/l4h_chirps.html">l4h_chirps()</a></code>, this function extracts precipitation values (daily, monthly, and annual) from <a href="https://www.chc.ucsb.edu/data/chirps3" class="external-link">CHIRPS v3</a>. The user can choose between IMERG-based (<code>product = "sat"</code>) or ERA5-based (<code>product = "rnl"</code>) daily products.</p></li>
+<li><p>✔ add <code><a href="../reference/l4h_surface_temp.html">l4h_surface_temp()</a></code>,extracts daytime or nighttime Land Surface Temperature (LST) for a user-defined region and time range using the MODIS MOD11A1.061 product</p></li>
 </ul></div>
 <div class="section level4">
-<h4 id="climate-0-2-0-1">Climate<a class="anchor" aria-label="anchor" href="#climate-0-2-0-1"></a></h4>
-<ul><li>✔ add <code><a href="../reference/l4h_ee_extract.html">l4h_ee_extract()</a></code>
+<h4 id="removed-0-2-0">Removed<a class="anchor" aria-label="anchor" href="#removed-0-2-0"></a></h4>
+<ul><li>Removed <code>l4h_water_proportion()</code>. The MapBiomas Peru water dataset does not yet have a stable API or consistent versioning for reliable programmatic access.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="human-intervention-0-2-0">Human intervention<a class="anchor" aria-label="anchor" href="#human-intervention-0-2-0"></a></h4>
+<ul><li><p>✔ add <code><a href="../reference/l4h_night_lights.html">l4h_night_lights()</a></code>, extracts global night‑time lights using harmonized DMSP‑OLS and VIIRS data.</p></li>
+<li><p>✔ add <code><a href="../reference/l4h_urban_rural_area.html">l4h_urban_rural_area()</a></code>, calculates the surface area (in km2) of urban, rural, or all settlement classes every 5 years between 1985 and 2030 using the GHS-SMOD R2023A dataset.</p></li>
+<li><p>✔ add <code><a href="../reference/l4h_human_built.html">l4h_human_built()</a></code>, extracts built‑up surface area from GHSL Built‑Up Surface dataset.</p></li>
+</ul></div>
+<div class="section level4">
+<h4 id="environment-0-2-0">Environment<a class="anchor" aria-label="anchor" href="#environment-0-2-0"></a></h4>
+<ul><li><p>✔ add <code><a href="../reference/l4h_co_column.html">l4h_co_column()</a></code>, extracts carbon monoxide (CO) concentration from Sentinel-5P TROPOMI.</p></li>
+<li><p>✔ add <code><a href="../reference/l4h_urban_heat_index.html">l4h_urban_heat_index()</a></code>, calculates the Surface Urban Heat Island (SUHI) index using MODIS LST and GHS-SMOD.</p></li>
+</ul></div>
+<div class="section level4">
+<h4 id="utils-0-2-0">Utils<a class="anchor" aria-label="anchor" href="#utils-0-2-0"></a></h4>
+<ul><li>✔ add <code><a href="../reference/l4h_ee_extract.html">l4h_ee_extract()</a></code> like an alternative to some problems with<a href="https://github.com/r-spatial/rgee/issues/402" class="external-link"><code>ee_extract</code></a>
 </li>
 </ul></div>
 <div class="section level4">

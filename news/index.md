@@ -1,6 +1,6 @@
 # Changelog
 
-## land4health 0.3.0
+## land4health 0.2.0
 
 #### Vector-borne disease
 
@@ -12,6 +12,14 @@
   Project](https://malariaatlas.org/) GeoServer via WCS 2.0.1.
   Automatically selects the latest release available.
 
+- ✔ add
+  [`l4h_dengue()`](https://github.com/harmonize-tools/land4health/reference/l4h_dengue.md)
+  ,downloads dengue case counts from the **OpenDengue Project**, a
+  harmonized, open-access repository of dengue surveillance data from
+  national ministries of health. The function supports national,
+  spatial, and temporal extracts filtered by WHO region and country for
+  a specified date range.
+
 #### Climate
 
 - ✔ add
@@ -21,49 +29,51 @@
   user can choose between IMERG-based (`product = "sat"`) or ERA5-based
   (`product = "rnl"`) daily products.
 
+- ✔ add
+  [`l4h_surface_temp()`](https://github.com/harmonize-tools/land4health/reference/l4h_surface_temp.md),extracts
+  daytime or nighttime Land Surface Temperature (LST) for a user-defined
+  region and time range using the MODIS MOD11A1.061 product
+
 #### Removed
 
 - Removed `l4h_water_proportion()`. The MapBiomas Peru water dataset
   does not yet have a stable API or consistent versioning for reliable
   programmatic access.
 
-## land4health 0.2.0
-
-New release with new functions and some wrapper for extract data to
-[**Malaria-Atlas**](https://malariaatlas.org/) and
-[**OpenDengue**](https://opendengue.org/) projects.
-
-#### Vector-borne disease
-
-- ✔ add
-  [`l4h_dengue()`](https://github.com/harmonize-tools/land4health/reference/l4h_dengue.md)
-- ✔ add `l4h_layers_available_malaria()`
-
 #### Human intervention
 
 - ✔ add
-  [`l4h_night_lights()`](https://github.com/harmonize-tools/land4health/reference/l4h_night_lights.md)
+  [`l4h_night_lights()`](https://github.com/harmonize-tools/land4health/reference/l4h_night_lights.md),
+  extracts global night‑time lights using harmonized DMSP‑OLS and VIIRS
+  data.
+
 - ✔ add
-  [`l4h_urban_rural_area()`](https://github.com/harmonize-tools/land4health/reference/l4h_urban_rural_area.md)
+  [`l4h_urban_rural_area()`](https://github.com/harmonize-tools/land4health/reference/l4h_urban_rural_area.md),
+  calculates the surface area (in km2) of urban, rural, or all
+  settlement classes every 5 years between 1985 and 2030 using the
+  GHS-SMOD R2023A dataset.
+
 - ✔ add
-  [`l4h_human_built()`](https://github.com/harmonize-tools/land4health/reference/l4h_human_built.md)
+  [`l4h_human_built()`](https://github.com/harmonize-tools/land4health/reference/l4h_human_built.md),
+  extracts built‑up surface area from GHSL Built‑Up Surface dataset.
 
 #### Environment
 
 - ✔ add
-  [`l4h_co_column()`](https://github.com/harmonize-tools/land4health/reference/l4h_co_column.md)
-- ✔ add
-  [`l4h_urban_heat_index()`](https://github.com/harmonize-tools/land4health/reference/l4h_urban_heat_index.md)
-
-#### Climate
+  [`l4h_co_column()`](https://github.com/harmonize-tools/land4health/reference/l4h_co_column.md),
+  extracts carbon monoxide (CO) concentration from Sentinel-5P TROPOMI.
 
 - ✔ add
-  [`l4h_surface_temp()`](https://github.com/harmonize-tools/land4health/reference/l4h_surface_temp.md)
+  [`l4h_urban_heat_index()`](https://github.com/harmonize-tools/land4health/reference/l4h_urban_heat_index.md),
+  calculates the Surface Urban Heat Island (SUHI) index using MODIS LST
+  and GHS-SMOD.
 
-#### Climate
+#### Utils
 
 - ✔ add
   [`l4h_ee_extract()`](https://github.com/harmonize-tools/land4health/reference/l4h_ee_extract.md)
+  like an alternative to some problems
+  with[`ee_extract`](https://github.com/r-spatial/rgee/issues/402)
 
 #### Others
 
