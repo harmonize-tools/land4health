@@ -25,3 +25,14 @@ test_that("l4h_night_lights rejects non-sf region", {
     "Invalid.*region"
   )
 })
+
+test_that("l4h_night_lights rejects year out of range", {
+  expect_error(
+    l4h_night_lights("1990-01-01", "2022-12-31", tiny_poly),
+    "range"
+  )
+})
+
+test_that("l4h_night_lights VIIRS flow test skipped", {
+  skip("ee ImageCollection chain cannot be fully mocked")
+})

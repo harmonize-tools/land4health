@@ -11,3 +11,10 @@ test_that("l4h_urban_heat_index rejects reversed dates", {
     "greater than or equal"
   )
 })
+
+test_that("l4h_urban_heat_index rejects non-sf region", {
+  expect_error(
+    l4h_urban_heat_index("2020-01-01", "2020-12-31", data.frame(x = 1)),
+    "Invalid.*region"
+  )
+})

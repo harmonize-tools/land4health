@@ -27,3 +27,7 @@ test_that("l4h_travel_time rejects invalid transport_mode for healthcare", {
     "Invalid.*transport_mode"
   )
 })
+
+test_that("l4h_travel_time flow test skipped", {
+  skip("ee$Image static methods cannot be mocked on function objects")
+})

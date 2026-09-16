@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      EARTHENGINE_TOKEN: ${{ secrets.EARTHENGINE_TOKEN }}
 
     steps:
       - uses: actions/checkout@v4
@@ -24,8 +25,33 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::covr, any::xml2
+          extra-packages: any::covr, any::xml2, any::rgee, any::reticulate
           needs: coverage
+
+      - name: Install Python and earthengine-api
+        run: |
+          pip install earthengine-api numpy
+          mkdir -p ~/.config/earthengine
+          echo '${{ secrets.EARTHENGINE_TOKEN }}' > ~/.config/earthengine/credentials
+        shell: bash
+
+      - name: Initialize Earth Engine
+        run: |
+          Rscript -e '
+          tryCatch({
+            library(rgee)
+            ee_Initialize(
+              email = Sys.getenv("GEE_EMAIL", "antony.barja8@gmail.com"),
+              credentials = "persistent",
+              auth_mode = "appdefault",
+              drive = FALSE, gcs = FALSE, quiet = TRUE
+            )
+            message("Earth Engine initialized successfully")
+          }, error = function(e) {
+            message("GEE init failed (non-fatal): ", conditionMessage(e))
+          })
+          '
+        shell: Rscript {0}
 
       - name: Test coverage
         run: |
@@ -38,9 +64,9 @@ jobs:
           covr::to_cobertura(cov)
         shell: Rscript {0}
 
-      - uses: codecov/codecov-action@v5
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
         with:
-          # Fail if error if not on PR, or if on PR and token is given
           fail_ci_if_error: ${{ github.event_name != 'pull_request' || secrets.CODECOV_TOKEN }}
           files: ./cobertura.xml
           plugins: noop
@@ -60,9 +86,3 @@ jobs:
         with:
           name: coverage-test-failures
           path: ${{ runner.temp }}/package
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: ambarja/land4health

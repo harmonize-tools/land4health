@@ -1,0 +1,103 @@
+test_that("l4h_terra_climate validates date format", {
+  expect_error(
+    l4h_terra_climate(from = "invalid", to = "2020-12-31",
+                      band = "pr", region = tiny_poly),
+    "YYYY-MM-DD"
+  )
+})
+
+test_that("l4h_terra_climate rejects invalid to date format", {
+  expect_error(
+    l4h_terra_climate(from = "2020-01-01", to = "invalid",
+                      band = "pr", region = tiny_poly),
+    "YYYY-MM-DD"
+  )
+})
+
+test_that("l4h_terra_climate rejects reversed dates", {
+  expect_error(
+    l4h_terra_climate("2020-12-31", "2020-01-01",
+                      band = "pr", region = tiny_poly),
+    "greater than or equal"
+  )
+})
+
+test_that("l4h_terra_climate rejects non-sf region", {
+  expect_error(
+    l4h_terra_climate("2020-01-01", "2020-12-31",
+                      band = "pr", region = data.frame(x = 1)),
+    "Invalid.*region"
+  )
+})
+
+test_that("l4h_terra_climate rejects invalid band", {
+  expect_error(
+    l4h_terra_climate("2020-01-01", "2020-12-31",
+                      band = "invalid_band", region = tiny_poly),
+    "band names are invalid"
+  )
+})
+
+test_that("l4h_terra_climate suggests closest match for invalid band", {
+  expect_error(
+    l4h_terra_climate("2020-01-01", "2020-12-31",
+                      band = "prcp", region = tiny_poly),
+    "Closest matches"
+  )
+})
+
+test_that("l4h_terra_climate full flow works with mocked GEE", {
+  skip_if_not_installed("withr")
+
+  mock_ee <- .make_mock_ee()
+  assign("ee", mock_ee, envir = globalenv())
+  on.exit(rm("ee", envir = globalenv()), add = TRUE)
+
+  with_mocked_bindings(
+    `check_ee_initialized` = function() invisible(NULL),
+    `check_representativity` = function(...) invisible(TRUE),
+    `l4h_ee_extract` = function(...) {
+      dplyr::tibble(
+        id = 1L,
+        X2020_01_pr = 50.0,
+        X2020_06_pr = 100.0,
+        geometry = tiny_poly$geometry[1]
+      )
+    },
+    {
+      result <- l4h_terra_climate(
+        "2020-01-01", "2020-06-30",
+        band = "pr", region = tiny_poly,
+        sf = TRUE, quiet = TRUE, force = TRUE
+      )
+      expect_s3_class(result, "tbl_df")
+      expect_true("date" %in% names(result))
+      expect_true("variable" %in% names(result))
+    }
+  )
+})
+
+test_that("l4h_terra_climate sf=FALSE flow works with mocked GEE", {
+  skip_if_not_installed("withr")
+
+  mock_ee <- .make_mock_ee()
+  assign("ee", mock_ee, envir = globalenv())
+  on.exit(rm("ee", envir = globalenv()), add = TRUE)
+
+  with_mocked_bindings(
+    `check_ee_initialized` = function() invisible(NULL),
+    `check_representativity` = function(...) invisible(TRUE),
+    `l4h_ee_extract` = function(...) {
+      dplyr::tibble(id = 1L, X2020_01_pr = 50.0)
+    },
+    {
+      result <- l4h_terra_climate(
+        "2020-01-01", "2020-01-31",
+        band = "pr", region = tiny_poly,
+        sf = FALSE, quiet = TRUE, force = TRUE
+      )
+      expect_s3_class(result, "tbl_df")
+      expect_true("date" %in% names(result))
+    }
+  )
+})

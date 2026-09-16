@@ -1,4 +1,7 @@
 test_that("check_ee_initialized errors when GEE not available", {
+  skip_if_not_installed("rgee")
+  ee_ok <- tryCatch({ rgee::ee$Number(1)$getInfo(); TRUE }, error = function(e) FALSE)
+  skip_if(ee_ok, "GEE is initialized")
   expect_error(check_ee_initialized(), "not initialized|not loaded")
 })
 
