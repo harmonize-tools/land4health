@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">land4health</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,8 +17,15 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/Installation.html">1. Introduction</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-examples" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Examples</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-examples"><li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/l4h_brazil_case/cases1_brazil.html" target="_blank">1. Environmental indicators – Brazil</a></li>
+    <li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/l4h_colombia_case/case2_colombia.html" target="_blank">2. Dengue – Colombia</a></li>
+    <li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/l4h_peru_case/case3_peru.html" target="_blank">3. Malaria – Peruvian Amazon</a></li>
+  </ul></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-resources" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Resources</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-resources"><li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/epi-rgee/" target="_blank">1. rgee installation</a></li>
+    <li><a class="external-link dropdown-item" href="https://epi-rgee.netlify.app/" target="_blank">2. rgee for applications in epidemiology</a></li>
   </ul></li>
 <li class="active nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -44,43 +51,46 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="land4health-020">land4health 0.2.0<a class="anchor" aria-label="anchor" href="#land4health-020"></a></h2>
-<p>New release with new functions and some wrapper for extract data to <a href="https://malariaatlas.org/" class="external-link"><strong>Malaria-Atlas</strong></a> and <a href="https://opendengue.org/" class="external-link"><strong>OpenDengue</strong></a> projects.</p>
-<div class="section level4">
-<h4 id="vector-borne-disease-0-2-0">Vector-borne disease<a class="anchor" aria-label="anchor" href="#vector-borne-disease-0-2-0"></a></h4>
-<ul><li>✔ add <code><a href="../reference/l4h_dengue_cases.html">l4h_dengue_cases()</a></code>
-</li>
-<li>✔ add <code><a href="../reference/l4h_layers_available_malaria.html">l4h_layers_available_malaria()</a></code>
+<hr><div class="section level3">
+<h3 id="id_1-vector-borne-disease-0-2-0">1. Vector-borne disease<a class="anchor" aria-label="anchor" href="#id_1-vector-borne-disease-0-2-0"></a></h3>
+<ul><li><p>✔ add <code><a href="../reference/l4h_malaria.html">l4h_malaria()</a></code>, this function extracts modeled malaria metrics (incidence rate, incidence count, parasite rate, mortality rate, mortality count) for <em>Plasmodium falciparum</em> and <em>Plasmodium vivax</em> from the <a href="https://malariaatlas.org/" class="external-link">Malaria Atlas Project</a> GeoServer via WCS 2.0.1. Automatically selects the latest release available.</p></li>
+<li><p>✔ add <code><a href="../reference/l4h_dengue.html">l4h_dengue()</a></code> ,downloads dengue case counts from the <strong>OpenDengue Project</strong>, a harmonized, open-access repository of dengue surveillance data from national ministries of health. The function supports national, spatial, and temporal extracts filtered by WHO region and country for a specified date range.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="id_2-climate-0-2-0">2. Climate<a class="anchor" aria-label="anchor" href="#id_2-climate-0-2-0"></a></h3>
+<ul><li><p>✔ add <code><a href="../reference/l4h_chirps.html">l4h_chirps()</a></code>, this function extracts precipitation values (daily, monthly, and annual) from <a href="https://www.chc.ucsb.edu/data/chirps3" class="external-link">CHIRPS v3</a>. The user can choose between IMERG-based (<code>product = "sat"</code>) or ERA5-based (<code>product = "rnl"</code>) daily products.</p></li>
+<li><p>✔ add <code><a href="../reference/l4h_surface_temp.html">l4h_surface_temp()</a></code>,extracts daytime or nighttime Land Surface Temperature (LST) for a user-defined region and time range using the MODIS MOD11A1.061 product</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="id_3-human-intervention-0-2-0">3. Human intervention<a class="anchor" aria-label="anchor" href="#id_3-human-intervention-0-2-0"></a></h3>
+<ul><li><p>✔ add <code><a href="../reference/l4h_night_lights.html">l4h_night_lights()</a></code>, extracts global night‑time lights using harmonized DMSP‑OLS and VIIRS data.</p></li>
+<li><p>✔ add <code><a href="../reference/l4h_urban_rural_area.html">l4h_urban_rural_area()</a></code>, calculates the surface area (in km2) of urban, rural, or all settlement classes every 5 years between 1985 and 2030 using the GHS-SMOD R2023A dataset.</p></li>
+<li><p>✔ add <code><a href="../reference/l4h_human_built.html">l4h_human_built()</a></code>, extracts built‑up surface area from GHSL Built‑Up Surface dataset.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="id_4-environment-0-2-0">4. Environment<a class="anchor" aria-label="anchor" href="#id_4-environment-0-2-0"></a></h3>
+<ul><li><p>✔ add <code><a href="../reference/l4h_co_column.html">l4h_co_column()</a></code>, extracts carbon monoxide (CO) concentration from Sentinel-5P TROPOMI.</p></li>
+<li><p>✔ add <code><a href="../reference/l4h_urban_heat_index.html">l4h_urban_heat_index()</a></code>, calculates the Surface Urban Heat Island (SUHI) index using MODIS LST and GHS-SMOD.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="id_5-utils-0-2-0">5. Utils<a class="anchor" aria-label="anchor" href="#id_5-utils-0-2-0"></a></h3>
+<ul><li>✔ add <code><a href="../reference/l4h_ee_extract.html">l4h_ee_extract()</a></code> like an alternative to some problems with<a href="https://github.com/r-spatial/rgee/issues/402" class="external-link"><code>ee_extract</code></a>
 </li>
 </ul></div>
-<div class="section level4">
-<h4 id="human-intervention-0-2-0">Human intervention<a class="anchor" aria-label="anchor" href="#human-intervention-0-2-0"></a></h4>
-<ul><li>✔ add <code><a href="../reference/l4h_night_lights.html">l4h_night_lights()</a></code>
-</li>
-<li>✔ add <code><a href="../reference/l4h_urban_rural_area.html">l4h_urban_rural_area()</a></code>
-</li>
-<li>✔ add <code><a href="../reference/l4h_human_built.html">l4h_human_built()</a></code>
-</li>
+<div class="section level3">
+<h3 id="id_6-others-0-2-0">6. Others<a class="anchor" aria-label="anchor" href="#id_6-others-0-2-0"></a></h3>
+<ul><li>New badge to give credit to Innovalab <a href="https://www.innovalab.info/" class="external-link"><img src="https://raw.githubusercontent.com/harmonize-tools/land4health/ef742944b79b0523b16f3f3fd26e7388ca4e9551/man/figures/innovalab.svg"></a>.</li>
+<li>Reduction in the number of dependeces</li>
+<li>Improving the progress bar using only the <a href="https://cli.r-lib.org/articles/progress-advanced.html" class="external-link">cli</a> package.</li>
 </ul></div>
-<div class="section level4">
-<h4 id="environment-0-2-0">Environment<a class="anchor" aria-label="anchor" href="#environment-0-2-0"></a></h4>
-<ul><li>✔ add <code><a href="../reference/l4h_co_column.html">l4h_co_column()</a></code>
-</li>
-<li>✔ add <code><a href="../reference/l4h_urban_heat_index.html">l4h_urban_heat_index()</a></code>
-</li>
-</ul></div>
-<div class="section level4">
-<h4 id="climate-0-2-0">Climate<a class="anchor" aria-label="anchor" href="#climate-0-2-0"></a></h4>
-<ul><li>✔ add <code><a href="../reference/l4h_surface_temp.html">l4h_surface_temp()</a></code>
-</li>
-</ul></div>
-<div class="section level4">
-<h4 id="others-0-2-0">Others<a class="anchor" aria-label="anchor" href="#others-0-2-0"></a></h4>
-<ul><li>New badge to give credit to Innovalab <img src="https://raw.githubusercontent.com/harmonize-tools/land4health/ef742944b79b0523b16f3f3fd26e7388ca4e9551/man/figures/innovalab.svg">.</li>
+<div class="section level3">
+<h3 id="id_7-removed-0-2-0">7. Removed<a class="anchor" aria-label="anchor" href="#id_7-removed-0-2-0"></a></h3>
+<ul><li>Removed <code>l4h_water_proportion()</code>. The MapBiomas Peru water dataset does not yet have a stable API or consistent versioning for reliable programmatic access.</li>
 </ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="land4health-010">land4health 0.1.0<a class="anchor" aria-label="anchor" href="#land4health-010"></a></h2>
-<p>This initial release of <strong>land4health</strong> lays the foundation for the core functionality and defines the structure of the main functions, as outlined in issue <a href="https://github.com/harmonize-tools/land4health/issues/4">#3</a>.</p>
+<hr><p>This initial release of <strong>land4health</strong> lays the foundation for the core functionality and defines the structure of the main functions, as outlined in issue <a href="https://github.com/harmonize-tools/land4health/issues/4">#3</a>.</p>
 <div class="section level3">
 <h3 id="id_️1-available-functions-0-1-0">️1. Available Functions<a class="anchor" aria-label="anchor" href="#id_%EF%B8%8F1-available-functions-0-1-0"></a></h3>
 <div class="section level4">
@@ -97,7 +107,7 @@
 </ul></div>
 <div class="section level4">
 <h4 id="environment-0-1-0">Environment<a class="anchor" aria-label="anchor" href="#environment-0-1-0"></a></h4>
-<ul><li>✔ add <code><a href="../reference/l4h_water_proportion.html">l4h_water_proportion()</a></code>
+<ul><li>✔ add <code>l4h_water_proportion()</code>
 </li>
 </ul></div>
 <div class="section level4">

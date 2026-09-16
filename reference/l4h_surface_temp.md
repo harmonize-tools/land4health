@@ -5,7 +5,7 @@ user-defined region and time range using the MODIS MOD11A1.061 product.
 The function supports summarizing the temperature data over each date
 using a selected statistic (e.g., mean or median).
 
-**\[stable\]**
+**NA**
 
 ## Usage
 
@@ -20,7 +20,7 @@ l4h_surface_temp(
   stat = "mean",
   sf = TRUE,
   quiet = FALSE,
-  force = TRUE,
+  force = FALSE,
   ...
 )
 ```
@@ -74,8 +74,9 @@ l4h_surface_temp(
 
 - force:
 
-  Logical. If `TRUE`, forces the extraction even if results are cached.
-  Default is `FALSE`.
+  Logical. If `TRUE`, skips the representativity check (polygons smaller
+  than 1 pixel are still extracted, only a warning is issued). Default
+  is `FALSE`.
 
 - ...:
 
@@ -101,27 +102,30 @@ formula: `LST = (value × 0.02) - 273.15`.
 
 ## Credits
 
-[![](figures/innovalab.svg)](https://www.innovalab.info/)
+[![](figures/innovalab.png)](https://www.innovalab.info/)
 
-Pioneering geospatial health analytics and open‐science tools. Developed
-by the Innovalab Team, for more information send a email to
-<imt.innovlab@oficinas-upch.pe>
+Pioneering geospatial health analytics and open-science tools. Developed
+by the Innovalab Team. For more information, send an email to
+<imt.innovlab@oficinas-upch.pe>.
 
-Follow us on :
+Follow us on:
 
 - ![](figures/linkedin-innova.png)[Innovalab
-  Linkedin](https://www.linkedin.com/company/innovalab-imt),
-  ![](figures/twitter-innova.png)[Innovalab
+  Linkedin](https://www.linkedin.com/company/innovalab-imt)
+
+- ![](figures/twitter-innova.png)[Innovalab
   X](https://x.com/innovalab_imt)
 
 - ![](figures/facebook-innova.png)[Innovalab
-  facebook](https://www.facebook.com/imt.innovalab),
-  ![](figures/instagram-innova.png)[Innovalab
+  facebook](https://www.facebook.com/imt.innovalab)
+
+- ![](figures/instagram-innova.png)[Innovalab
   instagram](https://www.instagram.com/innovalab_imt/)
 
 - ![](figures/tiktok-innova.png)[Innovalab
-  tiktok](https://www.tiktok.com/@innovalab_imt),
-  ![](figures/spotify-innova.png)[Innovalab
+  tiktok](https://www.tiktok.com/@innovalab_imt)
+
+- ![](figures/spotify-innova.png)[Innovalab
   Podcast](https://www.innovalab.info/podcast)
 
 ## References
@@ -129,7 +133,7 @@ Follow us on :
 Wan, Z., Hook, S., & Hulley, G. (2015). MOD11A1 MODIS/Terra Land Surface
 Temperature and Emissivity Daily L3 Global 1km SIN Grid V006 (Version
 6.1). NASA EOSDIS Land Processes DAAC.
-<https://doi.org/10.5067/MODIS/MOD11A1.061>
+[doi:10.5067/MODIS/MOD11A1.061](https://doi.org/10.5067/MODIS/MOD11A1.061)
 
 MODIS MOD11A1.061 - Google Earth Engine Dataset Catalog.
 <https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD11A1>

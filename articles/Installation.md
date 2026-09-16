@@ -76,7 +76,7 @@ with:
 ``` r
 
 # install.packages("pak")
-pak::pak("harmonize-tools/land4health")
+pak::pkg_install("harmonize-tools/land4health")
 ```
 
 ``` r
@@ -116,7 +116,8 @@ l4h_install()
 
 ``` r
 
-ee_Initialize()
+l4h_use_python() 
+rgee::ee_Initialize()
 ```
 
 ``` r

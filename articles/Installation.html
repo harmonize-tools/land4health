@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">land4health</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,10 +35,19 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/Installation.html">1. Introduction</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-examples" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Examples</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-examples">
+<li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/l4h_brazil_case/cases1_brazil.html" target="_blank">1. Environmental indicators – Brazil</a></li>
+    <li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/l4h_colombia_case/case2_colombia.html" target="_blank">2. Dengue – Colombia</a></li>
+    <li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/l4h_peru_case/case3_peru.html" target="_blank">3. Malaria – Peruvian Amazon</a></li>
+  </ul>
+</li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-resources" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Resources</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-resources">
+<li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/epi-rgee/" target="_blank">1. rgee installation</a></li>
+    <li><a class="external-link dropdown-item" href="https://epi-rgee.netlify.app/" target="_blank">2. rgee for applications in epidemiology</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -163,7 +172,7 @@ user option.</p>
 from GitHub with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"harmonize-tools/land4health"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pkg_install.html" class="external-link">pkg_install</a></span><span class="op">(</span><span class="st">"harmonize-tools/land4health"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harmonize-tools/land4health/">land4health</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>── Welcome to land4health ───────────────────────────────────────────────────────────────────────────────</span>
@@ -188,7 +197,8 @@ from GitHub with:</p>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>ℹ Step <span class="dv">3</span><span class="sc">/</span><span class="dv">3</span><span class="sc">:</span> Finalizing setup</span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>✔ land4health setup completed.</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">ee_Initialize</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/l4h_use_python.html">l4h_use_python</a></span><span class="op">(</span><span class="op">)</span> </span>
+<span><span class="fu">rgee</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#&gt; ── rgee 1.1.7 ─────────────────────────────────────── earthengine-api 0.1.370 ── </span></span>
 <span><span class="co">#&gt;  ✔ user: not_defined </span></span>

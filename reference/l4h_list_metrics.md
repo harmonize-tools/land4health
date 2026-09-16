@@ -43,27 +43,30 @@ compact preview (max 10 rows) is printed before the tibble is returned.
 
 ## Credits
 
-[![](figures/innovalab.svg)](https://www.innovalab.info/)
+[![](figures/innovalab.png)](https://www.innovalab.info/)
 
-Pioneering geospatial health analytics and open‐science tools. Developed
-by the Innovalab Team, for more information send a email to
-<imt.innovlab@oficinas-upch.pe>
+Pioneering geospatial health analytics and open-science tools. Developed
+by the Innovalab Team. For more information, send an email to
+<imt.innovlab@oficinas-upch.pe>.
 
-Follow us on :
+Follow us on:
 
 - ![](figures/linkedin-innova.png)[Innovalab
-  Linkedin](https://www.linkedin.com/company/innovalab-imt),
-  ![](figures/twitter-innova.png)[Innovalab
+  Linkedin](https://www.linkedin.com/company/innovalab-imt)
+
+- ![](figures/twitter-innova.png)[Innovalab
   X](https://x.com/innovalab_imt)
 
 - ![](figures/facebook-innova.png)[Innovalab
-  facebook](https://www.facebook.com/imt.innovalab),
-  ![](figures/instagram-innova.png)[Innovalab
+  facebook](https://www.facebook.com/imt.innovalab)
+
+- ![](figures/instagram-innova.png)[Innovalab
   instagram](https://www.instagram.com/innovalab_imt/)
 
 - ![](figures/tiktok-innova.png)[Innovalab
-  tiktok](https://www.tiktok.com/@innovalab_imt),
-  ![](figures/spotify-innova.png)[Innovalab
+  tiktok](https://www.tiktok.com/@innovalab_imt)
+
+- ![](figures/spotify-innova.png)[Innovalab
   Podcast](https://www.innovalab.info/podcast)
 
 ## Examples
@@ -83,14 +86,14 @@ l4h_list_metrics()
 #>  4 Human intervention Urban … 500                    MODIS …       2001     2022
 #>  5 Human intervention Night … 500                    VIIRS …       1992     2023
 #>  6 Human intervention Human … 30                     Global…       1975     2030
-#>  7 Enviroment         Water … 30                     MapBio…       1985     2022
-#>  8 Enviroment         Urban … 1000                   Urban …       2003     2020
-#>  9 Accesibility       Travel… 927.67                 Malari…       2019     2020
-#> 10 Accesibility       Rural … 100                    Rural …       2024     2024
+#>  7 Environment        Urban … 1000                   Urban …       2003     2020
+#>  8 Accessibility      Travel… 927.67                 Malari…       2019     2020
+#>  9 Accessibility      Rural … 100                    Rural …       2024     2024
+#> 10 Climate            Evapot… 500                    geeSEB…       2002     2022
 #> # ℹ abbreviated name: ¹​pixel_resolution_meters
 #> # ℹ 5 more variables: resolution_temporal <chr>, layer_can_be_actived <lgl>,
 #> #   tags <chr>, lifecycle <chr>, url <chr>
-#> ... (1 more)
+#> ... (2 more)
 
 ## 2  Filter by category (“Human intervention”).
 l4h_list_metrics(category = "Human intervention")

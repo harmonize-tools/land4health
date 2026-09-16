@@ -3,10 +3,14 @@
 1985 and 2030 using the GHS-SMOD R2023A dataset. This product applies the Degree of Urbanization
 methodology (Stage I) to the GHS-POP R2023A and GHS-BUILT-S R2023A layers. The function summarizes
 areas by category and year over the specified region.
+
+
 "><meta property="og:description" content="Calculates the surface area (in km2) of urban, rural, or all settlement classes every 5 years between
 1985 and 2030 using the GHS-SMOD R2023A dataset. This product applies the Degree of Urbanization
 methodology (Stage I) to the GHS-POP R2023A and GHS-BUILT-S R2023A layers. The function summarizes
 areas by category and year over the specified region.
+
+
 "><meta property="og:image" content="https://github.com/harmonize-tools/land4health/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
@@ -15,7 +19,7 @@ areas by category and year over the specified region.
 
     <a class="navbar-brand me-2" href="../index.html">land4health</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,8 +29,15 @@ areas by category and year over the specified region.
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/Installation.html">1. Introduction</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-examples" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Examples</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-examples"><li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/l4h_brazil_case/cases1_brazil.html" target="_blank">1. Environmental indicators – Brazil</a></li>
+    <li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/l4h_colombia_case/case2_colombia.html" target="_blank">2. Dengue – Colombia</a></li>
+    <li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/l4h_peru_case/case3_peru.html" target="_blank">3. Malaria – Peruvian Amazon</a></li>
+  </ul></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-resources" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Resources</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-resources"><li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/epi-rgee/" target="_blank">1. rgee installation</a></li>
+    <li><a class="external-link dropdown-item" href="https://epi-rgee.netlify.app/" target="_blank">2. rgee for applications in epidemiology</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -56,7 +67,8 @@ areas by category and year over the specified region.
 1985 and 2030 using the GHS-SMOD R2023A dataset. This product applies the Degree of Urbanization
 methodology (Stage I) to the GHS-POP R2023A and GHS-BUILT-S R2023A layers. The function summarizes
 areas by category and year over the specified region.</p>
-<p><a href="https://lifecycle.r-lib.org/articles/stages.html#questioning" class="external-link"><img src="figures/lifecycle-questioning.svg" alt="[Questioning]"></a></p>
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html#questioning" class="external-link">
+  <img src="figures/lifecycle-questioning.png" width="120"></a></p>
     </div>
 
     <div class="section level2">
@@ -112,12 +124,16 @@ areas by category and year over the specified region.</p>
     <h2 id="credits">Credits<a class="anchor" aria-label="anchor" href="#credits"></a></h2>
 
 
-<p><a href="https://www.innovalab.info/" class="external-link"><img src="figures/innovalab.svg" alt=""></a></p>
-<p>Pioneering geospatial health analytics and open‐science tools.
-Developed by the Innovalab Team, for more information send a email to <a href="mailto:imt.innovlab@oficinas-upch.pe">imt.innovlab@oficinas-upch.pe</a></p>
-<p>Follow us on :</p><ul><li><p><img src="figures/linkedin-innova.png" alt=""><a href="https://www.linkedin.com/company/innovalab-imt" class="external-link">Innovalab Linkedin</a>, <img src="figures/twitter-innova.png" alt=""><a href="https://x.com/innovalab_imt" class="external-link">Innovalab X</a></p></li>
-<li><p><img src="figures/facebook-innova.png" alt=""><a href="https://www.facebook.com/imt.innovalab" class="external-link">Innovalab facebook</a>, <img src="figures/instagram-innova.png" alt=""><a href="https://www.instagram.com/innovalab_imt/" class="external-link">Innovalab instagram</a></p></li>
-<li><p><img src="figures/tiktok-innova.png" alt=""><a href="https://www.tiktok.com/@innovalab_imt" class="external-link">Innovalab tiktok</a>, <img src="figures/spotify-innova.png" alt=""><a href="https://www.innovalab.info/podcast" class="external-link">Innovalab Podcast</a></p></li>
+<p><a href="https://www.innovalab.info/" class="external-link"><img src="figures/innovalab.png" width="120"></a></p>
+<p>Pioneering geospatial health analytics and open-science tools.
+Developed by the Innovalab Team. For more information, send an email to
+<a href="mailto:imt.innovlab@oficinas-upch.pe">imt.innovlab@oficinas-upch.pe</a>.</p>
+<p>Follow us on:</p><ul><li><p><img src="figures/linkedin-innova.png" width="16"><a href="https://www.linkedin.com/company/innovalab-imt" class="external-link">Innovalab Linkedin</a></p></li>
+<li><p><img src="figures/twitter-innova.png" width="16"><a href="https://x.com/innovalab_imt" class="external-link">Innovalab X</a></p></li>
+<li><p><img src="figures/facebook-innova.png" width="16"><a href="https://www.facebook.com/imt.innovalab" class="external-link">Innovalab facebook</a></p></li>
+<li><p><img src="figures/instagram-innova.png" width="16"><a href="https://www.instagram.com/innovalab_imt/" class="external-link">Innovalab instagram</a></p></li>
+<li><p><img src="figures/tiktok-innova.png" width="16"><a href="https://www.tiktok.com/@innovalab_imt" class="external-link">Innovalab tiktok</a></p></li>
+<li><p><img src="figures/spotify-innova.png" width="16"><a href="https://www.innovalab.info/podcast" class="external-link">Innovalab Podcast</a></p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -133,8 +149,8 @@ Available at: <a href="https://data.jrc.ec.europa.eu/dataset/a0df7a6f-49de-46ea-
 <span class="r-in"><span><span class="fu">ee_Initialize</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Define region as a bounding box (Ucayali, Peru)</span></span></span>
-<span class="r-in"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">st_sfc</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html" class="external-link">st_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu">st_as_sf</span><span class="op">(</span><span class="fu">st_sfc</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">st_polygon</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="op">-</span><span class="fl">74.1</span>, <span class="op">-</span><span class="fl">4.4</span>,</span></span>
 <span class="r-in"><span>    <span class="op">-</span><span class="fl">74.1</span>, <span class="op">-</span><span class="fl">3.7</span>,</span></span>
 <span class="r-in"><span>    <span class="op">-</span><span class="fl">73.2</span>, <span class="op">-</span><span class="fl">3.7</span>,</span></span>

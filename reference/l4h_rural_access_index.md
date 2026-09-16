@@ -5,7 +5,7 @@ datasets from the GEE Community Catalog. The RAI represents the
 proportion of the rural population living within 2 km of an all-season
 road, aligning with SDG indicator 9.1.1.
 
-**\[stable\]**
+**NA**
 
 ## Usage
 
@@ -88,27 +88,30 @@ ignored otherwise.
 
 ## Credits
 
-[![](figures/innovalab.svg)](https://www.innovalab.info/)
+[![](figures/innovalab.png)](https://www.innovalab.info/)
 
-Pioneering geospatial health analytics and open‐science tools. Developed
-by the Innovalab Team, for more information send a email to
-<imt.innovlab@oficinas-upch.pe>
+Pioneering geospatial health analytics and open-science tools. Developed
+by the Innovalab Team. For more information, send an email to
+<imt.innovlab@oficinas-upch.pe>.
 
-Follow us on :
+Follow us on:
 
 - ![](figures/linkedin-innova.png)[Innovalab
-  Linkedin](https://www.linkedin.com/company/innovalab-imt),
-  ![](figures/twitter-innova.png)[Innovalab
+  Linkedin](https://www.linkedin.com/company/innovalab-imt)
+
+- ![](figures/twitter-innova.png)[Innovalab
   X](https://x.com/innovalab_imt)
 
 - ![](figures/facebook-innova.png)[Innovalab
-  facebook](https://www.facebook.com/imt.innovalab),
-  ![](figures/instagram-innova.png)[Innovalab
+  facebook](https://www.facebook.com/imt.innovalab)
+
+- ![](figures/instagram-innova.png)[Innovalab
   instagram](https://www.instagram.com/innovalab_imt/)
 
 - ![](figures/tiktok-innova.png)[Innovalab
-  tiktok](https://www.tiktok.com/@innovalab_imt),
-  ![](figures/spotify-innova.png)[Innovalab
+  tiktok](https://www.tiktok.com/@innovalab_imt)
+
+- ![](figures/spotify-innova.png)[Innovalab
   Podcast](https://www.innovalab.info/podcast)
 
 ## References
@@ -119,3 +122,37 @@ Frontiers in Remote Sensing (2024):
 [doi:10.3389/frsen.2024.1375476](https://doi.org/10.3389/frsen.2024.1375476)
 
 ## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+library(land4health)
+ee_Initialize()
+
+# Define a bounding box region in Ucayali, Peru
+region <- st_as_sf(st_sfc(
+  st_polygon(list(matrix(c(
+    -74.1, -4.4,
+    -74.1, -3.7,
+    -73.2, -3.7,
+    -73.2, -4.4,
+    -74.1, -4.4
+  ), ncol = 2, byrow = TRUE))),
+  crs = 4326
+))
+
+# Population-weighted RAI
+rai_w <- l4h_rural_access_index(
+    region = region,
+    weighted = TRUE,
+    fun = "sum",
+    sf = TRUE)
+head(rai_w)
+
+# Area-based RAI
+rai <- l4h_rural_access_index(
+    region = region,
+    weighted = FALSE,
+    sf = TRUE)
+head(rai)
+} # }
+```
