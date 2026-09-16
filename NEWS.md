@@ -1,4 +1,5 @@
-# land4health 0.2.0
+# land4health 0.2.0 
+<hr/>
 
 ## 1. Vector-borne disease
 
@@ -52,7 +53,8 @@
     a stable API or consistent versioning for reliable programmatic access.
 
 
-# land4health 0.1.0
+# land4health 0.1.0 
+<hr/>
 
 This initial release of **land4health** lays the foundation for the core 
 functionality and defines the structure of the main functions, as outlined 
