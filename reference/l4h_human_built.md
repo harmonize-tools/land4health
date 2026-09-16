@@ -5,7 +5,7 @@ the GHSL Built-Up Surface dataset (GHS‑BUILT‑S R2023A), over a
 user-defined region and date range. The dataset is provided in 5‑year
 epochs (1975–2030) at ~100m resolution.
 
-**NA**
+**\[stable\]**
 
 ## Usage
 
@@ -65,30 +65,27 @@ A `sf` or `tibble` with columns `date`, `variable`, and
 
 ## Credits
 
-[![](figures/innovalab.png)](https://www.innovalab.info/)
+[![](figures/innovalab.svg)](https://www.innovalab.info/)
 
-Pioneering geospatial health analytics and open-science tools. Developed
-by the Innovalab Team. For more information, send an email to
-<imt.innovlab@oficinas-upch.pe>.
+Pioneering geospatial health analytics and open‐science tools. Developed
+by the Innovalab Team, for more information send a email to
+<imt.innovlab@oficinas-upch.pe>
 
-Follow us on:
+Follow us on :
 
 - ![](figures/linkedin-innova.png)[Innovalab
-  Linkedin](https://www.linkedin.com/company/innovalab-imt)
-
-- ![](figures/twitter-innova.png)[Innovalab
+  Linkedin](https://www.linkedin.com/company/innovalab-imt),
+  ![](figures/twitter-innova.png)[Innovalab
   X](https://x.com/innovalab_imt)
 
 - ![](figures/facebook-innova.png)[Innovalab
-  facebook](https://www.facebook.com/imt.innovalab)
-
-- ![](figures/instagram-innova.png)[Innovalab
+  facebook](https://www.facebook.com/imt.innovalab),
+  ![](figures/instagram-innova.png)[Innovalab
   instagram](https://www.instagram.com/innovalab_imt/)
 
 - ![](figures/tiktok-innova.png)[Innovalab
-  tiktok](https://www.tiktok.com/@innovalab_imt)
-
-- ![](figures/spotify-innova.png)[Innovalab
+  tiktok](https://www.tiktok.com/@innovalab_imt),
+  ![](figures/spotify-innova.png)[Innovalab
   Podcast](https://www.innovalab.info/podcast)
 
 ## References
@@ -98,7 +95,8 @@ Follow us on:
   y Landsat, multitemporal (1975–2030). European Commission, Joint
   Research Centre (JRC).
   [doi:10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA](https://doi.org/10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA)
-  .
+  . PID:
+  <http://data.europa.eu/89h/9f06f36f-4b11-47ec-abb0-4f8b7b1d72ea>
 
 - Pesaresi, M., Schiavina, M., Politis, P., Freire, S., Krasnodebska,
   K., Uhl, J.H., Carioli, A., et al. (2024). Avances en la capa de
@@ -115,6 +113,7 @@ Follow us on:
 ``` r
 if (FALSE) { # \dontrun{
 library(land4health)
+library(sf)
 ee_Initialize()
 
 # Define a bounding box region in Ucayali, Peru

@@ -6,7 +6,7 @@ for a user-defined region and time range. The dataset harmonizes
 DMSP-OLS (1992‑2013) with VIIRS‑like data (2014‑2021), ensuring
 consistent long-term time series at ~1km resolution.
 
-**NA**
+**\[stable\]**
 
 ## Usage
 
@@ -74,30 +74,27 @@ and date.
 
 ## Credits
 
-[![](figures/innovalab.png)](https://www.innovalab.info/)
+[![](figures/innovalab.svg)](https://www.innovalab.info/)
 
-Pioneering geospatial health analytics and open-science tools. Developed
-by the Innovalab Team. For more information, send an email to
-<imt.innovlab@oficinas-upch.pe>.
+Pioneering geospatial health analytics and open‐science tools. Developed
+by the Innovalab Team, for more information send a email to
+<imt.innovlab@oficinas-upch.pe>
 
-Follow us on:
+Follow us on :
 
 - ![](figures/linkedin-innova.png)[Innovalab
-  Linkedin](https://www.linkedin.com/company/innovalab-imt)
-
-- ![](figures/twitter-innova.png)[Innovalab
+  Linkedin](https://www.linkedin.com/company/innovalab-imt),
+  ![](figures/twitter-innova.png)[Innovalab
   X](https://x.com/innovalab_imt)
 
 - ![](figures/facebook-innova.png)[Innovalab
-  facebook](https://www.facebook.com/imt.innovalab)
-
-- ![](figures/instagram-innova.png)[Innovalab
+  facebook](https://www.facebook.com/imt.innovalab),
+  ![](figures/instagram-innova.png)[Innovalab
   instagram](https://www.instagram.com/innovalab_imt/)
 
 - ![](figures/tiktok-innova.png)[Innovalab
-  tiktok](https://www.tiktok.com/@innovalab_imt)
-
-- ![](figures/spotify-innova.png)[Innovalab
+  tiktok](https://www.tiktok.com/@innovalab_imt),
+  ![](figures/spotify-innova.png)[Innovalab
   Podcast](https://www.innovalab.info/podcast)
 
 ## Examples
@@ -105,6 +102,7 @@ Follow us on:
 ``` r
 if (FALSE) { # \dontrun{
 library(land4health)
+library(sf)
 ee_Initialize()
 
 # Define a bounding box region in Ucayali, Peru

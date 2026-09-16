@@ -2,11 +2,11 @@
 
 ## Vector-borne disease
 
-- [`l4h_dengue()`](https://github.com/harmonize-tools/land4health/reference/l4h_dengue.md)
+- [`l4h_dengue_cases()`](https://github.com/harmonize-tools/land4health/reference/l4h_dengue_cases.md)
   **\[stable\]** : Extract dengue case data from OpenDengue
-- [`l4h_malaria()`](https://github.com/harmonize-tools/land4health/reference/l4h_malaria.md)
-  **\[experimental\]** : Extract malaria metrics from the Malaria Atlas
-  Project GeoServer
+- [`l4h_layers_available_malaria()`](https://github.com/harmonize-tools/land4health/reference/l4h_layers_available_malaria.md)
+  **\[stable\]** : List malaria layers by species & metric from Malaria
+  Atlas Project
 
 ## Human intervention
 
@@ -22,42 +22,38 @@
   **\[stable\]** : Extracts built‑up surface area from GHSL Built‑Up
   Surface dataset
 
-## Accessibility
+## Accesibility
 
 - [`l4h_rural_access_index()`](https://github.com/harmonize-tools/land4health/reference/l4h_rural_access_index.md)
-  **\[experimental\]** : Compute Rural Access Index (RAI)
+  **\[stable\]** : Compute Rural Access Index (RAI)
 - [`l4h_travel_time()`](https://github.com/harmonize-tools/land4health/reference/l4h_travel_time.md)
   **\[stable\]** : Travel Time to Healthcare or Cities (Oxford Dataset)
 
-## Environment
+## Enviroment
 
-- [`l4h_pm2_5()`](https://github.com/harmonize-tools/land4health/reference/l4h_pm2_5.md)
-  **\[experimental\]** : Extract Global PM2.5 (monthly) from Google
-  Earth Engine
+- [`l4h_water_proportion()`](https://github.com/harmonize-tools/land4health/reference/l4h_water_proportion.md)
+  **\[experimental\]** : Annual Proportion of Water Coverage from
+  MapBiomas Peru
 - [`l4h_co_column()`](https://github.com/harmonize-tools/land4health/reference/l4h_co_column.md)
   **\[stable\]** : Extracts carbon monoxide (CO) concentration from
   Sentinel-5P TROPOMI
 - [`l4h_urban_heat_index()`](https://github.com/harmonize-tools/land4health/reference/l4h_urban_heat_index.md)
   **\[experimental\]** : Calculates the Surface Urban Heat Island (SUHI)
   index using MODIS LST and GHS-SMOD
-- [`l4h_vegetation()`](https://github.com/harmonize-tools/land4health/reference/l4h_vegetation.md)
-  **\[stable\]** : Extract vegetation indices from MODIS MOD13A1
 
 ## Climate
 
-- [`l4h_terra_climate()`](https://github.com/harmonize-tools/land4health/reference/l4h_terra_climate.md)
-  **\[stable\]** : Extract TerraClimate variables (monthly) from Google
-  Earth Engine
 - [`l4h_sebal_modis()`](https://github.com/harmonize-tools/land4health/reference/l4h_sebal_modis.md)
-  **\[experimental\]** : Download and process evapotranspiration data
+  **\[stable\]** : Download and process evapotranspiration data
 - [`l4h_surface_temp()`](https://github.com/harmonize-tools/land4health/reference/l4h_surface_temp.md)
-  **\[experimental\]** : Extracts Land Surface Temperature (LST) from
-  MODIS MOD11A1
-- [`l4h_chirps()`](https://github.com/harmonize-tools/land4health/reference/l4h_chirps.md)
-  **\[experimental\]** : Extract CHIRPS v3 precipitation data from
-  Google Earth Engine
+  **\[stable\]** : Extracts Land Surface Temperature (LST) from MODIS
+  MOD11A1
 
 ## Utils
+
+- [`l4h_install()`](https://github.com/harmonize-tools/land4health/reference/l4h_install.md)
+  **\[experimental\]** : Install Python dependencies for land4health
+  package
 
 - [`l4h_list_metrics()`](https://github.com/harmonize-tools/land4health/reference/l4h_list_metrics.md)
   :
@@ -68,13 +64,3 @@
   :
 
   List all *land4health* packages
-
-- [`l4h_install()`](https://github.com/harmonize-tools/land4health/reference/l4h_install.md)
-  **\[experimental\]** : Install Python dependencies for land4health
-  package
-
-- [`l4h_use_python()`](https://github.com/harmonize-tools/land4health/reference/l4h_use_python.md)
-  : Configure Python environment for land4health
-
-- [`l4h_ee_extract()`](https://github.com/harmonize-tools/land4health/reference/l4h_ee_extract.md)
-  : Internal Earth Engine data extraction (Optimized)

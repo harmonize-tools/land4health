@@ -7,7 +7,14 @@ infectious diseases 🦠 within the framework of spatial epidemiology 🏥.
 
 ## 1. Installation
 
-You can install the development version with:
+You can install CRAN version of land4health with:
+
+``` r
+
+install.packages("land4health")
+```
+
+or you can install the development version with:
 
 ``` r
 
@@ -18,16 +25,25 @@ pak::pak("harmonize-tools/land4health")
 ``` r
 
 library(land4health)
-# l4h_install()
+ee_Initialize(quiet = TRUE)
 ```
 
-``` R
-#> ── rgee 1.1.8 ──────────────────────────────────────── earthengine-api 1.7.38 ── 
-#>  ✔ user: antony.barja8@gmail.com 
-#>  ✔ Initializing Google Earth Engine: ✔ Initializing Google Earth Engine:  DONE!
-#>  ✔ Earth Engine account: projects/1009866941441/assets/BM_Castropampa 
-#>  ✔ Python Path: C:/Python314/python.exe 
-#> ────────────────────────────────────────────────────────────────────────────────
+``` r
+── Welcome to land4health ────────────────────────────────────────────────────
+A tool of Harmonize Project to calculate and extract Remote Sensing Metrics
+for Spatial Health Analysis. Currently,`land4health` supports metrics in the
+following categories:
+• Accesibility
+• Climate
+• Enviroment
+• and more!
+For a complete list of available metrics, use the `l4h_list_metrics()`
+function.
+
+──────────────────────────────────────────────────────────────────────────────
+Attaching core land4health packages:
+→ rgee v1.1.7
+→ sf v1.0.21
 ```
 
 ## 2. List of available metrics
@@ -44,14 +60,14 @@ l4h_list_metrics()
 #>  4 Human intervention Urban … 500                    MODIS …       2001     2022
 #>  5 Human intervention Night … 500                    VIIRS …       1992     2023
 #>  6 Human intervention Human … 30                     Global…       1975     2030
-#>  7 Environment        Water … 30                     MapBio…       1985     2022
-#>  8 Environment        Urban … 1000                   Urban …       2003     2020
-#>  9 Accessibility      Travel… 927.67                 Malari…       2019     2020
-#> 10 Accessibility      Rural … 100                    Rural …       2024     2024
+#>  7 Enviroment         Water … 30                     MapBio…       1985     2022
+#>  8 Enviroment         Urban … 1000                   Urban …       2003     2020
+#>  9 Accesibility       Travel… 927.67                 Malari…       2019     2020
+#> 10 Accesibility       Rural … 100                    Rural …       2024     2024
 #> # ℹ abbreviated name: ¹​pixel_resolution_meters
 #> # ℹ 5 more variables: resolution_temporal <chr>, layer_can_be_actived <lgl>,
 #> #   tags <chr>, lifecycle <chr>, url <chr>
-#> ... (3 more)
+#> ... (1 more)
 ```
 
 ## 3. Example: Calculate Forest Loss in a Custom Region
@@ -71,28 +87,27 @@ provinces_loreto <- get_provinces(show_progress = FALSE) |>
 result <- provinces_loreto |>
   l4h_forest_loss(from = '2005-01-01', to = '2020-01-01', sf = TRUE)
 head(result)
-#> Simple feature collection with 6 features and 8 fields
+#> Simple feature collection with 6 features and 11 fields
 #> Geometry type: MULTIPOLYGON
 #> Dimension:     XY
-#> Bounding box:  xmin: -75.78115 ymin: -4.709709 xmax: -72.11719 ymax: -0.63937
+#> Bounding box:  xmin: -76.89454 ymin: -6.14773 xmax: -75.38564 ymax: -3.681529
 #> Geodetic CRS:  WGS 84
-#> # A tibble: 6 × 9
-#>   ccdd  ccpp  fuente                  nombdep nombprov date       variable value
-#>   <chr> <chr> <chr>                   <chr>   <chr>    <date>     <chr>    <dbl>
-#> 1 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2005-01-01 forest_…  47.0
-#> 2 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2006-01-01 forest_…  17.7
-#> 3 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2007-01-01 forest_…  59.7
-#> 4 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2008-01-01 forest_…  99.8
-#> 5 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2009-01-01 forest_… 105. 
-#> 6 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2010-01-01 forest_…  69.5
-#> # ℹ 1 more variable: geometry <MULTIPOLYGON [°]>
+#> # A tibble: 6 × 12
+#>      id objectid ccdd  ccpp  nombdep nombprov shape_length shape_area date      
+#>   <int>    <dbl> <chr> <chr> <chr>   <chr>           <dbl>      <dbl> <date>    
+#> 1   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2005-01-01
+#> 2   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2006-01-01
+#> 3   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2007-01-01
+#> 4   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2008-01-01
+#> 5   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2009-01-01
+#> 6   136      136 16    02    LORETO  ALTO AM…         9.96       1.57 2010-01-01
+#> # ℹ 3 more variables: variable <chr>, value <dbl>, geometry <MULTIPOLYGON [°]>
 ```
 
 ``` r
 
 # Visualization with ggplot2
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 4.5.3
 ggplot(data = st_drop_geometry(result), aes(x = date, y = value)) +
   geom_area(fill = "#FDE725FF", alpha = 0.8) +
   facet_wrap(~nombprov) +
@@ -142,11 +157,11 @@ etp_ts |>
 
 ## Vector-borne disease
 
-- [`l4h_dengue()`](https://github.com/harmonize-tools/land4health/reference/l4h_dengue.md)
+- [`l4h_dengue_cases()`](https://github.com/harmonize-tools/land4health/reference/l4h_dengue_cases.md)
   **\[stable\]** : Extract dengue case data from OpenDengue
-- [`l4h_malaria()`](https://github.com/harmonize-tools/land4health/reference/l4h_malaria.md)
-  **\[experimental\]** : Extract malaria metrics from the Malaria Atlas
-  Project GeoServer
+- [`l4h_layers_available_malaria()`](https://github.com/harmonize-tools/land4health/reference/l4h_layers_available_malaria.md)
+  **\[stable\]** : List malaria layers by species & metric from Malaria
+  Atlas Project
 
 ## Human intervention
 
@@ -162,42 +177,38 @@ etp_ts |>
   **\[stable\]** : Extracts built‑up surface area from GHSL Built‑Up
   Surface dataset
 
-## Accessibility
+## Accesibility
 
 - [`l4h_rural_access_index()`](https://github.com/harmonize-tools/land4health/reference/l4h_rural_access_index.md)
-  **\[experimental\]** : Compute Rural Access Index (RAI)
+  **\[stable\]** : Compute Rural Access Index (RAI)
 - [`l4h_travel_time()`](https://github.com/harmonize-tools/land4health/reference/l4h_travel_time.md)
   **\[stable\]** : Travel Time to Healthcare or Cities (Oxford Dataset)
 
-## Environment
+## Enviroment
 
-- [`l4h_pm2_5()`](https://github.com/harmonize-tools/land4health/reference/l4h_pm2_5.md)
-  **\[experimental\]** : Extract Global PM2.5 (monthly) from Google
-  Earth Engine
+- [`l4h_water_proportion()`](https://github.com/harmonize-tools/land4health/reference/l4h_water_proportion.md)
+  **\[experimental\]** : Annual Proportion of Water Coverage from
+  MapBiomas Peru
 - [`l4h_co_column()`](https://github.com/harmonize-tools/land4health/reference/l4h_co_column.md)
   **\[stable\]** : Extracts carbon monoxide (CO) concentration from
   Sentinel-5P TROPOMI
 - [`l4h_urban_heat_index()`](https://github.com/harmonize-tools/land4health/reference/l4h_urban_heat_index.md)
   **\[experimental\]** : Calculates the Surface Urban Heat Island (SUHI)
   index using MODIS LST and GHS-SMOD
-- [`l4h_vegetation()`](https://github.com/harmonize-tools/land4health/reference/l4h_vegetation.md)
-  **\[stable\]** : Extract vegetation indices from MODIS MOD13A1
 
 ## Climate
 
-- [`l4h_terra_climate()`](https://github.com/harmonize-tools/land4health/reference/l4h_terra_climate.md)
-  **\[stable\]** : Extract TerraClimate variables (monthly) from Google
-  Earth Engine
 - [`l4h_sebal_modis()`](https://github.com/harmonize-tools/land4health/reference/l4h_sebal_modis.md)
-  **\[experimental\]** : Download and process evapotranspiration data
+  **\[stable\]** : Download and process evapotranspiration data
 - [`l4h_surface_temp()`](https://github.com/harmonize-tools/land4health/reference/l4h_surface_temp.md)
-  **\[experimental\]** : Extracts Land Surface Temperature (LST) from
-  MODIS MOD11A1
-- [`l4h_chirps()`](https://github.com/harmonize-tools/land4health/reference/l4h_chirps.md)
-  **\[experimental\]** : Extract CHIRPS v3 precipitation data from
-  Google Earth Engine
+  **\[stable\]** : Extracts Land Surface Temperature (LST) from MODIS
+  MOD11A1
 
 ## Utils
+
+- [`l4h_install()`](https://github.com/harmonize-tools/land4health/reference/l4h_install.md)
+  **\[experimental\]** : Install Python dependencies for land4health
+  package
 
 - [`l4h_list_metrics()`](https://github.com/harmonize-tools/land4health/reference/l4h_list_metrics.md)
   :
@@ -208,16 +219,6 @@ etp_ts |>
   :
 
   List all *land4health* packages
-
-- [`l4h_install()`](https://github.com/harmonize-tools/land4health/reference/l4h_install.md)
-  **\[experimental\]** : Install Python dependencies for land4health
-  package
-
-- [`l4h_use_python()`](https://github.com/harmonize-tools/land4health/reference/l4h_use_python.md)
-  : Configure Python environment for land4health
-
-- [`l4h_ee_extract()`](https://github.com/harmonize-tools/land4health/reference/l4h_ee_extract.md)
-  : Internal Earth Engine data extraction (Optimized)
 
 # Articles
 

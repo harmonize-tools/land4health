@@ -2,11 +2,10 @@
 
 ## Authors
 
-- **[Antony Barja](https://geografo.pe)**. Author, copyright holder.
+- **[Antony Barja](https://geografo.pe)**. Author, maintainer.
   [](https://orcid.org/0000-0001-5921-2858)
 
-- **Yomali Ferreyra**. Maintainer.
-  [](https://orcid.org/0000-0002-5184-9595)
+- **Yomali Ferreyra**. Author. [](https://orcid.org/0000-0002-5184-9595)
 
 - **Diego Villa**. Contributor.
 
@@ -15,14 +14,14 @@
 Source:
 [`DESCRIPTION`](https://github.com/harmonize-tools/land4health/tree/main/DESCRIPTION)
 
-Barja A (2026). *land4health: Remote Sensing Metrics for Spatial Health
-Analysis*. R package version 0.2.0,
+Barja A, Ferreyra Y (2026). *land4health: Remote Sensing Metrics for
+Spatial Health Analysis*. R package version 0.1.0,
 <https://github.com/harmonize-tools/land4health/>.
 
     @Manual{,
       title = {land4health: Remote Sensing Metrics for Spatial Health Analysis},
-      author = {Antony Barja},
+      author = {Antony Barja and Yomali Ferreyra},
       year = {2026},
-      note = {R package version 0.2.0},
+      note = {R package version 0.1.0},
       url = {https://github.com/harmonize-tools/land4health/},
     }

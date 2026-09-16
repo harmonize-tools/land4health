@@ -4,7 +4,7 @@ Calculates forest loss within a user-defined region for a specified year
 range. Forest loss is defined as a **stand-replacement disturbance**, or
 a change from forest to non-forest state.
 
-**NA**
+**\[stable\]**
 
 ## Usage
 
@@ -61,30 +61,27 @@ Forest loss is derived from the Hansen Global Forest Change dataset. The
 
 ## Credits
 
-[![](figures/innovalab.png)](https://www.innovalab.info/)
+[![](figures/innovalab.svg)](https://www.innovalab.info/)
 
-Pioneering geospatial health analytics and open-science tools. Developed
-by the Innovalab Team. For more information, send an email to
-<imt.innovlab@oficinas-upch.pe>.
+Pioneering geospatial health analytics and open‐science tools. Developed
+by the Innovalab Team, for more information send a email to
+<imt.innovlab@oficinas-upch.pe>
 
-Follow us on:
+Follow us on :
 
 - ![](figures/linkedin-innova.png)[Innovalab
-  Linkedin](https://www.linkedin.com/company/innovalab-imt)
-
-- ![](figures/twitter-innova.png)[Innovalab
+  Linkedin](https://www.linkedin.com/company/innovalab-imt),
+  ![](figures/twitter-innova.png)[Innovalab
   X](https://x.com/innovalab_imt)
 
 - ![](figures/facebook-innova.png)[Innovalab
-  facebook](https://www.facebook.com/imt.innovalab)
-
-- ![](figures/instagram-innova.png)[Innovalab
+  facebook](https://www.facebook.com/imt.innovalab),
+  ![](figures/instagram-innova.png)[Innovalab
   instagram](https://www.instagram.com/innovalab_imt/)
 
 - ![](figures/tiktok-innova.png)[Innovalab
-  tiktok](https://www.tiktok.com/@innovalab_imt)
-
-- ![](figures/spotify-innova.png)[Innovalab
+  tiktok](https://www.tiktok.com/@innovalab_imt),
+  ![](figures/spotify-innova.png)[Innovalab
   Podcast](https://www.innovalab.info/podcast)
 
 ## References

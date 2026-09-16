@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">land4health</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,15 +17,8 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-examples" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Examples</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-examples"><li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/l4h_brazil_case/cases1_brazil.html" target="_blank">1. Environmental indicators – Brazil</a></li>
-    <li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/l4h_colombia_case/case2_colombia.html" target="_blank">2. Dengue – Colombia</a></li>
-    <li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/l4h_peru_case/case3_peru.html" target="_blank">3. Malaria – Peruvian Amazon</a></li>
-  </ul></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-resources" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Resources</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-resources"><li><a class="external-link dropdown-item" href="https://healthinnovation.github.io/epi-rgee/" target="_blank">1. rgee installation</a></li>
-    <li><a class="external-link dropdown-item" href="https://epi-rgee.netlify.app/" target="_blank">2. rgee for applications in epidemiology</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/Installation.html">1. Introduction</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -60,17 +53,17 @@
 
       <dl><dt>
 
-          <code><a href="l4h_dengue.html">l4h_dengue()</a></code>
+          <code><a href="l4h_dengue_cases.html">l4h_dengue_cases()</a></code>
           <span class="badge lifecycle lifecycle-stable">stable</span>
         </dt>
         <dd>Extract dengue case data from OpenDengue</dd>
 
         <dt>
 
-          <code><a href="l4h_malaria.html">l4h_malaria()</a></code>
-          <span class="badge lifecycle lifecycle-experimental">experimental</span>
+          <code><a href="l4h_layers_available_malaria.html">l4h_layers_available_malaria()</a></code>
+          <span class="badge lifecycle lifecycle-stable">stable</span>
         </dt>
-        <dd>Extract malaria metrics from the Malaria Atlas Project GeoServer</dd>
+        <dd>List malaria layers by species &amp; metric from Malaria Atlas Project</dd>
       </dl></div><div class="section level2">
       <h2 id="human-intervention">Human intervention<a class="anchor" aria-label="anchor" href="#human-intervention"></a></h2>
 
@@ -109,7 +102,7 @@
         </dt>
         <dd>Extracts built‑up surface area from GHSL Built‑Up Surface dataset</dd>
       </dl></div><div class="section level2">
-      <h2 id="accessibility">Accessibility<a class="anchor" aria-label="anchor" href="#accessibility"></a></h2>
+      <h2 id="accesibility">Accesibility<a class="anchor" aria-label="anchor" href="#accesibility"></a></h2>
 
 
 
@@ -121,7 +114,7 @@
       <dl><dt>
 
           <code><a href="l4h_rural_access_index.html">l4h_rural_access_index()</a></code>
-          <span class="badge lifecycle lifecycle-experimental">experimental</span>
+          <span class="badge lifecycle lifecycle-stable">stable</span>
         </dt>
         <dd>Compute Rural Access Index (RAI)</dd>
 
@@ -132,7 +125,7 @@
         </dt>
         <dd>Travel Time to Healthcare or Cities (Oxford Dataset)</dd>
       </dl></div><div class="section level2">
-      <h2 id="environment">Environment<a class="anchor" aria-label="anchor" href="#environment"></a></h2>
+      <h2 id="enviroment">Enviroment<a class="anchor" aria-label="anchor" href="#enviroment"></a></h2>
 
 
 
@@ -143,10 +136,10 @@
 
       <dl><dt>
 
-          <code><a href="l4h_pm2_5.html">l4h_pm2_5()</a></code>
+          <code><a href="l4h_water_proportion.html">l4h_water_proportion()</a></code>
           <span class="badge lifecycle lifecycle-experimental">experimental</span>
         </dt>
-        <dd>Extract Global PM2.5 (monthly) from Google Earth Engine</dd>
+        <dd>Annual Proportion of Water Coverage from MapBiomas Peru</dd>
 
         <dt>
 
@@ -161,13 +154,6 @@
           <span class="badge lifecycle lifecycle-experimental">experimental</span>
         </dt>
         <dd>Calculates the Surface Urban Heat Island (SUHI) index using MODIS LST and GHS-SMOD</dd>
-
-        <dt>
-
-          <code><a href="l4h_vegetation.html">l4h_vegetation()</a></code>
-          <span class="badge lifecycle lifecycle-stable">stable</span>
-        </dt>
-        <dd>Extract vegetation indices from MODIS MOD13A1</dd>
       </dl></div><div class="section level2">
       <h2 id="climate">Climate<a class="anchor" aria-label="anchor" href="#climate"></a></h2>
 
@@ -180,31 +166,17 @@
 
       <dl><dt>
 
-          <code><a href="l4h_terra_climate.html">l4h_terra_climate()</a></code>
-          <span class="badge lifecycle lifecycle-stable">stable</span>
-        </dt>
-        <dd>Extract TerraClimate variables (monthly) from Google Earth Engine</dd>
-
-        <dt>
-
           <code><a href="l4h_sebal_modis.html">l4h_sebal_modis()</a></code>
-          <span class="badge lifecycle lifecycle-experimental">experimental</span>
+          <span class="badge lifecycle lifecycle-stable">stable</span>
         </dt>
         <dd>Download and process evapotranspiration data</dd>
 
         <dt>
 
           <code><a href="l4h_surface_temp.html">l4h_surface_temp()</a></code>
-          <span class="badge lifecycle lifecycle-experimental">experimental</span>
+          <span class="badge lifecycle lifecycle-stable">stable</span>
         </dt>
         <dd>Extracts Land Surface Temperature (LST) from MODIS MOD11A1</dd>
-
-        <dt>
-
-          <code><a href="l4h_chirps.html">l4h_chirps()</a></code>
-          <span class="badge lifecycle lifecycle-experimental">experimental</span>
-        </dt>
-        <dd>Extract CHIRPS v3 precipitation data from Google Earth Engine</dd>
       </dl></div><div class="section level2">
       <h2 id="utils">Utils<a class="anchor" aria-label="anchor" href="#utils"></a></h2>
 
@@ -217,6 +189,13 @@
 
       <dl><dt>
 
+          <code><a href="l4h_install.html">l4h_install()</a></code>
+          <span class="badge lifecycle lifecycle-experimental">experimental</span>
+        </dt>
+        <dd>Install Python dependencies for land4health package</dd>
+
+        <dt>
+
           <code><a href="l4h_list_metrics.html">l4h_list_metrics()</a></code>
 
         </dt>
@@ -228,27 +207,6 @@
 
         </dt>
         <dd>List all <em>land4health</em> packages</dd>
-
-        <dt>
-
-          <code><a href="l4h_install.html">l4h_install()</a></code>
-          <span class="badge lifecycle lifecycle-experimental">experimental</span>
-        </dt>
-        <dd>Install Python dependencies for land4health package</dd>
-
-        <dt>
-
-          <code><a href="l4h_use_python.html">l4h_use_python()</a></code>
-
-        </dt>
-        <dd>Configure Python environment for land4health</dd>
-
-        <dt>
-
-          <code><a href="l4h_ee_extract.html">l4h_ee_extract()</a></code>
-
-        </dt>
-        <dd>Internal Earth Engine data extraction (Optimized)</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
