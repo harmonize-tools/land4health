@@ -169,5 +169,6 @@ out_pv <- l4h_malaria(
   region  = region,
   sf      = FALSE
 )
+head(out_pv)
 } # }
 ```

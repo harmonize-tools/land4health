@@ -198,6 +198,7 @@ result_annual <- provinces |>
     sf   = TRUE
   )
 
- glimpse(result_annual)
+ str(result_annual)
+
 } # }
 ```

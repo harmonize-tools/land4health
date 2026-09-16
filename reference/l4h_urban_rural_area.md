@@ -114,21 +114,21 @@ region <- st_as_sf(st_sfc(
 ))
 
 # Extract surface area of urban category (in km2)
-urban_area <- l4h_urban_area(
+urban_area <- l4h_urban_rural_area(
   category = "urban",
   region = region)
 
 head(urban_area)
 
 # Extract surface area of rural category (in km2)
-rural_area <- l4h_urban_area(
+rural_area <- l4h_urban_rural_area(
   category = "rural",
   region = region)
 
 head(rural_area)
 
 # Extract total surface area (urban + rural) (in km2)
-all_area <- l4h_urban_area(
+all_area <- l4h_urban_rural_area(
   category = "all",
   region = region)
 
