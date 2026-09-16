@@ -29,10 +29,10 @@ authors:
 repository-code: https://github.com/harmonize-tools/land4health
 url: https://github.com/harmonize-tools/land4health/
 contact:
-- family-names: Barja
-  given-names: Antony
-  email: antony.barja@upch.pe
-  orcid: https://orcid.org/0000-0001-5921-2858
+- family-names: Ferreyra
+  given-names: Yomali
+  email: yomali.ferreyra@upch.pe
+  orcid: https://orcid.org/0000-0002-5184-9595
 keywords:
 - geography
 - geohealth
@@ -225,6 +225,31 @@ references:
     email: hadley@rstudio.com
   year: '2026'
   doi: 10.32614/CRAN.package.tibble
+- type: software
+  title: terra
+  abstract: 'terra: Spatial Data Analysis'
+  notes: Imports
+  url: https://rspatial.org/
+  repository: https://CRAN.R-project.org/package=terra
+  authors:
+  - family-names: Hijmans
+    given-names: Robert J.
+    email: r.hijmans@gmail.com
+    orcid: https://orcid.org/0000-0001-5872-2872
+  - family-names: Brown
+    given-names: Andrew
+    orcid: https://orcid.org/0000-0002-4565-533X
+  - family-names: Barbosa
+    given-names: A. Márcia
+    orcid: https://orcid.org/0000-0001-8972-7713
+  - family-names: Cordano
+    given-names: Emanuele
+    orcid: https://orcid.org/0000-0002-3508-5898
+  - family-names: Dyba
+    given-names: Krzysztof
+    orcid: https://orcid.org/0000-0002-8614-3816
+  year: '2026'
+  doi: 10.32614/CRAN.package.terra
 - type: software
   title: geojsonio
   abstract: 'geojsonio: Convert Data from and to ''GeoJSON'' or ''TopoJSON'''
