@@ -51,6 +51,18 @@ jobs:
           })
         shell: Rscript {0}
 
+      - name: Run tests first (for debug output)
+        if: always()
+        run: |
+          Rscript -e '
+          tryCatch({
+            testthat::test_dir("tests/testthat", reporter = "summary")
+          }, error = function(e) {
+            message("Test error: ", conditionMessage(e))
+          })
+          '
+        shell: Rscript {0}
+
       - name: Test coverage
         run: |
           cov <- covr::package_coverage(
@@ -74,22 +86,9 @@ jobs:
       - name: Show testthat output
         if: always()
         run: |
-          ## --------------------------------------------------------------------
-          cat "Looking for testthat output files...\n"
-          find '${{ runner.temp }}/package' -name 'testthat.Rout*' 2>/dev/null || echo "No testthat files found in RUNNER_TEMP"
-          find '/tmp' -name 'testthat.Rout*' 2>/dev/null | head -5 || true
-          find '${{ runner.temp }}' -name '*.Rout.fail' 2>/dev/null | head -5 || true
-          ## Also try to cat any .Rout.fail files
-          for f in $(find '${{ runner.temp }}/package' -name 'testthat.Rout.fail' 2>/dev/null); do
-            echo "=== $f ==="
-            cat "$f"
-            echo "=== END ==="
-          done
-          for f in $(find '${{ runner.temp }}' -name '*.Rout.fail' 2>/dev/null | head -5); do
-            echo "=== $f ==="
-            cat "$f"
-            echo "=== END ==="
-          done
+          echo "Looking for testthat output files..."
+          find /home/runner -name '*.Rout.fail' 2>/dev/null | head -10 || true
+          find /home/runner -name 'testthat.Rout*' 2>/dev/null | head -10 || true
         shell: bash
 
       - name: Upload test results
