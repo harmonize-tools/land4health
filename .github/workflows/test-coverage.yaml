@@ -55,18 +55,13 @@ jobs:
         run: R CMD INSTALL .
         shell: bash
 
-      - name: Run tests first (for debug output)
-        if: always()
+      - name: Run tests with verbose output
         run: |
-          tryCatch({
-            library(land4health)
-            testthat::test_dir("tests/testthat", reporter = "summary")
-          }, error = function(e) {
-            message("Test error: ", conditionMessage(e))
-          })
+          testthat::test_check("land4health", reporter = "summary")
         shell: Rscript {0}
 
       - name: Test coverage
+        if: success()
         run: |
           cov <- covr::package_coverage(
             quiet = FALSE,
