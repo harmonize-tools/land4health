@@ -32,7 +32,7 @@ jobs:
         run: |
           pip install earthengine-api numpy
           mkdir -p ~/.config/earthengine
-          echo '${{ secrets.EARTHENGINETOKEN }}' > ~/.config/earthengine/credentials
+          python3 -c "import os; f=open(os.path.expanduser('~/.config/earthengine/credentials'),'w'); f.write(os.environ['EARTHENGINETOKEN']); f.close()"
         shell: bash
 
       - name: Initialize Earth Engine
