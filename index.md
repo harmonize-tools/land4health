@@ -44,14 +44,14 @@ l4h_list_metrics()
 #>  4 Human intervention Urban … 500                    MODIS …       2001     2022
 #>  5 Human intervention Night … 500                    VIIRS …       1992     2023
 #>  6 Human intervention Human … 30                     Global…       1975     2030
-#>  7 Environment        Water … 30                     MapBio…       1985     2022
-#>  8 Environment        Urban … 1000                   Urban …       2003     2020
-#>  9 Accessibility      Travel… 927.67                 Malari…       2019     2020
-#> 10 Accessibility      Rural … 100                    Rural …       2024     2024
+#>  7 Environment        Urban … 1000                   Urban …       2003     2020
+#>  8 Accessibility      Travel… 927.67                 Malari…       2019     2020
+#>  9 Accessibility      Rural … 100                    Rural …       2024     2024
+#> 10 Climate            Evapot… 500                    geeSEB…       2002     2022
 #> # ℹ abbreviated name: ¹​pixel_resolution_meters
 #> # ℹ 5 more variables: resolution_temporal <chr>, layer_can_be_actived <lgl>,
 #> #   tags <chr>, lifecycle <chr>, url <chr>
-#> ... (3 more)
+#> ... (2 more)
 ```
 
 ## 3. Example: Calculate Forest Loss in a Custom Region
@@ -61,6 +61,9 @@ This example demonstrates how to calculate forest loss between 2005 and
 
 ``` r
 
+# install.packages('pak')
+# pak::pkg_install('ambarja/geoidep')
+
 library(geoidep)
 
 # Downloading the adminstration limits of Loreto provinces
@@ -69,7 +72,8 @@ provinces_loreto <- get_provinces(show_progress = FALSE) |>
 
 # Run forest loss calculation
 result <- provinces_loreto |>
-  l4h_forest_loss(from = '2005-01-01', to = '2020-01-01', sf = TRUE)
+  l4h_forest_loss(from = '2011-01-01', to = '2025-01-01', sf = TRUE)
+
 head(result)
 #> Simple feature collection with 6 features and 8 fields
 #> Geometry type: MULTIPOLYGON
@@ -79,12 +83,12 @@ head(result)
 #> # A tibble: 6 × 9
 #>   ccdd  ccpp  fuente                  nombdep nombprov date       variable value
 #>   <chr> <chr> <chr>                   <chr>   <chr>    <date>     <chr>    <dbl>
-#> 1 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2005-01-01 forest_…  47.0
-#> 2 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2006-01-01 forest_…  17.7
-#> 3 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2007-01-01 forest_…  59.7
-#> 4 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2008-01-01 forest_…  99.8
-#> 5 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2009-01-01 forest_… 105. 
-#> 6 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2010-01-01 forest_…  69.5
+#> 1 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2011-01-01 forest_…  38.3
+#> 2 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2012-01-01 forest_…  73.9
+#> 3 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2013-01-01 forest_…  60.5
+#> 4 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2014-01-01 forest_…  76.7
+#> 5 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2015-01-01 forest_…  81.9
+#> 6 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2016-01-01 forest_…  59.0
 #> # ℹ 1 more variable: geometry <MULTIPOLYGON [°]>
 ```
 
@@ -92,23 +96,84 @@ head(result)
 
 # Visualization with ggplot2
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 4.5.3
-ggplot(data = st_drop_geometry(result), aes(x = date, y = value)) +
-  geom_area(fill = "#FDE725FF", alpha = 0.8) +
-  facet_wrap(~nombprov) +
-  theme_minimal()
+library(dplyr)
+# Mean by departamentos
+df_mean <- result |> 
+  st_drop_geometry() |> 
+  group_by(date) |> 
+  summarise(mean_val = mean(value, na.rm = TRUE))
+
+ggplot() +
+  geom_line(
+    data = df_mean,
+    aes(x = date, y = mean_val, color = "Dept Mean"),
+    linetype = "dashed",
+    linewidth = 0.8
+    ) +
+  geom_line(
+    data = st_drop_geometry(result),
+    aes(x = date, y = value, color = "Province"),
+    linewidth = 1
+    ) +
+  facet_wrap(~ nombprov) +
+  scale_color_manual(values = c("Dept Mean" = "#B2182B", "Province" = "#2166AC")) +
+  labs(
+    title = "Forest Loss: Province vs. Department Mean",
+    subtitle = "Comparison of local values against regional average",
+    x = "Date",
+    y = "Value",
+    color = "Legend"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
 ```
 
 ![](reference/figures/README-area-1.png)
 
 ``` r
 
-# Spatial visualization
-ggplot(data = result) +
-  geom_sf(aes(fill = value), color = NA) +
-  scale_fill_viridis_c(name = "Forest loss mean \n(km²)") +
-  theme_minimal(base_size = 15) +
-  facet_wrap(date ~ .)
+
+result_clean <- result |>
+  mutate(
+    year = format(as.Date(date), "%Y"),
+    nombprov = toupper(trimws(as.character(nombprov)))
+  )
+
+q_vals <- quantile(
+  result_clean$value,
+  probs = c(0, 0.05, 0.25, 0.75, 0.95, 1),
+  na.rm = TRUE
+  )
+
+q_labs <- c(
+  paste0("< ", round(q_vals[2], 1)),
+  paste0(round(q_vals[2:4], 1), " – ", round(q_vals[3:5], 1)),
+  paste0("> ", round(q_vals[5], 1))
+  )
+
+pal <- c("#2166AC", "#67A9CF", "#F7F7F7", "#F4A582", "#B2182B")
+
+result_clean %>%
+  mutate(
+    loss_cat = cut(
+      value,
+      breaks = q_vals,
+      labels = q_labs,
+      include.lowest = TRUE
+      )
+    ) %>%
+  ggplot() +
+  geom_sf(aes(fill = loss_cat), color = "#000000", linewidth = 0.15) +
+  scale_fill_manual(
+    name = "Forest Loss (km²)",
+    values = setNames(pal,q_labs)
+  ) +
+  facet_wrap(~ year, ncol = 5) +
+  labs(
+    title = "Spatiotemporal Evolution of Tree Cover Loss by Province",
+    subtitle = "Loreto, Peru (2011–2025)"
+  ) + 
+  theme_minimal(base_size = 10)
 ```
 
 ![](reference/figures/README-mapa-1.png)
@@ -127,13 +192,79 @@ etp_ts <- provinces_loreto |>
 
 ``` r
 
-etp_ts |>
+etp_base <- etp_ts |>
   st_drop_geometry() |>
-  ggplot(aes(x = date, y = value, col = value)) +
-  geom_line() +
-  scale_color_viridis_c("ETP (mm)",option = "viridis") +
-  theme_minimal() +
-  facet_wrap(~nombprov, ncol = 4)
+  mutate(
+    nombprov = toupper(trimws(as.character(nombprov))),
+    month = as.numeric(format(as.Date(date), "%m"))
+  )
+
+etp_loreto <- etp_base |>
+  group_by(month) |>
+  summarise(mean_loreto = mean(value, na.rm = TRUE), .groups = "drop")
+
+etp_diff <- etp_base |>
+  group_by(nombprov, month) |>
+  summarise(mean_prov = mean(value, na.rm = TRUE), .groups = "drop") |>
+  inner_join(etp_loreto, by = "month") |>
+  mutate(
+    ymax_pos = pmax(mean_prov, mean_loreto),
+    ymin_neg = pmin(mean_prov, mean_loreto)
+  )
+head(etp_diff)
+#> # A tibble: 6 × 6
+#>   nombprov      month mean_prov mean_loreto ymax_pos ymin_neg
+#>   <chr>         <dbl>     <dbl>       <dbl>    <dbl>    <dbl>
+#> 1 ALTO AMAZONAS     1     3165.       3106.    3165.    3106.
+#> 2 ALTO AMAZONAS     2     3459.       3430.    3459.    3430.
+#> 3 ALTO AMAZONAS     3     3264.       3192.    3264.    3192.
+#> 4 ALTO AMAZONAS     4     3214.       3128.    3214.    3128.
+#> 5 ALTO AMAZONAS     5     2912.       2915.    2915.    2912.
+#> 6 ALTO AMAZONAS     6     2736.       2751.    2751.    2736.
+```
+
+``` r
+
+ggplot(etp_diff, aes(x = month)) +
+  geom_ribbon(
+    aes(ymin = mean_loreto, ymax = ymax_pos, fill = "Above Average"),
+    alpha = 0.6
+  ) +
+  geom_ribbon(
+    aes(ymin = ymin_neg, ymax = mean_loreto, fill = "Below Average"),
+    alpha = 0.6
+  ) +
+  geom_line(
+    aes(y = mean_loreto),
+    color = "#475569",
+    linetype = "dashed",
+    linewidth = 0.7
+  ) +
+  geom_line(
+    aes(y = mean_prov),
+    color = "#0F172A",
+    linewidth = 0.8
+  ) +
+  facet_wrap(~ nombprov, ncol = 4) +
+  scale_fill_manual(
+    name = "Regional Deviation",
+    values = c(
+      "Above Average" = "#EF4444",
+      "Below Average" = "#3B82F6"
+    )
+  ) +
+  scale_x_continuous(
+    breaks = c(1, 4, 7, 10),
+    labels = c("Jan", "Apr", "Jul", "Oct")
+  ) +
+  labs(
+    title = "Provincial ETP Differential vs. Regional Average",
+    subtitle = "Dashed line: Loreto Average | Red: ETP Excess | Blue: ETP Deficit",
+    x = NULL,
+    y = "Average ETP (mm)"
+  ) +
+  theme_minimal(base_size = 8) + 
+  theme(legend.position = "bottom")
 ```
 
 ![](reference/figures/README-ts-1.png)
