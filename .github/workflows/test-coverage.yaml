@@ -32,7 +32,7 @@ jobs:
         run: |
           pip install earthengine-api numpy
           mkdir -p ~/.config/earthengine
-          echo '${{ secrets.EARTHENGINETOKEN }}' | base64 -d > ~/.config/earthengine/credentials
+          echo '${{ secrets.EARTHENGINETOKEN }}' > ~/.config/earthengine/credentials
         shell: bash
 
       - name: Initialize Earth Engine
