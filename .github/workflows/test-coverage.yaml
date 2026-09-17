@@ -36,6 +36,11 @@ jobs:
         env:
           EARTHENGINETOKEN: ${{ secrets.EARTHENGINETOKEN }}
 
+      - name: Install earthengine-api in reticulate venv
+        run: |
+          reticulate::py_install("earthengine-api", pip = TRUE)
+        shell: Rscript {0}
+
       - name: Test coverage
         run: |
           cov <- tryCatch(

@@ -124,12 +124,6 @@ l4h_sebal_modis <- function(from, to, by = "8 days", region, fun = "mean", sf = 
   if (to < from) {
     cli::cli_abort("The {.field to} parameter must be greater than or equal to {.field from}.")
   }
-  # Convertir a Date usando formato explicito
-  from <- tryCatch(as.Date(from, format = "%Y-%m-%d"), error = function(e) NA)
-  to <- tryCatch(as.Date(to, format = "%Y-%m-%d"), error = function(e) NA)
-
-  from_ee <- rgee::rdate_to_eedate(from)
-  to_ee <- rgee::rdate_to_eedate(to)
 
   date_seq <- switch(by,
     "8 days" = seq(from, to, by = "8 days"),
@@ -146,8 +140,23 @@ l4h_sebal_modis <- function(from, to, by = "8 days", region, fun = "mean", sf = 
     cli::cli_abort("Invalid {.arg region}: must be an {.cls sf}, {.cls sfc}, or {.cls SpatVector} object.")
   }
 
+  # Check if region is spatially representative
+  if (isFALSE(force)) {
+    check_representativity(
+      region = region,
+      scale = 30
+    )
+  }
+
   # Check Earth Engine is initialized
   check_ee_initialized()
+
+  # Convertir a Date usando formato explicito
+  from <- tryCatch(as.Date(from, format = "%Y-%m-%d"), error = function(e) NA)
+  to <- tryCatch(as.Date(to, format = "%Y-%m-%d"), error = function(e) NA)
+
+  from_ee <- rgee::rdate_to_eedate(from)
+  to_ee <- rgee::rdate_to_eedate(to)
 
   # Reducer function
   reducer_fun <- get_reducer(name = fun)

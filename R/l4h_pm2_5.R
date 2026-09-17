@@ -145,10 +145,6 @@ l4h_pm2_5 <- function(from, to, region, scale = 1000, stat = "mean", sf = TRUE, 
     cli::cli_abort("Parameter {.field to} must be greater than or equal to {.field from}")
   }
 
-  # Convertir a fechas Earth Engine
-  from_ee <- rgee::rdate_to_eedate(from_date)
-  to_ee   <- rgee::rdate_to_eedate(to_date)
-
   # Define supported classes
   sf_classes <- c("sf", "sfc", "SpatVector")
 
@@ -167,6 +163,10 @@ l4h_pm2_5 <- function(from, to, region, scale = 1000, stat = "mean", sf = TRUE, 
 
   # Check Earth Engine is initialized
   check_ee_initialized()
+
+  # Convertir a fechas Earth Engine
+  from_ee <- rgee::rdate_to_eedate(from_date)
+  to_ee   <- rgee::rdate_to_eedate(to_date)
 
   collection <- ee$ImageCollection(.internal_data$pm2.5$id)$
     select('b1')$

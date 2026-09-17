@@ -147,10 +147,6 @@ l4h_surface_temp <- function(from, to, region, band = "day", level = "strict", s
     cli::cli_abort("Parameter {.field to} must be greater than or equal to {.field from}")
   }
 
-  # Convertir a fechas Earth Engine
-  from_ee <- rgee::rdate_to_eedate(from_date)
-  to_ee   <- rgee::rdate_to_eedate(to_date)
-
   # Define supported classes
   sf_classes <- c("sf", "sfc", "SpatVector")
 
@@ -158,6 +154,9 @@ l4h_surface_temp <- function(from, to, region, band = "day", level = "strict", s
   if (!inherits(region, sf_classes)) {
     cli::cli_abort("Invalid {.arg region}: must be an {.cls sf}, {.cls sfc}, or {.cls SpatVector} object.")
   }
+
+  # Validate band
+  band <- match.arg(band, choices = c("day", "night"))
 
   # Check if region is spatially representative
   if (isFALSE(force)) {
@@ -167,7 +166,13 @@ l4h_surface_temp <- function(from, to, region, band = "day", level = "strict", s
     )
   }
 
-  band <- match.arg(band, choices = c("day", "night"))
+  # Check Earth Engine is initialized
+  check_ee_initialized()
+
+  # Convertir a fechas Earth Engine
+  from_ee <- rgee::rdate_to_eedate(from_date)
+  to_ee   <- rgee::rdate_to_eedate(to_date)
+
   lst_band <- switch(band, day = "LST_Day_1km", night = "LST_Night_1km")
   qc_band <- switch(band, day = "QC_Day", night = "QC_Night")
 
