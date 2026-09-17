@@ -21,6 +21,7 @@ test_that("l4h_human_built rejects reversed dates", {
 
 test_that("l4h_human_built full flow works with mocked GEE", {
   skip_if_not_installed("withr")
+  skip_if_not(reticulate::py_module_available("ee"), "earthengine-api Python module not available")
 
   mock_ee <- .make_mock_ee()
   assign("ee", mock_ee, envir = globalenv())
@@ -51,6 +52,7 @@ test_that("l4h_human_built full flow works with mocked GEE", {
 
 test_that("l4h_human_built sf=FALSE flow works with mocked GEE", {
   skip_if_not_installed("withr")
+  skip_if_not(reticulate::py_module_available("ee"), "earthengine-api Python module not available")
 
   mock_ee <- .make_mock_ee()
   assign("ee", mock_ee, envir = globalenv())

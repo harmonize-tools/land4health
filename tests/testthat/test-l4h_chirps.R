@@ -59,6 +59,7 @@ test_that("l4h_chirps rejects year out of range", {
 
 test_that("l4h_chirps by='daily' flow works with mocked GEE", {
   skip_if_not_installed("withr")
+  skip_if_not(reticulate::py_module_available("ee"), "earthengine-api Python module not available")
 
   mock_ee <- .make_mock_ee()
   assign("ee", mock_ee, envir = globalenv())

@@ -35,6 +35,7 @@ test_that("l4h_surface_temp rejects invalid band", {
 
 test_that("l4h_surface_temp band=day flow works with mocked GEE", {
   skip_if_not_installed("withr")
+  skip_if_not(reticulate::py_module_available("ee"), "earthengine-api Python module not available")
 
   mock_ee <- .make_mock_ee()
   assign("ee", mock_ee, envir = globalenv())
@@ -64,6 +65,7 @@ test_that("l4h_surface_temp band=day flow works with mocked GEE", {
 
 test_that("l4h_surface_temp band=night flow works with mocked GEE", {
   skip_if_not_installed("withr")
+  skip_if_not(reticulate::py_module_available("ee"), "earthengine-api Python module not available")
 
   mock_ee <- .make_mock_ee()
   assign("ee", mock_ee, envir = globalenv())
