@@ -129,10 +129,6 @@ l4h_human_built <- function(from, to, region,
     cli::cli_abort("Parameter {.field to} must be greater than or equal to {.field from}")
   }
 
-  # Convertir a fechas Earth Engine
-  from_ee <- rgee::rdate_to_eedate(from_date)
-  to_ee   <- rgee::rdate_to_eedate(to_date)
-
   # Define supported classes
   sf_classes <- c("sf", "sfc", "SpatVector")
 
@@ -148,6 +144,10 @@ l4h_human_built <- function(from, to, region,
       scale = 30
     )
   }
+
+  # Convertir a fechas Earth Engine
+  from_ee <- l4h_to_eedate(from_date)
+  to_ee   <- l4h_to_eedate(to_date)
   # Cargar colección y filtrar por años
   coll <- ee$ImageCollection(.internal_data$human_built$id[1])$
     filter(ee$Filter$calendarRange(from_year, to_year, "year"))

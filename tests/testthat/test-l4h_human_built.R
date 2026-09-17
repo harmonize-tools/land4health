@@ -36,6 +36,7 @@ test_that("l4h_human_built full flow works with mocked GEE", {
         geometry = tiny_poly$geometry[1]
       )
     },
+    `l4h_to_eedate` = function(x) as.character(as.numeric(as.Date(x, origin = "1970-01-01")) * 86400000),
     {
       result <- l4h_human_built(
         "2020-01-01", "2020-12-31", tiny_poly,
@@ -61,6 +62,7 @@ test_that("l4h_human_built sf=FALSE flow works with mocked GEE", {
     `l4h_ee_extract` = function(...) {
       dplyr::tibble(id = 1L, GHS_2020 = 100)
     },
+    `l4h_to_eedate` = function(x) as.character(as.numeric(as.Date(x, origin = "1970-01-01")) * 86400000),
     {
       result <- l4h_human_built(
         "2020-01-01", "2020-12-31", tiny_poly,

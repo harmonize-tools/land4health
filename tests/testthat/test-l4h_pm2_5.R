@@ -44,6 +44,7 @@ test_that("l4h_pm2_5 full flow works with mocked GEE", {
         geometry = tiny_poly$geometry[1]
       )
     },
+    `l4h_to_eedate` = function(x) as.character(as.numeric(as.Date(x, origin = "1970-01-01")) * 86400000),
     {
       result <- l4h_pm2_5(
         "2018-01-01", "2019-12-31", tiny_poly,
@@ -69,6 +70,7 @@ test_that("l4h_pm2_5 sf=FALSE flow works with mocked GEE", {
     `l4h_ee_extract` = function(...) {
       dplyr::tibble(id = 1L, X2018_01_01 = 25.0)
     },
+    `l4h_to_eedate` = function(x) as.character(as.numeric(as.Date(x, origin = "1970-01-01")) * 86400000),
     {
       result <- l4h_pm2_5(
         "2018-01-01", "2018-12-31", tiny_poly,

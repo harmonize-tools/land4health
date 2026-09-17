@@ -199,8 +199,8 @@ l4h_chirps <- function(from,
   check_ee_initialized()
 
   # Convert dates to Earth Engine
-  from_ee <- rgee::rdate_to_eedate(from_date)
-  to_ee   <- rgee::rdate_to_eedate(to_date)
+  from_ee <- l4h_to_eedate(from_date)
+  to_ee   <- l4h_to_eedate(to_date)
 
   # Select dataset based on product
   dataset_id <- if (product == "sat") {

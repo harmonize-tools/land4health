@@ -149,10 +149,6 @@ l4h_terra_climate <- function(from, to, band, region, scale = 1000, stat = "mean
     cli::cli_abort("Parameter {.field to} must be greater than or equal to {.field from}")
   }
 
-  # Convertir a fechas Earth Engine
-  from_ee <- rgee::rdate_to_eedate(from_date)
-  to_ee   <- rgee::rdate_to_eedate(to_date)
-
   # Define supported classes
   sf_classes <- c("sf", "sfc", "SpatVector")
 
@@ -168,9 +164,6 @@ l4h_terra_climate <- function(from, to, band, region, scale = 1000, stat = "mean
       scale = 30
     )
   }
-
-  # Check Earth Engine is initialized
-  check_ee_initialized()
 
   band_info <- function(band) {
     choices <- c("aet","def","pdsi","pet","pr","ro","soil","srad","swe",
@@ -212,8 +205,14 @@ l4h_terra_climate <- function(from, to, band, region, scale = 1000, stat = "mean
     out
   }
 
-
   factor_band <- band_info(band = band)
+
+  # Check Earth Engine is initialized
+  check_ee_initialized()
+
+  # Convertir a fechas Earth Engine
+  from_ee <- l4h_to_eedate(from_date)
+  to_ee   <- l4h_to_eedate(to_date)
 
   collection <- ee$ImageCollection(.internal_data$terraclimate$id)$
     select(band)$

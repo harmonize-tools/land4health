@@ -74,6 +74,7 @@ test_that("l4h_chirps by='daily' flow works with mocked GEE", {
         X20200102 = 10.0
       )
     },
+    `l4h_to_eedate` = function(x) as.character(as.numeric(as.Date(x, origin = "1970-01-01")) * 86400000),
     {
       result <- l4h_chirps(
         "2020-01-01", "2020-01-02",

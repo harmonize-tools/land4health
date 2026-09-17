@@ -103,6 +103,15 @@ l4h_urban_rural_area <- function(region, category = "all", scale = 1000, sf = TR
     )
   }
 
+  # Validate category early (before any GEE calls)
+  valid_categories <- c("urban", "rural", "all")
+  if (!category %in% valid_categories) {
+    cli::cli_abort("Invalid category. Use 'urban', 'rural', or 'all'.")
+  }
+
+  # Check Earth Engine is initialized
+  check_ee_initialized()
+
   ghsl_ic <- ee$ImageCollection(.internal_data$ghsl$id)$toBands()
   eq_rural <- ghsl_ic$updateMask(ghsl_ic$eq(12)$Or(ghsl_ic$eq(13)))
   eq_urban <- ghsl_ic$eq(21)$Or(ghsl_ic$eq(22)$Or(ghsl_ic$eq(23)$Or(ghsl_ic$eq(30))))
@@ -113,8 +122,7 @@ l4h_urban_rural_area <- function(region, category = "all", scale = 1000, sf = TR
     category,
     urban = urban_area,
     rural = rural_area,
-    all = rural_area$add(urban_area),
-    cli::cli_abort("Invalid category. Use 'urban', 'rural', or 'all'.")
+    all = rural_area$add(urban_area)
   )
 
   # Extract with reducer

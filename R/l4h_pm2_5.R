@@ -165,8 +165,8 @@ l4h_pm2_5 <- function(from, to, region, scale = 1000, stat = "mean", sf = TRUE, 
   check_ee_initialized()
 
   # Convertir a fechas Earth Engine
-  from_ee <- rgee::rdate_to_eedate(from_date)
-  to_ee   <- rgee::rdate_to_eedate(to_date)
+  from_ee <- l4h_to_eedate(from_date)
+  to_ee   <- l4h_to_eedate(to_date)
 
   collection <- ee$ImageCollection(.internal_data$pm2.5$id)$
     select('b1')$

@@ -64,6 +64,7 @@ test_that("l4h_terra_climate full flow works with mocked GEE", {
         geometry = tiny_poly$geometry[1]
       )
     },
+    `l4h_to_eedate` = function(x) as.character(as.numeric(as.Date(x, origin = "1970-01-01")) * 86400000),
     {
       result <- l4h_terra_climate(
         "2020-01-01", "2020-06-30",
@@ -90,6 +91,7 @@ test_that("l4h_terra_climate sf=FALSE flow works with mocked GEE", {
     `l4h_ee_extract` = function(...) {
       dplyr::tibble(id = 1L, X2020_01_pr = 50.0)
     },
+    `l4h_to_eedate` = function(x) as.character(as.numeric(as.Date(x, origin = "1970-01-01")) * 86400000),
     {
       result <- l4h_terra_climate(
         "2020-01-01", "2020-01-31",

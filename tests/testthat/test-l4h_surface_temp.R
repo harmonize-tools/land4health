@@ -50,6 +50,7 @@ test_that("l4h_surface_temp band=day flow works with mocked GEE", {
         geometry = tiny_poly$geometry[1]
       )
     },
+    `l4h_to_eedate` = function(x) as.character(as.numeric(as.Date(x, origin = "1970-01-01")) * 86400000),
     {
       result <- l4h_surface_temp(
         "2020-01-01", "2020-01-01", tiny_poly,
@@ -77,6 +78,7 @@ test_that("l4h_surface_temp band=night flow works with mocked GEE", {
         X2020_01_01 = 15.0
       )
     },
+    `l4h_to_eedate` = function(x) as.character(as.numeric(as.Date(x, origin = "1970-01-01")) * 86400000),
     {
       result <- l4h_surface_temp(
         "2020-01-01", "2020-01-01", tiny_poly,

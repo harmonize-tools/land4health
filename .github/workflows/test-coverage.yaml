@@ -36,12 +36,30 @@ jobs:
         env:
           EARTHENGINETOKEN: ${{ secrets.EARTHENGINETOKEN }}
 
-      - name: Setup reticulate venv and initialize GEE
+      - name: Setup reticulate venv and install earthengine-api
         run: |
           py <- reticulate::py_config()$python
           message("Using Python: ", py)
-          system2(py, c("-m", "pip", "install", "earthengine-api", "numpy"))
-          message("earthengine-api installed")
+          
+          # Find uv binary that reticulate downloaded
+          uv_bins <- list.files(
+            file.path(path.expand("~"), ".cache", "R", "reticulate", "uv"),
+            pattern = "^uv$", full.names = TRUE, recursive = TRUE
+          )
+          uv <- uv_bins[file.info(uv_bins)$isdir == FALSE]
+          if (length(uv) == 0) uv <- uv_bins[1]
+          message("uv binary: ", uv)
+          
+          # Install earthengine-api into reticulate's venv using uv (no pip needed)
+          system2(uv, c("pip", "install", "--python", py, "earthengine-api", "numpy"))
+          message("earthengine-api installed in reticulate venv")
+          
+          # Verify ee module is importable
+          result <- tryCatch({
+            reticulate::py_run_string("import ee")
+            TRUE
+          }, error = function(e) FALSE)
+          message("ee module importable: ", result)
 
           tryCatch({
             library(rgee)

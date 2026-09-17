@@ -155,8 +155,8 @@ l4h_sebal_modis <- function(from, to, by = "8 days", region, fun = "mean", sf = 
   from <- tryCatch(as.Date(from, format = "%Y-%m-%d"), error = function(e) NA)
   to <- tryCatch(as.Date(to, format = "%Y-%m-%d"), error = function(e) NA)
 
-  from_ee <- rgee::rdate_to_eedate(from)
-  to_ee <- rgee::rdate_to_eedate(to)
+  from_ee <- l4h_to_eedate(from)
+  to_ee <- l4h_to_eedate(to)
 
   # Reducer function
   reducer_fun <- get_reducer(name = fun)

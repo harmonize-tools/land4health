@@ -121,6 +121,13 @@ split_sf <- function(sf_region) {
 
 
 
+#' Internal wrapper around rgee::rdate_to_eedate
+#' Mockable with with_mocked_bindings in tests.
+#' @keywords internal
+l4h_to_eedate <- function(x) {
+  rgee::rdate_to_eedate(x)
+}
+
 #' @keywords internal
 #' @noRd
 `%||%` <- function(x, y) {

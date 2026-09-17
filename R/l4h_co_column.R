@@ -118,9 +118,6 @@ l4h_co_column <- function(from, to, region, stat = "mean",
     cli::cli_abort("Parameter {.field to} must be greater than or equal to {.field from}")
   }
 
-  from_ee <- rgee::rdate_to_eedate(from_date)
-  to_ee   <- rgee::rdate_to_eedate(to_date)
-
   # Validate spatial object
   sf_classes <- c("sf", "sfc", "SpatVector")
   if (!inherits(region, sf_classes)) {
@@ -133,6 +130,9 @@ l4h_co_column <- function(from, to, region, stat = "mean",
   }
 
   check_ee_initialized()
+
+  from_ee <- l4h_to_eedate(from_date)
+  to_ee   <- l4h_to_eedate(to_date)
 
   # Sentinel-5P has many granules per day; toBands() would exceed 5000 bands.
   # Solution: composite to daily means first, then toBands().
@@ -149,8 +149,8 @@ l4h_co_column <- function(from, to, region, stat = "mean",
 
   daily_images <- lapply(seq_along(date_seq), function(i) {
     d <- date_seq[i]
-    day_start <- rgee::rdate_to_eedate(d)
-    day_end   <- rgee::rdate_to_eedate(d + 1)
+    day_start <- l4h_to_eedate(d)
+    day_end   <- l4h_to_eedate(d + 1)
     ic$
       filterDate(day_start, day_end)$
       mean()$

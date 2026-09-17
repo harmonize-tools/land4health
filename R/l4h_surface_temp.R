@@ -170,8 +170,8 @@ l4h_surface_temp <- function(from, to, region, band = "day", level = "strict", s
   check_ee_initialized()
 
   # Convertir a fechas Earth Engine
-  from_ee <- rgee::rdate_to_eedate(from_date)
-  to_ee   <- rgee::rdate_to_eedate(to_date)
+  from_ee <- l4h_to_eedate(from_date)
+  to_ee   <- l4h_to_eedate(to_date)
 
   lst_band <- switch(band, day = "LST_Day_1km", night = "LST_Night_1km")
   qc_band <- switch(band, day = "QC_Day", night = "QC_Night")
