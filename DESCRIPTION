@@ -32,7 +32,8 @@ Suggests:
     rmarkdown,
     knitr,
     testthat (>= 3.0.0),
-    rstudioapi
+    rstudioapi,
+    withr
 Depends: 
     R (>= 4.1.0)
 VignetteBuilder: knitr
