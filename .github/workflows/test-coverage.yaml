@@ -75,7 +75,21 @@ jobs:
         if: always()
         run: |
           ## --------------------------------------------------------------------
-          find '${{ runner.temp }}/package' -name 'testthat.Rout*' -exec cat '{}' \; || true
+          cat "Looking for testthat output files...\n"
+          find '${{ runner.temp }}/package' -name 'testthat.Rout*' 2>/dev/null || echo "No testthat files found in RUNNER_TEMP"
+          find '/tmp' -name 'testthat.Rout*' 2>/dev/null | head -5 || true
+          find '${{ runner.temp }}' -name '*.Rout.fail' 2>/dev/null | head -5 || true
+          ## Also try to cat any .Rout.fail files
+          for f in $(find '${{ runner.temp }}/package' -name 'testthat.Rout.fail' 2>/dev/null); do
+            echo "=== $f ==="
+            cat "$f"
+            echo "=== END ==="
+          done
+          for f in $(find '${{ runner.temp }}' -name '*.Rout.fail' 2>/dev/null | head -5); do
+            echo "=== $f ==="
+            cat "$f"
+            echo "=== END ==="
+          done
         shell: bash
 
       - name: Upload test results
