@@ -13,3 +13,5 @@
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
 ^codecov\.yml$
+cov_run.R
+test_run.R
