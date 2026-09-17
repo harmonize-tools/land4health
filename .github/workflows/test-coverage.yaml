@@ -57,7 +57,7 @@ jobs:
 
       - name: Run tests with verbose output
         run: |
-          testthat::test_check("land4health", reporter = "summary")
+          testthat::test_dir("tests/testthat", reporter = "summary", load_package = "installed")
         shell: Rscript {0}
 
       - name: Test coverage
