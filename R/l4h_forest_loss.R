@@ -167,7 +167,7 @@ l4h_forest_loss <- function(from, to, region, sf = TRUE, quiet = FALSE, force = 
       dplyr::mutate(
         date = as.Date(ISOdate(factor(date, labels = range_date_original), 1, 1)),
         variable = "forest_loss") |>
-      dplyr::relocate(c("date", "variable", "value"), .before = geom_col)
+      dplyr::relocate(c("date", "variable", "value"), .before = all_of(geom_col))
 
   } else {
     extract_area <- l4h_ee_extract(

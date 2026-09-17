@@ -315,6 +315,8 @@ l4h_chirps <- function(from,
     band_cols <- intersect(band_cols, names(extract_area))
 
     # Extract date from band names: look for 8-digit patterns (YYYYMMDD)
+    has_date <- grepl("\\d{8}", band_cols)
+    band_cols <- band_cols[has_date]
     band_dates <- regmatches(band_cols, regexpr("\\d{8}", band_cols))
     date_vals  <- as.Date(band_dates, format = "%Y%m%d")
 
