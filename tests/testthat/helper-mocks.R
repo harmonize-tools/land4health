@@ -2,7 +2,7 @@
 # Allows testing GEE/network functions without real connections
 skip_if_not_installed("sf")
 
-# ── Shared sf fixture ──────────────────────────────────────────────
+# Shared sf fixture
 tiny_poly <- sf::st_sf(
   geometry = sf::st_sfc(
     sf::st_polygon(list(matrix(
@@ -15,7 +15,6 @@ tiny_poly <- sf::st_sf(
   id = 1L
 )
 
-# ── Mock GEE chainable object ──────────────────────────────────────
 # Returns self for every method call, enabling ee$Image(...) chains
 .make_mock_ee_obj <- function() {
   obj <- new.env(parent = emptyenv())
@@ -55,7 +54,7 @@ tiny_poly <- sf::st_sf(
   obj
 }
 
-# ── Mock ee$Image class ────────────────────────────────────────────
+# Mock of Earth Engine ---
 .make_mock_image_class <- function() {
   image_env <- new.env(parent = emptyenv())
   # Store .make_mock_ee_obj directly so closures can find it
@@ -66,7 +65,6 @@ tiny_poly <- sf::st_sf(
   constructor
 }
 
-# ── Mock ee$Filter class ───────────────────────────────────────────
 .make_mock_filter <- function() {
   f <- new.env(parent = emptyenv())
   f$calendarRange <- function(...) invisible(f)
@@ -74,7 +72,6 @@ tiny_poly <- sf::st_sf(
   f
 }
 
-# ── Mock ee$Number class ───────────────────────────────────────────
 .make_mock_number <- function(val = 1) {
   n <- new.env(parent = emptyenv())
   n$getInfo   <- function() val
@@ -84,13 +81,11 @@ tiny_poly <- sf::st_sf(
   n
 }
 
-# ── Mock ee$Reducer class ──────────────────────────────────────────
 .make_mock_reducer <- function() {
   r <- new.env(parent = emptyenv())
   r
 }
 
-# ── Mock ee$List class ─────────────────────────────────────────────
 .make_mock_list <- function() {
   lst <- new.env(parent = emptyenv())
   lst$sequence <- function(...) .make_mock_list()
@@ -99,7 +94,6 @@ tiny_poly <- sf::st_sf(
   lst
 }
 
-# ── Mock ee$Date class ─────────────────────────────────────────────
 .make_mock_date_class <- function() {
   d <- new.env(parent = emptyenv())
   d$fromYMD <- function(...) .make_mock_ee_obj()
@@ -107,12 +101,8 @@ tiny_poly <- sf::st_sf(
   d
 }
 
-# ── Full mock ee object ────────────────────────────────────────────
 .make_mock_ee <- function() {
   e <- new.env(parent = emptyenv())
-
-  # ImageCollection: callable as ee$ImageCollection(...) AND has static methods
-  # like ee$ImageCollection$fromImages(...)
   ic_obj <- .make_mock_ee_obj()
   ic_obj$fromImages <- function(imgs) .make_mock_ee_obj()
   ic_obj$.self <- ic_obj  # Self-reference for closure lookup
@@ -129,7 +119,7 @@ tiny_poly <- sf::st_sf(
   e
 }
 
-# ── Mock httr2 response for l4h_dengue ─────────────────────────────
+# Mock httr2 - l4h_dengue ----
 .make_mock_httr2_response <- function(file_name = "Temporal_extract_PAHO_V9_1.zip") {
   resp <- new.env(parent = emptyenv())
   resp$body <- list()
@@ -140,7 +130,7 @@ tiny_poly <- sf::st_sf(
   list(list(name = file_name))
 }
 
-# ── Fake extract result (sf with geometry) ──────────────────────────
+# Fake extract result (sf with geometry)
 .make_fake_extract_result <- function() {
   dplyr::tibble(
     id = 1L,
@@ -148,12 +138,12 @@ tiny_poly <- sf::st_sf(
   )
 }
 
-# ── Fake extract result (tibble, no geometry) ───────────────────────
+# Fake extract result (tibble, no geometry)
 .make_fake_extract_tibble <- function() {
   dplyr::tibble(id = 1L, value = 0.5)
 }
 
-# ── Fake dengue CSV data ────────────────────────────────────────────
+# Fake dengue CSV data
 .make_fake_dengue_csv <- function() {
   dplyr::tibble(
     adm_0_name = "PERU",
@@ -165,7 +155,7 @@ tiny_poly <- sf::st_sf(
   )
 }
 
-# ── Fake extract with named band columns (for pivot_longer) ────────
+# Fake extract with named band columns (for pivot_longer)
 .make_fake_extract_bands <- function(band_names = c("X2020", "X2021")) {
   result <- dplyr::tibble(id = 1L)
   for (b in band_names) {
