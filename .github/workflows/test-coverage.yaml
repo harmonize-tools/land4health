@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      EARTHENGINE_TOKEN: ${{ secrets.EARTHENGINE_TOKEN }}
+      EARTHENGINE_TOKEN: ${{ secrets.EARTHENGINETOKEN }}
 
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +32,7 @@ jobs:
         run: |
           pip install earthengine-api numpy
           mkdir -p ~/.config/earthengine
-          echo '${{ secrets.EARTHENGINE_TOKEN }}' | base64 -d > ~/.config/earthengine/credentials
+          echo '${{ secrets.EARTHENGINETOKEN }}' | base64 -d > ~/.config/earthengine/credentials
         shell: bash
 
       - name: Initialize Earth Engine
