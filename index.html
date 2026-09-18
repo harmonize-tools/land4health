@@ -93,19 +93,33 @@
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"harmonize-tools/land4health"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harmonize-tools/land4health/">land4health</a></span><span class="op">)</span></span>
-<span><span class="co"># l4h_install()</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co">#&gt; ── rgee 1.1.8 ──────────────────────────────────────── earthengine-api 1.7.38 ── </span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt;  ✔ user: antony.barja8@gmail.com </span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#&gt;  ✔ Initializing Google Earth Engine: ✔ Initializing Google Earth Engine:  DONE!</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt;  ✔ Earth Engine account: projects/1009866941441/assets/BM_Castropampa </span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt;  ✔ Python Path: C:/Python314/python.exe </span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt; ────────────────────────────────────────────────────────────────────────────────</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harmonize-tools/land4health/">land4health</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>── Welcome to land4health ───────────────────────────────────────────────────────────────────────────</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>A tool of the Harmonize Project to calculate and extract Remote Sensing Metrics <span class="cf">for</span> Spatial Health</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>Analysis.</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>Currently,<span class="st">`</span><span class="at">land4health</span><span class="st">`</span> supports metrics related to the following categories<span class="sc">:</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>• Accessibility</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>• Climate</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>• Environment</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>• and more<span class="sc">!</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>For more information about metrics, please use the <span class="st">`</span><span class="at">l4h_list_metrics()</span><span class="st">`</span> function.</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>Attaching core land4health packages<span class="sc">:</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>→ rgee v1.<span class="fl">1.8</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>→ sf v1.<span class="fl">1.3</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># l4h_install()</span></span>
+<span><span class="fu">ee_Initialize</span><span class="op">(</span>user <span class="op">=</span> <span class="st">'REGISTERED GOOGLE EARTH ENGINE ACCOUNT@gmail.com'</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co">#&gt; ── rgee 1.1.8 ──────────────────────────────────────── earthengine-api 1.7.38 ── </span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt;  ✔ user: REGISTERED GOOGLE EARTH ENGINE ACCOUNT@gmail.com </span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt;  ✔ Initializing Google Earth Engine: ✔ Initializing Google Earth Engine:  DONE!</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt;  ✔ Earth Engine account: projects/1009866941441/assets/NAME_ASSETS </span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;  ✔ Python Path: C:/Python314/python.exe </span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; ────────────────────────────────────────────────────────────────────────────────</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="id_2-list-of-available-metrics">2. List of available metrics<a class="anchor" aria-label="anchor" href="#id_2-list-of-available-metrics"></a>
 </h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/l4h_list_metrics.html">l4h_list_metrics</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 10 × 11</span></span>
 <span><span class="co">#&gt;    category           metric  pixel_resolution_met…¹ dataset start_year end_year</span></span>
@@ -129,7 +143,7 @@
 <h2 id="id_3-example-calculate-forest-loss-in-a-custom-region">3. Example: Calculate Forest Loss in a Custom Region<a class="anchor" aria-label="anchor" href="#id_3-example-calculate-forest-loss-in-a-custom-region"></a>
 </h2>
 <p>This example demonstrates how to calculate forest loss between 2005 and 2020 using a custom polygon and Earth Engine.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages('pak')</span></span>
 <span><span class="co"># pak::pkg_install('ambarja/geoidep')</span></span>
 <span></span>
@@ -159,7 +173,7 @@
 <span><span class="co">#&gt; 5 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2015-01-01 forest_…  81.9</span></span>
 <span><span class="co">#&gt; 6 16    01    V Censo Nacional Econo… LORETO  MAYNAS   2016-01-01 forest_…  59.0</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: geometry &lt;MULTIPOLYGON [°]&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Visualization with ggplot2</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
@@ -193,7 +207,7 @@
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-area-1.png" alt="" width="100%"></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">result_clean</span> <span class="op">&lt;-</span> <span class="va">result</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
@@ -241,14 +255,14 @@
 <div class="section level2">
 <h2 id="id_4-example-extract-time-series-of-climate-variables">4. Example: Extract time series of climate variables<a class="anchor" aria-label="anchor" href="#id_4-example-extract-time-series-of-climate-variables"></a>
 </h2>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">etp_ts</span> <span class="op">&lt;-</span> <span class="va">provinces_loreto</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/l4h_sebal_modis.html">l4h_sebal_modis</a></span><span class="op">(</span></span>
 <span>    from <span class="op">=</span> <span class="st">"2005-01-01"</span>,</span>
 <span>    to <span class="op">=</span> <span class="st">"2022-12-31"</span>,</span>
 <span>    by <span class="op">=</span> <span class="st">"month"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">etp_base</span> <span class="op">&lt;-</span> <span class="va">etp_ts</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">st_drop_geometry</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
@@ -278,7 +292,7 @@
 <span><span class="co">#&gt; 4 ALTO AMAZONAS     4     3214.       3128.    3214.    3128.</span></span>
 <span><span class="co">#&gt; 5 ALTO AMAZONAS     5     2912.       2915.    2915.    2912.</span></span>
 <span><span class="co">#&gt; 6 ALTO AMAZONAS     6     2736.       2751.    2751.    2736.</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">etp_diff</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_ribbon</span><span class="op">(</span></span>
 <span>    <span class="fu">aes</span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">mean_loreto</span>, ymax <span class="op">=</span> <span class="va">ymax_pos</span>, fill <span class="op">=</span> <span class="st">"Above Average"</span><span class="op">)</span>,</span>
