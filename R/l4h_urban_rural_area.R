@@ -6,11 +6,11 @@
 #' methodology (Stage I) to the GHS-POP R2023A and GHS-BUILT-S R2023A layers. The function summarizes
 #' areas by category and year over the specified region.
 #'
-#' \if{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#questioning}{
-#'   \figure{lifecycle-questioning.png}{options: width="120"}
+#' \if{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+#'   \figure{lifecycle-experimental.png}{options: width="120"}
 #' }}
-#' \if{latex}{\href{https://lifecycle.r-lib.org/articles/stages.html#questioning}{
-#'   \figure{lifecycle-questioning.pdf}{options: width=2cm}
+#' \if{latex}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+#'   \figure{lifecycle-experimental.pdf}{options: width=2cm}
 #' }}
 #
 #' @param region An `sf` object defining the region of interest.
@@ -113,8 +113,10 @@ l4h_urban_rural_area <- function(region, category = "all", scale = 1000, sf = TR
   check_ee_initialized()
 
   ghsl_ic <- ee$ImageCollection(.internal_data$ghsl$id)$toBands()
+  
   eq_rural <- ghsl_ic$updateMask(ghsl_ic$eq(12)$Or(ghsl_ic$eq(13)))
-  eq_urban <- ghsl_ic$eq(21)$Or(ghsl_ic$eq(22)$Or(ghsl_ic$eq(23)$Or(ghsl_ic$eq(30))))
+  eq_urban <- ghsl_ic$updateMask(ghsl_ic$eq(21)$Or(ghsl_ic$eq(22)$Or(ghsl_ic$eq(23)$Or(ghsl_ic$eq(30)))))
+  
   rural_area <- calculate_area(eq_rural)
   urban_area <- calculate_area(eq_urban)
 
