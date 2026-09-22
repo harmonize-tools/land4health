@@ -307,7 +307,7 @@ ggplot(etp_diff, aes(x = month)) +
   **\[stable\]** : Extracts global night‑time lights using harmonized
   DMSP‑OLS and VIIRS data
 - [`l4h_urban_rural_area()`](https://github.com/harmonize-tools/land4health/reference/l4h_urban_rural_area.md)
-  **\[questioning\]** : Extracts surface areas by urban and rural
+  **\[experimental\]** : Extracts surface areas by urban and rural
   categories from GHS-SMOD
 - [`l4h_human_built()`](https://github.com/harmonize-tools/land4health/reference/l4h_human_built.md)
   **\[stable\]** : Extracts built‑up surface area from GHSL Built‑Up
