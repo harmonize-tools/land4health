@@ -8,7 +8,7 @@ message: 'To cite package "land4health" in publications use:'
 type: software
 license: MIT
 title: 'land4health: Remote Sensing Metrics for Spatial Health Analysis'
-version: 0.2.0
+version: 0.3.0
 identifiers:
 - type: url
   value: https://harmonize-tools.github.io/land4health/
