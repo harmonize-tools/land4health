@@ -2,6 +2,10 @@
 
 ## land4health 0.3.0
 
+- [`l4h_era5land()`](https://github.com/harmonize-tools/land4health/reference/l4h_era5land.md)
+  gains support for ERA5-Land climate variables (`"t2m"`, `"d2m"`,
+  `"pr"`, `"soil"`, `"pet"`) at **daily** or **monthly**.
+
 - [`l4h_surface_temp()`](https://github.com/harmonize-tools/land4health/reference/l4h_surface_temp.md)
   gains a `by` argument (`"day"`/`"month"`) to extract LST values at
   **daily** or **monthly** resolution. When `by = "month"`, cloud-masked

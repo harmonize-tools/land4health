@@ -347,6 +347,9 @@ ggplot(etp_diff, aes(x = month)) +
 - [`l4h_chirps()`](https://github.com/harmonize-tools/land4health/reference/l4h_chirps.md)
   **\[experimental\]** : Extract CHIRPS v3 precipitation data from
   Google Earth Engine
+- [`l4h_era5land()`](https://github.com/harmonize-tools/land4health/reference/l4h_era5land.md)
+  **\[experimental\]** : Extract ERA5-Land climate variables from Google
+  Earth Engine
 
 ## Utils
 
