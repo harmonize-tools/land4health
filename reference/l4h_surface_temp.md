@@ -3,7 +3,7 @@
 Extracts daytime or nighttime Land Surface Temperature (LST) for a
 user-defined region and time range using the MODIS MOD11A1.061 product.
 The function supports summarizing the temperature data over each date
-using a selected statistic (e.g., mean or median).
+(or each month) using a selected statistic (e.g., mean or median).
 
 **NA**
 
@@ -16,6 +16,7 @@ l4h_surface_temp(
   region,
   band = "day",
   level = "strict",
+  by = "day",
   scale = 1000,
   stat = "mean",
   sf = TRUE,
@@ -48,9 +49,19 @@ l4h_surface_temp(
 - level:
 
   Character. Quality filter level to apply to MODIS LST pixels. Use
-  `"strict"` to retain only high-quality observations (QA bits 0–1 equal
+  `"strict"` to retain only high-quality observations (QA bits 0-1 equal
   to `00`), or `"moderate"` to allow both high and acceptable quality
-  (QA bits 0–1 equal to `00` or `01`). Default is `"moderate"`.
+  (QA bits 0-1 equal to `00` or `01`). Default is `"moderate"`.
+
+- by:
+
+  Character. Temporal resolution of the output. One of `"day"` (default,
+  one value per available daily image) or `"month"`. When `"month"`,
+  cloud-masked daily images within each calendar month are combined
+  server-side with the reducer selected in `stat` (mean, median, min or
+  max) *before* the spatial extraction, so masked (cloudy) pixels do not
+  count as zeros or missing days — they are simply excluded from that
+  month's reducer.
 
 - scale:
 
@@ -59,8 +70,10 @@ l4h_surface_temp(
 
 - stat:
 
-  Character. Summary statistic to apply per image per region. One of
-  `"mean"`, `"median"`, `"min"`, `"max"`. Passed to `ee_extract()`.
+  Character. Summary statistic to apply. One of `"mean"`, `"median"`,
+  `"min"`, `"max"`. Used as the spatial reducer passed to `ee_extract()`
+  for every `by` value, and additionally as the temporal reducer across
+  days within a month when `by = "month"`.
 
 - sf:
 
@@ -86,19 +99,32 @@ l4h_surface_temp(
 ## Value
 
 A `sf` or `tibble` object with LST values (in degrees Celsius) extracted
-from MODIS MOD11A1.
+from MODIS MOD11A1, at daily or monthly resolution depending on `by`.
 
 ## Details
 
 The MODIS MOD11A1.061 product provides daily Land Surface Temperature
 and quality information. This function filters out low-quality or
-cloud-contaminated pixels based on the `QC_Day` or `QC_Night` band. Only
-pixels where the quality control bits 0–1 equal `00` (high quality) are
-retained.
+cloud-contaminated pixels based on the `QC_Day` or `QC_Night` band.
+
+When `by = "month"`, for each calendar month in `[from, to]` the
+function:
+
+1.  Filters the daily collection to that month.
+
+2.  Applies the same quality mask used for daily extraction to every
+    image.
+
+3.  Reduces the masked images to a single monthly image using the
+    reducer implied by `stat`.
+
+Because masking happens before reducing, a cloudy day never drags the
+monthly value down or up — it simply does not contribute a pixel to that
+month's calculation.
 
 LST values are originally stored as Kelvin multiplied by 0.02. This
 function automatically converts them to degrees Celsius using the
-formula: `LST = (value × 0.02) - 273.15`.
+formula: `LST = (value x 0.02) - 273.15`.
 
 ## Credits
 
@@ -107,26 +133,6 @@ formula: `LST = (value × 0.02) - 273.15`.
 Pioneering geospatial health analytics and open-science tools. Developed
 by the Innovalab Team. For more information, send an email to
 <imt.innovlab@oficinas-upch.pe>.
-
-Follow us on:
-
-- ![](figures/linkedin-innova.png)[Innovalab
-  Linkedin](https://www.linkedin.com/company/innovalab-imt)
-
-- ![](figures/twitter-innova.png)[Innovalab
-  X](https://x.com/innovalab_imt)
-
-- ![](figures/facebook-innova.png)[Innovalab
-  facebook](https://www.facebook.com/imt.innovalab)
-
-- ![](figures/instagram-innova.png)[Innovalab
-  instagram](https://www.instagram.com/innovalab_imt/)
-
-- ![](figures/tiktok-innova.png)[Innovalab
-  tiktok](https://www.tiktok.com/@innovalab_imt)
-
-- ![](figures/spotify-innova.png)[Innovalab
-  Podcast](https://www.innovalab.info/podcast)
 
 ## References
 
@@ -145,7 +151,6 @@ if (FALSE) { # \dontrun{
 library(land4health)
 ee_Initialize()
 
-# Define a bounding box region in Ucayali, Peru
 region <- st_as_sf(st_sfc(
   st_polygon(list(matrix(c(
     -74.1, -4.4,
@@ -157,24 +162,16 @@ region <- st_as_sf(st_sfc(
   crs = 4326
 ))
 
-# Extract daytime LST for 2020
+# Daily (unchanged default behaviour)
 lst_day <- l4h_surface_temp(
-  from = "2020-01-01",
-  to = "2020-12-31",
-  region = region,
-  band = "day",
-  stat = "mean")
+  from = "2020-01-01", to = "2020-12-31",
+  region = region, band = "day", stat = "mean")
 
-head(lst_day)
+# Monthly
+lst_month <- l4h_surface_temp(
+  from = "2020-01-01", to = "2020-12-31",
+  region = region, band = "day", stat = "mean", by = "month")
 
-# Extract nighttime LST
-lst_night <- l4h_surface_temp(
- from = "2020-01-01",
- to = "2020-12-31",
- region = region,
- band = "night",
- stat = "mean")
-
-head(lst_night)
+head(lst_month)
 } # }
 ```

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">land4health</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,6 +49,11 @@
       <small>Source: <a href="https://github.com/harmonize-tools/land4health/tree/main/NEWS.md"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.0" id="land4health-030">land4health 0.3.0<a class="anchor" aria-label="anchor" href="#land4health-030"></a></h2>
+<ul><li>
+<code><a href="../reference/l4h_surface_temp.html">l4h_surface_temp()</a></code> gains a <code>by</code> argument (<code>"day"</code>/<code>"month"</code>) to extract LST values at <strong>daily</strong> or <strong>monthly</strong> resolution. When <code>by = "month"</code>, cloud-masked pixels are excluded before the temporal reduction, so low-quality observations do not bias the monthly summary. The <code>"day"</code> option remains the default, so existing code is unaffected.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="land4health-020">land4health 0.2.0<a class="anchor" aria-label="anchor" href="#land4health-020"></a></h2>
 <hr><div class="section level3">
