@@ -332,7 +332,7 @@ l4h_ee_extract <- function(image,
     tick <- function() cli::cli_progress_update(id = bar_id)
   }
 
-  # 5. Extract by geometries
+# 5. Extract by geometries
   results <- lapply(geoms, function(feat) {
     ee_y <- rgee::sf_as_ee(feat, quiet = TRUE, ...)
 
@@ -345,24 +345,24 @@ l4h_ee_extract <- function(image,
     if (!is.null(scale)) {
       reduce_args$scale <- as.numeric(scale)
     }
-
-    # Direct invocation (avoids the 'image = img' failure)
+    
     ee_reduced <- do.call(image$reduceRegions, reduce_args)
-
+    
     out <- if (isTRUE(sf)) {
       rgee::ee_as_sf(ee_reduced, quiet = TRUE)
     } else {
       sf_obj <- rgee::ee_as_sf(ee_reduced, quiet = TRUE)
       sf::st_drop_geometry(sf_obj)
     }
-
+    band_cols <- grep("^X", names(out), value = TRUE)
+    for (col in band_cols) {
+      out[[col]] <- suppressWarnings(as.numeric(as.character(out[[col]])))
+    }
     tick()
     out
   })
 
   if (show_bar) cli::cli_progress_done(id = bar_id)
-
   if (length(results) == 0) return(dplyr::tibble())
-
   dplyr::bind_rows(results)
 }
