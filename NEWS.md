@@ -1,3 +1,11 @@
+# land4health 0.3.0
+
+- `l4h_surface_temp()` gains a `by` argument (`"day"`/`"month"`) to extract
+  LST values at **daily** or **monthly** resolution. When `by = "month"`,
+  cloud-masked pixels are excluded before the temporal reduction, so
+  low-quality observations do not bias the monthly summary. The `"day"`
+  option remains the default, so existing code is unaffected.
+   
 # land4health 0.2.0 
 <hr/>
 

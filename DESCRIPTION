@@ -1,6 +1,6 @@
 Package: land4health
 Title: Remote Sensing Metrics for Spatial Health Analysis 
-Version: 0.2.0
+Version: 0.3.0
 Authors@R: c(
     person("Antony", "Barja", email = "antony.barja@upch.pe", role = c("aut","cph"), comment = c(ORCID = "0000-0001-5921-2858")),
     person("Yomali", "Ferreyra", email = "yomali.ferreyra@upch.pe", role = c("cre"), comment = c(ORCID = "0000-0002-5184-9595")),
