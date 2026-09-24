@@ -10,6 +10,7 @@ Accessibility;Travel time to cities and healthcare;927.67;Malaria Atlas Project;
 Accessibility;Rural access index;100;Rural Access Index (RAI);2024;2024;annually;TRUE;accesibility;experimental;https://gee-community-catalog.org/projects/rai/
 Climate;Evapotranspiration;500;geeSEBAL-MODIS;2002;2022;daily;TRUE;environment;experimental;https://gee-community-catalog.org/projects/gee_sebal/
 Climate;Precipitation (CHIRPS v3);5566;CHIRPS v3.0;1981;2025;daily/monthly/annual;TRUE;climate;experimental;https://developers.google.com/earth-engine/datasets/catalog/UCSB-CHC_CHIRPS_V3_DAILY_SAT
+Climate;ERA5-Land (temperature/precipitation/soil moisture);11132;ERA5-Land;1950;2025;daily/monthly;TRUE;climate;experimental;https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_DAILY_AGGR
 Vector-borne disease;Malaria (incidence/parasite rate);5000;Malaria Atlas Project GeoServer;2000;2023;annually;FALSE;vector-borne-disease;experimental;https://malariaatlas.org/
 
 

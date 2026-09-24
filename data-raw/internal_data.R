@@ -39,7 +39,9 @@ updated_db_ee <- function(type = NULL, db = NULL){
   terraclimate       =  updated_db_ee(type = 'eedataset', db = 'IDAHO_EPSCOR/TERRACLIMATE'),
   pm2.5              =  updated_db_ee(type = 'eeawesome', db = 'GLOBAL-SATELLITE-PM25/MONTHLY'),
   chirps_sat         =  updated_db_ee(type = 'eedataset', db = 'UCSB-CHC/CHIRPS/V3/DAILY_SAT'),
-  chirps_rnl         =  updated_db_ee(type = 'eedataset', db = 'UCSB-CHC/CHIRPS/V3/DAILY_RNL')
+  chirps_rnl         =  updated_db_ee(type = 'eedataset', db = 'UCSB-CHC/CHIRPS/V3/DAILY_RNL'),
+  era5land_daily     =  updated_db_ee(type = 'eedataset', db = 'ERA5_LAND/DAILY_AGGR'),
+  era5land_monthly   =  updated_db_ee(type = 'eedataset', db = 'ERA5_LAND/MONTHLY_AGGR')
 )
 
 usethis::use_data(.internal_data, internal = TRUE, overwrite = TRUE)

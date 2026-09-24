@@ -3,6 +3,7 @@
 export(l4h_chirps)
 export(l4h_co_column)
 export(l4h_dengue)
+export(l4h_era5land)
 export(l4h_forest_loss)
 export(l4h_human_built)
 export(l4h_install)

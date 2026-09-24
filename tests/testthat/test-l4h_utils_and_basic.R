@@ -1,6 +1,6 @@
 test_that("all exported functions exist", {
   fns <- c(
-    "l4h_chirps", "l4h_co_column", "l4h_dengue", "l4h_forest_loss",
+    "l4h_chirps", "l4h_co_column", "l4h_dengue", "l4h_era5land", "l4h_forest_loss",
     "l4h_human_built", "l4h_install", "l4h_list_metrics", "l4h_malaria",
     "l4h_night_lights", "l4h_packages", "l4h_pm2_5", "l4h_rural_access_index",
     "l4h_sebal_modis", "l4h_surface_temp", "l4h_terra_climate",
