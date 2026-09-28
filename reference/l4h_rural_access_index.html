@@ -156,9 +156,17 @@ Developed by the Innovalab Team. For more information, send an email to
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harmonize-tools/land4health/">land4health</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">ee_Initialize</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ee_connect_to_py(path = ee_current_version, n = 5):</span> The current Python PATH: <span style="font-weight: bold;">/home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/bin/python</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> does not have the Python package "earthengine-api" installed. Do you restarted/terminated</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> your R session after install miniconda or run ee_install()?</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> If this is not the case, try:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> &gt; ee_install_upgrade(): Install the latest Earth Engine Python version.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> &gt; reticulate::use_python(): Refresh your R session and manually set the Python environment with all rgee dependencies.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> &gt; ee_install(): To create and set a Python environment with all rgee dependencies.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> &gt; ee_install_set_pyenv(): To set a specific Python environment.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Define a bounding box region in Ucayali, Peru</span></span></span>
 <span class="r-in"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu">st_as_sf</span><span class="op">(</span><span class="fu">st_sfc</span><span class="op">(</span></span></span>
@@ -178,15 +186,47 @@ Developed by the Innovalab Team. For more information, send an email to
 <span class="r-in"><span>    weighted <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    fun <span class="op">=</span> <span class="st">"sum"</span>,</span></span>
 <span class="r-in"><span>    sf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Python module ee was not found.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> Detected Python configuration:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> python:         /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/bin/python</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> libpython:      /home/runner/.cache/R/reticulate/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/libpython3.12.so</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> pythonhome:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2:/home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> virtualenv:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/bin/activate_this.py</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> version:        3.12.14 (main, Sep 24 2026, 17:57:43) [Clang 22.1.3 ]</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> numpy:          /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/lib/python3.12/site-packages/numpy</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> numpy_version:  2.5.3</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> ee:             [NOT FOUND]</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> NOTE: Python version was forced by py_require()</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">rai_w</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'rai_w' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Area-based RAI</span></span></span>
 <span class="r-in"><span><span class="va">rai</span> <span class="op">&lt;-</span> <span class="fu">l4h_rural_access_index</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    region <span class="op">=</span> <span class="va">region</span>,</span></span>
 <span class="r-in"><span>    weighted <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>    sf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Python module ee was not found.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> Detected Python configuration:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> python:         /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/bin/python</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> libpython:      /home/runner/.cache/R/reticulate/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/libpython3.12.so</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> pythonhome:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2:/home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> virtualenv:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/bin/activate_this.py</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> version:        3.12.14 (main, Sep 24 2026, 17:57:43) [Clang 22.1.3 ]</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> numpy:          /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/lib/python3.12/site-packages/numpy</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> numpy_version:  2.5.3</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> ee:             [NOT FOUND]</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> NOTE: Python version was forced by py_require()</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">rai</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'rai' not found</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

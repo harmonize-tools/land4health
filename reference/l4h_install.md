@@ -6,7 +6,7 @@ progress bar in the console) and falls back to pip via
 [`reticulate::py_install()`](https://rstudio.github.io/reticulate/reference/py_install.html)
 otherwise.
 
-**\[experimental\]**
+**NA**
 
 ## Usage
 
@@ -65,20 +65,10 @@ Invisibly returns NULL
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-# Basic installation with auto-restart (uv when available)
-l4h_install()
+# Installation is intentionally not run in examples because it modifies
+# the Python environment and may be slow.
 
-# Force reinstallation without restart
-l4h_install(force = TRUE, restart = FALSE)
-
-# Force the uv backend (fails loudly if uv is missing)
-l4h_install(backend = "uv")
-
-# Classic pip backend
-l4h_install(backend = "pip")
-
-# Use conda environment
-l4h_install(method = "conda")
-} # }
+# See the installation vignette for instructions:
+vignette("land4health-setup", package = "land4health")
+#> Warning: vignette ‘land4health-setup’ not found
 ```

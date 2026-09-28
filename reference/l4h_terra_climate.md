@@ -138,9 +138,17 @@ climate and climatic water balance from 1958–2015. *Scientific Data*, 5,
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 library(land4health)
 rgee::ee_Initialize()
+#> Error in ee_connect_to_py(path = ee_current_version, n = 5): The current Python PATH: /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/bin/python
+#> does not have the Python package "earthengine-api" installed. Do you restarted/terminated
+#> your R session after install miniconda or run ee_install()?
+#> If this is not the case, try:
+#> > ee_install_upgrade(): Install the latest Earth Engine Python version.
+#> > reticulate::use_python(): Refresh your R session and manually set the Python environment with all rgee dependencies.
+#> > ee_install(): To create and set a Python environment with all rgee dependencies.
+#> > ee_install_set_pyenv(): To set a specific Python environment.
 
 # ROI simple (EPSG:4326)
 region <- st_as_sf(st_sfc(
@@ -161,7 +169,10 @@ out_pr <- l4h_terra_climate(
   stat = "mean",
   scale = 5000
 )
+#> Error in check_ee_initialized(): ✖ Earth Engine is not initialized.
+#> ℹ Run `rgee::ee_Initialize()` before using GEE functions.
 head(out_pr)
+#> Error: object 'out_pr' not found
 
 # Multiple variables: Tmax (C) + VPD (kPa)
 out_multi <- l4h_terra_climate(
@@ -172,5 +183,7 @@ out_multi <- l4h_terra_climate(
   stat = "median",
   scale = 5000
 )
-} # }
+#> Error in check_ee_initialized(): ✖ Earth Engine is not initialized.
+#> ℹ Run `rgee::ee_Initialize()` before using GEE functions.
+# }
 ```

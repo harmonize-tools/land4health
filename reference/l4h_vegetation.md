@@ -165,11 +165,19 @@ Follow us on:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 library(land4health)
 library(geoidep)
 
 rgee::ee_Initialize(quiet = TRUE)
+#> Error in ee_connect_to_py(path = ee_current_version, n = 5): The current Python PATH: /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/bin/python
+#> does not have the Python package "earthengine-api" installed. Do you restarted/terminated
+#> your R session after install miniconda or run ee_install()?
+#> If this is not the case, try:
+#> > ee_install_upgrade(): Install the latest Earth Engine Python version.
+#> > reticulate::use_python(): Refresh your R session and manually set the Python environment with all rgee dependencies.
+#> > ee_install(): To create and set a Python environment with all rgee dependencies.
+#> > ee_install_set_pyenv(): To set a specific Python environment.
 
 provinces <- get_provinces(show_progress = FALSE) |>
   subset(nombdep == "LORETO")
@@ -184,8 +192,24 @@ result_monthly <- provinces |>
     fun  = "mean",
     sf   = TRUE
   )
+#> Error: Python module ee was not found.
+#> 
+#> Detected Python configuration:
+#> 
+#> python:         /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/bin/python
+#> libpython:      /home/runner/.cache/R/reticulate/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/libpython3.12.so
+#> pythonhome:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2:/home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2
+#> virtualenv:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/bin/activate_this.py
+#> version:        3.12.14 (main, Sep 24 2026, 17:57:43) [Clang 22.1.3 ]
+#> numpy:          /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/lib/python3.12/site-packages/numpy
+#> numpy_version:  2.5.3
+#> ee:             [NOT FOUND]
+#> 
+#> NOTE: Python version was forced by py_require()
+#> 
 
  head(result_monthly)
+#> Error: object 'result_monthly' not found
 
 # Annual mean NDVI
 result_annual <- provinces |>
@@ -197,8 +221,24 @@ result_annual <- provinces |>
     fun  = "mean",
     sf   = TRUE
   )
+#> Error: Python module ee was not found.
+#> 
+#> Detected Python configuration:
+#> 
+#> python:         /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/bin/python
+#> libpython:      /home/runner/.cache/R/reticulate/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/libpython3.12.so
+#> pythonhome:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2:/home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2
+#> virtualenv:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/bin/activate_this.py
+#> version:        3.12.14 (main, Sep 24 2026, 17:57:43) [Clang 22.1.3 ]
+#> numpy:          /home/runner/.cache/R/reticulate/uv/cache/archive-v0/EzqkS_u7yWiyKT-2/lib/python3.12/site-packages/numpy
+#> numpy_version:  2.5.3
+#> ee:             [NOT FOUND]
+#> 
+#> NOTE: Python version was forced by py_require()
+#> 
 
  str(result_annual)
+#> Error: object 'result_annual' not found
 
-} # }
+# }
 ```
