@@ -44,7 +44,12 @@ By default uses \strong{uv} when available (much faster downloads with a live
 progress bar in the console) and falls back to pip via
 \code{reticulate::py_install()} otherwise.
 
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\if{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+  \figure{lifecycle-experimental.png}{options: width="120"}
+}}
+\if{latex}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+  \figure{lifecycle-experimental.pdf}{options: width=2cm}
+}}
 }
 \examples{
 # Installation is intentionally not run in examples because it modifies

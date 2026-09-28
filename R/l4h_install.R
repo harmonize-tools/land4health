@@ -5,7 +5,12 @@
 #' progress bar in the console) and falls back to pip via
 #' `reticulate::py_install()` otherwise.
 #'
-#' `r lifecycle::badge('experimental')`
+#' \if{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+#'   \figure{lifecycle-experimental.png}{options: width="120"}
+#' }}
+#' \if{latex}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
+#'   \figure{lifecycle-experimental.pdf}{options: width=2cm}
+#' }}
 #'
 #' @param pip Logical. If TRUE (default), uses pip for installation. Set to FALSE if
 #'   specifying a different installation method.
