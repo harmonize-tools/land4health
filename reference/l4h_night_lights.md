@@ -106,7 +106,7 @@ Follow us on:
 # \donttest{
 library(land4health)
 ee_Initialize()
-#> Error in ee_connect_to_py(path = ee_current_version, n = 5): The current Python PATH: /home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs/bin/python
+#> Error in ee_connect_to_py(path = ee_current_version, n = 5): The current Python PATH: /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/python
 #> does not have the Python package "earthengine-api" installed. Do you restarted/terminated
 #> your R session after install miniconda or run ee_install()?
 #> If this is not the case, try:
@@ -138,12 +138,12 @@ ntl_dmsp <- l4h_night_lights(
 #> 
 #> Detected Python configuration:
 #> 
-#> python:         /home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs/bin/python
+#> python:         /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/python
 #> libpython:      /home/runner/.cache/R/reticulate/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/libpython3.12.so
-#> pythonhome:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs:/home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs
-#> virtualenv:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs/bin/activate_this.py
+#> pythonhome:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg:/home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg
+#> virtualenv:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/activate_this.py
 #> version:        3.12.14 (main, Sep 24 2026, 17:57:43) [Clang 22.1.3 ]
-#> numpy:          /home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs/lib/python3.12/site-packages/numpy
+#> numpy:          /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/lib/python3.12/site-packages/numpy
 #> numpy_version:  2.5.3
 #> ee:             [NOT FOUND]
 #> 
@@ -163,12 +163,12 @@ ntl_viirs <- l4h_night_lights(
 #> 
 #> Detected Python configuration:
 #> 
-#> python:         /home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs/bin/python
+#> python:         /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/python
 #> libpython:      /home/runner/.cache/R/reticulate/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/libpython3.12.so
-#> pythonhome:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs:/home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs
-#> virtualenv:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs/bin/activate_this.py
+#> pythonhome:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg:/home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg
+#> virtualenv:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/activate_this.py
 #> version:        3.12.14 (main, Sep 24 2026, 17:57:43) [Clang 22.1.3 ]
-#> numpy:          /home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs/lib/python3.12/site-packages/numpy
+#> numpy:          /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/lib/python3.12/site-packages/numpy
 #> numpy_version:  2.5.3
 #> ee:             [NOT FOUND]
 #> 
@@ -188,12 +188,12 @@ ntl_mixed <- l4h_night_lights(
 #> 
 #> Detected Python configuration:
 #> 
-#> python:         /home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs/bin/python
+#> python:         /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/python
 #> libpython:      /home/runner/.cache/R/reticulate/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/libpython3.12.so
-#> pythonhome:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs:/home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs
-#> virtualenv:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs/bin/activate_this.py
+#> pythonhome:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg:/home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg
+#> virtualenv:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/activate_this.py
 #> version:        3.12.14 (main, Sep 24 2026, 17:57:43) [Clang 22.1.3 ]
-#> numpy:          /home/runner/.cache/R/reticulate/uv/cache/archive-v0/PrMPWDK85JlNDOVs/lib/python3.12/site-packages/numpy
+#> numpy:          /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/lib/python3.12/site-packages/numpy
 #> numpy_version:  2.5.3
 #> ee:             [NOT FOUND]
 #> 
