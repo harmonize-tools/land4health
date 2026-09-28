@@ -66,6 +66,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(land4health)
 #' ee_Initialize()
 #'
@@ -91,6 +92,7 @@
 #'   region = region, band = "day", stat = "mean", by = "month")
 #'
 #' head(lst_month)
+#' }
 #' }
 #'
 #' @references

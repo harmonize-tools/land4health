@@ -48,6 +48,7 @@
 
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(land4health)
 #' ee_Initialize()
 #'
@@ -82,6 +83,7 @@
 #'   stat = "mean"
 #' )
 #' dplyr::glimpse(built_tbl)
+#' }
 #' }
 #'
 #' @export

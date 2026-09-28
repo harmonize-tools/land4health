@@ -43,7 +43,7 @@
 #'
 #' @examples
 #' \donttest{
-#'
+#' if (interactive()) {
 #' library(land4health)
 #' ee_Initialize()
 #'
@@ -87,6 +87,7 @@
 #'   sf     = FALSE
 #' )
 #'
+#' }
 #' }
 #' @references
 #' - Comini,B., Ruhoff,A., Laipelt,L., Fleischmann,A., Huntington,J.,

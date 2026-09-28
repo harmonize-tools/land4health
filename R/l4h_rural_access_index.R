@@ -68,6 +68,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(land4health)
 #' ee_Initialize()
 #'
@@ -97,6 +98,7 @@
 #'     weighted = FALSE,
 #'     sf = TRUE)
 #' head(rai)
+#' }
 #' }
 #'
 #' @export

@@ -65,6 +65,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(land4health)
 #' rgee::ee_Initialize()
 #'
@@ -98,6 +99,7 @@
 #'   stat = "median",
 #'   scale = 5000
 #' )
+#' }
 #' }
 #'
 #' @references

@@ -45,6 +45,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(land4health)
 #' ee_Initialize()
 #'
@@ -86,6 +87,7 @@
 #'   stat = "mean"
 #' )
 #' head(ntl_mixed)
+#' }
 #' }
 #' @export
 l4h_night_lights <- function(from, to, region, stat = "mean",

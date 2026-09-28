@@ -58,6 +58,7 @@
 #' @seealso [l4h_malaria()]
 #'
 #' @examples
+#' \donttest{
 #' if (interactive()) {
 #'   # National extract for Peru in 2019
 #'   df_nat <- l4h_dengue(
@@ -94,6 +95,7 @@
 #'     quiet = TRUE
 #'   )
 #'   head(df_temp)
+#' }
 #' }
 #' @export
 l4h_dengue <- function(

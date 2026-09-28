@@ -49,6 +49,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(land4health)
 #' ee_Initialize()
 #'
@@ -72,6 +73,7 @@
 #'   stat = "mean"
 #' )
 #' head(co_data)
+#' }
 #' }
 #'
 #' @references

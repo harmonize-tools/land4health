@@ -46,6 +46,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(land4health)
 #' ee_Initialize()
 #'
@@ -80,6 +81,7 @@
 #'   stat = "max"
 #' )
 #' head(suhi_night)
+#' }
 #' }
 #'
 #' @export

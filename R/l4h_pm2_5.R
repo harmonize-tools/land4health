@@ -70,6 +70,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(land4health)
 #' rgee::ee_Initialize()
 #'
@@ -93,6 +94,7 @@
 #'   scale  = 3000
 #' )
 #' head(out_pm)
+#' }
 #' }
 #'
 #' @references

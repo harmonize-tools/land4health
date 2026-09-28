@@ -50,6 +50,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(land4health)
 #' ee_Initialize()
 #'
@@ -96,6 +97,7 @@
 #'   fun         = "sum")
 #'
 #' head(result_city_sum)
+#' }
 #' }
 #'
 #' @references

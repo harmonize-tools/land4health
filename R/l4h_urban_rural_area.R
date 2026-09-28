@@ -43,6 +43,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(land4health)
 #' ee_Initialize()
 #'
@@ -78,6 +79,7 @@
 #'   region = region)
 #'
 #' head(all_area)
+#' }
 #' }
 #'
 #' @references

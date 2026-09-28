@@ -103,6 +103,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(land4health)
 #' library(geoidep)
 #'
@@ -137,6 +138,7 @@
 #'
 #'  str(result_annual)
 #'
+#' }
 #' }
 #'
 #' @export

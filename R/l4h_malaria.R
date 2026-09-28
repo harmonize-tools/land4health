@@ -72,6 +72,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(land4health)
 #'
 #' # ROI simple (EPSG:4326)
@@ -104,6 +105,7 @@
 #'   sf      = FALSE
 #' )
 #' head(out_pv)
+#' }
 #' }
 #'
 #' @references
