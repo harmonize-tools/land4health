@@ -110,16 +110,9 @@ Follow us on:
 
 ``` r
 # \donttest{
+if (interactive()) {
 library(land4health)
 ee_Initialize()
-#> Error in ee_connect_to_py(path = ee_current_version, n = 5): The current Python PATH: /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/python
-#> does not have the Python package "earthengine-api" installed. Do you restarted/terminated
-#> your R session after install miniconda or run ee_install()?
-#> If this is not the case, try:
-#> > ee_install_upgrade(): Install the latest Earth Engine Python version.
-#> > reticulate::use_python(): Refresh your R session and manually set the Python environment with all rgee dependencies.
-#> > ee_install(): To create and set a Python environment with all rgee dependencies.
-#> > ee_install_set_pyenv(): To set a specific Python environment.
 
 # Define a bounding box region (Ucayali, Peru)
 region <- st_as_sf(st_sfc(
@@ -141,10 +134,7 @@ suhi_day <- l4h_urban_heat_index(
   band = "day",
   stat = "mean"
 )
-#> Error in check_ee_initialized(): ✖ Earth Engine is not initialized.
-#> ℹ Run `rgee::ee_Initialize()` before using GEE functions.
 head(suhi_day)
-#> Error: object 'suhi_day' not found
 
 # Calculate SUHI using nighttime LST (max difference)
 suhi_night <- l4h_urban_heat_index(
@@ -154,9 +144,7 @@ suhi_night <- l4h_urban_heat_index(
   band = "night",
   stat = "max"
 )
-#> Error in check_ee_initialized(): ✖ Earth Engine is not initialized.
-#> ℹ Run `rgee::ee_Initialize()` before using GEE functions.
 head(suhi_night)
-#> Error: object 'suhi_night' not found
+}
 # }
 ```

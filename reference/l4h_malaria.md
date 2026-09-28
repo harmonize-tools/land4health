@@ -138,6 +138,7 @@ Malaria Atlas Project. <https://malariaatlas.org/>
 
 ``` r
 # \donttest{
+if (interactive()) {
 library(land4health)
 
 # ROI simple (EPSG:4326)
@@ -158,59 +159,7 @@ out <- l4h_malaria(
   measure = "incidence_rate",
   region  = region
 )
-#> ℹ Connecting to Malaria Atlas GeoServer...
-#> ℹ Using release: 202608 - "Malaria__202608_Global_Pf_Incidence_Rate"
-#> No encoding supplied: defaulting to UTF-8.
-#> ℹ Extracting 6 year(s): 2015 to 2020
-#> ℹ Downloading 2015 (1/6)
-#> <GMLEnvelope>
-#> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
-#> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2016 [428ms]
-#> 
-#> ℹ Downloading 2016 (2/6)
-#> <GMLEnvelope>
-#> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
-#> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2017 [1.2s]
-#> 
-#> ℹ Downloading 2017 (3/6)
-#> <GMLEnvelope>
-#> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
-#> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2018 [853ms]
-#> 
-#> ℹ Downloading 2018 (4/6)
-#> <GMLEnvelope>
-#> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
-#> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2019 [274ms]
-#> 
-#> ℹ Downloading 2019 (5/6)
-#> <GMLEnvelope>
-#> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
-#> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2020 [844ms]
-#> 
-#> ℹ Downloading 2020 (6/6)
-#> <GMLEnvelope>
-#> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
-#> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2020 [843ms]
-#> 
 head(out)
-#> Simple feature collection with 6 features and 4 fields
-#> Geometry type: POLYGON
-#> Dimension:     XY
-#> Bounding box:  xmin: -74.1 ymin: -4.4 xmax: -73.2 ymax: -3.7
-#> Geodetic CRS:  WGS 84
-#>         date species        measure      value                       geometry
-#> 1 2015-01-01      pf incidence_rate 0.02168967 POLYGON ((-74.1 -4.4, -74.1...
-#> 2 2016-01-01      pf incidence_rate 0.03309536 POLYGON ((-74.1 -4.4, -74.1...
-#> 3 2017-01-01      pf incidence_rate 0.01907846 POLYGON ((-74.1 -4.4, -74.1...
-#> 4 2018-01-01      pf incidence_rate 0.01128593 POLYGON ((-74.1 -4.4, -74.1...
-#> 5 2019-01-01      pf incidence_rate 0.00713318 POLYGON ((-74.1 -4.4, -74.1...
-#> 6 2020-01-01      pf incidence_rate 0.00632583 POLYGON ((-74.1 -4.4, -74.1...
 
 # Pv parasite rate
 out_pv <- l4h_malaria(
@@ -221,32 +170,7 @@ out_pv <- l4h_malaria(
   region  = region,
   sf      = FALSE
 )
-#> ℹ Connecting to Malaria Atlas GeoServer...
-#> ℹ Using release: 202608 - "Malaria__202608_Global_Pv_Parasite_Rate"
-#> No encoding supplied: defaulting to UTF-8.
-#> ℹ Extracting 3 year(s): 2020 to 2022
-#> ℹ Downloading 2020 (1/3)
-#> <GMLEnvelope>
-#> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
-#> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2021 [268ms]
-#> 
-#> ℹ Downloading 2021 (2/3)
-#> <GMLEnvelope>
-#> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
-#> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2022 [278ms]
-#> 
-#> ℹ Downloading 2022 (3/3)
-#> <GMLEnvelope>
-#> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
-#> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2022 [271ms]
-#> 
 head(out_pv)
-#>         date species       measure      value
-#> 1 2020-01-01      pv parasite_rate 0.03325922
-#> 2 2021-01-01      pv parasite_rate 0.02815815
-#> 3 2022-01-01      pv parasite_rate 0.03627322
+}
 # }
 ```

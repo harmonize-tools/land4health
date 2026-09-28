@@ -108,6 +108,7 @@ data for Latin America.
 ## Examples
 
 ``` r
+# \donttest{
 if (interactive()) {
   # National extract for Peru in 2019
   df_nat <- l4h_dengue(
@@ -145,4 +146,5 @@ if (interactive()) {
   )
   head(df_temp)
 }
+# }
 ```

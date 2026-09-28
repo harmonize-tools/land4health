@@ -137,16 +137,9 @@ DOI: <a href="https://doi.org/10.1126/science.1244693" class="external-link">doi
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harmonize-tools/land4health/">land4health</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">ee_Initialize</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ee_connect_to_py(path = ee_current_version, n = 5):</span> The current Python PATH: <span style="font-weight: bold;">/home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/python</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> does not have the Python package "earthengine-api" installed. Do you restarted/terminated</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> your R session after install miniconda or run ee_install()?</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> If this is not the case, try:</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> &gt; ee_install_upgrade(): Install the latest Earth Engine Python version.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> &gt; reticulate::use_python(): Refresh your R session and manually set the Python environment with all rgee dependencies.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> &gt; ee_install(): To create and set a Python environment with all rgee dependencies.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> &gt; ee_install_set_pyenv(): To set a specific Python environment.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Define region as a bounding box polygon</span></span></span>
 <span class="r-in"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu">st_as_sf</span><span class="op">(</span><span class="fu">st_sfc</span><span class="op">(</span></span></span>
@@ -165,24 +158,9 @@ DOI: <a href="https://doi.org/10.1126/science.1244693" class="external-link">doi
 <span class="r-in"><span>  from <span class="op">=</span> <span class="st">'2005-01-01'</span>,</span></span>
 <span class="r-in"><span>  to <span class="op">=</span> <span class="st">'2007-01-01'</span>,</span></span>
 <span class="r-in"><span>  region <span class="op">=</span> <span class="va">region</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Python module ee was not found.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> Detected Python configuration:</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> python:         /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/python</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> libpython:      /home/runner/.cache/R/reticulate/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/libpython3.12.so</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> pythonhome:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg:/home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> virtualenv:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/activate_this.py</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> version:        3.12.14 (main, Sep 24 2026, 17:57:43) [Clang 22.1.3 ]</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> numpy:          /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/lib/python3.12/site-packages/numpy</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> numpy_version:  2.5.3</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> ee:             [NOT FOUND]</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> NOTE: Python version was forced by py_require()</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'result' not found</span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

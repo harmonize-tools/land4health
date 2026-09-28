@@ -99,16 +99,9 @@ Global Maps of 21st-Century Forest Cover Change*. Science, 342(6160),
 
 ``` r
 # \donttest{
+if (interactive()) {
 library(land4health)
 ee_Initialize()
-#> Error in ee_connect_to_py(path = ee_current_version, n = 5): The current Python PATH: /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/python
-#> does not have the Python package "earthengine-api" installed. Do you restarted/terminated
-#> your R session after install miniconda or run ee_install()?
-#> If this is not the case, try:
-#> > ee_install_upgrade(): Install the latest Earth Engine Python version.
-#> > reticulate::use_python(): Refresh your R session and manually set the Python environment with all rgee dependencies.
-#> > ee_install(): To create and set a Python environment with all rgee dependencies.
-#> > ee_install_set_pyenv(): To set a specific Python environment.
 
 # Define region as a bounding box polygon
 region <- st_as_sf(st_sfc(
@@ -127,23 +120,8 @@ result <- l4h_forest_loss(
   from = '2005-01-01',
   to = '2007-01-01',
   region = region)
-#> Error: Python module ee was not found.
-#> 
-#> Detected Python configuration:
-#> 
-#> python:         /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/python
-#> libpython:      /home/runner/.cache/R/reticulate/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/libpython3.12.so
-#> pythonhome:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg:/home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg
-#> virtualenv:     /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/bin/activate_this.py
-#> version:        3.12.14 (main, Sep 24 2026, 17:57:43) [Clang 22.1.3 ]
-#> numpy:          /home/runner/.cache/R/reticulate/uv/cache/archive-v0/sDUqtNaz29V5bTjg/lib/python3.12/site-packages/numpy
-#> numpy_version:  2.5.3
-#> ee:             [NOT FOUND]
-#> 
-#> NOTE: Python version was forced by py_require()
-#> 
 
 head(result)
-#> Error: object 'result' not found
+}
 # }
 ```
