@@ -99,7 +99,7 @@ Developed by the Innovalab Team. For more information, send an email to
 }
 
 \examples{
-\dontrun{
+\donttest{
 library(land4health)
 ee_Initialize()
 

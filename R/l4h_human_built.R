@@ -47,7 +47,7 @@
 #' - Dataset on Google Earth Engine: \url{https://developers.google.com/earth-engine/datasets/catalog/JRC_GHSL_P2023A_GHS_BUILT_S}
 
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(land4health)
 #' ee_Initialize()
 #'

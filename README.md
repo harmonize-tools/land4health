@@ -32,28 +32,13 @@ pak::pak("harmonize-tools/land4health")
 
 ``` r
 library(land4health)
-```
-    ── Welcome to land4health ───────────────────────────────────────────────────────────────────────────
-    A tool of the Harmonize Project to calculate and extract Remote Sensing Metrics for Spatial Health
-    Analysis.
-    Currently,`land4health` supports metrics related to the following categories:
-    • Accessibility
-    • Climate
-    • Environment
-    • and more!
-    For more information about metrics, please use the `l4h_list_metrics()` function.
-    Attaching core land4health packages:
-    → rgee v1.1.8
-    → sf v1.1.3
-    
-```r
 # l4h_install()
-ee_Initialize(user = 'REGISTERED GOOGLE EARTH ENGINE ACCOUNT@gmail.com')
 ```
+
     #> ── rgee 1.1.8 ──────────────────────────────────────── earthengine-api 1.7.38 ── 
-    #>  ✔ user: REGISTERED GOOGLE EARTH ENGINE ACCOUNT@gmail.com 
+    #>  ✔ user: antony.barja8@gmail.com 
     #>  ✔ Initializing Google Earth Engine: ✔ Initializing Google Earth Engine:  DONE!
-    #>  ✔ Earth Engine account: projects/1009866941441/assets/NAME_ASSETS 
+    #>  ✔ Earth Engine account: projects/1009866941441/assets/BM_Castropampa 
     #>  ✔ Python Path: C:/Python314/python.exe 
     #> ────────────────────────────────────────────────────────────────────────────────
 
@@ -86,9 +71,7 @@ This example demonstrates how to calculate forest loss between 2005 and
 2020 using a custom polygon and Earth Engine.
 
 ``` r
-# install.packages('pak')
-# pak::pkg_install('ambarja/geoidep')
-
+# install.packages('geoidep')
 library(geoidep)
 
 # Downloading the adminstration limits of Loreto provinces

@@ -72,7 +72,7 @@
 #' }
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(land4health)
 #' rgee::ee_Initialize()
 #'

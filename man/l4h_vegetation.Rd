@@ -131,7 +131,7 @@ Follow us on:
 }
 
 \examples{
-\dontrun{
+\donttest{
 library(land4health)
 library(geoidep)
 

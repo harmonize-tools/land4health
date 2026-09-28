@@ -1,5 +1,5 @@
 ---
-title: "1. Introduction"
+title: "land4health-setup"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{1. Installation}

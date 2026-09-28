@@ -20,7 +20,7 @@ Invisibly returns NULL
 Sets up the Python environment automatically based on installation.
 }
 \examples{
-\dontrun{
+\donttest{
 l4h_use_python()
 l4h_use_python("r-land4health", "virtualenv")
 }

@@ -26,22 +26,12 @@
 #' @return Invisibly returns NULL
 #'
 #' @examples
-#' \dontrun{
-#' # Basic installation with auto-restart (uv when available)
-#' l4h_install()
+#' # Installation is intentionally not run in examples because it modifies
+#' # the Python environment and may be slow.
 #'
-#' # Force reinstallation without restart
-#' l4h_install(force = TRUE, restart = FALSE)
+#' # See the installation vignette for instructions:
+#' vignette("land4health-setup", package = "land4health")
 #'
-#' # Force the uv backend (fails loudly if uv is missing)
-#' l4h_install(backend = "uv")
-#'
-#' # Classic pip backend
-#' l4h_install(backend = "pip")
-#'
-#' # Use conda environment
-#' l4h_install(method = "conda")
-#' }
 #' @export
 l4h_install <- function(pip = TRUE, system = FALSE, force = FALSE, restart = TRUE,
                         backend = c("auto", "uv", "pip"), ...) {

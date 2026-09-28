@@ -103,7 +103,7 @@ Follow us on:
 }
 
 \examples{
-\dontrun{
+\donttest{
 library(land4health)
 
 # ROI simple (EPSG:4326)

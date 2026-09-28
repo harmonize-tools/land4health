@@ -49,7 +49,7 @@
 #' }
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(land4health)
 #' ee_Initialize()
 #'

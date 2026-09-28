@@ -57,9 +57,7 @@ l4h_list_metrics()
 This example demonstrates how to calculate forest loss between 2005 and 2020 using a custom polygon and Earth Engine.
 
 ```{r example, message=FALSE, warning=FALSE}
-# install.packages('pak')
-# pak::pkg_install('ambarja/geoidep')
-
+# install.packages('geoidep')
 library(geoidep)
 
 # Downloading the adminstration limits of Loreto provinces
@@ -228,6 +226,5 @@ ggplot(etp_diff, aes(x = month)) +
   ) +
   theme_minimal(base_size = 8) + 
   theme(legend.position = "bottom")
-  
 
 ```

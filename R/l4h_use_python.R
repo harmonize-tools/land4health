@@ -9,7 +9,7 @@
 #' @return Invisibly returns NULL
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' l4h_use_python()
 #' l4h_use_python("r-land4health", "virtualenv")
 #' }

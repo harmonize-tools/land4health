@@ -65,7 +65,7 @@
 #' converts them to degrees Celsius using the formula: `LST = (value x 0.02) - 273.15`.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(land4health)
 #' ee_Initialize()
 #'

@@ -42,7 +42,7 @@
 #' }
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(land4health)
 #' ee_Initialize()
 #'
@@ -113,10 +113,10 @@ l4h_urban_rural_area <- function(region, category = "all", scale = 1000, sf = TR
   check_ee_initialized()
 
   ghsl_ic <- ee$ImageCollection(.internal_data$ghsl$id)$toBands()
-  
+
   eq_rural <- ghsl_ic$updateMask(ghsl_ic$eq(12)$Or(ghsl_ic$eq(13)))
   eq_urban <- ghsl_ic$updateMask(ghsl_ic$eq(21)$Or(ghsl_ic$eq(22)$Or(ghsl_ic$eq(23)$Or(ghsl_ic$eq(30)))))
-  
+
   rural_area <- calculate_area(eq_rural)
   urban_area <- calculate_area(eq_urban)
 

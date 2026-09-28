@@ -47,20 +47,10 @@ progress bar in the console) and falls back to pip via
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \examples{
-\dontrun{
-# Basic installation with auto-restart (uv when available)
-l4h_install()
+# Installation is intentionally not run in examples because it modifies
+# the Python environment and may be slow.
 
-# Force reinstallation without restart
-l4h_install(force = TRUE, restart = FALSE)
+# See the installation vignette for instructions:
+vignette("land4health-setup", package = "land4health")
 
-# Force the uv backend (fails loudly if uv is missing)
-l4h_install(backend = "uv")
-
-# Classic pip backend
-l4h_install(backend = "pip")
-
-# Use conda environment
-l4h_install(method = "conda")
-}
 }

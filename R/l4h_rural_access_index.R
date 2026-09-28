@@ -67,7 +67,7 @@
 #' Frontiers in Remote Sensing (2024): \doi{10.3389/frsen.2024.1375476}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(land4health)
 #' ee_Initialize()
 #'
