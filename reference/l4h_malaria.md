@@ -166,37 +166,37 @@ out <- l4h_malaria(
 #> <GMLEnvelope>
 #> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
 #> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2016 [390ms]
+#> ✔ Downloaded 2016 [902ms]
 #> 
 #> ℹ Downloading 2016 (2/6)
 #> <GMLEnvelope>
 #> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
 #> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2017 [1.8s]
+#> ✔ Downloaded 2017 [629ms]
 #> 
 #> ℹ Downloading 2017 (3/6)
 #> <GMLEnvelope>
 #> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
 #> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2018 [805ms]
+#> ✔ Downloaded 2018 [792ms]
 #> 
 #> ℹ Downloading 2018 (4/6)
 #> <GMLEnvelope>
 #> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
 #> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2019 [261ms]
+#> ✔ Downloaded 2019 [786ms]
 #> 
 #> ℹ Downloading 2019 (5/6)
 #> <GMLEnvelope>
 #> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
 #> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2020 [270ms]
+#> ✔ Downloaded 2020 [788ms]
 #> 
 #> ℹ Downloading 2020 (6/6)
 #> <GMLEnvelope>
 #> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
 #> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2020 [799ms]
+#> ✔ Downloaded 2020 [790ms]
 #> 
 head(out)
 #> Simple feature collection with 6 features and 4 fields
@@ -229,19 +229,19 @@ out_pv <- l4h_malaria(
 #> <GMLEnvelope>
 #> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
 #> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2021 [791ms]
+#> ✔ Downloaded 2021 [780ms]
 #> 
 #> ℹ Downloading 2021 (2/3)
 #> <GMLEnvelope>
 #> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
 #> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2022 [261ms]
+#> ✔ Downloaded 2022 [251ms]
 #> 
 #> ℹ Downloading 2022 (3/3)
 #> <GMLEnvelope>
 #> ....|-- lowerCorner: -4.4 -74.1 "2000-01-01T00:00:00"
 #> ....|-- upperCorner: -3.7 -73.2 "2025-01-01T00:00:00"
-#> ✔ Downloaded 2022 [795ms]
+#> ✔ Downloaded 2022 [786ms]
 #> 
 head(out_pv)
 #>         date species       measure      value
