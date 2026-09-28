@@ -157,8 +157,7 @@ head(out_daily)
 
 }
 \references{
-Munoz-Sabater, J., Dutra, E., Agusti-Panareda, A. et al. (2021).
-ERA5-Land: a state-of-the-art global reanalysis dataset for land
-applications. \emph{Hydrology and Earth System Sciences}, 25, 4349-4383.
-\doi{10.5194/hess-25-4349-2021}
+Muñoz Sabater, J. (2019): ERA5-Land monthly averaged data from 1950 to present.
+Copernicus Climate Change Service (C3S) Climate Data Store (CDS).
+\doi{10.24381/cds.68d2bb30}
 }
