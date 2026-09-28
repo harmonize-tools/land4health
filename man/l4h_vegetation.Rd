@@ -132,6 +132,7 @@ Follow us on:
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 library(geoidep)
 
@@ -166,6 +167,7 @@ result_annual <- provinces |>
 
  str(result_annual)
 
+}
 }
 
 }

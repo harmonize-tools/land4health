@@ -99,6 +99,7 @@ Follow us on:
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 rgee::ee_Initialize()
 
@@ -132,6 +133,7 @@ out_multi <- l4h_terra_climate(
   stat = "median",
   scale = 5000
 )
+}
 }
 
 }

@@ -73,6 +73,7 @@ Follow us on:
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 ee_Initialize()
 
@@ -114,5 +115,6 @@ ntl_mixed <- l4h_night_lights(
   stat = "mean"
 )
 head(ntl_mixed)
+}
 }
 }

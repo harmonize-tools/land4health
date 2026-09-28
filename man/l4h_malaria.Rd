@@ -104,6 +104,7 @@ Follow us on:
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 
 # ROI simple (EPSG:4326)
@@ -136,6 +137,7 @@ out_pv <- l4h_malaria(
   sf      = FALSE
 )
 head(out_pv)
+}
 }
 
 }

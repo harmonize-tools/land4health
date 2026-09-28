@@ -76,6 +76,7 @@ Follow us on:
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 ee_Initialize()
 
@@ -122,6 +123,7 @@ result_city_sum <- l4h_travel_time(
   fun         = "sum")
 
 head(result_city_sum)
+}
 }
 
 }

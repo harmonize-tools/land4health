@@ -76,6 +76,7 @@ Follow us on:
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 ee_Initialize()
 
@@ -99,6 +100,7 @@ co_data <- l4h_co_column(
   stat = "mean"
 )
 head(co_data)
+}
 }
 
 }

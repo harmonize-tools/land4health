@@ -87,6 +87,7 @@ Follow us on:
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 ee_Initialize()
 
@@ -116,6 +117,7 @@ rai <- l4h_rural_access_index(
     weighted = FALSE,
     sf = TRUE)
 head(rai)
+}
 }
 
 }

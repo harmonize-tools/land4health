@@ -73,7 +73,7 @@ Follow us on:
 
 \examples{
 \donttest{
-
+if (interactive()) {
 library(land4health)
 ee_Initialize()
 
@@ -117,6 +117,7 @@ sebal_annual <- l4h_sebal_modis(
   sf     = FALSE
 )
 
+}
 }
 }
 \references{

@@ -67,6 +67,7 @@ Follow us on:
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 ee_Initialize()
 
@@ -102,6 +103,7 @@ all_area <- l4h_urban_rural_area(
   region = region)
 
 head(all_area)
+}
 }
 
 }

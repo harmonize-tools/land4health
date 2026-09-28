@@ -78,6 +78,7 @@ Follow us on:
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 ee_Initialize()
 
@@ -112,6 +113,7 @@ suhi_night <- l4h_urban_heat_index(
   stat = "max"
 )
 head(suhi_night)
+}
 }
 
 }

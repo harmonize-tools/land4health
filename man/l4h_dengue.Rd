@@ -80,6 +80,7 @@ Follow us on:
 }
 
 \examples{
+\donttest{
 if (interactive()) {
   # National extract for Peru in 2019
   df_nat <- l4h_dengue(
@@ -116,6 +117,7 @@ if (interactive()) {
     quiet = TRUE
   )
   head(df_temp)
+}
 }
 }
 \references{

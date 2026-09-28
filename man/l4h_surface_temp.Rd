@@ -100,6 +100,7 @@ Developed by the Innovalab Team. For more information, send an email to
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 ee_Initialize()
 
@@ -125,6 +126,7 @@ lst_month <- l4h_surface_temp(
   region = region, band = "day", stat = "mean", by = "month")
 
 head(lst_month)
+}
 }
 
 }

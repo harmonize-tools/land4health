@@ -102,6 +102,7 @@ Follow us on:
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 rgee::ee_Initialize()
 
@@ -125,6 +126,7 @@ out_pm <- l4h_pm2_5(
   scale  = 3000
 )
 head(out_pm)
+}
 }
 
 }

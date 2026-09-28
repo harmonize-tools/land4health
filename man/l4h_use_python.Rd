@@ -21,8 +21,10 @@ Sets up the Python environment automatically based on installation.
 }
 \examples{
 \donttest{
+if (interactive()) {
 l4h_use_python()
 l4h_use_python("r-land4health", "virtualenv")
+}
 }
 
 }

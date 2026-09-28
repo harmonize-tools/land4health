@@ -117,6 +117,7 @@ Follow us on:
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 rgee::ee_Initialize()
 
@@ -151,6 +152,7 @@ out_daily <- l4h_era5land(
   stat   = "mean"
 )
 head(out_daily)
+}
 }
 
 }

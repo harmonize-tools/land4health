@@ -65,6 +65,7 @@ Follow us on:
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 ee_Initialize()
 
@@ -87,6 +88,7 @@ result <- l4h_forest_loss(
   region = region)
 
 head(result)
+}
 }
 
 }

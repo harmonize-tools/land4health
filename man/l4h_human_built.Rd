@@ -69,6 +69,7 @@ Follow us on:
 
 \examples{
 \donttest{
+if (interactive()) {
 library(land4health)
 ee_Initialize()
 
@@ -103,6 +104,7 @@ built_tbl <- l4h_human_built(
   stat = "mean"
 )
 dplyr::glimpse(built_tbl)
+}
 }
 
 }
