@@ -73,6 +73,7 @@
 #'
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' library(land4health)
 #' rgee::ee_Initialize()
 #'
@@ -118,6 +119,7 @@
 #'   stat    = "mean"
 #' )
 #' head(out_daily)
+#' }
 #' }
 #'
 #' @references
