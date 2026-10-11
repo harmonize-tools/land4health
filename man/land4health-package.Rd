@@ -25,6 +25,7 @@ Useful links:
 Authors:
 \itemize{
   \item Antony Barja \email{antony.barja@upch.pe} (\href{https://orcid.org/0000-0001-5921-2858}{ORCID}) [copyright holder]
+  \item Gabriel Carrasco-Escobar (\href{https://orcid.org/0000-0002-6945-0419}{ORCID})
 }
 
 Other contributors:
