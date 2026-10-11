@@ -1,3 +1,9 @@
+# land4health 0.3.1
+
+- The documentation and package URL have been corrected when land4health starts up upon loading the package.
+- Added the Wellcome funding badge to the pkgdown website (`_pkgdown.yml`).
+- `Authors@R` in `DESCRIPTION` was updated to include the new contributor, with their role (`aut`) and ORCID identifier.
+
 # land4health 0.3.0
 
 - `l4h_era5land()` gains support for ERA5-Land climate variables
