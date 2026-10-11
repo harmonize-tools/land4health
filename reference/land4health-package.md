@@ -26,6 +26,9 @@ Authors:
 - Antony Barja <antony.barja@upch.pe>
   ([ORCID](https://orcid.org/0000-0001-5921-2858)) \[copyright holder\]
 
+- Gabriel Carrasco-Escobar
+  ([ORCID](https://orcid.org/0000-0002-6945-0419))
+
 Other contributors:
 
 - Diego Villa \[contributor\]

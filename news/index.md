@@ -2,6 +2,8 @@
 
 ## land4health 0.3.0
 
+CRAN release: 2026-10-08
+
 - [`l4h_era5land()`](https://github.com/harmonize-tools/land4health/reference/l4h_era5land.md)
   gains support for ERA5-Land climate variables (`"t2m"`, `"d2m"`,
   `"pr"`, `"soil"`, `"pet"`) at **daily** or **monthly**.
