@@ -19,13 +19,13 @@ Source:
 [`DESCRIPTION`](https://github.com/harmonize-tools/land4health/tree/main/DESCRIPTION)
 
 Barja A, Carrasco-Escobar G (2026). *land4health: Remote Sensing Metrics
-for Spatial Health Analysis*. R package version 0.3.0,
+for Spatial Health Analysis*. R package version 0.3.1,
 <https://github.com/harmonize-tools/land4health/>.
 
     @Manual{,
       title = {land4health: Remote Sensing Metrics for Spatial Health Analysis},
       author = {Antony Barja and Gabriel Carrasco-Escobar},
       year = {2026},
-      note = {R package version 0.3.0},
+      note = {R package version 0.3.1},
       url = {https://github.com/harmonize-tools/land4health/},
     }
