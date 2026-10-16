@@ -2,7 +2,7 @@
 title: "land4health-setup"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{1. Installation}
+  %\VignetteIndexEntry{land4health-setup}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

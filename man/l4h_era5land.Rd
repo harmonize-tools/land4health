@@ -27,7 +27,8 @@ l4h_era5land(
 \itemize{
 \item \code{"daily"} — daily values from \code{ECMWF/ERA5_LAND/DAILY_AGGR},
 \item \code{"month"} — monthly values from \code{ECMWF/ERA5_LAND/MONTHLY_AGGR}.
-Default \code{"month"}.
+Default \code{"month"}. Diurnal bands (\code{"rh_day"}, \code{"rh_night"}) always use
+the hourly collection (see Details), aggregated to the same periods.
 }}
 
 \item{band}{Character vector. One or more ERA5-Land variables to extract.
@@ -35,6 +36,13 @@ Supported codes:
 \itemize{
 \item \code{"t2m"} (2m air temperature, K -> degrees C),
 \item \code{"d2m"} (2m dewpoint temperature, K -> degrees C),
+\item \code{"rh"} (mean relative humidity, \% — derived in Earth Engine from
+\code{temperature_2m} and \code{dewpoint_temperature_2m} via the Magnus
+formula, see Details),
+\item \code{"rh_day"} (daytime relative humidity, \% — mean over 06:00-18:00
+Peru time from \code{ECMWF/ERA5_LAND/HOURLY}, see Details),
+\item \code{"rh_night"} (nighttime relative humidity, \% — mean over
+18:00-06:00 Peru time from \code{ECMWF/ERA5_LAND/HOURLY}, see Details),
 \item \code{"pr"} (total precipitation, m -> mm),
 \item \code{"soil"} (volumetric soil water layer 1, 0-7 cm, m3/m3),
 \item \code{"pet"} (potential evaporation, m -> mm).
@@ -65,8 +73,8 @@ Default \code{FALSE}.}
 An \code{sf} or \code{tibble} with columns:
 \itemize{
 \item \code{date} (Date — first day of the period),
-\item \code{variable} (character — band code, e.g. \code{"t2m"}),
-\item \code{value} (numeric — degrees C, mm, or volume fraction),
+\item \code{variable} (character — band code, e.g. \code{"t2m"}, \code{"rh"}),
+\item \code{value} (numeric — degrees C, percent, mm, or volume fraction),
 plus geometry if \code{sf = TRUE}, and any attributes from \code{region}.
 }
 }
@@ -74,7 +82,8 @@ plus geometry if \code{sf = TRUE}, and any attributes from \code{region}.
 Extracts \strong{ERA5-Land} climate variables for a user-defined region
 and time range from the Earth Engine datasets
 \strong{ECMWF/ERA5_LAND/DAILY_AGGR} (\code{by = "daily"}) or
-\strong{ECMWF/ERA5_LAND/MONTHLY_AGGR} (\code{by = "month"}).
+\strong{ECMWF/ERA5_LAND/MONTHLY_AGGR} (\code{by = "month"}), plus
+\strong{ECMWF/ERA5_LAND/HOURLY} for the diurnal bands \code{"rh_day"}/\code{"rh_night"}.
 Each image is summarized over the region using a chosen
 statistic (e.g., mean/median), values are converted to conventional
 units (degrees Celsius, mm, volume fraction), and the function
@@ -94,6 +103,37 @@ key for vector-borne disease modelling (temperature/precipitation lags).
 \if{latex}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{
   \figure{lifecycle-experimental.pdf}{options: width=2cm}
 }}
+}
+\details{
+Relative humidity (\code{band = "rh"}) is derived server-side in Earth Engine
+from the bands the function already uses (\code{temperature_2m} and
+\code{dewpoint_temperature_2m}), following the Magnus formula for saturation
+vapour pressure (Wright 1997 coefficients, same as the EU operational
+product derived from ERA5-Land):
+
+\deqn{e(T) = 611.21 \times \exp\left(\frac{17.502 \times T}{240.97 + T}\right)}{e(T) = 611.21 * exp((17.502 * T) / (240.97 + T))}
+\deqn{RH = 100 \times \frac{e(Td)}{e(T)}}{RH = 100 * e(Td) / e(T)}
+
+with \code{T} (air temperature) and \code{Td} (dewpoint) in degrees C, converted
+from Kelvin inside Earth Engine (\code{- 273.15}). The ratio simplifies to
+\code{100 * exp(b*c*(Td - T) / ((c + T) * (c + Td)))} with \code{b = 17.502} and
+\code{c = 240.97}. Values are clamped to 0–100\%.
+
+Note the aggregation order: \code{DAILY_AGGR}/\code{MONTHLY_AGGR} already store
+time-averaged \code{T}/\code{Td}, so \code{rh} is the humidity of the averaged
+temperatures, not the average of instantaneous humidity. This is the
+standard practice (same as the EU ERA5-Land product). Below 0 °C the
+water-saturation form is kept (no ice correction), which is acceptable
+for vector-borne disease modelling but documented here as a limitation.
+
+Day and night are defined in Peru time (PET, UTC-5, no daylight saving):
+day is 06:00-18:00 PET and night is 18:00-06:00 PET. Since
+\code{ECMWF/ERA5_LAND/HOURLY} timestamps are UTC, \code{"rh_day"} averages the UTC
+hours 11-22 and \code{"rh_night"} the UTC hours 23, 00-10. Each hourly image
+is converted to RH with the same Magnus formula above and then averaged
+(mean of hourly means with equal weights). Diurnal bands therefore cannot
+be combined with \code{"rh"} or native bands in one call: they come from
+different collections with different time bases.
 }
 \section{Credits}{
 
@@ -142,16 +182,27 @@ out_monthly <- l4h_era5land(
 )
 head(out_monthly)
 
-# 2. Daily precipitation (mm) + soil moisture, one month
+# 2. Daily relative humidity (\%) + precipitation (mm), one month
 out_daily <- l4h_era5land(
   from   = "2020-06-01",
   to     = "2020-06-30",
   by     = "daily",
-  band   = c("pr", "soil"),
+  band   = c("rh", "pr"),
   region = region,
   stat   = "mean"
 )
 head(out_daily)
+
+# 3. Daytime vs nighttime relative humidity (\%), one week (Peru time)
+out_diurnal <- l4h_era5land(
+  from   = "2020-06-01",
+  to     = "2020-06-07",
+  by     = "daily",
+  band   = c("rh_day", "rh_night"),
+  region = region,
+  stat   = "mean"
+)
+head(out_diurnal)
 }
 }
 
@@ -160,4 +211,11 @@ head(out_daily)
 Muñoz Sabater, J. (2019): ERA5-Land monthly averaged data from 1950 to present.
 Copernicus Climate Change Service (C3S) Climate Data Store (CDS).
 \doi{10.24381/cds.68d2bb30}
+
+Bolton, D. (1980). The computation of equivalent potential temperature.
+\emph{Monthly Weather Review}, 108, 1046-1053.
+
+Alduchov, O. A., & Eskridge, R. E. (1996). Improved Magnus form
+approximation of saturation vapor pressure. \emph{Journal of Applied
+Meteorology}, 35, 601-609.
 }

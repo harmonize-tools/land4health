@@ -41,4 +41,4 @@ Depends:
 VignetteBuilder: knitr
 BugReports: https://github.com/harmonize-tools/land4health/issues
 Config/testthat/edition: 3
-Config/roxygen2/version: 8.1.0
+Config/roxygen2/version: 8.1.1

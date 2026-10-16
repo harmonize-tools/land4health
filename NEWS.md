@@ -1,5 +1,15 @@
-# land4health 0.3.1
+# land4health 0.3.2
 
+- `l4h_era5land()` gains `band = "rh"` (relative humidity, %) derived
+  server-side in Earth Engine from `temperature_2m` and
+  `dewpoint_temperature_2m` via the Magnus formula (documented in Details).
+
+- `l4h_era5land()` gains diurnal bands `"rh_day"`/`"rh_night"` (daytime and
+  nighttime relative humidity, %) computed from `ECMWF/ERA5_LAND/HOURLY`.
+  Day is 06:00-18:00 and night 18:00-06:00 in Peru time (PET, UTC-5);
+  diurnal bands cannot be combined with `"rh"` or native bands in one call.
+
+# land4health 0.3.1
 - The documentation and package URL have been corrected when land4health starts up upon loading the package.
 - Added the Wellcome funding badge to the pkgdown website (`_pkgdown.yml`).
 - `Authors@R` in `DESCRIPTION` was updated to include the new contributor, with their role (`aut`) and ORCID identifier.

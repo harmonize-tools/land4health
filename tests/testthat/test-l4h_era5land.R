@@ -39,3 +39,45 @@ test_that("l4h_era5land validates region", {
     "must be an"
   )
 })
+
+test_that("l4h_era5land accepts band = 'rh' (fails on region, not on band)", {
+  expect_error(
+    l4h_era5land(from = "2020-01-01", to = "2020-12-31", band = "rh", region = "invalid"),
+    "must be an"
+  )
+})
+
+test_that("l4h_era5land accepts band = c('rh', 'pr') (fails on region, not on band)", {
+  expect_error(
+    l4h_era5land(from = "2020-01-01", to = "2020-12-31", band = c("rh", "pr"), region = "invalid"),
+    "must be an"
+  )
+})
+
+test_that("l4h_era5land accepts band = 'rh_day' (fails on region, not on band)", {
+  expect_error(
+    l4h_era5land(from = "2020-01-01", to = "2020-12-31", band = "rh_day", region = "invalid"),
+    "must be an"
+  )
+})
+
+test_that("l4h_era5land accepts band = c('rh_day', 'rh_night') (fails on region, not on band)", {
+  expect_error(
+    l4h_era5land(from = "2020-01-01", to = "2020-12-31", band = c("rh_day", "rh_night"), region = "invalid"),
+    "must be an"
+  )
+})
+
+test_that("l4h_era5land rejects mixing rh_day with aggregate bands", {
+  expect_error(
+    l4h_era5land(from = "2020-01-01", to = "2020-12-31", band = c("rh_day", "pr"), region = "invalid"),
+    "cannot be combined"
+  )
+})
+
+test_that("l4h_era5land rejects mixing rh_day with rh", {
+  expect_error(
+    l4h_era5land(from = "2020-01-01", to = "2020-12-31", band = c("rh_day", "rh"), region = "invalid"),
+    "cannot be combined"
+  )
+})

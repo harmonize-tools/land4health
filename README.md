@@ -5,6 +5,10 @@
 
 <!-- badges: start -->
 
+[![CRAN
+results](https://badges.cranchecks.info/worst/land4health.svg)](https://cran.r-project.org/web/checks/check_results_land4health.html)
+![CRAN/METACRAN Version](https://img.shields.io/cran/v/land4health)
+[![](https://img.shields.io/badge/DOI-10.32614/CRAN.package.land4health-1f57b6?style=flat&link=https://doi.org/10.32614/CRAN.package.land4health)](https://doi.org/10.32614/CRAN.package.land4health)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml)
@@ -30,15 +34,22 @@ You can install the development version with:
 pak::pak("harmonize-tools/land4health")
 ```
 
+or also the official version available on CRAN:
+
+``` r
+install.packages("land4health")
+```
+
+
 ``` r
 library(land4health)
 # l4h_install()
 ```
 
     #> ── rgee 1.1.8 ──────────────────────────────────────── earthengine-api 1.7.38 ── 
-    #>  ✔ user: antony.barja8@gmail.com 
+    #>  ✔ user: geografo.pe@gmail.com 
     #>  ✔ Initializing Google Earth Engine: ✔ Initializing Google Earth Engine:  DONE!
-    #>  ✔ Earth Engine account: projects/1009866941441/assets/BM_Castropampa 
+    #>  ✔ Earth Engine account: projects/424340891660/assets/Rio_navegables 
     #>  ✔ Python Path: C:/Python314/python.exe 
     #> ────────────────────────────────────────────────────────────────────────────────
 
@@ -62,7 +73,7 @@ l4h_list_metrics()
 #> # ℹ abbreviated name: ¹​pixel_resolution_meters
 #> # ℹ 5 more variables: resolution_temporal <chr>, layer_can_be_actived <lgl>,
 #> #   tags <chr>, lifecycle <chr>, url <chr>
-#> ... (2 more)
+#> ... (3 more)
 ```
 
 ## 3. Example: Calculate Forest Loss in a Custom Region

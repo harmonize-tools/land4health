@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 # land4health: Remote Sensing Metrics for Spatial Health Analysis <img src="man/figures/logo.png" align="right" hspace="10" vspace="0" width="15%">
 
 <!-- badges: start -->
+[![CRAN results](https://badges.cranchecks.info/worst/land4health.svg)](https://cran.r-project.org/web/checks/check_results_land4health.html) ![CRAN/METACRAN Version](https://img.shields.io/cran/v/land4health) [![](https://img.shields.io/badge/DOI-10.32614/CRAN.package.land4health-1f57b6?style=flat&link=https://doi.org/10.32614/CRAN.package.land4health)](https://doi.org/10.32614/CRAN.package.land4health)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/harmonize-tools/land4health/actions/workflows/R-CMD-check.yaml)
 [![test-coverage.yaml](https://github.com/harmonize-tools/land4health/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/harmonize-tools/land4health/actions/workflows/test-coverage.yaml)
@@ -43,7 +44,7 @@ library(land4health)
 ```
 
 ```{r, echo=FALSE,message=FALSE,warning=FALSE}
-ee_Initialize(user = 'antony.barja8@gmail.com')
+ee_Initialize(user = 'geografo.pe@gmail.com')
 ```
 
 ## 2. List of available metrics

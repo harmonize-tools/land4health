@@ -41,7 +41,8 @@ updated_db_ee <- function(type = NULL, db = NULL){
   chirps_sat         =  updated_db_ee(type = 'eedataset', db = 'UCSB-CHC/CHIRPS/V3/DAILY_SAT'),
   chirps_rnl         =  updated_db_ee(type = 'eedataset', db = 'UCSB-CHC/CHIRPS/V3/DAILY_RNL'),
   era5land_daily     =  updated_db_ee(type = 'eedataset', db = 'ERA5_LAND/DAILY_AGGR'),
-  era5land_monthly   =  updated_db_ee(type = 'eedataset', db = 'ERA5_LAND/MONTHLY_AGGR')
+  era5land_monthly   =  updated_db_ee(type = 'eedataset', db = 'ERA5_LAND/MONTHLY_AGGR'),
+  era5land_hourly    =  updated_db_ee(type = 'eedataset', db = 'ERA5_LAND/HOURLY')
 )
 
 usethis::use_data(.internal_data, internal = TRUE, overwrite = TRUE)
