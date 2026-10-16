@@ -1,5 +1,18 @@
 # Changelog
 
+## land4health 0.3.2
+
+- [`l4h_era5land()`](https://github.com/harmonize-tools/land4health/reference/l4h_era5land.md)
+  gains `band = "rh"` (relative humidity, %) derived server-side in
+  Earth Engine from `temperature_2m` and `dewpoint_temperature_2m` via
+  the Magnus formula (documented in Details).
+
+- [`l4h_era5land()`](https://github.com/harmonize-tools/land4health/reference/l4h_era5land.md)
+  gains diurnal bands `"rh_day"`/`"rh_night"` (daytime and nighttime
+  relative humidity, %) computed from `ECMWF/ERA5_LAND/HOURLY`. Day is
+  06:00-18:00 and night 18:00-06:00 in Peru time (PET, UTC-5); diurnal
+  bands cannot be combined with `"rh"` or native bands in one call.
+
 ## land4health 0.3.1
 
 - The documentation and package URL have been corrected when land4health
