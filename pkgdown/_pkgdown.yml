@@ -20,6 +20,8 @@ template:
   bootstrap: 5
   light-switch: true
   includes:
+    in_header: |
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     after_navbar: |
       <a href="https://wellcome.org/"
          target="_blank"
