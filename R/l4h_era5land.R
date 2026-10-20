@@ -405,14 +405,14 @@ l4h_era5land <- function(from,
 
   outs <- list()
 
-  # ---- Aggregate bands: DAILY_AGGR / MONTHLY_AGGR ------------------------
+  # Aggregate bands: DAILY_AGGR / MONTHLY_AGGR ------------------------
   if (length(native_codes) > 0L || has_rh) {
     agg_codes <- info$code[info$code %in% c(native_codes, "rh")]
 
     if (by == "daily") {
       dataset_id <- .internal_data$era5land_daily$id
       from_ee <- l4h_to_eedate(from_date)
-      to_ee   <- l4h_to_eedate(to_date)
+      to_ee   <- l4h_to_eedate(to_date + 1L) #Fixed date
     } else {
       dataset_id <- .internal_data$era5land_monthly$id
       m_start <- as.Date(format(from_date, "%Y-%m-01"))
@@ -459,7 +459,7 @@ l4h_era5land <- function(from,
     outs[[length(outs) + 1L]] <- .extract_long(ic_agg, agg_codes, period_dates, ...)
   }
 
-  # ---- Diurnal bands: HOURLY in Peru time (PET, UTC-5, no DST) ------------
+  # Diurnal bands: HOURLY in Peru time (PET, UTC-5, no DST) ------------
   # Day:   06:00-18:00 PET = UTC hours 11-22
   # Night: 18:00-06:00 PET = UTC hours 23, 00-10
   if (length(diurnal_codes) > 0L) {
