@@ -2,6 +2,8 @@
 
 ## land4health 0.3.2
 
+CRAN release: 2026-11-10
+
 - [`l4h_era5land()`](https://github.com/harmonize-tools/land4health/reference/l4h_era5land.md)
   gains `band = "rh"` (relative humidity, %) derived server-side in
   Earth Engine from `temperature_2m` and `dewpoint_temperature_2m` via
