@@ -1,5 +1,9 @@
-# land4health 0.3.2
+# land4health 0.3.3
 
+- Add `l4h_land_cover()` to extract annual [GLC-FCS30D](https://gee-community-catalog.org/tutorials/examples/glc_fcs30d_lulc) land-cover class areas
+  (km2) for a region, with optional selection by class name or code.
+  
+# land4health 0.3.2
 - `l4h_era5land()` gains `band = "rh"` (relative humidity, %) derived
   server-side in Earth Engine from `temperature_2m` and
   `dewpoint_temperature_2m` via the Magnus formula (documented in Details).

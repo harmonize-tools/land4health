@@ -95,6 +95,7 @@ reference:
       - l4h_co_column
       - l4h_urban_heat_index
       - l4h_vegetation
+      - l4h_land_cover
 
   - title: 'Climate'
     contents:
