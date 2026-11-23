@@ -42,6 +42,9 @@
   index using MODIS LST and GHS-SMOD
 - [`l4h_vegetation()`](https://github.com/harmonize-tools/land4health/reference/l4h_vegetation.md)
   **\[stable\]** : Extract vegetation indices from MODIS MOD13A1
+- [`l4h_land_cover()`](https://github.com/harmonize-tools/land4health/reference/l4h_land_cover.md)
+  **\[experimental\]** : Extract land-cover area by class from
+  GLC-FCS30D
 
 ## Climate
 

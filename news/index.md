@@ -1,5 +1,14 @@
 # Changelog
 
+## land4health 0.3.3
+
+- Add
+  [`l4h_land_cover()`](https://github.com/harmonize-tools/land4health/reference/l4h_land_cover.md)
+  to extract annual
+  [GLC-FCS30D](https://gee-community-catalog.org/tutorials/examples/glc_fcs30d_lulc)
+  land-cover class areas (km2) for a region, with optional selection by
+  class name or code.
+
 ## land4health 0.3.2
 
 CRAN release: 2026-11-10
